@@ -19,7 +19,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { Button } from "@/components/ui/button";
 import { useCampsQuery } from "@/lib/hooks/use-camps-query";
 import { getFlagAsset, getCountryName } from "@/lib/utils/flags";
-import type { Camp, AvailabilityFilter } from "@/lib/types";
+import type { Camp } from "@/lib/types";
 
 const currencyIcons: Record<string, keyof typeof Ionicons.glyphMap> = {
   EUR: "logo-euro",
@@ -142,7 +142,7 @@ function FilterChip({
 export default function CampsToursScreen() {
   const { t } = useTranslation();
   const { data, isLoading, error, refetch, isFetching } = useCampsQuery();
-  const [availability, setAvailability] = useState<AvailabilityFilter>("alle");
+  const [showFull, setShowFull] = useState(false);
   const [showPast, setShowPast] = useState(false);
   const [selectedCountry, setSelectedCountry] = useState<string | null>(null);
   const [countryModalVisible, setCountryModalVisible] = useState(false);
@@ -164,8 +164,9 @@ export default function CampsToursScreen() {
     if (!showPast) {
       result = result.filter((c) => !isPastCamp(c));
     }
-    if (availability === "niet-vol") result = result.filter((c) => !c.isFull);
-    if (availability === "vol") result = result.filter((c) => c.isFull);
+    if (!showFull) {
+      result = result.filter((c) => !c.isFull);
+    }
     if (selectedCountry) {
       result = result.filter((c) => c.hostCountryCode === selectedCountry);
     }
@@ -187,7 +188,7 @@ export default function CampsToursScreen() {
       }
     }
     return result;
-  }, [camps, availability, showPast, selectedCountry, priceRange]);
+  }, [camps, showFull, showPast, selectedCountry, priceRange]);
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -231,11 +232,7 @@ export default function CampsToursScreen() {
         className="py-3"
         contentContainerStyle={{ paddingHorizontal: 20, gap: 8 }}
       >
-        <FilterChip
-          label="Beschikbaar"
-          active={availability === "niet-vol"}
-          onPress={() => setAvailability(availability === "niet-vol" ? "alle" : "niet-vol")}
-        />
+        <FilterChip label="Vol" active={showFull} onPress={() => setShowFull(!showFull)} />
         <FilterChip label="Afgelopen" active={showPast} onPress={() => setShowPast(!showPast)} />
         <Pressable onPress={() => setCountryModalVisible(true)} className="active:opacity-70">
           <View
