@@ -147,6 +147,7 @@ export default function CampsToursScreen() {
   const [selectedCountry, setSelectedCountry] = useState<string | null>(null);
   const [countryModalVisible, setCountryModalVisible] = useState(false);
   const [countrySearch, setCountrySearch] = useState("");
+  const [priceRange, setPriceRange] = useState<string | null>(null);
 
   const navigation = useNavigation();
   const camps = data?.camps ?? [];
@@ -168,8 +169,25 @@ export default function CampsToursScreen() {
     if (selectedCountry) {
       result = result.filter((c) => c.hostCountryCode === selectedCountry);
     }
+    if (priceRange) {
+      const cost = (c: Camp) => parseFloat(c.contribution) || 0;
+      switch (priceRange) {
+        case "0":
+          result = result.filter((c) => cost(c) === 0);
+          break;
+        case "0-500":
+          result = result.filter((c) => cost(c) > 0 && cost(c) <= 500);
+          break;
+        case "500-1000":
+          result = result.filter((c) => cost(c) > 500 && cost(c) <= 1000);
+          break;
+        case "1000+":
+          result = result.filter((c) => cost(c) > 1000);
+          break;
+      }
+    }
     return result;
-  }, [camps, availability, showPast, selectedCountry]);
+  }, [camps, availability, showPast, selectedCountry, priceRange]);
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -207,7 +225,12 @@ export default function CampsToursScreen() {
   return (
     <View style={{ flex: 1 }} className="bg-background">
       {/* Filters */}
-      <View className="flex-row items-center gap-2 px-5 py-3">
+      <ScrollView
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        className="py-3"
+        contentContainerStyle={{ paddingHorizontal: 20, gap: 8 }}
+      >
         <FilterChip
           label="Beschikbaar"
           active={availability === "niet-vol"}
@@ -230,7 +253,27 @@ export default function CampsToursScreen() {
             </Text>
           </View>
         </Pressable>
-      </View>
+        <FilterChip
+          label="Gratis"
+          active={priceRange === "0"}
+          onPress={() => setPriceRange(priceRange === "0" ? null : "0")}
+        />
+        <FilterChip
+          label="< €500"
+          active={priceRange === "0-500"}
+          onPress={() => setPriceRange(priceRange === "0-500" ? null : "0-500")}
+        />
+        <FilterChip
+          label="€500–1000"
+          active={priceRange === "500-1000"}
+          onPress={() => setPriceRange(priceRange === "500-1000" ? null : "500-1000")}
+        />
+        <FilterChip
+          label="> €1000"
+          active={priceRange === "1000+"}
+          onPress={() => setPriceRange(priceRange === "1000+" ? null : "1000+")}
+        />
+      </ScrollView>
 
       {/* List */}
       <FlatList
