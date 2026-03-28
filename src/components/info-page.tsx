@@ -1,5 +1,5 @@
 import { memo, useCallback } from "react";
-import { ScrollView, View, Pressable, Linking, Platform } from "react-native";
+import { ScrollView, View, Linking, Platform } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
 import { router } from "expo-router";
@@ -7,14 +7,7 @@ import * as Haptics from "expo-haptics";
 import { Card, CardContent } from "@/components/ui/card";
 import { Text } from "@/components/ui/text";
 import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
-import type {
-  InfoPageContent,
-  ContentBlock,
-  ContentSection,
-  IconName,
-  CTABlock,
-} from "@/lib/types";
+import type { InfoPageContent, ContentBlock, IconName, CTABlock } from "@/lib/types";
 
 function SectionHeader({ icon, title }: { icon?: IconName; title?: string }) {
   if (!title) return null;

@@ -67,6 +67,32 @@ jobs:
         run: npm ci
 
   # ─────────────────────────────────────────────────────────────
+  # Tests
+  # ─────────────────────────────────────────────────────────────
+  test:
+    name: Tests
+    runs-on: ubuntu-latest
+    needs: install
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: "npm"
+
+      - name: Restore node_modules cache
+        uses: actions/cache@v5
+        with:
+          path: node_modules
+          key: node-modules-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+
+      - name: Run tests
+        run: npm test -- --ci --coverage
+
+  # ─────────────────────────────────────────────────────────────
   # TypeScript type checking
   # ─────────────────────────────────────────────────────────────
   typecheck:
@@ -171,12 +197,13 @@ jobs:
   ci-success:
     name: CI Success
     runs-on: ubuntu-latest
-    needs: [typecheck, eslint, expo-doctor]
+    needs: [test, typecheck, eslint, expo-doctor]
     if: always()
     steps:
       - name: Check all jobs passed
         run: |
-          if [[ "${{ needs.typecheck.result }}" != "success" ]] || \
+          if [[ "${{ needs.test.result }}" != "success" ]] || \
+             [[ "${{ needs.typecheck.result }}" != "success" ]] || \
              [[ "${{ needs.eslint.result }}" != "success" ]]; then
             echo "One or more CI jobs failed"
             exit 1

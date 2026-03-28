@@ -1,9 +1,8 @@
-import { useMemo } from "react";
+import { useMemo, useLayoutEffect } from "react";
 import { ScrollView, View, Pressable, Platform, Linking } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useLocalSearchParams, useNavigation, router } from "expo-router";
 import { FontAwesome5 } from "@expo/vector-icons";
-import { useLayoutEffect } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Text } from "@/components/ui/text";
 import { Button } from "@/components/ui/button";

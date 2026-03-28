@@ -1,4 +1,4 @@
-import { ScrollView, View, Platform, Linking } from "react-native";
+import { ScrollView, View, Platform, Linking, Pressable } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { router } from "expo-router";
 import * as StoreReview from "expo-store-review";
@@ -7,7 +7,6 @@ import { useTranslation } from "react-i18next";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Text } from "@/components/ui/text";
 import { Separator } from "@/components/ui/separator";
-import { Pressable } from "react-native";
 import { APP_VERSION, APP_BUILD, SOCIAL_URLS } from "@/lib/constants";
 
 function SettingsRow({
