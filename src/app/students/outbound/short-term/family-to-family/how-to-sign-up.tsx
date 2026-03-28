@@ -1,5 +1,6 @@
-import { InfoPage, familyHowToSignUpContent } from "@/features/student-info";
+import { InfoPage } from "@/components/info-page";
+import { howToSignUpContent } from "@/lib/data/student-info/outbound/short-term/family-to-family/how-to-sign-up";
 
-export default function FamilyToFamilyHowToSignUpScreen() {
-  return <InfoPage content={familyHowToSignUpContent} />;
+export default function HowToSignUpScreen() {
+  return <InfoPage content={howToSignUpContent} />;
 }

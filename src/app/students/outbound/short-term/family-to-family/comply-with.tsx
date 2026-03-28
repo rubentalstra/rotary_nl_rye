@@ -1,5 +1,6 @@
-import { InfoPage, familyComplyWithContent } from "@/features/student-info";
+import { InfoPage } from "@/components/info-page";
+import { complyWithContent } from "@/lib/data/student-info/outbound/short-term/family-to-family/comply-with";
 
-export default function FamilyToFamilyComplyWithScreen() {
-  return <InfoPage content={familyComplyWithContent} />;
+export default function ComplyWithScreen() {
+  return <InfoPage content={complyWithContent} />;
 }

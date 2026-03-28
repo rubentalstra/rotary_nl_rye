@@ -1,5 +1,6 @@
-import { InfoPage, campsComplyWithContent } from "@/features/student-info";
+import { InfoPage } from "@/components/info-page";
+import { complyWithContent } from "@/lib/data/student-info/outbound/short-term/camps-and-tours/comply-with";
 
-export default function CampsToursComplyWithScreen() {
-  return <InfoPage content={campsComplyWithContent} />;
+export default function ComplyWithScreen() {
+  return <InfoPage content={complyWithContent} />;
 }
