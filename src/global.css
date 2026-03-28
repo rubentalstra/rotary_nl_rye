@@ -1,186 +1,50 @@
-@import "tailwindcss/theme" layer(theme);
-@import "tailwindcss/preflight" layer(base);
-@import "tailwindcss/utilities" layer(utilities);
-@import "nativewind/theme";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 @layer base {
   :root {
-    /* Backgrounds */
-    --background: 240 5% 96%; /* #F2F2F7 iOS system bg */
-    --background-elevated: 0 0% 100%;
-    --card: 0 0% 100%;
-    --surface: 0 0% 100%;
-    --surface-variant: 0 0% 97%;
-
-    /* Primary brand */
-    --primary: 216 73% 32%; /* Rotary Royal Blue #17458f */
-    --primary-foreground: 0 0% 100%;
-    --primary-variant: 212 100% 39%; /* Azure #0067c8 */
-
-    /* Secondary */
-    --secondary: 39 93% 54%; /* Rotary Gold #f7a81b */
-    --secondary-foreground: 0 0% 0%;
-
-    /* Accent */
-    --accent: 197 100% 44%; /* Sky Blue #00a2e0 */
-    --accent-foreground: 0 0% 100%;
-
-    /* Muted */
-    --muted: 240 5% 96%;
-    --muted-foreground: 240 4% 46%;
-
-    /* Text */
+    --background: 240 5% 96%;
     --foreground: 0 0% 0%;
-    --foreground-secondary: 240 6% 25%;
-    --foreground-tertiary: 240 2% 56%;
-    --foreground-disabled: 240 1% 80%;
-
-    /* Status */
-    --destructive: 2 79% 52%; /* Cardinal #e02927 */
-    --destructive-foreground: 0 0% 100%;
-    --success: 148 100% 30%; /* Grass #009739 */
-    --success-foreground: 0 0% 100%;
-    --warning: 27 100% 50%; /* Orange #ff7600 */
-    --warning-foreground: 0 0% 0%;
-    --info: 212 100% 39%; /* Azure #0067c8 */
-    --info-foreground: 0 0% 100%;
-
-    /* Borders */
-    --border: 240 6% 90%;
-    --divider: 240 3% 78%;
-    --outline: 0 0% 88%;
-
-    /* Ring / focus */
-    --ring: 216 73% 32%;
-
-    /* Icons */
-    --icon: 240 2% 56%;
-    --icon-active: 216 73% 32%;
-
-    /* Special */
-    --notification: 2 79% 52%;
-    --badge: 39 93% 54%;
-    --link: 212 100% 39%;
-
-    /* Shadows */
-    --shadow: 0 0% 0%;
-  }
-
-  .dark {
-    /* Backgrounds */
-    --background: 0 0% 0%; /* True black OLED */
-    --background-elevated: 240 6% 12%;
-    --card: 240 6% 12%; /* #1C1C1E */
-    --surface: 240 6% 12%;
-    --surface-variant: 240 4% 18%;
-
-    /* Primary brand (lighter for dark bg) */
-    --primary: 197 100% 44%; /* Sky Blue #00a2e0 */
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 0%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 0%;
+    --primary: 216 73% 32%;
     --primary-foreground: 0 0% 100%;
-    --primary-variant: 212 100% 39%;
-
-    /* Secondary */
     --secondary: 39 93% 54%;
     --secondary-foreground: 0 0% 0%;
+    --muted: 240 5% 96%;
+    --muted-foreground: 240 4% 46%;
+    --accent: 197 100% 44%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 2 79% 52%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 240 6% 90%;
+    --input: 240 6% 90%;
+    --ring: 216 73% 32%;
+    --radius: 0.625rem;
+  }
 
-    /* Accent */
-    --accent: 200 58% 81%; /* Powder Blue #b9d9eb */
-    --accent-foreground: 0 0% 0%;
-
-    /* Muted */
+  .dark:root {
+    --background: 0 0% 0%;
+    --foreground: 0 0% 100%;
+    --card: 240 6% 12%;
+    --card-foreground: 0 0% 100%;
+    --popover: 240 6% 12%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 197 100% 44%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 39 93% 54%;
+    --secondary-foreground: 0 0% 0%;
     --muted: 240 4% 18%;
     --muted-foreground: 240 2% 56%;
-
-    /* Text */
-    --foreground: 0 0% 100%;
-    --foreground-secondary: 240 20% 93%;
-    --foreground-tertiary: 240 2% 56%;
-    --foreground-disabled: 240 2% 39%;
-
-    /* Status (iOS dark mode system colors) */
-    --destructive: 0 100% 63%; /* #FF453A */
+    --accent: 200 58% 81%;
+    --accent-foreground: 0 0% 0%;
+    --destructive: 0 100% 63%;
     --destructive-foreground: 0 0% 100%;
-    --success: 128 100% 52%; /* #32D74B */
-    --success-foreground: 0 0% 0%;
-    --warning: 36 100% 52%; /* #FF9F0A */
-    --warning-foreground: 0 0% 0%;
-    --info: 197 100% 44%;
-    --info-foreground: 0 0% 100%;
-
-    /* Borders */
     --border: 240 4% 22%;
-    --divider: 240 3% 28%;
-    --outline: 240 2% 33%;
-
-    /* Ring / focus */
+    --input: 240 4% 22%;
     --ring: 197 100% 44%;
-
-    /* Icons */
-    --icon: 240 2% 56%;
-    --icon-active: 197 100% 44%;
-
-    /* Special */
-    --notification: 0 100% 63%;
-    --badge: 39 93% 54%;
-    --link: 197 100% 44%;
-
-    /* Shadows */
-    --shadow: 0 0% 0%;
   }
-}
-
-@theme {
-  /* Rotary Official Brand Colors (static, not theme-dependent) */
-  --color-rotary-royal-blue: #17458f;
-  --color-rotary-gold: #f7a81b;
-  --color-rotary-azure: #0067c8;
-  --color-rotary-sky-blue: #00a2e0;
-  --color-rotary-cranberry: #d41367;
-  --color-rotary-cardinal: #e02927;
-  --color-rotary-turquoise: #00adbb;
-  --color-rotary-orange: #ff7600;
-  --color-rotary-violet: #901f93;
-  --color-rotary-grass: #009739;
-  --color-rotary-powder-blue: #b9d9eb;
-  --color-rotary-moss: #a7aca2;
-  --color-rotary-lavender: #c6bcd0;
-  --color-rotary-taupe: #d9c89e;
-
-  /* Semantic colors referencing CSS variables */
-  --color-background: hsl(var(--background));
-  --color-background-elevated: hsl(var(--background-elevated));
-  --color-foreground: hsl(var(--foreground));
-  --color-foreground-secondary: hsl(var(--foreground-secondary));
-  --color-foreground-tertiary: hsl(var(--foreground-tertiary));
-  --color-foreground-disabled: hsl(var(--foreground-disabled));
-  --color-card: hsl(var(--card));
-  --color-surface: hsl(var(--surface));
-  --color-surface-variant: hsl(var(--surface-variant));
-  --color-primary: hsl(var(--primary));
-  --color-primary-foreground: hsl(var(--primary-foreground));
-  --color-primary-variant: hsl(var(--primary-variant));
-  --color-secondary: hsl(var(--secondary));
-  --color-secondary-foreground: hsl(var(--secondary-foreground));
-  --color-accent: hsl(var(--accent));
-  --color-accent-foreground: hsl(var(--accent-foreground));
-  --color-muted: hsl(var(--muted));
-  --color-muted-foreground: hsl(var(--muted-foreground));
-  --color-destructive: hsl(var(--destructive));
-  --color-destructive-foreground: hsl(var(--destructive-foreground));
-  --color-success: hsl(var(--success));
-  --color-success-foreground: hsl(var(--success-foreground));
-  --color-warning: hsl(var(--warning));
-  --color-warning-foreground: hsl(var(--warning-foreground));
-  --color-info: hsl(var(--info));
-  --color-info-foreground: hsl(var(--info-foreground));
-  --color-border: hsl(var(--border));
-  --color-divider: hsl(var(--divider));
-  --color-outline: hsl(var(--outline));
-  --color-ring: hsl(var(--ring));
-  --color-icon: hsl(var(--icon));
-  --color-icon-active: hsl(var(--icon-active));
-  --color-notification: hsl(var(--notification));
-  --color-badge: hsl(var(--badge));
-  --color-link: hsl(var(--link));
-  --color-shadow: hsl(var(--shadow));
 }
