@@ -1,15 +1,8 @@
 import { ScrollView, View, Platform } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import {
-  Accordion,
-  AccordionItem,
-  AccordionTrigger,
-  AccordionContent,
-} from "@/components/ui/accordion";
 import { Text } from "@/components/ui/text";
 import { Separator } from "@/components/ui/separator";
 import { aboutSections } from "@/lib/data/about";
-import type { AboutSection } from "@/lib/types";
 
 export default function AboutScreen() {
   return (
@@ -18,74 +11,52 @@ export default function AboutScreen() {
       showsVerticalScrollIndicator={false}
       contentInsetAdjustmentBehavior="automatic"
     >
-      <View className={`p-4 ${Platform.OS === "android" ? "pb-24" : "pb-10"}`}>
-        {/* Header */}
-        <View className="items-center mb-6">
-          <View className="w-16 h-16 rounded-full bg-primary/10 items-center justify-center mb-3">
-            <Ionicons name="information-circle" size={32} className="text-primary" />
+      <View className={`px-6 pt-6 ${Platform.OS === "android" ? "pb-28" : "pb-12"}`}>
+        {aboutSections.map((section, idx) => (
+          <View key={section.id}>
+            {idx > 0 && <Separator className="my-6" />}
+
+            <View className="flex-row items-center gap-3 mb-4">
+              <View className="w-10 h-10 rounded-full bg-primary/10 items-center justify-center">
+                <Ionicons
+                  name={section.icon as keyof typeof Ionicons.glyphMap}
+                  size={20}
+                  className="text-primary"
+                />
+              </View>
+              <Text className="text-xl font-bold text-foreground">{section.title}</Text>
+            </View>
+
+            {section.subtitle && (
+              <Text className="text-base text-primary/80 italic mb-3">
+                {section.subtitle}
+              </Text>
+            )}
+
+            {section.content && (
+              <Text className="text-base leading-7 text-muted-foreground mb-4">
+                {section.content}
+              </Text>
+            )}
+
+            {section.listItems?.map((item, itemIdx) => (
+              <View key={itemIdx} className="flex-row items-start mb-3">
+                <View className="w-1.5 h-1.5 rounded-full bg-primary mt-2.5 mr-3 shrink-0" />
+                <Text className="text-base leading-7 text-muted-foreground flex-1">
+                  {item}
+                </Text>
+              </View>
+            ))}
+
+            {section.quote && (
+              <View className="mt-4 border-l-2 border-primary/30 pl-4">
+                <Text className="text-lg italic text-foreground leading-7">
+                  {section.quote}
+                </Text>
+              </View>
+            )}
           </View>
-          <Text variant="h2" className="text-center">
-            Over Ons
-          </Text>
-          <Text variant="muted" className="text-center mt-1">
-            Rotary Youth Exchange Netherlands
-          </Text>
-        </View>
-
-        {/* Accordion Sections */}
-        <Accordion type="multiple" defaultValue={["wie-zijn-wij"]}>
-          {aboutSections.map((section) => (
-            <AccordionItem key={section.id} value={section.id}>
-              <AccordionTrigger>
-                <View className="flex-row items-center gap-3">
-                  <View className="w-9 h-9 rounded-full bg-primary/10 items-center justify-center">
-                    <Ionicons
-                      name={section.icon as keyof typeof Ionicons.glyphMap}
-                      size={18}
-                      className="text-primary"
-                    />
-                  </View>
-                  <Text className="text-lg font-semibold flex-1">{section.title}</Text>
-                </View>
-              </AccordionTrigger>
-              <AccordionContent>
-                <View className="pt-2">
-                  {/* Subtitle */}
-                  {section.subtitle && (
-                    <Text variant="muted" className="italic mb-3">
-                      {section.subtitle}
-                    </Text>
-                  )}
-
-                  {/* Content */}
-                  {section.content && (
-                    <Text variant="p" className="mb-3">
-                      {section.content}
-                    </Text>
-                  )}
-
-                  {/* List Items */}
-                  {section.listItems?.map((item, idx) => (
-                    <View key={idx} className="flex-row items-start mb-2.5">
-                      <View className="w-1.5 h-1.5 rounded-full bg-primary mt-2 mr-3 shrink-0" />
-                      <Text variant="p" className="flex-1">
-                        {item}
-                      </Text>
-                    </View>
-                  ))}
-
-                  {/* Quote */}
-                  {section.quote && (
-                    <>
-                      <Separator className="my-3" />
-                      <Text variant="blockquote">{section.quote}</Text>
-                    </>
-                  )}
-                </View>
-              </AccordionContent>
-            </AccordionItem>
-          ))}
-        </Accordion>
+        ))}
       </View>
     </ScrollView>
   );

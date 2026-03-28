@@ -4,6 +4,7 @@ import { ThemeProvider as NavigationThemeProvider } from "@react-navigation/nati
 import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { SafeAreaProvider } from "react-native-safe-area-context";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { Platform, useColorScheme } from "react-native";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { PortalHost } from "@rn-primitives/portal";
@@ -23,10 +24,11 @@ export default function RootLayout() {
   const colorScheme: "light" | "dark" = rawScheme === "dark" ? "dark" : "light";
 
   return (
-    <SafeAreaProvider>
-      <ErrorBoundary>
-        <QueryClientProvider client={queryClient}>
-          <NavigationThemeProvider value={NAV_THEME[colorScheme]}>
+    <GestureHandlerRootView className="flex-1">
+      <SafeAreaProvider>
+        <ErrorBoundary>
+          <QueryClientProvider client={queryClient}>
+            <NavigationThemeProvider value={NAV_THEME[colorScheme]}>
             <Stack
               screenOptions={{
                 headerShadowVisible: false,
@@ -248,9 +250,10 @@ export default function RootLayout() {
             </Stack>
             <StatusBar style={colorScheme === "dark" ? "light" : "dark"} />
             <PortalHost />
-          </NavigationThemeProvider>
-        </QueryClientProvider>
-      </ErrorBoundary>
-    </SafeAreaProvider>
+            </NavigationThemeProvider>
+          </QueryClientProvider>
+        </ErrorBoundary>
+      </SafeAreaProvider>
+    </GestureHandlerRootView>
   );
 }
