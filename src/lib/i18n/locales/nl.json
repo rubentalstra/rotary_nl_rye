@@ -1,0 +1,83 @@
+{
+  "tabs": {
+    "home": "Home",
+    "about": "Over ons",
+    "emergency": "Noodgevallen",
+    "contact": "Contacten",
+    "settings": "Instellingen"
+  },
+  "nav": {
+    "back": "Terug",
+    "inbound": "Inbound",
+    "outbound": "Outbound",
+    "rebound": "Rebound",
+    "shortTerm": "Korte termijn",
+    "longTerm": "Lange termijn",
+    "students": "Studenten",
+    "student": "Student",
+    "classOf": "Klas van 25-26",
+    "welcome": "Welkom",
+    "flightArrival": "Vlucht & Aankomst",
+    "insurance": "Verzekering",
+    "language": "Taal",
+    "travel": "Reizen",
+    "signUp": "Aanmelden",
+    "requirements": "Vereisten",
+    "selectionDay": "Selectie dag",
+    "selectionWeekend": "Selectie weekend",
+    "top3Countries": "Top 3 landen",
+    "summerCamps": "Zomerkampen",
+    "familyToFamily": "Family to Family",
+    "countries": "Landen",
+    "forWhom": "Voor wie?",
+    "countriesPreference": "Landen",
+    "contributors": "Contributors",
+    "calendar": "Evenementen Kalender",
+    "news": "Nieuws & Updates",
+    "newsDetail": "Nieuws",
+    "rotaryClubs": "Voor Rotary Clubs",
+    "programs": "Programma's",
+    "promoMaterial": "Promo Materiaal",
+    "promoPodcast": "Promo Podcast",
+    "promoVideo": "Promo Video",
+    "longTermExchange": "Long Term Exchange",
+    "campsAndTours": "Zomerkampen",
+    "pdfDocument": "PDF Document"
+  },
+  "common": {
+    "retry": "Opnieuw proberen",
+    "loading": "Laden...",
+    "error": "Er is iets misgegaan",
+    "empty": "Geen resultaten gevonden",
+    "search": "Zoeken",
+    "cancel": "Annuleren",
+    "close": "Sluiten",
+    "share": "Delen",
+    "call": "Bellen",
+    "email": "E-mail",
+    "website": "Website"
+  },
+  "home": {
+    "title": "Rotary YEP NL"
+  },
+  "calendar": {
+    "loadError": "Kan evenementen niet laden",
+    "noEvents": "Geen evenementen op deze datum"
+  },
+  "camps": {
+    "loadError": "Kan zomerkampen-gegevens niet laden",
+    "noCamps": "Geen kampen gevonden",
+    "available": "Beschikbaar",
+    "full": "Vol"
+  },
+  "settings": {
+    "version": "Versie",
+    "rateApp": "Beoordeel deze app",
+    "shareApp": "Deel deze app",
+    "contributors": "Contributors"
+  },
+  "emergency": {
+    "title": "Noodgevallen",
+    "call112": "Bel 112"
+  }
+}

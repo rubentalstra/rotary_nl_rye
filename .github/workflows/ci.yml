@@ -4,12 +4,30 @@ on:
   push:
     branches: [main]
     paths:
-      - "rotary-yep-nl/**"
+      - "app/**"
+      - "components/**"
+      - "lib/**"
+      - "assets/**"
+      - "*.json"
+      - "*.ts"
+      - "*.tsx"
+      - "*.js"
+      - "*.mjs"
+      - "*.css"
       - ".github/workflows/ci.yml"
   pull_request:
     branches: [main]
     paths:
-      - "rotary-yep-nl/**"
+      - "app/**"
+      - "components/**"
+      - "lib/**"
+      - "assets/**"
+      - "*.json"
+      - "*.ts"
+      - "*.tsx"
+      - "*.js"
+      - "*.mjs"
+      - "*.css"
       - ".github/workflows/ci.yml"
 
 # Cancel in-progress runs for the same branch
@@ -19,7 +37,6 @@ concurrency:
 
 env:
   NODE_VERSION: "24"
-  WORKING_DIR: ./rotary-yep-nl
 
 jobs:
   # ─────────────────────────────────────────────────────────────
@@ -37,18 +54,16 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: "npm"
-          cache-dependency-path: "rotary-yep-nl/package-lock.json"
 
       - name: Cache node_modules
         id: cache-node-modules
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
-          path: rotary-yep-nl/node_modules
-          key: node-modules-${{ runner.os }}-${{ hashFiles('rotary-yep-nl/package-lock.json') }}
+          path: node_modules
+          key: node-modules-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
 
       - name: Install dependencies
         if: steps.cache-node-modules.outputs.cache-hit != 'true'
-        working-directory: ${{ env.WORKING_DIR }}
         run: npm ci
 
   # ─────────────────────────────────────────────────────────────
@@ -67,16 +82,14 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: "npm"
-          cache-dependency-path: "rotary-yep-nl/package-lock.json"
 
       - name: Restore node_modules cache
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
-          path: rotary-yep-nl/node_modules
-          key: node-modules-${{ runner.os }}-${{ hashFiles('rotary-yep-nl/package-lock.json') }}
+          path: node_modules
+          key: node-modules-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
 
       - name: Run TypeScript compiler
-        working-directory: ${{ env.WORKING_DIR }}
         run: npx tsc --noEmit
 
   # ─────────────────────────────────────────────────────────────
@@ -98,16 +111,14 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: "npm"
-          cache-dependency-path: "rotary-yep-nl/package-lock.json"
 
       - name: Restore node_modules cache
         uses: actions/cache@v4
         with:
-          path: rotary-yep-nl/node_modules
-          key: node-modules-${{ runner.os }}-${{ hashFiles('rotary-yep-nl/package-lock.json') }}
+          path: node_modules
+          key: node-modules-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
 
       - name: Run ESLint (SARIF output)
-        working-directory: ${{ env.WORKING_DIR }}
         run: |
           npx eslint . \
             --format @microsoft/eslint-formatter-sarif \
@@ -118,11 +129,10 @@ jobs:
         uses: github/codeql-action/upload-sarif@v3
         if: always()
         with:
-          sarif_file: rotary-yep-nl/eslint-results.sarif
+          sarif_file: eslint-results.sarif
           category: eslint
 
       - name: Run ESLint (console output)
-        working-directory: ${{ env.WORKING_DIR }}
         run: npx expo lint
 
   # ─────────────────────────────────────────────────────────────
@@ -141,21 +151,17 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: "npm"
-          cache-dependency-path: "rotary-yep-nl/package-lock.json"
 
       - name: Restore node_modules cache
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
-          path: rotary-yep-nl/node_modules
-          key: node-modules-${{ runner.os }}-${{ hashFiles('rotary-yep-nl/package-lock.json') }}
+          path: node_modules
+          key: node-modules-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
 
       - name: Run Expo Prebuild
-        working-directory: ${{ env.WORKING_DIR }}
         run: npx expo prebuild
 
       - name: Run Expo Doctor
-        working-directory: ${{ env.WORKING_DIR }}
-        # Allow to continue - we commit native folders intentionally
         continue-on-error: true
         run: npx expo-doctor
 

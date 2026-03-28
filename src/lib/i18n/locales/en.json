@@ -1,0 +1,83 @@
+{
+  "tabs": {
+    "home": "Home",
+    "about": "About",
+    "emergency": "Emergency",
+    "contact": "Contacts",
+    "settings": "Settings"
+  },
+  "nav": {
+    "back": "Back",
+    "inbound": "Inbound",
+    "outbound": "Outbound",
+    "rebound": "Rebound",
+    "shortTerm": "Short Term",
+    "longTerm": "Long Term",
+    "students": "Students",
+    "student": "Student",
+    "classOf": "Class of 25-26",
+    "welcome": "Welcome",
+    "flightArrival": "Flight & Arrival",
+    "insurance": "Insurance",
+    "language": "Language",
+    "travel": "Travel",
+    "signUp": "Sign Up",
+    "requirements": "Requirements",
+    "selectionDay": "Selection Day",
+    "selectionWeekend": "Selection Weekend",
+    "top3Countries": "Top 3 Countries",
+    "summerCamps": "Summer Camps",
+    "familyToFamily": "Family to Family",
+    "countries": "Countries",
+    "forWhom": "For Whom?",
+    "countriesPreference": "Countries",
+    "contributors": "Contributors",
+    "calendar": "Events Calendar",
+    "news": "News & Updates",
+    "newsDetail": "News",
+    "rotaryClubs": "For Rotary Clubs",
+    "programs": "Programs",
+    "promoMaterial": "Promo Material",
+    "promoPodcast": "Promo Podcast",
+    "promoVideo": "Promo Video",
+    "longTermExchange": "Long Term Exchange",
+    "campsAndTours": "Summer Camps",
+    "pdfDocument": "PDF Document"
+  },
+  "common": {
+    "retry": "Try again",
+    "loading": "Loading...",
+    "error": "Something went wrong",
+    "empty": "No results found",
+    "search": "Search",
+    "cancel": "Cancel",
+    "close": "Close",
+    "share": "Share",
+    "call": "Call",
+    "email": "Email",
+    "website": "Website"
+  },
+  "home": {
+    "title": "Rotary YEP NL"
+  },
+  "calendar": {
+    "loadError": "Could not load events",
+    "noEvents": "No events on this date"
+  },
+  "camps": {
+    "loadError": "Could not load summer camps data",
+    "noCamps": "No camps found",
+    "available": "Available",
+    "full": "Full"
+  },
+  "settings": {
+    "version": "Version",
+    "rateApp": "Rate this app",
+    "shareApp": "Share this app",
+    "contributors": "Contributors"
+  },
+  "emergency": {
+    "title": "Emergency",
+    "call112": "Call 112"
+  }
+}
