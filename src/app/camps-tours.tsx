@@ -8,11 +8,12 @@ import {
   Modal,
   ScrollView,
   TextInput,
+  Linking,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { Dot } from "lucide-react-native";
 import { Image } from "expo-image";
-import { useNavigation } from "expo-router";
+import { useNavigation, router } from "expo-router";
 import { useTranslation } from "react-i18next";
 import { Text } from "@/components/ui/text";
 import { Separator } from "@/components/ui/separator";
@@ -59,11 +60,33 @@ function CampRow({ camp }: { camp: Camp }) {
   const flagAsset = getFlagAsset(camp.hostCountryCode);
   const countryName = getCountryName(camp.hostCountryCode);
   const past = isPastCamp(camp);
-
   const faded = past;
+  const hasLink = camp.invitation?.trim().length > 0;
+
+  const handlePress = () => {
+    if (!hasLink) return;
+    const url = camp.invitation.trim();
+    if (url.toLowerCase().endsWith(".pdf")) {
+      router.push({
+        pathname: "/pdf-viewer",
+        params: { url, title: camp.title },
+      });
+    } else {
+      Linking.openURL(url);
+    }
+  };
+
+  const Wrapper = hasLink ? Pressable : View;
 
   return (
-    <View className={`px-5 py-4 ${faded ? "opacity-35" : ""}`}>
+    <Wrapper
+      {...(hasLink
+        ? {
+            onPress: handlePress,
+            className: `px-5 py-4 ${faded ? "opacity-35" : ""} active:opacity-60`,
+          }
+        : { className: `px-5 py-4 ${faded ? "opacity-35" : ""}` })}
+    >
       <View className="flex-row">
         {/* Flag — prominent in rounded container */}
         <View className="w-14 h-14 rounded-2xl bg-muted items-center justify-center mr-4 mt-0.5">
@@ -77,9 +100,18 @@ function CampRow({ camp }: { camp: Camp }) {
         {/* Content */}
         <View className="flex-1">
           {/* Title */}
-          <Text className="text-base font-semibold text-foreground mb-1 mr-2" numberOfLines={2}>
-            {camp.title}
-          </Text>
+          <View className="flex-row items-start mb-1">
+            <Text className="text-base font-semibold text-foreground flex-1 mr-2" numberOfLines={2}>
+              {camp.title}
+            </Text>
+            {hasLink && (
+              <Ionicons
+                name={camp.invitation.trim().toLowerCase().endsWith(".pdf") ? "document-text" : "open-outline"}
+                size={16}
+                className="text-primary mt-0.5"
+              />
+            )}
+          </View>
 
           {/* Country + status */}
           <View className="flex-row items-center mb-1.5">
@@ -119,7 +151,7 @@ function CampRow({ camp }: { camp: Camp }) {
           </View>
         </View>
       </View>
-    </View>
+    </Wrapper>
   );
 }
 
