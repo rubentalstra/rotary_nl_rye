@@ -3,7 +3,7 @@
  */
 
 import { useMemo } from "react";
-import { contactSections } from "@/lib/data/programs";
+import { contactSections } from "@/lib/data/contacts";
 import type { Contact, ContactCategory, ContactSection } from "@/lib/types";
 
 /**

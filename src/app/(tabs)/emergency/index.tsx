@@ -65,9 +65,7 @@ function EmergencySectionGroup({ section }: { section: EmergencySection }) {
         <Text className="text-xl font-bold ml-2">{section.title}</Text>
       </View>
       {section.description && (
-        <Text className="text-sm text-muted-foreground mb-3 leading-5">
-          {section.description}
-        </Text>
+        <Text className="text-sm text-muted-foreground mb-3 leading-5">{section.description}</Text>
       )}
       {section.contacts.map((contact) => (
         <EmergencyContactCard key={contact.id} contact={contact} />
@@ -120,8 +118,8 @@ export default function EmergencyScreen() {
               Always keep your host family's contact information and home address accessible.
             </Text>
             <Text className="text-base leading-6 text-muted-foreground">
-              Your host parents can assist you with medical appointments, hospital visits, or
-              dental care.
+              Your host parents can assist you with medical appointments, hospital visits, or dental
+              care.
             </Text>
           </CardContent>
         </Card>

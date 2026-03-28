@@ -35,16 +35,12 @@ export const useAppStore = create<AppState>((set) => ({
   // Contact modal
   contactModalOpen: false,
   selectedContact: null,
-  openContactModal: (contact) =>
-    set({ selectedContact: contact, contactModalOpen: true }),
-  closeContactModal: () =>
-    set({ contactModalOpen: false, selectedContact: null }),
+  openContactModal: (contact) => set({ selectedContact: contact, contactModalOpen: true }),
+  closeContactModal: () => set({ contactModalOpen: false, selectedContact: null }),
 
   // Image modal
   imageModalOpen: false,
   selectedImageUrl: null,
-  openImageModal: (imageUrl) =>
-    set({ selectedImageUrl: imageUrl, imageModalOpen: true }),
-  closeImageModal: () =>
-    set({ imageModalOpen: false, selectedImageUrl: null }),
+  openImageModal: (imageUrl) => set({ selectedImageUrl: imageUrl, imageModalOpen: true }),
+  closeImageModal: () => set({ imageModalOpen: false, selectedImageUrl: null }),
 }));

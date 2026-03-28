@@ -90,9 +90,9 @@ export default function LongTermExchangeScreen() {
             <Card>
               <CardContent className="p-5">
                 <Text className="text-base leading-6 text-muted-foreground">
-                  Dit programma van Rotary International is bestemd voor alle hierin
-                  geïnteresseerde scholieren uit het Voortgezet Onderwijs. Het is de bedoeling dat
-                  je in het buitenland een jaar High School volgt.
+                  Dit programma van Rotary International is bestemd voor alle hierin geïnteresseerde
+                  scholieren uit het Voortgezet Onderwijs. Het is de bedoeling dat je in het
+                  buitenland een jaar High School volgt.
                 </Text>
               </CardContent>
             </Card>

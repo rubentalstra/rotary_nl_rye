@@ -1,74 +1,49 @@
-/**
- * Rotary Clubs screen route
- * Thin wrapper using the rotary-clubs feature module
- */
-
-import { useCallback } from "react";
-import { FlatList, View, Text, StyleSheet, Platform } from "react-native";
+import { ScrollView, View, Pressable, Platform } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { FontAwesome5, Ionicons } from "@expo/vector-icons";
 import { router } from "expo-router";
 import * as Haptics from "expo-haptics";
-import { useTheme } from "@/core/theme";
-import { spacing } from "@/core/theme/spacing";
-import { SectionNavCard, useClubSections } from "@/features/rotary-clubs";
-import type { ClubSectionNavItem } from "@/features/rotary-clubs";
+import { Card, CardContent } from "@/components/ui/card";
+import { Text } from "@/components/ui/text";
+import { clubSections, introText } from "@/lib/data/rotary-clubs/navigation";
 
 export default function RotaryClubsScreen() {
-  const { colors } = useTheme();
-  const { sections, introText } = useClubSections();
-
-  const handleSectionPress = useCallback(async (sectionId: string) => {
-    if (Platform.OS === "ios") {
-      await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-    }
-    router.push(`/rotary-clubs/${sectionId}` as any);
-  }, []);
-
-  const renderHeader = useCallback(
-    () => (
-      <View style={styles.header}>
-        <Text style={[styles.introText, { color: colors.textSecondary }]}>{introText}</Text>
-      </View>
-    ),
-    [colors.textSecondary, introText],
-  );
-
-  const renderItem = useCallback(
-    ({ item }: { item: ClubSectionNavItem }) => (
-      <SectionNavCard item={item} onPress={() => handleSectionPress(item.id)} />
-    ),
-    [handleSectionPress],
-  );
-
-  const keyExtractor = useCallback((item: ClubSectionNavItem) => item.id, []);
-
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: colors.background }} edges={["bottom"]}>
-      <FlatList
-        data={sections}
-        renderItem={renderItem}
-        keyExtractor={keyExtractor}
-        ListHeaderComponent={renderHeader}
-        contentContainerStyle={styles.list}
+    <SafeAreaView className="flex-1 bg-background" edges={["bottom"]}>
+      <ScrollView
+        className="flex-1"
         showsVerticalScrollIndicator={false}
         contentInsetAdjustmentBehavior="automatic"
-      />
+      >
+        <View className={`p-4 ${Platform.OS === "android" ? "pb-24" : "pb-8"}`}>
+          <Text className="text-2xl font-semibold text-primary mb-4">Voor Rotary Clubs</Text>
+          <Text className="text-[15px] leading-[22px] text-muted-foreground mb-6">{introText}</Text>
+          {clubSections.map((item) => (
+            <Pressable
+              key={item.id}
+              onPress={() => {
+                if (Platform.OS === "ios") Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+                router.push({
+                  pathname: "/rotary-clubs/[section]",
+                  params: { section: item.id },
+                } as any);
+              }}
+            >
+              <Card className="mb-3">
+                <CardContent className="flex-row items-center p-4">
+                  <View className="w-11 h-11 rounded-full bg-primary/10 items-center justify-center mr-4">
+                    <FontAwesome5 name={item.icon} size={18} className="text-primary" />
+                  </View>
+                  <View className="flex-1 mr-2">
+                    <Text className="text-base font-semibold">{item.title}</Text>
+                  </View>
+                  <Ionicons name="chevron-forward" size={20} className="text-muted-foreground" />
+                </CardContent>
+              </Card>
+            </Pressable>
+          ))}
+        </View>
+      </ScrollView>
     </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  list: {
-    padding: spacing.md,
-    paddingBottom: spacing.xl,
-  },
-  header: {
-    marginBottom: spacing.md,
-  },
-  introText: {
-    fontSize: 15,
-    lineHeight: 22,
-    textAlign: "left",
-    paddingHorizontal: spacing.md,
-  },
-});

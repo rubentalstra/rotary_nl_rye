@@ -96,11 +96,19 @@ export function ImageCarousel({ images, autoPlayInterval = 3000 }: ImageCarousel
                 key={typeof image === "number" ? `slide-${image}` : `slide-${image.uri}-${idx}`}
                 style={{ width: containerWidth, height: "100%" }}
               >
-                <Image source={image} style={{ width: "100%", height: "100%" }} contentFit="cover" />
+                <Image
+                  source={image}
+                  style={{ width: "100%", height: "100%" }}
+                  contentFit="cover"
+                />
               </View>
             ))}
             <View key="duplicate" style={{ width: containerWidth, height: "100%" }}>
-              <Image source={images[0]} style={{ width: "100%", height: "100%" }} contentFit="cover" />
+              <Image
+                source={images[0]}
+                style={{ width: "100%", height: "100%" }}
+                contentFit="cover"
+              />
             </View>
           </Animated.View>
 

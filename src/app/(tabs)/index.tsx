@@ -45,11 +45,7 @@ export default function HomeScreen() {
               title="Programma"
               onPress={() => router.push("/programs")}
             />
-            <HomeCard
-              icon="newspaper-outline"
-              title="News"
-              onPress={() => router.push("/news")}
-            />
+            <HomeCard icon="newspaper-outline" title="News" onPress={() => router.push("/news")} />
             <HomeCard
               icon="calendar-outline"
               title="Calendar"

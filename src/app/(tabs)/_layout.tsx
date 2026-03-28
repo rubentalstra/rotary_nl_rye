@@ -13,9 +13,7 @@ export default function TabLayout() {
       : primaryColor;
 
   const labelColor =
-    Platform.OS === "ios"
-      ? DynamicColorIOS({ dark: "white", light: "black" })
-      : undefined;
+    Platform.OS === "ios" ? DynamicColorIOS({ dark: "white", light: "black" }) : undefined;
 
   return (
     <NativeTabs

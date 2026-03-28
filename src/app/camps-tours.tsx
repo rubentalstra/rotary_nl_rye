@@ -1,5 +1,5 @@
 import { useState, useMemo } from "react";
-import { View, RefreshControl, Platform } from "react-native";
+import { View, RefreshControl, Platform, Pressable } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
 import { FlashList } from "@shopify/flash-list";
@@ -82,7 +82,10 @@ export default function CampsToursScreen() {
 
   if (error) {
     return (
-      <SafeAreaView className="flex-1 bg-background items-center justify-center p-6" edges={["bottom"]}>
+      <SafeAreaView
+        className="flex-1 bg-background items-center justify-center p-6"
+        edges={["bottom"]}
+      >
         <Text className="text-xl font-bold mb-2">{t("camps.loadError")}</Text>
         <Button onPress={() => refetch()}>
           <Text>{t("common.retry")}</Text>
@@ -95,20 +98,18 @@ export default function CampsToursScreen() {
     <SafeAreaView className="flex-1 bg-background" edges={["bottom"]}>
       {/* Filter chips */}
       <View className="flex-row gap-2 px-4 py-3">
-        <Badge
-          variant={availability === "niet-vol" ? "default" : "secondary"}
-          className="px-3 py-1"
+        <Pressable
           onPress={() => setAvailability(availability === "niet-vol" ? "alle" : "niet-vol")}
         >
-          <Text className="text-xs">Beschikbaar</Text>
-        </Badge>
-        <Badge
-          variant={timing === "toekomstig" ? "default" : "secondary"}
-          className="px-3 py-1"
-          onPress={() => setTiming(timing === "toekomstig" ? "alle" : "toekomstig")}
-        >
-          <Text className="text-xs">Toekomstig</Text>
-        </Badge>
+          <Badge variant={availability === "niet-vol" ? "default" : "secondary"}>
+            <Text className="text-xs">Beschikbaar</Text>
+          </Badge>
+        </Pressable>
+        <Pressable onPress={() => setTiming(timing === "toekomstig" ? "alle" : "toekomstig")}>
+          <Badge variant={timing === "toekomstig" ? "default" : "secondary"}>
+            <Text className="text-xs">Toekomstig</Text>
+          </Badge>
+        </Pressable>
         <View className="flex-1" />
         <Text className="text-sm text-muted-foreground self-center">
           {filteredCamps.length}/{camps.length}
@@ -119,11 +120,8 @@ export default function CampsToursScreen() {
         data={filteredCamps}
         renderItem={({ item }) => <CampCard camp={item} />}
         keyExtractor={(item) => item.id}
-        estimatedItemSize={120}
-        refreshControl={
-          <RefreshControl refreshing={isFetching} onRefresh={refetch} />
-        }
-        contentContainerClassName={Platform.OS === "android" ? "pb-24" : "pb-10"}
+        refreshControl={<RefreshControl refreshing={isFetching} onRefresh={refetch} />}
+        contentContainerStyle={{ paddingBottom: Platform.OS === "android" ? 100 : 40 }}
         ListEmptyComponent={
           <View className="items-center py-16">
             <Text className="text-base text-muted-foreground">{t("camps.noCamps")}</Text>

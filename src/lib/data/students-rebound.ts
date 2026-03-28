@@ -10,7 +10,7 @@ import { getCountryName } from "@/lib/utils/flags";
 // TODO: convert the json file to typescript!!
 
 // Import the existing JSON data
-import studentsData from "@/assets/students/list.json";
+import studentsData from "../../../assets/students/list.json";
 
 interface StudentsDataFormat {
   list: {

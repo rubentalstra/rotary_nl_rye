@@ -103,10 +103,11 @@ function BlockRenderer({
           )}
           <View className="flex-row flex-wrap justify-between">
             {block.items.map((item, idx) => (
-              <View key={idx} className="w-[48%] bg-success/5 rounded-lg p-3 mb-3 flex-row items-center">
-                {item.icon && (
-                  <Ionicons name={item.icon} size={16} className="text-success mr-2" />
-                )}
+              <View
+                key={idx}
+                className="w-[48%] bg-success/5 rounded-lg p-3 mb-3 flex-row items-center"
+              >
+                {item.icon && <Ionicons name={item.icon} size={16} className="text-success mr-2" />}
                 <Text className="text-sm font-semibold flex-1">{item.text}</Text>
               </View>
             ))}

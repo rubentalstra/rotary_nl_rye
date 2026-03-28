@@ -41,9 +41,7 @@ function AboutCard({ section }: { section: AboutSection }) {
         {section.listItems?.map((item) => (
           <View key={item.substring(0, 30)} className="flex-row items-start mb-2.5">
             <View className="w-1.5 h-1.5 rounded-full bg-primary mt-2 mr-2 shrink-0" />
-            <Text className="text-[15px] leading-[22px] text-muted-foreground flex-1">
-              {item}
-            </Text>
+            <Text className="text-[15px] leading-[22px] text-muted-foreground flex-1">{item}</Text>
           </View>
         ))}
 

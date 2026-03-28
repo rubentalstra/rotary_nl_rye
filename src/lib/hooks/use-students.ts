@@ -3,7 +3,9 @@
  */
 
 import { useMemo } from "react";
-import { inboundStudents, outboundStudents, reboundStudents } from "@/lib/data/programs";
+import { inboundStudents } from "@/lib/data/students-inbound";
+import { outboundStudents } from "@/lib/data/students-outbound";
+import { reboundStudents } from "@/lib/data/students-rebound";
 import {
   groupByHomeCountry,
   groupByHostCountry,

@@ -14,11 +14,7 @@ interface Props {
 export function QueryErrorBoundary({ children }: Props) {
   return (
     <QueryErrorResetBoundary>
-      {({ reset }) => (
-        <QueryErrorBoundaryInner onReset={reset}>
-          {children}
-        </QueryErrorBoundaryInner>
-      )}
+      {({ reset }) => <QueryErrorBoundaryInner onReset={reset}>{children}</QueryErrorBoundaryInner>}
     </QueryErrorResetBoundary>
   );
 }
@@ -40,16 +36,11 @@ class QueryErrorBoundaryInner extends ReactErrorBoundary {
     if (this.state.hasError) {
       return (
         <View className="flex-1 items-center justify-center bg-background p-6">
-          <Text className="mb-2 text-2xl font-bold text-foreground">
-            Oeps!
-          </Text>
+          <Text className="mb-2 text-2xl font-bold text-foreground">Oeps!</Text>
           <Text className="mb-6 text-center text-base text-foreground-secondary">
             Er is iets misgegaan bij het laden van de gegevens.
           </Text>
-          <Pressable
-            onPress={this.handleReset}
-            className="rounded-lg bg-primary px-6 py-3"
-          >
+          <Pressable onPress={this.handleReset} className="rounded-lg bg-primary px-6 py-3">
             <Text className="text-base font-semibold text-primary-foreground">
               Opnieuw proberen
             </Text>

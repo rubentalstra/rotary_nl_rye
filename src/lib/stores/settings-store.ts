@@ -14,8 +14,7 @@ export const useSettingsStore = create<SettingsState>()(
     (set) => ({
       hasRequestedReview: false,
       appOpenCount: 0,
-      incrementAppOpen: () =>
-        set((state) => ({ appOpenCount: state.appOpenCount + 1 })),
+      incrementAppOpen: () => set((state) => ({ appOpenCount: state.appOpenCount + 1 })),
       setReviewRequested: () => set({ hasRequestedReview: true }),
     }),
     {

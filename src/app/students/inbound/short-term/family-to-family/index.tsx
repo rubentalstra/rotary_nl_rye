@@ -1,47 +1,16 @@
-import { StyleSheet, View, Text } from "react-native";
+import { View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { Text } from "@/components/ui/text";
 
-import { Ionicons } from "@expo/vector-icons";
-import { useTheme } from "@/core/theme";
-export default function FamilyToFamilyInboundScreen() {
-  const { colors: themeColors } = useTheme();
-
+export default function InboundFamilyToFamilyScreen() {
   return (
-    <SafeAreaView
-      style={[styles.container, { backgroundColor: themeColors.background }]}
-      edges={["bottom"]}
-    >
-      <View style={styles.emptyState}>
-        <Ionicons name="construct-outline" size={48} color={themeColors.primary} />
-        <Text style={[styles.emptyStateTitle, { color: themeColors.text }]}>Coming Soon</Text>
-        <Text style={[styles.emptyStateMessage, { color: themeColors.textSecondary }]}>
-          Information for inbound family to family participants will be available here soon.
+    <SafeAreaView className="flex-1 bg-background items-center justify-center" edges={["bottom"]}>
+      <View className="p-8 items-center">
+        <Text className="text-xl font-semibold text-primary mb-2">Binnenkort beschikbaar</Text>
+        <Text className="text-base text-muted-foreground text-center">
+          Informatie over inbound Family to Family wordt binnenkort toegevoegd.
         </Text>
       </View>
     </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  emptyState: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    paddingVertical: 60,
-    paddingHorizontal: 32,
-  },
-  emptyStateTitle: {
-    fontSize: 20,
-    fontWeight: "600",
-    marginTop: 16,
-    marginBottom: 8,
-  },
-  emptyStateMessage: {
-    fontSize: 16,
-    textAlign: "center",
-    lineHeight: 22,
-  },
-});

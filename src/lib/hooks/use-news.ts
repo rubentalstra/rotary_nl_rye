@@ -22,8 +22,7 @@ export function useSearchNews(query: string) {
     const lower = query.toLowerCase();
     return items.filter(
       (item) =>
-        item.title.toLowerCase().includes(lower) ||
-        item.description.toLowerCase().includes(lower),
+        item.title.toLowerCase().includes(lower) || item.description.toLowerCase().includes(lower),
     );
   }, [items, query]);
 }

@@ -27,13 +27,9 @@ function SettingsRow({
     >
       <View className="flex-1 mr-4">
         <Text className="text-base">{title}</Text>
-        {subtitle && (
-          <Text className="text-sm text-muted-foreground mt-0.5">{subtitle}</Text>
-        )}
+        {subtitle && <Text className="text-sm text-muted-foreground mt-0.5">{subtitle}</Text>}
       </View>
-      {onPress && (
-        <Ionicons name="chevron-forward" size={18} className="text-muted-foreground" />
-      )}
+      {onPress && <Ionicons name="chevron-forward" size={18} className="text-muted-foreground" />}
     </Pressable>
   );
 }
@@ -104,10 +100,7 @@ export default function SettingsScreen() {
             onPress={() => router.push("/settings/contributors")}
           />
           <Separator />
-          <SettingsRow
-            title="App Versie"
-            subtitle={`${APP_VERSION} (${APP_BUILD})`}
-          />
+          <SettingsRow title="App Versie" subtitle={`${APP_VERSION} (${APP_BUILD})`} />
         </SettingsGroup>
 
         <SettingsGroup title="Juridisch">
@@ -118,9 +111,7 @@ export default function SettingsScreen() {
 
         {/* Footer */}
         <View className="items-center mt-6">
-          <Text className="text-xs text-muted-foreground">
-            Rotary Youth Exchange Netherlands
-          </Text>
+          <Text className="text-xs text-muted-foreground">Rotary Youth Exchange Netherlands</Text>
           <Text className="text-xs text-muted-foreground mt-1">
             Made with love for exchange students worldwide
           </Text>

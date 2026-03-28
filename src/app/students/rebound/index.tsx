@@ -1,85 +1,66 @@
-/**
- * Rebound countries list screen
- * Shows list of destination countries for rebound students
- */
-
-import { useMemo, useCallback } from "react";
-import { StyleSheet, View, FlatList, Platform } from "react-native";
+import { ScrollView, View, Pressable, Platform } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import * as Haptics from "expo-haptics";
 import { router } from "expo-router";
-import { useTheme } from "@/core/theme";
-import { spacing } from "@/core/theme/spacing";
-import { getCountryName } from "@/shared/utils/flags";
-import {
-  useStudents,
-  groupByHostCountry,
-  CountryNavCard,
-  type CountryGroup,
-} from "@/features/students";
+import { Image } from "expo-image";
+import { Ionicons } from "@expo/vector-icons";
+import { Card, CardContent } from "@/components/ui/card";
+import { Text } from "@/components/ui/text";
+import { reboundStudents } from "@/lib/data/students-rebound";
+import { getFlagAsset, getCountryName } from "@/lib/utils/flags";
+import { groupByHostCountry } from "@/lib/types";
 
-export default function ReboundCountriesScreen() {
-  const { colors } = useTheme();
-  const { students } = useStudents("rebound");
+const countryGroups = groupByHostCountry(reboundStudents);
 
-  const countryGroups = useMemo(() => {
-    return groupByHostCountry(students).sort((a, b) => b.students.length - a.students.length);
-  }, [students]);
-
-  const handleCountryPress = useCallback(async (country: CountryGroup) => {
-    try {
-      if (Platform.OS === "ios") {
-        await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-      }
-      router.push({
-        pathname: "/students/rebound/[country]" as const,
-        params: {
-          country: country.countryCode,
-          countryName: getCountryName(country.countryCode),
-        },
-      } as never);
-    } catch {
-      router.push({
-        pathname: "/students/rebound/[country]" as const,
-        params: {
-          country: country.countryCode,
-          countryName: getCountryName(country.countryCode),
-        },
-      } as never);
-    }
-  }, []);
-
-  const renderCountry = useCallback(
-    ({ item }: { item: CountryGroup }) => (
-      <CountryNavCard country={item} onPress={() => handleCountryPress(item)} />
-    ),
-    [handleCountryPress],
-  );
-
+export default function ReboundScreen() {
   return (
-    <SafeAreaView style={[styles.container, { backgroundColor: colors.background }]} edges={[]}>
-      <FlatList
-        data={countryGroups}
-        renderItem={renderCountry}
-        keyExtractor={(item) => item.countryCode}
+    <SafeAreaView className="flex-1 bg-background" edges={["bottom"]}>
+      <ScrollView
+        className="flex-1"
         showsVerticalScrollIndicator={false}
         contentInsetAdjustmentBehavior="automatic"
-        contentContainerStyle={styles.contentContainer}
-        ItemSeparatorComponent={() => <View style={styles.separator} />}
-      />
+      >
+        <View className={`p-4 ${Platform.OS === "android" ? "pb-24" : "pb-8"}`}>
+          <Text className="text-2xl font-semibold text-primary mb-4">Rebound</Text>
+          <Text className="text-[15px] leading-[22px] text-muted-foreground mb-6">
+            Teruggekeerde exchange studenten, gesorteerd op land.
+          </Text>
+          {countryGroups.map((group) => {
+            const flagAsset = getFlagAsset(group.countryCode);
+            return (
+              <Pressable
+                key={group.countryCode}
+                onPress={() =>
+                  router.push({
+                    pathname: "/students/rebound/[country]",
+                    params: { country: group.countryCode },
+                  } as any)
+                }
+              >
+                <Card className="mb-3">
+                  <CardContent className="flex-row items-center p-4">
+                    {flagAsset && (
+                      <Image
+                        source={flagAsset}
+                        style={{ width: 32, height: 24, borderRadius: 3, marginRight: 12 }}
+                      />
+                    )}
+                    <View className="flex-1">
+                      <Text className="text-base font-semibold">
+                        {getCountryName(group.countryCode)}
+                      </Text>
+                      <Text className="text-sm text-muted-foreground">
+                        {group.students.length} student
+                        {group.students.length !== 1 ? "s" : ""}
+                      </Text>
+                    </View>
+                    <Ionicons name="chevron-forward" size={20} className="text-muted-foreground" />
+                  </CardContent>
+                </Card>
+              </Pressable>
+            );
+          })}
+        </View>
+      </ScrollView>
     </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  contentContainer: {
-    paddingTop: spacing.lg,
-    paddingBottom: spacing.xl,
-  },
-  separator: {
-    height: spacing.sm,
-  },
-});

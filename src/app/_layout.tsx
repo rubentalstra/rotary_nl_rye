@@ -19,7 +19,8 @@ export const unstable_settings = {
 };
 
 export default function RootLayout() {
-  const colorScheme = useColorScheme() ?? "light";
+  const rawScheme = useColorScheme();
+  const colorScheme: "light" | "dark" = rawScheme === "dark" ? "dark" : "light";
 
   return (
     <SafeAreaProvider>
@@ -33,10 +34,7 @@ export default function RootLayout() {
               }}
             >
               {/* Main tab navigator */}
-              <Stack.Screen
-                name="(tabs)"
-                options={{ headerShown: false }}
-              />
+              <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
 
               {/* Students - Inbound */}
               <Stack.Screen

@@ -1,69 +1,93 @@
-/**
- * Rotary Clubs section page route
- * Thin wrapper using the rotary-clubs feature module
- */
-
-import { useLayoutEffect, useCallback } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { useMemo } from "react";
+import { ScrollView, View, Pressable, Platform, Linking } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useLocalSearchParams, useNavigation, router } from "expo-router";
-import { Ionicons } from "@expo/vector-icons";
-import { useTheme } from "@/core/theme";
-import { SectionPageView, useClubSection, useSectionContent } from "@/features/rotary-clubs";
+import { FontAwesome5 } from "@expo/vector-icons";
+import { useLayoutEffect } from "react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Text } from "@/components/ui/text";
+import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
+import { algemeneInformatieContent } from "@/lib/data/rotary-clubs/algemene-informatie";
+import { counselorContent } from "@/lib/data/rotary-clubs/counselor";
+import { documentenContent } from "@/lib/data/rotary-clubs/documenten";
+import { gastgezinContent } from "@/lib/data/rotary-clubs/gastgezin";
+import { jeugdcommissarisContent } from "@/lib/data/rotary-clubs/jeugdcommissaris";
+import type { SectionPageContent } from "@/lib/types";
 
-export default function RotaryClubsSectionScreen() {
-  const { colors } = useTheme();
-  const navigation = useNavigation();
+const sectionMap: Record<string, SectionPageContent> = {
+  "algemene-informatie": algemeneInformatieContent,
+  counselor: counselorContent,
+  documenten: documentenContent,
+  gastgezin: gastgezinContent,
+  jeugdcommissaris: jeugdcommissarisContent,
+};
+
+export default function RotaryClubSectionScreen() {
   const { section } = useLocalSearchParams<{ section: string }>();
+  const navigation = useNavigation();
+  const content = useMemo(() => sectionMap[section ?? ""], [section]);
 
-  const sectionNav = useClubSection(section || "");
-  const content = useSectionContent(section || "");
-
-  // Set header title based on section
   useLayoutEffect(() => {
-    if (sectionNav) {
-      navigation.setOptions({
-        title: sectionNav.title,
-      });
-    }
-  }, [navigation, sectionNav]);
-
-  const handleDocumentPress = useCallback((pdfUrl: string, title: string) => {
-    router.push({
-      pathname: "/pdf-viewer",
-      params: { url: pdfUrl, title },
-    });
-  }, []);
+    if (content) navigation.setOptions({ title: content.title });
+  }, [navigation, content]);
 
   if (!content) {
     return (
-      <SafeAreaView style={{ flex: 1, backgroundColor: colors.background }} edges={["bottom"]}>
-        <View style={styles.centered}>
-          <Ionicons name="alert-circle" size={64} color={colors.error} />
-          <Text style={[styles.errorText, { color: colors.error }]}>Sectie niet gevonden</Text>
-        </View>
+      <SafeAreaView className="flex-1 bg-background items-center justify-center" edges={["bottom"]}>
+        <Text className="text-xl font-semibold text-destructive">Sectie niet gevonden</Text>
       </SafeAreaView>
     );
   }
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: colors.background }} edges={["bottom"]}>
-      <SectionPageView content={content} onDocumentPress={handleDocumentPress} />
+    <SafeAreaView className="flex-1 bg-background" edges={["bottom"]}>
+      <ScrollView
+        className="flex-1"
+        showsVerticalScrollIndicator={false}
+        contentInsetAdjustmentBehavior="automatic"
+      >
+        <View className={`p-4 ${Platform.OS === "android" ? "pb-24" : "pb-8"}`}>
+          <Text className="text-2xl font-bold text-primary mb-2">{content.title}</Text>
+          {content.description && (
+            <Text className="text-base text-muted-foreground mb-4">{content.description}</Text>
+          )}
+
+          {content.type === "info" &&
+            content.infoSections?.map((section) => (
+              <Card key={section.id} className="mb-3">
+                <CardContent className="p-4">
+                  <Text className="text-lg font-semibold mb-2">{section.title}</Text>
+                  <Text className="text-base leading-6 text-muted-foreground">
+                    {section.content}
+                  </Text>
+                </CardContent>
+              </Card>
+            ))}
+
+          {content.type === "documents" &&
+            content.documents?.map((doc) => (
+              <Pressable
+                key={doc.id}
+                onPress={() =>
+                  router.push({
+                    pathname: "/pdf-viewer",
+                    params: { url: doc.pdfUrl, title: doc.title },
+                  })
+                }
+              >
+                <Card className="mb-3">
+                  <CardContent className="flex-row items-center p-4">
+                    <View className="w-10 h-10 rounded-full bg-primary/10 items-center justify-center mr-3">
+                      <FontAwesome5 name={doc.icon} size={16} className="text-primary" />
+                    </View>
+                    <Text className="text-base font-semibold flex-1">{doc.title}</Text>
+                  </CardContent>
+                </Card>
+              </Pressable>
+            ))}
+        </View>
+      </ScrollView>
     </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  centered: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    padding: 40,
-  },
-  errorText: {
-    marginTop: 16,
-    fontSize: 18,
-    fontWeight: "600",
-    textAlign: "center",
-  },
-});

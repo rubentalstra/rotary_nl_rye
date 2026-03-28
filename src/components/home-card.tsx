@@ -29,10 +29,7 @@ export const HomeCard = React.memo<HomeCardProps>(
     return (
       <View className="flex-1 px-[5px]">
         <Pressable
-          className={cn(
-            "rounded-[10px] bg-card shadow-sm",
-            isDefault ? "h-[120px]" : "h-[80px]",
-          )}
+          className={cn("rounded-[10px] bg-card shadow-sm", isDefault ? "h-[120px]" : "h-[80px]")}
           style={({ pressed }) => (pressed ? { transform: [{ scale: 0.98 }], opacity: 0.8 } : {})}
           onPress={handlePress}
           android_ripple={{ color: "rgba(0,103,200,0.12)", borderless: false }}

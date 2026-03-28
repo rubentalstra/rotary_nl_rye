@@ -85,15 +85,13 @@ export default function NewsScreen() {
     <View className="flex-1 bg-background">
       <FlashList
         data={items ?? []}
-        renderItem={({ item }) => (
-          <NewsCard item={item} onPress={() => handleItemPress(item)} />
-        )}
+        renderItem={({ item }) => <NewsCard item={item} onPress={() => handleItemPress(item)} />}
         keyExtractor={(item) => String(item.id)}
-        estimatedItemSize={280}
-        refreshControl={
-          <RefreshControl refreshing={isFetching} onRefresh={refetch} />
-        }
-        contentContainerClassName={`pt-3 ${Platform.OS === "android" ? "pb-24" : "pb-10"}`}
+        refreshControl={<RefreshControl refreshing={isFetching} onRefresh={refetch} />}
+        contentContainerStyle={{
+          paddingTop: 12,
+          paddingBottom: Platform.OS === "android" ? 100 : 40,
+        }}
         ListEmptyComponent={
           <View className="items-center py-16 px-8">
             <Text className="text-base text-muted-foreground">{t("common.empty")}</Text>

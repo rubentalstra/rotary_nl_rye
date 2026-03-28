@@ -1,42 +1,84 @@
-import { View, StyleSheet } from "react-native";
+import { useLayoutEffect, useMemo } from "react";
+import { ScrollView, View, Linking } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { useLocalSearchParams, useNavigation } from "expo-router";
-
-import { useTheme } from "@/core/theme";
-import { StudentDetail, useStudent } from "@/features/students";
-import { useLayoutEffect } from "react";
-import { ErrorState } from "@/shared/components";
+import { Image } from "expo-image";
+import { Card, CardContent } from "@/components/ui/card";
+import { Text } from "@/components/ui/text";
+import { Button } from "@/components/ui/button";
+import { outboundStudents } from "@/lib/data/students-outbound";
+import { getFlagAsset, getCountryName } from "@/lib/utils/flags";
 
 export default function OutboundStudentDetailScreen() {
-  const { colors } = useTheme();
-  const { studentId } = useLocalSearchParams<{ studentId: string }>();
+  const { id } = useLocalSearchParams<{ id: string }>();
   const navigation = useNavigation();
-  const student = useStudent(studentId || "");
+  const student = useMemo(() => outboundStudents.find((s) => s.id === id), [id]);
 
   useLayoutEffect(() => {
-    if (student) {
-      navigation.setOptions({ title: student.name });
-    }
+    if (student) navigation.setOptions({ title: student.name });
   }, [navigation, student]);
-
-  if (!studentId) {
-    return <ErrorState message="No student ID provided" onRetry={() => navigation.goBack()} />;
-  }
 
   if (!student) {
     return (
-      <View style={[styles.container, { backgroundColor: colors.background }]}>
-        <ErrorState message="Student not found" onRetry={() => navigation.goBack()} />
-      </View>
+      <SafeAreaView className="flex-1 bg-background items-center justify-center" edges={["bottom"]}>
+        <Text className="text-xl font-semibold text-destructive">Student niet gevonden</Text>
+      </SafeAreaView>
     );
   }
 
-  return <StudentDetail student={student} />;
-}
+  const flagAsset = getFlagAsset(student.hostCountryCode);
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-});
+  return (
+    <SafeAreaView className="flex-1 bg-background" edges={["bottom"]}>
+      <ScrollView showsVerticalScrollIndicator={false} contentInsetAdjustmentBehavior="automatic">
+        <View className="p-4 pb-8">
+          <View className="items-center mb-6">
+            {student.imageUrl ? (
+              <Image
+                source={{ uri: student.imageUrl }}
+                style={{ width: 120, height: 120, borderRadius: 60 }}
+                contentFit="cover"
+              />
+            ) : (
+              <View className="w-[120px] h-[120px] rounded-full bg-primary/10 items-center justify-center">
+                <Text className="text-3xl font-bold text-primary">
+                  {student.name
+                    .split(" ")
+                    .map((n) => n[0])
+                    .join("")
+                    .substring(0, 2)}
+                </Text>
+              </View>
+            )}
+            <Text className="text-2xl font-bold mt-4">{student.name}</Text>
+            <View className="flex-row items-center gap-2 mt-1">
+              {flagAsset && (
+                <Image source={flagAsset} style={{ width: 20, height: 15, borderRadius: 2 }} />
+              )}
+              <Text className="text-base text-muted-foreground">
+                {getCountryName(student.hostCountryCode)}
+              </Text>
+            </View>
+          </View>
+          {student.bio && (
+            <Card className="mb-4">
+              <CardContent className="p-4">
+                <Text className="text-base leading-6 text-muted-foreground">{student.bio}</Text>
+              </CardContent>
+            </Card>
+          )}
+          <View className="gap-2">
+            {student.email && (
+              <Button
+                variant="secondary"
+                onPress={() => Linking.openURL(`mailto:${student.email}`)}
+              >
+                <Text>E-mail</Text>
+              </Button>
+            )}
+          </View>
+        </View>
+      </ScrollView>
+    </SafeAreaView>
+  );
+}

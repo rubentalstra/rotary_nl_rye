@@ -7,7 +7,13 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent } from "@/components/ui/card";
 import { Text } from "@/components/ui/text";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { contactSections } from "@/lib/data/contacts";
 import { makePhoneCall, sendEmail } from "@/lib/utils/communications";
@@ -28,9 +34,7 @@ function ContactCard({ contact, onPress }: { contact: Contact; onPress: () => vo
       <Card className="mb-3">
         <CardContent className="flex-row items-center p-3">
           <Avatar alt={contact.name} className="h-12 w-12 mr-3">
-            {contact.imageUrl ? (
-              <AvatarImage source={{ uri: contact.imageUrl }} />
-            ) : null}
+            {contact.imageUrl ? <AvatarImage source={{ uri: contact.imageUrl }} /> : null}
             <AvatarFallback>
               <Text className="text-sm font-medium">{getInitials(contact.name)}</Text>
             </AvatarFallback>
@@ -83,8 +87,11 @@ export default function ContactScreen() {
                 <ContactCard contact={item} onPress={() => handleContactPress(item)} />
               )}
               keyExtractor={(item) => item.id}
-              estimatedItemSize={80}
-              contentContainerClassName={`px-4 pt-3 ${Platform.OS === "android" ? "pb-24" : "pb-10"}`}
+              contentContainerStyle={{
+                paddingHorizontal: 16,
+                paddingTop: 12,
+                paddingBottom: Platform.OS === "android" ? 100 : 40,
+              }}
               ListEmptyComponent={
                 <View className="flex-1 items-center justify-center py-16 px-8">
                   <Text className="text-xl font-semibold text-primary mb-2">
@@ -114,9 +121,7 @@ export default function ContactScreen() {
           )}
           <View className="gap-2">
             {selectedContact?.phone && (
-              <Button
-                onPress={() => makePhoneCall(selectedContact.phone!, selectedContact.name)}
-              >
+              <Button onPress={() => makePhoneCall(selectedContact.phone!, selectedContact.name)}>
                 <Text>Bellen</Text>
               </Button>
             )}

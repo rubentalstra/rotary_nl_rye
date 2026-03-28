@@ -27,7 +27,10 @@ export default function NewsDetailScreen() {
 
   if (error || !newsItem) {
     return (
-      <SafeAreaView className="flex-1 bg-background items-center justify-center p-10" edges={["bottom"]}>
+      <SafeAreaView
+        className="flex-1 bg-background items-center justify-center p-10"
+        edges={["bottom"]}
+      >
         <Ionicons name="alert-circle" size={64} className="text-destructive" />
         <Text className="mt-4 text-lg font-semibold text-center text-destructive">
           Nieuwsbericht niet gevonden
@@ -55,16 +58,11 @@ export default function NewsDetailScreen() {
           {/* Text content blocks */}
           {newsItem.textContent?.map((block, idx) => (
             <View key={idx} className="mb-4">
-              {block.heading && (
-                <Text className="text-lg font-semibold mb-2">{block.heading}</Text>
-              )}
+              {block.heading && <Text className="text-lg font-semibold mb-2">{block.heading}</Text>}
               {block.body?.map((bodyItem, bodyIdx) => (
                 <View key={bodyIdx}>
                   {bodyItem.paragraph?.map((para, paraIdx) => (
-                    <Text
-                      key={paraIdx}
-                      className="text-base leading-6 text-muted-foreground mb-2"
-                    >
+                    <Text key={paraIdx} className="text-base leading-6 text-muted-foreground mb-2">
                       {para}
                     </Text>
                   ))}

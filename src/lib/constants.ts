@@ -19,8 +19,7 @@ export const SOCIAL_URLS = {
 /** App Store URLs */
 export const STORE_URLS = {
   IOS: "https://apps.apple.com/nl/app/rotary-youth-exchange-nl/id1567096118",
-  ANDROID:
-    "https://play.google.com/store/apps/details?id=com.caelitechnologies.rotary_nl_rye",
+  ANDROID: "https://play.google.com/store/apps/details?id=com.caelitechnologies.rotary_nl_rye",
 } as const;
 
 /** API URLs */

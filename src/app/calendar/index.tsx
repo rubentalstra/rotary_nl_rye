@@ -16,12 +16,32 @@ import type { CalendarEvent, EventsData } from "@/lib/types";
 // Dutch locale
 LocaleConfig.locales["nl"] = {
   monthNames: [
-    "Januari", "Februari", "Maart", "April", "Mei", "Juni",
-    "Juli", "Augustus", "September", "Oktober", "November", "December",
+    "Januari",
+    "Februari",
+    "Maart",
+    "April",
+    "Mei",
+    "Juni",
+    "Juli",
+    "Augustus",
+    "September",
+    "Oktober",
+    "November",
+    "December",
   ],
   monthNamesShort: [
-    "Jan", "Feb", "Mrt", "Apr", "Mei", "Jun",
-    "Jul", "Aug", "Sep", "Okt", "Nov", "Dec",
+    "Jan",
+    "Feb",
+    "Mrt",
+    "Apr",
+    "Mei",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Okt",
+    "Nov",
+    "Dec",
   ],
   dayNames: ["Zondag", "Maandag", "Dinsdag", "Woensdag", "Donderdag", "Vrijdag", "Zaterdag"],
   dayNamesShort: ["Zo", "Ma", "Di", "Wo", "Do", "Vr", "Za"],
@@ -77,7 +97,10 @@ export default function CalendarScreen() {
 
   const markedDates = useMemo(() => {
     if (!eventsData) return {};
-    const marks: Record<string, { marked: boolean; dotColor: string; selected?: boolean; selectedColor?: string }> = {};
+    const marks: Record<
+      string,
+      { marked: boolean; dotColor: string; selected?: boolean; selectedColor?: string }
+    > = {};
     for (const dateKey of Object.keys(eventsData as EventsData)) {
       marks[dateKey] = { marked: true, dotColor: theme.primary };
     }
@@ -103,7 +126,10 @@ export default function CalendarScreen() {
 
   if (error) {
     return (
-      <SafeAreaView className="flex-1 bg-background items-center justify-center p-6" edges={["bottom"]}>
+      <SafeAreaView
+        className="flex-1 bg-background items-center justify-center p-6"
+        edges={["bottom"]}
+      >
         <Text className="text-xl font-bold mb-2">{t("calendar.loadError")}</Text>
         <Button onPress={() => refetch()}>
           <Text>{t("common.retry")}</Text>
@@ -136,7 +162,6 @@ export default function CalendarScreen() {
         data={selectedEvents}
         renderItem={({ item }) => <EventCard event={item} />}
         keyExtractor={(item) => item.id}
-        estimatedItemSize={80}
         ListHeaderComponent={
           <View className="pb-2">
             <Calendar

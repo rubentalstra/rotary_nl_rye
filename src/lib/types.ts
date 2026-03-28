@@ -319,7 +319,15 @@ export interface EventAttachment {
   url: string;
   mimeType: string;
   iconUrl?: string;
-  fileType: "document" | "spreadsheet" | "presentation" | "pdf" | "image" | "video" | "audio" | "other";
+  fileType:
+    | "document"
+    | "spreadsheet"
+    | "presentation"
+    | "pdf"
+    | "image"
+    | "video"
+    | "audio"
+    | "other";
 }
 
 export interface EventTime {
@@ -390,7 +398,12 @@ export const EVENT_TYPE_CONFIG: Record<string, EventTypeBadge> = {
   default: { type: "default", label: "", icon: "", color: "transparent" },
   focusTime: { type: "focusTime", label: "Focus Time", icon: "headset", color: "#9C27B0" },
   outOfOffice: { type: "outOfOffice", label: "Afwezig", icon: "airplane", color: "#FF5722" },
-  workingLocation: { type: "workingLocation", label: "Werklocatie", icon: "briefcase", color: "#2196F3" },
+  workingLocation: {
+    type: "workingLocation",
+    label: "Werklocatie",
+    icon: "briefcase",
+    color: "#2196F3",
+  },
 };
 
 // ============================================================================
@@ -570,7 +583,10 @@ export interface RawStudent {
 }
 
 export function generateStudentId(name: string, type: StudentType): string {
-  return `${type}-${name.toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, "")}`;
+  return `${type}-${name
+    .toLowerCase()
+    .replace(/\s+/g, "-")
+    .replace(/[^a-z0-9-]/g, "")}`;
 }
 
 export function convertRawStudent(raw: RawStudent, type: StudentType, year?: string): Student {
@@ -600,6 +616,52 @@ export function convertRawStudent(raw: RawStudent, type: StudentType, year?: str
     year,
     type,
   };
+}
+
+/**
+ * Group students by home country code, sorted by country name.
+ */
+export function groupByHomeCountry(students: Student[]): CountryGroup[] {
+  const map = new Map<string, Student[]>();
+  for (const s of students) {
+    const list = map.get(s.homeCountryCode) ?? [];
+    list.push(s);
+    map.set(s.homeCountryCode, list);
+  }
+  return Array.from(map, ([countryCode, students]) => ({ countryCode, students })).sort((a, b) =>
+    a.countryCode.localeCompare(b.countryCode),
+  );
+}
+
+/**
+ * Group students by host country code, sorted by country name.
+ */
+export function groupByHostCountry(students: Student[]): CountryGroup[] {
+  const map = new Map<string, Student[]>();
+  for (const s of students) {
+    const list = map.get(s.hostCountryCode) ?? [];
+    list.push(s);
+    map.set(s.hostCountryCode, list);
+  }
+  return Array.from(map, ([countryCode, students]) => ({ countryCode, students })).sort((a, b) =>
+    a.countryCode.localeCompare(b.countryCode),
+  );
+}
+
+/**
+ * Group students by year, newest first.
+ */
+export function groupByYear(students: Student[]): YearGroup[] {
+  const map = new Map<string, Student[]>();
+  for (const s of students) {
+    const year = s.year ?? "Unknown";
+    const list = map.get(year) ?? [];
+    list.push(s);
+    map.set(year, list);
+  }
+  return Array.from(map, ([year, students]) => ({ year, students })).sort((a, b) =>
+    b.year.localeCompare(a.year),
+  );
 }
 
 // ============================================================================
