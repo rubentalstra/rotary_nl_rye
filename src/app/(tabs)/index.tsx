@@ -1,18 +1,14 @@
-/**
- * Home Screen
- * Main navigation hub for the Rotary YEP NL app
- */
-
 import { useMemo } from "react";
-import { Platform, ScrollView, StyleSheet, View } from "react-native";
+import { View, ScrollView, Platform } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Image } from "expo-image";
 import { router } from "expo-router";
-import { useTheme } from "@/core/theme";
-import { HomeCard, ImageCarousel } from "@/features/home";
+import { useTranslation } from "react-i18next";
+import { HomeCard } from "@/components/home-card";
+import { ImageCarousel } from "@/components/image-carousel";
 
 export default function HomeScreen() {
-  const { colors } = useTheme();
+  const { t } = useTranslation();
 
   const carouselImages = useMemo(
     () => [
@@ -24,35 +20,36 @@ export default function HomeScreen() {
   );
 
   return (
-    <SafeAreaView
-      style={[styles.container, { backgroundColor: colors.background }]}
-      edges={["top"]}
-    >
+    <SafeAreaView className="flex-1 bg-background" edges={["top"]}>
       <ScrollView
-        style={styles.scrollView}
+        className="flex-1"
         showsVerticalScrollIndicator={false}
         contentInsetAdjustmentBehavior="automatic"
-        automaticallyAdjustContentInsets={true}
       >
-        {/* Logo Section */}
-        <View style={styles.logoContainer}>
+        {/* Logo */}
+        <View className="items-center px-4 py-5 mb-7">
           <Image
             source={require("@/assets/home/rotary_rye_nl_logo_home.svg")}
-            style={styles.logo}
+            style={{ width: "100%", height: 80 }}
             contentFit="contain"
           />
         </View>
 
         <ImageCarousel images={carouselImages} />
 
-        <View style={styles.gridContainer}>
-          <View style={styles.gridRow}>
+        {/* Navigation Grid */}
+        <View className={`px-4 ${Platform.OS === "android" ? "pb-24" : "pb-10"}`}>
+          <View className="flex-row mb-4">
             <HomeCard
               icon="list-outline"
               title="Programma"
               onPress={() => router.push("/programs")}
             />
-            <HomeCard icon="newspaper-outline" title="News" onPress={() => router.push("/news")} />
+            <HomeCard
+              icon="newspaper-outline"
+              title="News"
+              onPress={() => router.push("/news")}
+            />
             <HomeCard
               icon="calendar-outline"
               title="Calendar"
@@ -60,7 +57,7 @@ export default function HomeScreen() {
             />
           </View>
 
-          <View style={styles.gridRow}>
+          <View className="flex-row mb-4">
             <HomeCard
               materialIcon="airplane-takeoff"
               title="Op Exchange"
@@ -78,7 +75,7 @@ export default function HomeScreen() {
             />
           </View>
 
-          <View style={styles.gridRowSingle}>
+          <View className="flex-row mb-7">
             <HomeCard
               fontistoIcon="tent"
               title="Zomerkampen Lijst"
@@ -88,7 +85,7 @@ export default function HomeScreen() {
             <HomeCard
               title="voor Rotary Clubs"
               variant="single"
-              useSvg={true}
+              useSvg
               svgSource={require("@/assets/logo/rotary-logo-icon.svg")}
               onPress={() => router.push("/rotary-clubs")}
             />
@@ -98,34 +95,3 @@ export default function HomeScreen() {
     </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  scrollView: {
-    flex: 1,
-  },
-  logoContainer: {
-    alignItems: "center",
-    marginBottom: 30,
-    paddingVertical: 20,
-    paddingHorizontal: 16,
-  },
-  logo: {
-    width: "100%",
-    height: 80,
-  },
-  gridContainer: {
-    paddingHorizontal: 16,
-    paddingBottom: Platform.OS === "android" ? 100 : 40,
-  },
-  gridRow: {
-    flexDirection: "row",
-    marginBottom: 16,
-  },
-  gridRowSingle: {
-    flexDirection: "row",
-    marginBottom: 30,
-  },
-});

@@ -1,26 +1,20 @@
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { NativeTabs } from "expo-router/unstable-native-tabs";
-import { Platform, DynamicColorIOS } from "react-native";
-import { useTheme } from "@/core/theme";
+import { Platform, DynamicColorIOS, useColorScheme } from "react-native";
+import { THEME } from "@/lib/theme";
 
 export default function TabLayout() {
-  const { colors: themeColors } = useTheme();
+  const colorScheme = useColorScheme() ?? "light";
+  const primaryColor = colorScheme === "dark" ? THEME.dark.primary : THEME.light.primary;
 
-  // Use DynamicColorIOS for liquid glass effect on iOS
   const tintColor =
     Platform.OS === "ios"
-      ? DynamicColorIOS({
-          dark: themeColors.primary,
-          light: themeColors.primary,
-        })
-      : themeColors.primary;
+      ? DynamicColorIOS({ dark: THEME.dark.primary, light: THEME.light.primary })
+      : primaryColor;
 
   const labelColor =
     Platform.OS === "ios"
-      ? DynamicColorIOS({
-          dark: "white",
-          light: "black",
-        })
+      ? DynamicColorIOS({ dark: "white", light: "black" })
       : undefined;
 
   return (
@@ -28,13 +22,7 @@ export default function TabLayout() {
       minimizeBehavior="onScrollDown"
       disableTransparentOnScrollEdge
       tintColor={tintColor}
-      labelStyle={
-        labelColor
-          ? {
-              color: labelColor,
-            }
-          : undefined
-      }
+      labelStyle={labelColor ? { color: labelColor } : undefined}
     >
       <NativeTabs.Trigger name="index">
         <NativeTabs.Trigger.Label>Home</NativeTabs.Trigger.Label>
@@ -48,7 +36,7 @@ export default function TabLayout() {
           android: (
             <NativeTabs.Trigger.Icon
               src={<NativeTabs.Trigger.VectorIcon family={MaterialIcons} name="home" />}
-              selectedColor={themeColors.primary}
+              selectedColor={primaryColor}
             />
           ),
         })}
@@ -66,7 +54,7 @@ export default function TabLayout() {
           android: (
             <NativeTabs.Trigger.Icon
               src={<NativeTabs.Trigger.VectorIcon family={MaterialIcons} name="info" />}
-              selectedColor={themeColors.primary}
+              selectedColor={primaryColor}
             />
           ),
         })}
@@ -87,7 +75,7 @@ export default function TabLayout() {
           android: (
             <NativeTabs.Trigger.Icon
               src={<NativeTabs.Trigger.VectorIcon family={MaterialIcons} name="warning" />}
-              selectedColor={themeColors.primary}
+              selectedColor={primaryColor}
             />
           ),
         })}
@@ -105,7 +93,7 @@ export default function TabLayout() {
           android: (
             <NativeTabs.Trigger.Icon
               src={<NativeTabs.Trigger.VectorIcon family={MaterialIcons} name="people" />}
-              selectedColor={themeColors.primary}
+              selectedColor={primaryColor}
             />
           ),
         })}
@@ -123,7 +111,7 @@ export default function TabLayout() {
           android: (
             <NativeTabs.Trigger.Icon
               src={<NativeTabs.Trigger.VectorIcon family={MaterialIcons} name="settings" />}
-              selectedColor={themeColors.primary}
+              selectedColor={primaryColor}
             />
           ),
         })}
