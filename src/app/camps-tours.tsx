@@ -10,6 +10,7 @@ import {
   TextInput,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { Dot } from "lucide-react-native";
 import { Image } from "expo-image";
 import { useNavigation } from "expo-router";
 import { useTranslation } from "react-i18next";
@@ -59,8 +60,10 @@ function CampRow({ camp }: { camp: Camp }) {
   const countryName = getCountryName(camp.hostCountryCode);
   const past = isPastCamp(camp);
 
+  const faded = past;
+
   return (
-    <View className={`px-5 py-4 ${past ? "opacity-35" : ""}`}>
+    <View className={`px-5 py-4 ${faded ? "opacity-35" : ""}`}>
       <View className="flex-row">
         {/* Flag — prominent in rounded container */}
         <View className="w-14 h-14 rounded-2xl bg-muted items-center justify-center mr-4 mt-0.5">
@@ -73,20 +76,21 @@ function CampRow({ camp }: { camp: Camp }) {
 
         {/* Content */}
         <View className="flex-1">
-          {/* Title + Vol badge */}
-          <View className="flex-row items-start mb-1">
-            <Text className="text-base font-semibold text-foreground flex-1 mr-2" numberOfLines={2}>
-              {camp.title}
-            </Text>
+          {/* Title */}
+          <Text className="text-base font-semibold text-foreground mb-1 mr-2" numberOfLines={2}>
+            {camp.title}
+          </Text>
+
+          {/* Country + status */}
+          <View className="flex-row items-center mb-1.5">
+            <Text className="text-sm text-muted-foreground">{countryName}</Text>
             {camp.isFull && (
-              <View className="bg-destructive/10 px-2 py-0.5 rounded-full">
-                <Text className="text-xs font-semibold text-destructive">Vol</Text>
+              <View className="flex-row items-center ml-1">
+                <Dot size={18} className="text-muted-foreground" strokeWidth={3} />
+                <Text className="text-sm text-destructive font-medium">Vol</Text>
               </View>
             )}
           </View>
-
-          {/* Country */}
-          <Text className="text-sm text-muted-foreground mb-1.5">{countryName}</Text>
 
           {/* Date + details */}
           <View className="flex-row items-center flex-wrap gap-y-1">
@@ -165,7 +169,7 @@ export default function CampsToursScreen() {
       result = result.filter((c) => !isPastCamp(c));
     }
     if (!showFull) {
-      result = result.filter((c) => !c.isFull);
+      result = result.filter((c) => !c.isFull || isPastCamp(c));
     }
     if (selectedCountry) {
       result = result.filter((c) => c.hostCountryCode === selectedCountry);
