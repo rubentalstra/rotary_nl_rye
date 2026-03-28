@@ -123,6 +123,8 @@ function CampRow({ camp }: { camp: Camp }) {
   );
 }
 
+const MONTHS = ["Jan", "Feb", "Mrt", "Apr", "Mei", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dec"];
+
 function FilterChip({
   label,
   active,
@@ -152,6 +154,12 @@ export default function CampsToursScreen() {
   const [countryModalVisible, setCountryModalVisible] = useState(false);
   const [countrySearch, setCountrySearch] = useState("");
   const [priceRange, setPriceRange] = useState<string | null>(null);
+  const [priceModalVisible, setPriceModalVisible] = useState(false);
+  const [ageFilter, setAgeFilter] = useState<number | null>(null);
+  const [ageModalVisible, setAgeModalVisible] = useState(false);
+  const [startMonth, setStartMonth] = useState<number | null>(null);
+  const [endMonth, setEndMonth] = useState<number | null>(null);
+  const [periodModalVisible, setPeriodModalVisible] = useState(false);
 
   const navigation = useNavigation();
   const camps = data?.camps ?? [];
@@ -191,8 +199,26 @@ export default function CampsToursScreen() {
           break;
       }
     }
+    if (ageFilter !== null) {
+      result = result.filter((c) => {
+        const min = parseInt(c.ageMin, 10) || 0;
+        const max = parseInt(c.ageMax, 10) || 99;
+        return ageFilter >= min && ageFilter <= max;
+      });
+    }
+    if (startMonth !== null && endMonth !== null) {
+      result = result.filter((c) => {
+        const start = parseDate(c.startDate);
+        if (!start) return true;
+        const month = start.getMonth();
+        if (startMonth <= endMonth) {
+          return month >= startMonth && month <= endMonth;
+        }
+        return month >= startMonth || month <= endMonth;
+      });
+    }
     return result;
-  }, [camps, showFull, showPast, selectedCountry, priceRange]);
+  }, [camps, showFull, showPast, selectedCountry, priceRange, ageFilter, startMonth, endMonth]);
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -236,8 +262,6 @@ export default function CampsToursScreen() {
         className="py-3"
         contentContainerStyle={{ paddingHorizontal: 20, gap: 8 }}
       >
-        <FilterChip label="Vol" active={showFull} onPress={() => setShowFull(!showFull)} />
-        <FilterChip label="Afgelopen" active={showPast} onPress={() => setShowPast(!showPast)} />
         <Pressable onPress={() => setCountryModalVisible(true)} className="active:opacity-70">
           <View
             className={`flex-row items-center px-4 py-2 rounded-full ${selectedCountry ? "bg-foreground" : "bg-muted"}`}
@@ -254,26 +278,69 @@ export default function CampsToursScreen() {
             </Text>
           </View>
         </Pressable>
-        <FilterChip
-          label="Gratis"
-          active={priceRange === "0"}
-          onPress={() => setPriceRange(priceRange === "0" ? null : "0")}
-        />
-        <FilterChip
-          label="< €500"
-          active={priceRange === "0-500"}
-          onPress={() => setPriceRange(priceRange === "0-500" ? null : "0-500")}
-        />
-        <FilterChip
-          label="€500–1000"
-          active={priceRange === "500-1000"}
-          onPress={() => setPriceRange(priceRange === "500-1000" ? null : "500-1000")}
-        />
-        <FilterChip
-          label="> €1000"
-          active={priceRange === "1000+"}
-          onPress={() => setPriceRange(priceRange === "1000+" ? null : "1000+")}
-        />
+        {/* Age filter */}
+        <Pressable onPress={() => setAgeModalVisible(true)} className="active:opacity-70">
+          <View
+            className={`flex-row items-center px-4 py-2 rounded-full ${ageFilter !== null ? "bg-foreground" : "bg-muted"}`}
+          >
+            <Ionicons
+              name="people-outline"
+              size={14}
+              className={ageFilter !== null ? "text-background mr-1" : "text-foreground mr-1"}
+            />
+            <Text
+              className={`text-sm font-medium ${ageFilter !== null ? "text-background" : "text-foreground"}`}
+            >
+              {ageFilter !== null ? `${ageFilter} jaar` : "Leeftijd"}
+            </Text>
+          </View>
+        </Pressable>
+        {/* Period filter */}
+        <Pressable onPress={() => setPeriodModalVisible(true)} className="active:opacity-70">
+          <View
+            className={`flex-row items-center px-4 py-2 rounded-full ${startMonth !== null ? "bg-foreground" : "bg-muted"}`}
+          >
+            <Ionicons
+              name="calendar-outline"
+              size={14}
+              className={startMonth !== null ? "text-background mr-1" : "text-foreground mr-1"}
+            />
+            <Text
+              className={`text-sm font-medium ${startMonth !== null ? "text-background" : "text-foreground"}`}
+            >
+              {startMonth !== null && endMonth !== null
+                ? `${MONTHS[startMonth]} – ${MONTHS[endMonth]}`
+                : "Periode"}
+            </Text>
+          </View>
+        </Pressable>
+        {/* Price filter */}
+        <Pressable onPress={() => setPriceModalVisible(true)} className="active:opacity-70">
+          <View
+            className={`flex-row items-center px-4 py-2 rounded-full ${priceRange !== null ? "bg-foreground" : "bg-muted"}`}
+          >
+            <Ionicons
+              name="cash-outline"
+              size={14}
+              className={priceRange !== null ? "text-background mr-1" : "text-foreground mr-1"}
+            />
+            <Text
+              className={`text-sm font-medium ${priceRange !== null ? "text-background" : "text-foreground"}`}
+            >
+              {priceRange === "0"
+                ? "Gratis"
+                : priceRange === "0-500"
+                  ? "< €500"
+                  : priceRange === "500-1000"
+                    ? "€500–1000"
+                    : priceRange === "1000+"
+                      ? "> €1000"
+                      : "Prijs"}
+            </Text>
+          </View>
+        </Pressable>
+        <FilterChip label="Vol" active={showFull} onPress={() => setShowFull(!showFull)} />
+        <FilterChip label="Afgelopen" active={showPast} onPress={() => setShowPast(!showPast)} />
       </ScrollView>
 
       {/* List */}
@@ -399,6 +466,227 @@ export default function CampsToursScreen() {
             })}
             <View style={{ height: 40 }} />
           </ScrollView>
+        </View>
+      </Modal>
+
+      {/* Age Filter Modal */}
+      <Modal
+        visible={ageModalVisible}
+        animationType="slide"
+        presentationStyle={Platform.OS === "ios" ? "pageSheet" : "fullScreen"}
+        onRequestClose={() => setAgeModalVisible(false)}
+      >
+        <View style={{ flex: 1, backgroundColor: "white" }}>
+          {Platform.OS === "ios" && (
+            <View className="items-center py-3">
+              <View className="w-9 h-1 rounded-full bg-muted-foreground/30" />
+            </View>
+          )}
+
+          <View className="flex-row justify-between items-center px-5 pb-3 border-b border-border">
+            <Text className="text-lg font-semibold text-foreground">Leeftijd</Text>
+            <Pressable
+              onPress={() => setAgeModalVisible(false)}
+              className="w-8 h-8 rounded-full bg-muted items-center justify-center"
+            >
+              <Ionicons name="close" size={18} className="text-foreground" />
+            </Pressable>
+          </View>
+
+          <View className="px-5 pt-5">
+            <Text className="text-base text-muted-foreground mb-6">
+              Selecteer je leeftijd om kampen te vinden die bij je passen.
+            </Text>
+
+            {/* All ages option */}
+            <Pressable
+              onPress={() => {
+                setAgeFilter(null);
+                setAgeModalVisible(false);
+              }}
+              className="flex-row items-center py-3.5 active:opacity-60"
+            >
+              <Text className="text-base text-foreground flex-1">Alle leeftijden</Text>
+              {ageFilter === null && (
+                <Ionicons name="checkmark" size={20} className="text-primary" />
+              )}
+            </Pressable>
+            <Separator />
+
+            {/* Age options */}
+            {Array.from({ length: 14 }, (_, i) => i + 13).map((age) => (
+              <View key={age}>
+                <Pressable
+                  onPress={() => {
+                    setAgeFilter(age);
+                    setAgeModalVisible(false);
+                  }}
+                  className="flex-row items-center py-3.5 active:opacity-60"
+                >
+                  <Text className="text-base text-foreground flex-1">{age} jaar</Text>
+                  {ageFilter === age && (
+                    <Ionicons name="checkmark" size={20} className="text-primary" />
+                  )}
+                </Pressable>
+                <Separator />
+              </View>
+            ))}
+          </View>
+        </View>
+      </Modal>
+
+      {/* Period Filter Modal */}
+      <Modal
+        visible={periodModalVisible}
+        animationType="slide"
+        presentationStyle={Platform.OS === "ios" ? "pageSheet" : "fullScreen"}
+        onRequestClose={() => setPeriodModalVisible(false)}
+      >
+        <View style={{ flex: 1, backgroundColor: "white" }}>
+          {Platform.OS === "ios" && (
+            <View className="items-center py-3">
+              <View className="w-9 h-1 rounded-full bg-muted-foreground/30" />
+            </View>
+          )}
+
+          <View className="flex-row justify-between items-center px-5 pb-3 border-b border-border">
+            <Text className="text-lg font-semibold text-foreground">Periode kiezen</Text>
+            <Pressable
+              onPress={() => setPeriodModalVisible(false)}
+              className="w-8 h-8 rounded-full bg-muted items-center justify-center"
+            >
+              <Ionicons name="close" size={18} className="text-foreground" />
+            </Pressable>
+          </View>
+
+          <ScrollView className="flex-1 px-5 pt-5">
+            <Text className="text-base text-muted-foreground mb-4">
+              Kies een startmaand en eindmaand om kampen binnen die periode te vinden.
+            </Text>
+
+            {/* Start Month */}
+            <Text className="text-sm font-semibold text-muted-foreground uppercase tracking-widest mb-3">
+              Startmaand
+            </Text>
+            <View className="flex-row flex-wrap gap-2 mb-6">
+              {MONTHS.map((label, idx) => (
+                <Pressable
+                  key={`start-${idx}`}
+                  onPress={() => {
+                    setStartMonth(idx);
+                    if (endMonth === null || endMonth < idx) setEndMonth(idx);
+                  }}
+                  className="active:opacity-70"
+                >
+                  <View
+                    className={`px-4 py-2.5 rounded-xl ${startMonth === idx ? "bg-foreground" : "bg-muted"}`}
+                  >
+                    <Text
+                      className={`text-sm font-medium ${startMonth === idx ? "text-background" : "text-foreground"}`}
+                    >
+                      {label}
+                    </Text>
+                  </View>
+                </Pressable>
+              ))}
+            </View>
+
+            {/* End Month */}
+            <Text className="text-sm font-semibold text-muted-foreground uppercase tracking-widest mb-3">
+              Eindmaand
+            </Text>
+            <View className="flex-row flex-wrap gap-2 mb-8">
+              {MONTHS.map((label, idx) => (
+                <Pressable
+                  key={`end-${idx}`}
+                  onPress={() => setEndMonth(idx)}
+                  className="active:opacity-70"
+                >
+                  <View
+                    className={`px-4 py-2.5 rounded-xl ${endMonth === idx ? "bg-foreground" : "bg-muted"}`}
+                  >
+                    <Text
+                      className={`text-sm font-medium ${endMonth === idx ? "text-background" : "text-foreground"}`}
+                    >
+                      {label}
+                    </Text>
+                  </View>
+                </Pressable>
+              ))}
+            </View>
+
+            {/* Actions */}
+            <View className="flex-row gap-3 mb-8">
+              <Pressable
+                onPress={() => {
+                  setStartMonth(null);
+                  setEndMonth(null);
+                  setPeriodModalVisible(false);
+                }}
+                className="flex-1 py-3.5 rounded-xl bg-muted items-center active:opacity-70"
+              >
+                <Text className="text-base font-medium text-foreground">Wissen</Text>
+              </Pressable>
+              <Pressable
+                onPress={() => setPeriodModalVisible(false)}
+                className="flex-1 py-3.5 rounded-xl bg-foreground items-center active:opacity-70"
+              >
+                <Text className="text-base font-medium text-background">Toepassen</Text>
+              </Pressable>
+            </View>
+          </ScrollView>
+        </View>
+      </Modal>
+
+      {/* Price Filter Modal */}
+      <Modal
+        visible={priceModalVisible}
+        animationType="slide"
+        presentationStyle={Platform.OS === "ios" ? "pageSheet" : "fullScreen"}
+        onRequestClose={() => setPriceModalVisible(false)}
+      >
+        <View style={{ flex: 1, backgroundColor: "white" }}>
+          {Platform.OS === "ios" && (
+            <View className="items-center py-3">
+              <View className="w-9 h-1 rounded-full bg-muted-foreground/30" />
+            </View>
+          )}
+
+          <View className="flex-row justify-between items-center px-5 pb-3 border-b border-border">
+            <Text className="text-lg font-semibold text-foreground">Prijsbereik</Text>
+            <Pressable
+              onPress={() => setPriceModalVisible(false)}
+              className="w-8 h-8 rounded-full bg-muted items-center justify-center"
+            >
+              <Ionicons name="close" size={18} className="text-foreground" />
+            </Pressable>
+          </View>
+
+          <View className="px-5 pt-5">
+            {[
+              { key: null, label: "Alle prijzen" },
+              { key: "0", label: "Gratis" },
+              { key: "0-500", label: "Tot €500" },
+              { key: "500-1000", label: "€500 – €1.000" },
+              { key: "1000+", label: "Meer dan €1.000" },
+            ].map((option) => (
+              <View key={option.key ?? "all"}>
+                <Pressable
+                  onPress={() => {
+                    setPriceRange(option.key);
+                    setPriceModalVisible(false);
+                  }}
+                  className="flex-row items-center py-4 active:opacity-60"
+                >
+                  <Text className="text-base text-foreground flex-1">{option.label}</Text>
+                  {priceRange === option.key && (
+                    <Ionicons name="checkmark" size={20} className="text-primary" />
+                  )}
+                </Pressable>
+                <Separator />
+              </View>
+            ))}
+          </View>
         </View>
       </Modal>
     </View>
