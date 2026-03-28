@@ -5,7 +5,6 @@
 @import "nativewind/theme";
 
 @theme {
-  /* Semantic color utilities — maps CSS variables to Tailwind classes */
   --color-background: hsl(var(--background));
   --color-foreground: hsl(var(--foreground));
   --color-card: hsl(var(--card));
@@ -26,58 +25,56 @@
   --color-input: hsl(var(--input));
   --color-ring: hsl(var(--ring));
 
-  /* Border radius */
   --radius-lg: var(--radius);
   --radius-md: calc(var(--radius) - 2px);
   --radius-sm: calc(var(--radius) - 4px);
 
-  /* Border width */
   --border-width-hairline: hairlineWidth();
 }
 
 @layer base {
   :root {
-    --background: 240 5% 96%;
-    --foreground: 0 0% 0%;
+    --background: 0 0% 100%;
+    --foreground: 240 10% 4%;
     --card: 0 0% 100%;
-    --card-foreground: 0 0% 0%;
+    --card-foreground: 240 10% 4%;
     --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 0%;
+    --popover-foreground: 240 10% 4%;
     --primary: 216 73% 32%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 39 93% 54%;
-    --secondary-foreground: 0 0% 0%;
+    --secondary: 240 5% 96%;
+    --secondary-foreground: 240 6% 10%;
     --muted: 240 5% 96%;
     --muted-foreground: 240 4% 46%;
-    --accent: 197 100% 44%;
-    --accent-foreground: 0 0% 100%;
-    --destructive: 2 79% 52%;
-    --destructive-foreground: 0 0% 100%;
+    --accent: 240 5% 96%;
+    --accent-foreground: 240 6% 10%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
     --border: 240 6% 90%;
     --input: 240 6% 90%;
     --ring: 216 73% 32%;
-    --radius: 0.625rem;
+    --radius: 0.75rem;
   }
 
   .dark:root {
-    --background: 0 0% 0%;
-    --foreground: 0 0% 100%;
-    --card: 240 6% 12%;
-    --card-foreground: 0 0% 100%;
-    --popover: 240 6% 12%;
-    --popover-foreground: 0 0% 100%;
+    --background: 240 10% 4%;
+    --foreground: 0 0% 98%;
+    --card: 240 10% 4%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 4%;
+    --popover-foreground: 0 0% 98%;
     --primary: 197 100% 44%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 39 93% 54%;
-    --secondary-foreground: 0 0% 0%;
-    --muted: 240 4% 18%;
-    --muted-foreground: 240 2% 56%;
-    --accent: 200 58% 81%;
-    --accent-foreground: 0 0% 0%;
-    --destructive: 0 100% 63%;
-    --destructive-foreground: 0 0% 100%;
-    --border: 240 4% 22%;
-    --input: 240 4% 22%;
+    --secondary: 240 4% 16%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 4% 16%;
+    --muted-foreground: 240 5% 65%;
+    --accent: 240 4% 16%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 4% 16%;
+    --input: 240 4% 16%;
     --ring: 197 100% 44%;
   }
 }

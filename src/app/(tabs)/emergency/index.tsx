@@ -1,51 +1,88 @@
-import { ScrollView, View, Pressable, Platform, Linking } from "react-native";
+import { useState } from "react";
+import { ScrollView, View, Platform } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { Image } from "expo-image";
 import * as Haptics from "expo-haptics";
-import { useTranslation } from "react-i18next";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Text } from "@/components/ui/text";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 import { emergencySections } from "@/lib/data/emergency-contacts";
 import { makePhoneCall, sendEmail } from "@/lib/utils/communications";
 import type { EmergencyContact, EmergencySection } from "@/lib/types";
 
-function EmergencyContactCard({ contact }: { contact: EmergencyContact }) {
-  const handleCall = () => {
-    if (Platform.OS === "ios") Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
-    makePhoneCall(contact.phone, contact.name);
-  };
+function CallButton({ contact }: { contact: EmergencyContact }) {
+  return (
+    <AlertDialog>
+      <AlertDialogTrigger asChild>
+        <Button variant="outline" size="icon" className="rounded-full">
+          <Ionicons name="call" size={18} className="text-primary" />
+        </Button>
+      </AlertDialogTrigger>
+      <AlertDialogContent>
+        <AlertDialogHeader>
+          <AlertDialogTitle>{contact.name} bellen?</AlertDialogTitle>
+          <AlertDialogDescription>
+            Je belt naar {contact.phone}
+          </AlertDialogDescription>
+        </AlertDialogHeader>
+        <AlertDialogFooter>
+          <AlertDialogCancel>
+            <Text>Annuleren</Text>
+          </AlertDialogCancel>
+          <AlertDialogAction
+            onPress={() => {
+              if (Platform.OS === "ios")
+                Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+              makePhoneCall(contact.phone, contact.name);
+            }}
+          >
+            <Text>Bellen</Text>
+          </AlertDialogAction>
+        </AlertDialogFooter>
+      </AlertDialogContent>
+    </AlertDialog>
+  );
+}
 
-  const handleEmail = () => {
-    if (contact.email) {
-      if (Platform.OS === "ios") Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
-      sendEmail(contact.email, contact.name);
-    }
-  };
-
+function ContactCard({ contact }: { contact: EmergencyContact }) {
   return (
     <Card className="mb-2">
       <CardContent className="flex-row items-center p-3">
         <View className="flex-1">
-          <Text className="text-lg font-semibold">{contact.name}</Text>
-          <Text className="text-sm text-muted-foreground">{contact.role}</Text>
-          <Text className="text-sm font-medium text-accent">{contact.phone}</Text>
+          <Text className="text-base font-semibold">{contact.name}</Text>
+          <Text variant="muted">{contact.role}</Text>
+          <Text variant="small" className="text-accent mt-0.5 font-medium">
+            {contact.phone}
+          </Text>
         </View>
         <View className="flex-row gap-2">
-          <Pressable
-            onPress={handleCall}
-            className="w-10 h-10 rounded-full bg-primary/10 items-center justify-center"
-          >
-            <Ionicons name="call" size={20} className="text-primary" />
-          </Pressable>
+          <CallButton contact={contact} />
           {contact.email && (
-            <Pressable
-              onPress={handleEmail}
-              className="w-10 h-10 rounded-full bg-primary/10 items-center justify-center"
+            <Button
+              variant="outline"
+              size="icon"
+              className="rounded-full"
+              onPress={() => {
+                if (Platform.OS === "ios")
+                  Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+                sendEmail(contact.email!, contact.name);
+              }}
             >
-              <Ionicons name="mail" size={20} className="text-primary" />
-            </Pressable>
+              <Ionicons name="mail" size={18} className="text-primary" />
+            </Button>
           )}
         </View>
       </CardContent>
@@ -56,47 +93,49 @@ function EmergencyContactCard({ contact }: { contact: EmergencyContact }) {
 function EmergencySectionGroup({ section }: { section: EmergencySection }) {
   return (
     <View className="mb-6">
-      <View className="flex-row items-center mb-2">
+      <View className="flex-row items-center gap-2 mb-3">
         <Ionicons
           name={section.icon as keyof typeof Ionicons.glyphMap}
           size={20}
           className="text-primary"
         />
-        <Text className="text-xl font-bold ml-2">{section.title}</Text>
+        <Text variant="h4">{section.title}</Text>
       </View>
       {section.description && (
-        <Text className="text-sm text-muted-foreground mb-3 leading-5">{section.description}</Text>
+        <Text variant="muted" className="mb-3">
+          {section.description}
+        </Text>
       )}
       {section.contacts.map((contact) => (
-        <EmergencyContactCard key={contact.id} contact={contact} />
+        <ContactCard key={contact.id} contact={contact} />
       ))}
     </View>
   );
 }
 
 export default function EmergencyScreen() {
-  const { t } = useTranslation();
-
   return (
     <ScrollView
       className="flex-1 bg-background"
       showsVerticalScrollIndicator={false}
       contentInsetAdjustmentBehavior="automatic"
     >
-      <View className={`p-3 ${Platform.OS === "android" ? "pb-24" : "pb-10"}`}>
-        {/* 112 Section */}
-        <Card className="mb-4 border-destructive/20 bg-destructive/5">
-          <CardContent className="items-center p-4">
-            <View className="flex-row items-center mb-2">
-              <Ionicons name="warning" size={24} className="text-destructive" />
-              <Text className="text-xl font-bold ml-2">Emergency Services</Text>
-            </View>
-            <Text className="text-base text-muted-foreground text-center mb-3">
+      <View className={`p-4 ${Platform.OS === "android" ? "pb-24" : "pb-10"}`}>
+        {/* 112 Emergency Section */}
+        <Card className="mb-6 border-destructive/30">
+          <CardContent className="items-center p-5">
+            <Badge variant="destructive" className="mb-3">
+              <Text className="text-sm font-bold">NOODGEVAL</Text>
+            </Badge>
+            <Text variant="h3" className="mb-2">
+              Emergency Services
+            </Text>
+            <Text variant="muted" className="text-center mb-4">
               112 for ambulance, fire brigade or police
             </Text>
             <Image
               source={require("../../../../assets/emergency/112_logo.png")}
-              style={{ width: 200, height: 100 }}
+              style={{ width: 180, height: 90 }}
               contentFit="contain"
             />
           </CardContent>
@@ -107,19 +146,19 @@ export default function EmergencyScreen() {
           <EmergencySectionGroup key={section.id} section={section} />
         ))}
 
-        {/* Important Note */}
-        <Card className="mt-2 border-l-4 border-l-warning bg-warning/5">
+        {/* Important Reminder */}
+        <Card className="mt-2 border-l-4 border-l-secondary">
           <CardContent className="p-4">
-            <View className="flex-row items-center mb-2">
-              <Ionicons name="information-circle" size={24} className="text-warning" />
-              <Text className="text-lg font-semibold ml-2">Important Reminder</Text>
+            <View className="flex-row items-center gap-2 mb-2">
+              <Ionicons name="information-circle" size={22} className="text-secondary" />
+              <Text variant="h4">Important Reminder</Text>
             </View>
-            <Text className="text-base leading-6 text-muted-foreground mb-2">
+            <Text variant="p">
               Always keep your host family's contact information and home address accessible.
             </Text>
-            <Text className="text-base leading-6 text-muted-foreground">
-              Your host parents can assist you with medical appointments, hospital visits, or dental
-              care.
+            <Text variant="p" className="mt-2">
+              Your host parents can assist you with medical appointments, hospital visits, or
+              dental care.
             </Text>
           </CardContent>
         </Card>
