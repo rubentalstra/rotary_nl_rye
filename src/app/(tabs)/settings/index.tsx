@@ -19,9 +19,9 @@ function SettingsRow({
   onPress?: () => void;
 }) {
   const content = (
-    <View className="flex-row items-center py-4">
-      <View className="w-10 h-10 rounded-xl bg-muted items-center justify-center mr-4">
-        <Ionicons name={icon} size={20} className="text-foreground" />
+    <View className="flex-row items-center py-3.5">
+      <View className="w-9 h-9 rounded-lg bg-primary/10 items-center justify-center mr-3">
+        <Ionicons name={icon} size={18} className="text-primary" />
       </View>
       <View className="flex-1">
         <Text className="text-base text-foreground">{title}</Text>
@@ -51,72 +51,79 @@ export default function SettingsScreen() {
       showsVerticalScrollIndicator={false}
       contentInsetAdjustmentBehavior="automatic"
     >
-      <View className={`px-6 pt-4 ${Platform.OS === "android" ? "pb-28" : "pb-12"}`}>
+      <View className={`px-5 pt-4 ${Platform.OS === "android" ? "pb-28" : "pb-12"}`}>
         {/* General */}
-        <Text className="text-sm font-medium text-muted-foreground uppercase tracking-wider mb-2 mt-4">
+        <Text className="text-xs font-semibold text-muted-foreground uppercase tracking-widest mb-3 ml-1">
           Algemeen
         </Text>
-        <SettingsRow
-          icon="logo-instagram"
-          title="Volg ons op Instagram"
-          subtitle="@rotexnederland"
-          onPress={() => Linking.openURL(`${SOCIAL_URLS.INSTAGRAM}rotexnederland`)}
-        />
-        <Separator />
-        <SettingsRow
-          icon="star-outline"
-          title="Beoordeel de App"
-          subtitle={
-            Platform.OS === "ios"
-              ? "App Store beoordeling"
-              : "Play Store beoordeling"
-          }
-          onPress={async () => {
-            if (await StoreReview.isAvailableAsync()) {
-              await StoreReview.requestReview();
-            }
-          }}
-        />
+        <View className="bg-card rounded-2xl px-4" style={Platform.select({
+          ios: { shadowColor: "#000", shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.04, shadowRadius: 8 },
+          android: { elevation: 1 },
+        })}>
+          <SettingsRow
+            icon="logo-instagram"
+            title="Volg ons op Instagram"
+            subtitle="@rotexnederland"
+            onPress={() => Linking.openURL(`${SOCIAL_URLS.INSTAGRAM}rotexnederland`)}
+          />
+          <Separator />
+          <SettingsRow
+            icon="star-outline"
+            title="Beoordeel de App"
+            subtitle={Platform.OS === "ios" ? "App Store beoordeling" : "Play Store beoordeling"}
+            onPress={async () => {
+              if (await StoreReview.isAvailableAsync()) {
+                await StoreReview.requestReview();
+              }
+            }}
+          />
+        </View>
 
         {/* Development */}
-        <Text className="text-sm font-medium text-muted-foreground uppercase tracking-wider mb-2 mt-8">
+        <Text className="text-xs font-semibold text-muted-foreground uppercase tracking-widest mb-3 ml-1 mt-8">
           Ontwikkeling
         </Text>
-        <SettingsRow
-          icon="people-outline"
-          title="Bijdragers"
-          subtitle="Bekijk app-bijdragers"
-          onPress={() => router.push("/settings/contributors")}
-        />
-        <Separator />
-        <SettingsRow
-          icon="information-circle-outline"
-          title="App Versie"
-          subtitle={`${APP_VERSION} (${APP_BUILD})`}
-        />
+        <View className="bg-card rounded-2xl px-4" style={Platform.select({
+          ios: { shadowColor: "#000", shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.04, shadowRadius: 8 },
+          android: { elevation: 1 },
+        })}>
+          <SettingsRow
+            icon="people-outline"
+            title="Bijdragers"
+            subtitle="Bekijk app-bijdragers"
+            onPress={() => router.push("/settings/contributors")}
+          />
+          <Separator />
+          <SettingsRow
+            icon="information-circle-outline"
+            title="App Versie"
+            subtitle={`${APP_VERSION} (${APP_BUILD})`}
+          />
+        </View>
 
         {/* Legal */}
-        <Text className="text-sm font-medium text-muted-foreground uppercase tracking-wider mb-2 mt-8">
+        <Text className="text-xs font-semibold text-muted-foreground uppercase tracking-widest mb-3 ml-1 mt-8">
           Juridisch
         </Text>
-        <SettingsRow
-          icon="shield-checkmark-outline"
-          title="Privacybeleid"
-          onPress={() =>
-            WebBrowser.openBrowserAsync("https://www.rotary.nl/yep/privacy-policy")
-          }
-        />
-        <Separator />
-        <SettingsRow
-          icon="document-text-outline"
-          title="Algemene Voorwaarden"
-          onPress={() =>
-            WebBrowser.openBrowserAsync("https://www.rotary.nl/yep/terms-and-conditions")
-          }
-        />
+        <View className="bg-card rounded-2xl px-4" style={Platform.select({
+          ios: { shadowColor: "#000", shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.04, shadowRadius: 8 },
+          android: { elevation: 1 },
+        })}>
+          <SettingsRow
+            icon="shield-checkmark-outline"
+            title="Privacybeleid"
+            onPress={() => WebBrowser.openBrowserAsync("https://www.rotary.nl/yep/privacy-policy")}
+          />
+          <Separator />
+          <SettingsRow
+            icon="document-text-outline"
+            title="Algemene Voorwaarden"
+            onPress={() => WebBrowser.openBrowserAsync("https://www.rotary.nl/yep/terms-and-conditions")}
+          />
+        </View>
 
         {/* Footer */}
-        <View className="items-center mt-12">
+        <View className="items-center mt-10">
           <Text className="text-xs text-muted-foreground">
             Rotary Youth Exchange Netherlands
           </Text>
