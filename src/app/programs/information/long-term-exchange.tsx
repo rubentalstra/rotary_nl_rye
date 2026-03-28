@@ -9,10 +9,10 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 
 const exchangeImages = [
-  { id: 1, source: require("@/assets/pictures/outbound.jpeg") },
-  { id: 2, source: require("@/assets/pictures/outbound-arrive.jpeg") },
-  { id: 3, source: require("@/assets/pictures/outbound-nilla.jpeg") },
-  { id: 4, source: require("@/assets/pictures/outbound-simon.jpeg") },
+  { id: 1, source: require("../../../../assets/pictures/outbound.jpeg") },
+  { id: 2, source: require("../../../../assets/pictures/outbound-arrive.jpeg") },
+  { id: 3, source: require("../../../../assets/pictures/outbound-nilla.jpeg") },
+  { id: 4, source: require("../../../../assets/pictures/outbound-simon.jpeg") },
 ];
 
 const whyReasons = [

@@ -95,7 +95,7 @@ export default function EmergencyScreen() {
               112 for ambulance, fire brigade or police
             </Text>
             <Image
-              source={require("@/assets/emergency/112_logo.png")}
+              source={require("../../../../assets/emergency/112_logo.png")}
               style={{ width: 200, height: 100 }}
               contentFit="contain"
             />

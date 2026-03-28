@@ -3,70 +3,49 @@
     "name": "Rotary YEP NL",
     "slug": "rotary-yep-nl",
     "description": "The official app for Rotary Youth Exchange Netherlands, providing resources, information, and support for exchange students, families, and Rotary clubs.",
-    "owner": "Ruben Talstra",
+    "owner": "rotary-nederland",
     "version": "12.0.3",
     "scheme": "rotaryyepnl",
+    "icon": "./assets/images/icon.png",
     "userInterfaceStyle": "automatic",
     "githubUrl": "https://github.com/Caeli-technologies/rotary_nl_rye",
-    "platforms": [
-      "ios",
-      "android"
-    ],
+    "platforms": ["ios", "android"],
     "ios": {
       "buildNumber": "112",
+      "bundleIdentifier": "com.caelitechnologies.rotary-nl-rye",
       "appleTeamId": "A8S2486A44",
       "backgroundColor": "#17458f",
-      "appStoreUrl": "https://apps.apple.com/nl/app/rotary-youth-exchange-nl/id1567096118",
+      "icon": "./assets/app.icon",
       "supportsTablet": true,
       "requireFullScreen": false,
-      "bundleIdentifier": "com.caelitechnologies.rotary-nl-rye",
-      "icon": "./assets/app.icon",
+      "appStoreUrl": "https://apps.apple.com/nl/app/rotary-youth-exchange-nl/id1567096118",
       "config": {
         "usesNonExemptEncryption": false
       },
-      "splash": {
-        "image": "./assets/images/splash.png",
-        "resizeMode": "contain",
-        "backgroundColor": "#17458f",
-        "dark": {
-          "image": "./assets/images/splash.png",
-          "resizeMode": "contain",
-          "backgroundColor": "#000000"
-        }
-      },
       "infoPlist": {
-        "UIBackgroundModes": [
-          "audio",
-          "fetch"
-        ],
+        "UIBackgroundModes": ["audio", "fetch"],
         "LSApplicationCategoryType": "public.app-category.education"
       }
     },
     "android": {
       "versionCode": 112,
       "package": "com.caelitechnologies.rotary_nl_rye",
-      "playStoreUrl": "https://play.google.com/store/apps/details?id=com.caelitechnologies.rotary_nl_rye",
       "backgroundColor": "#17458f",
-      "predictiveBackGestureEnabled": true,
+      "playStoreUrl": "https://play.google.com/store/apps/details?id=com.caelitechnologies.rotary_nl_rye",
       "adaptiveIcon": {
         "backgroundColor": "#17458f",
-        "foregroundImage": "./assets/images/adaptive-icon.png"
-      },
-      "splash": {
-        "image": "./assets/images/splash.png",
-        "resizeMode": "contain",
-        "backgroundColor": "#17458f",
-        "dark": {
-          "image": "./assets/images/splash.png",
-          "resizeMode": "contain",
-          "backgroundColor": "#000000"
-        }
+        "foregroundImage": "./assets/images/adaptive-icon.png",
+        "monochromeImage": "./assets/images/android-icon-monochrome.png"
       },
       "permissions": [
         "android.permission.INTERNET",
         "android.permission.ACCESS_NETWORK_STATE",
         "android.permission.WAKE_LOCK",
-        "android.permission.VIBRATE"
+        "android.permission.VIBRATE",
+        "android.permission.RECORD_AUDIO",
+        "android.permission.MODIFY_AUDIO_SETTINGS",
+        "android.permission.FOREGROUND_SERVICE",
+        "android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK"
       ]
     },
     "plugins": [
@@ -78,7 +57,7 @@
           "image": "./assets/images/splash.png",
           "imageWidth": 200,
           "resizeMode": "contain",
-          "backgroundColor": "#ffffff",
+          "backgroundColor": "#17458f",
           "dark": {
             "image": "./assets/images/splash.png",
             "resizeMode": "contain",
@@ -102,10 +81,16 @@
       "expo-localization"
     ],
     "updates": {
-      "url": "https://u.expo.dev/rotary-yep-nl"
+      "url": "https://u.expo.dev/26c1df66-39f0-4470-9420-107c6a8bdfb4"
     },
     "runtimeVersion": {
       "policy": "appVersion"
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "26c1df66-39f0-4470-9420-107c6a8bdfb4"
+      }
     },
     "experiments": {
       "typedRoutes": true,

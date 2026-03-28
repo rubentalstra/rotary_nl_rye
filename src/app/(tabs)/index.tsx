@@ -12,9 +12,9 @@ export default function HomeScreen() {
 
   const carouselImages = useMemo(
     () => [
-      require("@/assets/home/carousel/outbound-25-26-group.jpeg"),
-      require("@/assets/home/carousel/inbounds-with-flags.jpeg"),
-      require("@/assets/home/carousel/inbound-andre-schiphol.jpeg"),
+      require("../../../assets/home/carousel/outbound-25-26-group.jpeg"),
+      require("../../../assets/home/carousel/inbounds-with-flags.jpeg"),
+      require("../../../assets/home/carousel/inbound-andre-schiphol.jpeg"),
     ],
     [],
   );
@@ -29,7 +29,7 @@ export default function HomeScreen() {
         {/* Logo */}
         <View className="items-center px-4 py-5 mb-7">
           <Image
-            source={require("@/assets/home/rotary_rye_nl_logo_home.svg")}
+            source={require("../../../assets/home/rotary_rye_nl_logo_home.svg")}
             style={{ width: "100%", height: 80 }}
             contentFit="contain"
           />
@@ -82,7 +82,7 @@ export default function HomeScreen() {
               title="voor Rotary Clubs"
               variant="single"
               useSvg
-              svgSource={require("@/assets/logo/rotary-logo-icon.svg")}
+              svgSource={require("../../../assets/logo/rotary-logo-icon.svg")}
               onPress={() => router.push("/rotary-clubs")}
             />
           </View>
