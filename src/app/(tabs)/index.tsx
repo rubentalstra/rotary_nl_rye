@@ -1,12 +1,11 @@
-import { View, ScrollView, Pressable, Platform } from "react-native";
+import { View, ScrollView, Pressable, Platform, useWindowDimensions } from "react-native";
 import { Image } from "expo-image";
 import { router } from "expo-router";
 import { Ionicons, MaterialCommunityIcons, Fontisto } from "@expo/vector-icons";
 import * as Haptics from "expo-haptics";
 import { Text } from "@/components/ui/text";
-import { Separator } from "@/components/ui/separator";
 
-function NavItem({
+function GridItem({
   icon,
   label,
   onPress,
@@ -21,50 +20,18 @@ function NavItem({
         if (Platform.OS === "ios") Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
         onPress();
       }}
-      className="flex-1 items-center py-4 active:opacity-60"
+      className="flex-1 mx-1.5 mb-3 aspect-square rounded-2xl bg-secondary items-center justify-center active:opacity-70"
     >
-      <View className="w-14 h-14 rounded-2xl bg-muted items-center justify-center mb-2">
-        {icon}
-      </View>
-      <Text className="text-xs font-medium text-foreground">{label}</Text>
-    </Pressable>
-  );
-}
-
-function LinkRow({
-  icon,
-  label,
-  subtitle,
-  onPress,
-}: {
-  icon: React.ReactNode;
-  label: string;
-  subtitle?: string;
-  onPress: () => void;
-}) {
-  return (
-    <Pressable
-      onPress={() => {
-        if (Platform.OS === "ios") Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-        onPress();
-      }}
-      className="flex-row items-center py-4 active:opacity-60"
-    >
-      <View className="w-12 h-12 rounded-xl bg-muted items-center justify-center mr-4">
-        {icon}
-      </View>
-      <View className="flex-1">
-        <Text className="text-base font-semibold text-foreground">{label}</Text>
-        {subtitle && (
-          <Text className="text-sm text-muted-foreground mt-0.5">{subtitle}</Text>
-        )}
-      </View>
-      <Ionicons name="chevron-forward" size={20} className="text-muted-foreground" />
+      <View className="mb-2">{icon}</View>
+      <Text className="text-sm font-semibold text-foreground">{label}</Text>
     </Pressable>
   );
 }
 
 export default function HomeScreen() {
+  const { width } = useWindowDimensions();
+  const squareSize = (width - 32 - 12) / 3;
+
   return (
     <ScrollView
       className="flex-1 bg-background"
@@ -81,7 +48,7 @@ export default function HomeScreen() {
       </View>
 
       {/* Hero Image */}
-      <View className="px-4 mb-8">
+      <View className="px-4 mb-6">
         <Image
           source={require("../../../assets/home/carousel/outbound-25-26-group.jpeg")}
           style={{ width: "100%", height: 220, borderRadius: 20 }}
@@ -89,82 +56,86 @@ export default function HomeScreen() {
         />
       </View>
 
-      {/* Quick Access */}
-      <View className="px-6">
-        <Text className="text-xl font-bold text-foreground mb-4">Ontdek</Text>
-
-        <View className="flex-row mb-1">
-          <NavItem
-            icon={<Ionicons name="list-outline" size={26} className="text-foreground" />}
+      {/* Grid */}
+      <View className={`px-4 ${Platform.OS === "android" ? "pb-28" : "pb-12"}`}>
+        <View className="flex-row">
+          <GridItem
+            icon={<Ionicons name="list-outline" size={30} className="text-foreground" />}
             label="Programma"
             onPress={() => router.push("/programs")}
           />
-          <NavItem
-            icon={<Ionicons name="newspaper-outline" size={26} className="text-foreground" />}
+          <GridItem
+            icon={<Ionicons name="newspaper-outline" size={30} className="text-foreground" />}
             label="Nieuws"
             onPress={() => router.push("/news")}
           />
-          <NavItem
-            icon={<Ionicons name="calendar-outline" size={26} className="text-foreground" />}
+          <GridItem
+            icon={<Ionicons name="calendar-outline" size={30} className="text-foreground" />}
             label="Kalender"
             onPress={() => router.push("/calendar")}
           />
         </View>
 
         <View className="flex-row">
-          <NavItem
+          <GridItem
             icon={
               <MaterialCommunityIcons
                 name="airplane-takeoff"
-                size={26}
+                size={30}
                 className="text-foreground"
               />
             }
             label="Outbound"
             onPress={() => router.push("/students/outbound")}
           />
-          <NavItem
+          <GridItem
             icon={
               <MaterialCommunityIcons
                 name="airplane-landing"
-                size={26}
+                size={30}
                 className="text-foreground"
               />
             }
             label="Inbound"
             onPress={() => router.push("/students/inbound")}
           />
-          <NavItem
-            icon={<Ionicons name="refresh-outline" size={26} className="text-foreground" />}
+          <GridItem
+            icon={<Ionicons name="refresh-outline" size={30} className="text-foreground" />}
             label="Rebound"
             onPress={() => router.push("/students/rebound")}
           />
         </View>
-      </View>
 
-      {/* More */}
-      <View className={`px-6 pt-8 ${Platform.OS === "android" ? "pb-28" : "pb-12"}`}>
-        <Text className="text-xl font-bold text-foreground mb-2">Meer</Text>
-
-        <LinkRow
-          icon={<Fontisto name="tent" size={20} className="text-foreground" />}
-          label="Zomerkampen"
-          subtitle="Bekijk beschikbare kampen"
-          onPress={() => router.push("/camps-tours")}
-        />
-        <Separator />
-        <LinkRow
-          icon={
-            <Image
-              source={require("../../../assets/logo/rotary-logo-icon.svg")}
-              style={{ width: 22, height: 22 }}
-              contentFit="contain"
-            />
-          }
-          label="Voor Rotary Clubs"
-          subtitle="Informatie voor clubs"
-          onPress={() => router.push("/rotary-clubs")}
-        />
+        <View className="flex-row" style={{ height: squareSize }}>
+          <Pressable
+            onPress={() => {
+              if (Platform.OS === "ios") Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+              router.push("/camps-tours");
+            }}
+            className="flex-1 mx-1.5 rounded-2xl bg-secondary items-center justify-center active:opacity-70"
+          >
+            <View className="mb-2">
+              <Fontisto name="tent" size={26} className="text-foreground" />
+            </View>
+            <Text className="text-sm font-semibold text-foreground">Zomerkampen</Text>
+          </Pressable>
+          <Pressable
+            onPress={() => {
+              if (Platform.OS === "ios") Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+              router.push("/rotary-clubs");
+            }}
+            className="flex-1 mx-1.5 rounded-2xl bg-secondary items-center justify-center active:opacity-70"
+          >
+            <View className="mb-2">
+              <Image
+                source={require("../../../assets/logo/rotary-logo-icon.svg")}
+                style={{ width: 30, height: 30 }}
+                contentFit="contain"
+              />
+            </View>
+            <Text className="text-sm font-semibold text-foreground">Rotary Clubs</Text>
+          </Pressable>
+        </View>
       </View>
     </ScrollView>
   );
