@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useLayoutEffect } from "react";
 import {
   View,
   RefreshControl,
@@ -11,15 +11,15 @@ import {
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { Image } from "expo-image";
+import { useNavigation } from "expo-router";
 import { useTranslation } from "react-i18next";
 import { Text } from "@/components/ui/text";
 import { Separator } from "@/components/ui/separator";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { useCampsQuery } from "@/lib/hooks/use-camps-query";
 import { getFlagAsset, getCountryName } from "@/lib/utils/flags";
-import type { Camp, AvailabilityFilter, TimingFilter } from "@/lib/types";
+import type { Camp, AvailabilityFilter } from "@/lib/types";
 
 const currencyIcons: Record<string, keyof typeof Ionicons.glyphMap> = {
   EUR: "logo-euro",
@@ -148,6 +148,7 @@ export default function CampsToursScreen() {
   const [countryModalVisible, setCountryModalVisible] = useState(false);
   const [countrySearch, setCountrySearch] = useState("");
 
+  const navigation = useNavigation();
   const camps = data?.camps ?? [];
   const countries = data?.countries ?? [];
 
@@ -169,6 +170,16 @@ export default function CampsToursScreen() {
     }
     return result;
   }, [camps, availability, showPast, selectedCountry]);
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerRight: () => (
+        <Text className="text-sm text-muted-foreground mr-1">
+          {filteredCamps.length}/{camps.length}
+        </Text>
+      ),
+    });
+  }, [navigation, filteredCamps.length, camps.length]);
 
   if (isLoading) {
     return (
@@ -219,10 +230,6 @@ export default function CampsToursScreen() {
             </Text>
           </View>
         </Pressable>
-        <View className="flex-1" />
-        <Text className="text-sm text-muted-foreground">
-          {filteredCamps.length}/{camps.length}
-        </Text>
       </View>
 
       {/* List */}
