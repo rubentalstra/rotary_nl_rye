@@ -31,6 +31,7 @@
     "expo-glass-effect": "~55.0.11",
     "expo-haptics": "~55.0.14",
     "expo-image": "~55.0.11",
+    "expo-insights": "~55.0.17",
     "expo-linking": "~55.0.15",
     "expo-router": "~55.0.16",
     "expo-sharing": "~55.0.20",
