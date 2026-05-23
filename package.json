@@ -21,6 +21,7 @@
     "@expo/material-symbols": "~0.1.1",
     "@expo/ui": "~56.0.13",
     "@react-native-vector-icons/ionicons": "^13.1.1",
+    "@react-native-vector-icons/material-design-icons": "^13.1.1",
     "expo": "~56.0.4",
     "expo-application": "~56.0.3",
     "expo-asset": "~56.0.14",
