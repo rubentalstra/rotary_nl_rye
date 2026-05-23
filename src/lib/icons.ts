@@ -40,6 +40,10 @@ export const Icons = {
   mission: { ios: "paperplane.fill", android: "rocket_launch" },
   airplane: { ios: "airplane", android: "flight" },
   heart: { ios: "heart.fill", android: "favorite" },
+  // Emergency / status
+  warning: { ios: "exclamationmark.triangle.fill", android: "warning" },
+  shield: { ios: "checkmark.shield.fill", android: "verified_user" },
+  info: { ios: "info.circle.fill", android: "info" },
 } as const satisfies Record<string, IconPair>;
 
 export type IconName = keyof typeof Icons;
