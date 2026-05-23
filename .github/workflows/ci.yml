@@ -19,6 +19,7 @@ concurrency:
 
 env:
   NODE_VERSION: "24"
+  PNPM_VERSION: "11.2.2"
   WORKING_DIR: ./rotary-yep-nl
 
 jobs:
@@ -32,24 +33,29 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v6
 
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v6
+        with:
+          version: ${{ env.PNPM_VERSION }}
+
       - name: Setup Node.js
         uses: actions/setup-node@v6
         with:
           node-version: ${{ env.NODE_VERSION }}
-          cache: "npm"
-          cache-dependency-path: "rotary-yep-nl/package-lock.json"
+          cache: "pnpm"
+          cache-dependency-path: "rotary-yep-nl/pnpm-lock.yaml"
 
       - name: Cache node_modules
         id: cache-node-modules
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: rotary-yep-nl/node_modules
-          key: node-modules-${{ runner.os }}-${{ hashFiles('rotary-yep-nl/package-lock.json') }}
+          key: node-modules-${{ runner.os }}-${{ hashFiles('rotary-yep-nl/pnpm-lock.yaml') }}
 
       - name: Install dependencies
         if: steps.cache-node-modules.outputs.cache-hit != 'true'
         working-directory: ${{ env.WORKING_DIR }}
-        run: npm ci
+        run: pnpm install --frozen-lockfile
 
   # ─────────────────────────────────────────────────────────────
   # TypeScript type checking
@@ -62,22 +68,27 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v6
 
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v6
+        with:
+          version: ${{ env.PNPM_VERSION }}
+
       - name: Setup Node.js
         uses: actions/setup-node@v6
         with:
           node-version: ${{ env.NODE_VERSION }}
-          cache: "npm"
-          cache-dependency-path: "rotary-yep-nl/package-lock.json"
+          cache: "pnpm"
+          cache-dependency-path: "rotary-yep-nl/pnpm-lock.yaml"
 
       - name: Restore node_modules cache
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: rotary-yep-nl/node_modules
-          key: node-modules-${{ runner.os }}-${{ hashFiles('rotary-yep-nl/package-lock.json') }}
+          key: node-modules-${{ runner.os }}-${{ hashFiles('rotary-yep-nl/pnpm-lock.yaml') }}
 
       - name: Run TypeScript compiler
         working-directory: ${{ env.WORKING_DIR }}
-        run: npx tsc --noEmit
+        run: pnpm exec tsc --noEmit
 
   # ─────────────────────────────────────────────────────────────
   # ESLint with SARIF output for GitHub code scanning
@@ -93,23 +104,28 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v6
 
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v6
+        with:
+          version: ${{ env.PNPM_VERSION }}
+
       - name: Setup Node.js
         uses: actions/setup-node@v6
         with:
           node-version: ${{ env.NODE_VERSION }}
-          cache: "npm"
-          cache-dependency-path: "rotary-yep-nl/package-lock.json"
+          cache: "pnpm"
+          cache-dependency-path: "rotary-yep-nl/pnpm-lock.yaml"
 
       - name: Restore node_modules cache
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: rotary-yep-nl/node_modules
-          key: node-modules-${{ runner.os }}-${{ hashFiles('rotary-yep-nl/package-lock.json') }}
+          key: node-modules-${{ runner.os }}-${{ hashFiles('rotary-yep-nl/pnpm-lock.yaml') }}
 
       - name: Run ESLint (SARIF output)
         working-directory: ${{ env.WORKING_DIR }}
         run: |
-          npx eslint . \
+          pnpm exec eslint . \
             --format @microsoft/eslint-formatter-sarif \
             --output-file eslint-results.sarif \
             || true
@@ -123,7 +139,7 @@ jobs:
 
       - name: Run ESLint (console output)
         working-directory: ${{ env.WORKING_DIR }}
-        run: npx expo lint
+        run: pnpm exec expo lint
 
   # ─────────────────────────────────────────────────────────────
   # Expo Doctor - check for common issues
@@ -136,28 +152,33 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v6
 
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v6
+        with:
+          version: ${{ env.PNPM_VERSION }}
+
       - name: Setup Node.js
         uses: actions/setup-node@v6
         with:
           node-version: ${{ env.NODE_VERSION }}
-          cache: "npm"
-          cache-dependency-path: "rotary-yep-nl/package-lock.json"
+          cache: "pnpm"
+          cache-dependency-path: "rotary-yep-nl/pnpm-lock.yaml"
 
       - name: Restore node_modules cache
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: rotary-yep-nl/node_modules
-          key: node-modules-${{ runner.os }}-${{ hashFiles('rotary-yep-nl/package-lock.json') }}
+          key: node-modules-${{ runner.os }}-${{ hashFiles('rotary-yep-nl/pnpm-lock.yaml') }}
 
       - name: Run Expo Prebuild
         working-directory: ${{ env.WORKING_DIR }}
-        run: npx expo prebuild
+        run: pnpm exec expo prebuild
 
       - name: Run Expo Doctor
         working-directory: ${{ env.WORKING_DIR }}
         # Allow to continue - we commit native folders intentionally
         continue-on-error: true
-        run: npx expo-doctor
+        run: pnpm dlx expo-doctor
 
   # ─────────────────────────────────────────────────────────────
   # Summary job - ensures all checks pass
