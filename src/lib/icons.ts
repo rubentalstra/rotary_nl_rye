@@ -52,6 +52,7 @@ export const Icons = {
   alert: { ios: "exclamationmark.circle.fill", android: "error" },
   refresh: { ios: "arrow.clockwise", android: "refresh" },
   folder: { ios: "folder.fill", android: "folder_open" },
+  school: { ios: "graduationcap.fill", android: "school" },
 } as const satisfies Record<string, IconPair>;
 
 export type IconName = keyof typeof Icons;

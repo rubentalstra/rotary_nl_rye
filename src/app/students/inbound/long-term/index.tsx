@@ -1,5 +1,6 @@
 import { useCallback, useMemo } from "react";
-import { FlatList, Platform, Pressable, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View, Text, FlatList, Pressable, Platform } from "react-native";
+import { Image } from "expo-image";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Ionicons from "@react-native-vector-icons/ionicons";
 import FontAwesome5, { type FontAwesome5SolidIconName } from "@react-native-vector-icons/fontawesome5";
@@ -7,24 +8,18 @@ import { router } from "expo-router";
 
 import * as Haptics from "expo-haptics";
 import { useTheme } from "@/lib/theme/use-theme";
-interface ProgramItem {
+interface MenuItem {
   title: string;
-  subtitle: string;
+  subtitle?: string;
   icon: FontAwesome5SolidIconName;
   route: string;
-  enabled?: boolean;
+  type: "class" | "info";
 }
 
-export const unstable_settings = {
-  initialRouteName: "index",
-};
-
-export default function OutboundScreen() {
+export default function LongTermInboundScreen() {
   const themeColors = useTheme();
 
-  const handleProgramPress = useCallback(async (route: string, enabled: boolean = true) => {
-    if (!enabled) return;
-
+  const handleItemPress = useCallback(async (route: string) => {
     try {
       await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
       router.push(route as any);
@@ -34,125 +29,118 @@ export default function OutboundScreen() {
     }
   }, []);
 
-  const renderProgramItem = useCallback(
-    ({ item }: { item: ProgramItem }) => (
+  const renderMenuItem = useCallback(
+    ({ item }: { item: MenuItem }) => (
       <Pressable
         style={({ pressed }) => [
-          styles.programItem,
+          styles.menuItem,
           {
             backgroundColor: themeColors.card,
             borderColor: themeColors.border,
             shadowColor: themeColors.shadow,
           },
           pressed && { opacity: 0.7, transform: [{ scale: 0.98 }] },
-          !item.enabled && styles.programItemDisabled,
         ]}
-        onPress={() => handleProgramPress(item.route, item.enabled)}
-        accessibilityRole="button"
-        accessibilityLabel={item.title}
-        accessibilityHint={
-          item.enabled ? "Tap to view program details" : "This program is not yet available"
-        }
-        hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+        onPress={() => handleItemPress(item.route)}
         android_ripple={{
-          color: `${themeColors.primary}20`,
+          color: "rgba(0, 122, 255, 0.2)",
           borderless: false,
         }}
-        disabled={!item.enabled}
+        accessibilityRole="button"
+        accessibilityLabel={item.title}
+        accessibilityHint="Tap to view details"
+        hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
       >
-        <View style={styles.programContent}>
+        <View style={styles.menuContent}>
           <View
             style={[
               styles.iconContainer,
-              { backgroundColor: `${themeColors.primary}15` },
-              !item.enabled && styles.iconContainerDisabled,
+              { backgroundColor: themeColors.primary + "15" },
+              item.type === "class" ? styles.classIconContainer : styles.infoIconContainer,
             ]}
           >
-            <FontAwesome5 iconStyle="solid"
-              name={item.icon}
-              size={22}
-              color={item.enabled ? themeColors.primary : themeColors.textTertiary}
-            />
+            <FontAwesome5 iconStyle="solid" name={item.icon} size={22} color={themeColors.primary} />
           </View>
           <View style={styles.textContainer}>
-            <Text
-              style={[
-                styles.programTitle,
-                { color: themeColors.text },
-                !item.enabled && { color: themeColors.textTertiary },
-              ]}
-            >
-              {item.title}
-            </Text>
-            <Text style={[styles.programSubtitle, { color: themeColors.textTertiary }]}>
-              {item.subtitle}
-            </Text>
+            <Text style={[styles.menuTitle, { color: themeColors.text }]}>{item.title}</Text>
+            {item.subtitle && (
+              <Text style={[styles.menuSubtitle, { color: themeColors.textSecondary }]}>
+                {item.subtitle}
+              </Text>
+            )}
           </View>
           <Ionicons
             name={Platform.OS === "ios" ? "chevron-forward" : "arrow-forward"}
             size={20}
-            color={item.enabled ? themeColors.textTertiary : themeColors.textDisabled}
+            color={themeColors.textTertiary}
           />
         </View>
       </Pressable>
     ),
     [
-      handleProgramPress,
+      handleItemPress,
       themeColors.border,
       themeColors.card,
       themeColors.primary,
       themeColors.shadow,
       themeColors.text,
-      themeColors.textDisabled,
+      themeColors.textSecondary,
       themeColors.textTertiary,
     ],
   );
 
-  const longTermPrograms: ProgramItem[] = useMemo(
+  const classOfItems: MenuItem[] = useMemo(
     () => [
       {
-        title: "Long Term Exchange Program",
-        subtitle: "Year Exchange",
-        icon: "calendar-alt" as FontAwesome5SolidIconName,
-        route: "/students/outbound/long-term",
-        enabled: true,
+        title: "Class of 2025-26",
+        subtitle: "Meet the incoming exchange students",
+        icon: "users" as FontAwesome5SolidIconName,
+        route: "/students/inbound/long-term/students",
+        type: "class",
       },
     ],
     [],
   );
 
-  const shortTermPrograms: ProgramItem[] = useMemo(
+  const informationItems: MenuItem[] = useMemo(
     () => [
       {
-        title: "Zomerkampen",
-        subtitle: "Zomerkampen & Culturele Programmas",
-        icon: "campground" as FontAwesome5SolidIconName,
-        route: "/students/outbound/short-term/camps-and-tours",
-        enabled: true,
+        title: "Welcome to the Netherlands!",
+        subtitle: "Important information for new students",
+        icon: "door-open" as FontAwesome5SolidIconName,
+        route: "/students/inbound/long-term/welcome",
+        type: "info",
       },
       {
-        title: "Family to Family",
-        subtitle: "Exchange between families",
-        icon: "home" as FontAwesome5SolidIconName,
-        route: "/students/outbound/short-term/family-to-family",
-        enabled: true,
+        title: "Flight and Arrival",
+        subtitle: "Information about traveling to the Netherlands",
+        icon: "plane" as FontAwesome5SolidIconName,
+        route: "/students/inbound/long-term/flight-arrival",
+        type: "info",
+      },
+      {
+        title: "Language",
+        subtitle: "Learning Dutch and language assistance",
+        icon: "language" as FontAwesome5SolidIconName,
+        route: "/students/inbound/long-term/language",
+        type: "info",
+      },
+      {
+        title: "Insurance",
+        subtitle: "Healthcare and insurance information",
+        icon: "umbrella" as FontAwesome5SolidIconName,
+        route: "/students/inbound/long-term/insurance",
+        type: "info",
+      },
+      {
+        title: "Travel",
+        subtitle: "Tips for exploring the Netherlands and Europe",
+        icon: "passport" as FontAwesome5SolidIconName,
+        route: "/students/inbound/long-term/travel",
+        type: "info",
       },
     ],
     [],
-  );
-
-  const IntroSection = useCallback(
-    () => (
-      <View style={styles.introContainer}>
-        <Text style={[styles.introTitle, { color: themeColors.primary }]}>Kandidaten</Text>
-        <Text style={[styles.introText, { color: themeColors.textSecondary }]}>
-          Wat leuk dat je geïnteresseerd in de mogelijkheden van Rotary voor uitwisseling.
-          Wereldwijd gaan er jaarlijks zo&apos;n 8.000 studenten via Rotary op jaaruitwisseling, een
-          hele organisatie.
-        </Text>
-      </View>
-    ),
-    [themeColors.primary, themeColors.textSecondary],
   );
 
   const SectionHeader = useCallback(
@@ -166,32 +154,41 @@ export default function OutboundScreen() {
   );
 
   const renderContent = useCallback(() => {
-    return [
+    const allItems = [
+      { type: "image" },
       { type: "intro" },
-      { type: "sectionHeader", title: "Long Term Exchange Program" },
-      ...longTermPrograms.map((item) => ({ type: "program", item })),
+      { type: "sectionHeader", title: "Current Students" },
+      ...classOfItems.map((item) => ({ type: "menuItem", item })),
       { type: "spacer" },
-      { type: "sectionHeader", title: "Short Term Exchange Program" },
-      ...shortTermPrograms.map((item) => ({ type: "program", item })),
+      { type: "sectionHeader", title: "Information for Incoming Students" },
+      ...informationItems.map((item) => ({ type: "menuItem", item })),
     ];
-  }, [longTermPrograms, shortTermPrograms]);
+
+    return allItems;
+  }, [classOfItems, informationItems]);
 
   const renderItem = useCallback(
     ({ item }: { item: any }) => {
       switch (item.type) {
-        case "intro":
-          return <IntroSection />;
+        case "image":
+          return (
+            <Image
+              source={require("@/assets/pictures/inbounds-with-flags.jpeg")}
+              style={styles.headerImage}
+              contentFit="cover"
+            />
+          );
         case "sectionHeader":
           return <SectionHeader title={item.title} />;
-        case "program":
-          return renderProgramItem({ item: item.item });
+        case "menuItem":
+          return renderMenuItem({ item: item.item });
         case "spacer":
           return <View style={styles.spacer} />;
         default:
           return null;
       }
     },
-    [IntroSection, SectionHeader, renderProgramItem],
+    [SectionHeader, renderMenuItem],
   );
 
   return (
@@ -199,7 +196,7 @@ export default function OutboundScreen() {
       style={[styles.safeArea, { backgroundColor: themeColors.background }]}
       edges={["bottom"]}
     >
-      <View style={styles.container}>
+      <View style={[styles.container, { backgroundColor: themeColors.background }]}>
         <FlatList
           data={renderContent()}
           renderItem={renderItem}
@@ -227,13 +224,14 @@ const styles = StyleSheet.create({
     padding: 16,
     paddingBottom: 34,
   },
+  headerImage: {
+    width: "100%",
+    height: 150,
+    marginBottom: 16,
+    borderRadius: 8,
+  },
   introContainer: {
     marginBottom: 32,
-  },
-  introTitle: {
-    fontSize: 24,
-    fontWeight: "600",
-    marginBottom: 16,
   },
   introText: {
     fontSize: 15,
@@ -253,7 +251,7 @@ const styles = StyleSheet.create({
     height: 2,
     borderRadius: 1,
   },
-  programItem: {
+  menuItem: {
     borderRadius: 12,
     marginBottom: 12,
     overflow: "hidden",
@@ -262,37 +260,37 @@ const styles = StyleSheet.create({
     shadowRadius: 8,
     elevation: 2,
   },
-  programItemDisabled: {
-    opacity: 0.6,
+  menuItemPressed: {
+    opacity: Platform.OS === "ios" ? 0.8 : 1,
+    transform: Platform.OS === "ios" ? [{ scale: 0.98 }] : [],
   },
-  programContent: {
+  menuContent: {
     flexDirection: "row",
     alignItems: "center",
     padding: 16,
     minHeight: 72,
   },
   iconContainer: {
-    width: 44,
-    height: 44,
-    borderRadius: 22,
+    width: 40,
+    height: 40,
+    borderRadius: 20,
     alignItems: "center",
     justifyContent: "center",
     marginRight: 16,
   },
-  iconContainerDisabled: {
-    opacity: 0.5,
-  },
+  classIconContainer: {},
+  infoIconContainer: {},
   textContainer: {
     flex: 1,
     marginRight: 8,
   },
-  programTitle: {
+  menuTitle: {
     fontSize: 16,
     fontWeight: "600",
     marginBottom: 4,
     lineHeight: 22,
   },
-  programSubtitle: {
+  menuSubtitle: {
     fontSize: 13,
     fontWeight: "400",
   },

@@ -1,0 +1,112 @@
+import type { InfoPageContent } from "../../../../types";
+
+export const campsWhichCountriesContent: InfoPageContent = {
+  pageKey: "outbound-camps-countries",
+  header: {
+    icon: "globe-outline",
+    title: "Met welke landen?",
+    subtitle: "Ontdek de bestemmingen beschikbaar voor Zomerkampen",
+  },
+  sections: [
+    {
+      id: "destinations",
+      icon: "globe-outline",
+      title: "Internationale Bestemmingen",
+      blocks: [
+        {
+          id: "europe",
+          type: "card",
+          icon: "flag-outline",
+          iconColor: "primary",
+          title: "Europa",
+          accentColor: "primary",
+          content: "Verschillende Europese landen met rijke cultuur en geschiedenis",
+        },
+        {
+          id: "canada",
+          type: "card",
+          icon: "flag-outline",
+          iconColor: "primary",
+          title: "Canada",
+          accentColor: "primary",
+          content: "Prachtige natuur en vriendelijke cultuur in Noord-Amerika",
+        },
+        {
+          id: "usa",
+          type: "card",
+          icon: "flag-outline",
+          iconColor: "primary",
+          title: "Verenigde Staten",
+          accentColor: "primary",
+          content: "Diverse staten met verschillende ervaringen en culturen",
+        },
+        {
+          id: "taiwan",
+          type: "card",
+          icon: "flag-outline",
+          iconColor: "primary",
+          title: "Taiwan",
+          accentColor: "primary",
+          content: "Fascinierende Aziatische cultuur en moderne technologie",
+        },
+      ],
+    },
+    {
+      id: "program-types",
+      icon: "star-outline",
+      title: "Soorten Programma's",
+      blocks: [
+        {
+          id: "educational",
+          type: "card",
+          icon: "school-outline",
+          iconColor: "primary",
+          title: "Educatieve Tours",
+          accentColor: "primary",
+          content: "Leren over geschiedenis, cultuur en taal",
+        },
+        {
+          id: "adventure",
+          type: "card",
+          icon: "trail-sign-outline",
+          iconColor: "success",
+          title: "Avontuur Kampen",
+          accentColor: "success",
+          content: "Buitenactiviteiten en natuurverkenning",
+        },
+        {
+          id: "cultural",
+          type: "card",
+          icon: "people-outline",
+          iconColor: "info",
+          title: "Culturele Uitwisseling",
+          accentColor: "info",
+          content: "Onderdompeling in lokale gewoonten en tradities",
+        },
+      ],
+    },
+    {
+      id: "contact",
+      icon: "mail-outline",
+      title: "Aanmelden",
+      blocks: [
+        {
+          id: "contact-info",
+          type: "card",
+          icon: "mail-outline",
+          iconColor: "primary",
+          accentColor: "primary",
+          content: "Aanmelden via het emailadres interesse@rotaryyep.nl",
+        },
+        {
+          id: "contact-cta",
+          type: "cta",
+          action: "email",
+          target: "interesse@rotaryyep.nl",
+          label: "Contact Opnemen",
+          description: "Opent je email app voor het versturen van een email",
+        },
+      ],
+    },
+  ],
+};
