@@ -170,7 +170,7 @@ export default function LongTermExchangeScreen() {
     const allItems = [
       { type: "image" },
       { type: "intro" },
-      { type: "sectionHeader", title: "Klas van 25-26" },
+      { type: "sectionHeader", title: "Klas van 26-27" },
       ...classOfItems.map((item) => ({ type: "menuItem", item })),
       { type: "spacer" },
       { type: "sectionHeader", title: "Informatie" },

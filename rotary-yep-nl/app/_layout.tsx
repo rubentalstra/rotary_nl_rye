@@ -116,7 +116,7 @@ function RootLayoutNav() {
         />
         <Stack.Screen
           name="students/outbound/long-term/students"
-          options={{ title: "Klas van 25-26", headerBackTitle: "Long Term" }}
+          options={{ title: "Klas van 26-27", headerBackTitle: "Long Term" }}
         />
         <Stack.Screen
           name="students/outbound/long-term/student-detail"

@@ -15,7 +15,7 @@ export default function OutboundStudentsScreen() {
     navigation.setOptions({
       headerTitle: () => (
         <View style={styles.headerTitleContainer}>
-          <Text style={[styles.headerTitle, { color: colors.text }]}>Klas van 25-26</Text>
+          <Text style={[styles.headerTitle, { color: colors.text }]}>Klas van 26-27</Text>
           <Text style={[styles.headerSubtitle, { color: colors.textSecondary }]}>
             {totalCount} studenten · {countryGroups.length} landen
           </Text>
