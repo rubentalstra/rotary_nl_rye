@@ -1,5 +1,120 @@
-import { PlaceholderScreen } from "@/components/placeholder-screen";
+/**
+ * PDF Viewer screen route
+ * Thin wrapper using the pdf-viewer feature module
+ */
 
-export default function PdfViewerScreen() {
-  return <PlaceholderScreen title="PDF Viewer" icon="document" />;
+import { useCallback, useLayoutEffect } from "react";
+import { StyleSheet, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { useLocalSearchParams, useNavigation } from "expo-router";
+import PdfRendererView from "react-native-pdf-renderer";
+import { useTheme } from "@/lib/theme/use-theme";
+import { ErrorState } from "@/components/feedback/error-state";
+import { LoadingState } from "@/components/feedback/loading-state";
+import { PdfHeaderTitle } from "@/components/pdf-viewer/PdfHeaderTitle";
+import { PdfShareButton } from "@/components/pdf-viewer/PdfShareButton";
+import { usePdfDownload } from "@/features/pdf-viewer/hooks/use-pdf-download";
+import { usePdfShare } from "@/features/pdf-viewer/hooks/use-pdf-share";
+
+export default function PDFViewerScreen() {
+  const colors = useTheme();
+  const navigation = useNavigation();
+  const { url, title } = useLocalSearchParams<{ url: string; title: string }>();
+
+  const {
+    localFilePath,
+    loading,
+    error,
+    download,
+    setPageInfo,
+    setError,
+    currentPage,
+    totalPages,
+  } = usePdfDownload({
+    url,
+    autoDownload: true,
+  });
+  const { share, canShare } = usePdfShare({ filePath: localFilePath, title });
+
+  const handlePageChange = useCallback(
+    (current: number, total: number) => {
+      setPageInfo(current, total);
+    },
+    [setPageInfo],
+  );
+
+  const handleError = useCallback(
+    (err?: string) => {
+      console.error("PDF rendering error:", err);
+      setError(err || "Failed to render PDF");
+    },
+    [setError],
+  );
+
+  // Configure navigation header
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerTitle: () => (
+        <PdfHeaderTitle
+          title={title || "PDF Document"}
+          currentPage={currentPage}
+          totalPages={totalPages}
+        />
+      ),
+      headerRight: () => (canShare && !loading ? <PdfShareButton onPress={share} /> : null),
+    });
+  }, [navigation, title, canShare, loading, currentPage, totalPages, share]);
+
+  if (error) {
+    return (
+      <SafeAreaView
+        style={[styles.container, { backgroundColor: colors.background }]}
+        edges={["bottom"]}
+      >
+        <ErrorState message={error} onRetry={download} />
+      </SafeAreaView>
+    );
+  }
+
+  if (loading || !localFilePath) {
+    return (
+      <SafeAreaView
+        style={[styles.container, { backgroundColor: colors.background }]}
+        edges={["bottom"]}
+      >
+        <LoadingState message="PDF laden..." />
+      </SafeAreaView>
+    );
+  }
+
+  return (
+    <SafeAreaView
+      style={[styles.container, { backgroundColor: colors.background }]}
+      edges={["bottom"]}
+    >
+      <View style={styles.pdfContainer}>
+        <PdfRendererView
+          source={localFilePath}
+          style={styles.pdf}
+          distanceBetweenPages={16}
+          maxZoom={20}
+          maxPageResolution={2048}
+          onPageChange={handlePageChange}
+          onError={handleError}
+        />
+      </View>
+    </SafeAreaView>
+  );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  pdfContainer: {
+    flex: 1,
+  },
+  pdf: {
+    flex: 1,
+  },
+});
