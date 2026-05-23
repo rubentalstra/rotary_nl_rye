@@ -1,39 +1,34 @@
-import { Stack } from "expo-router";
-import { ScrollView, StyleSheet, View } from "react-native";
-import { Column, Host, Text } from "@expo/ui";
+import { Platform, ScrollView, StyleSheet, View } from "react-native";
 
-import { useTheme } from "@/lib/theme/use-theme";
+import { AboutCard } from "@/components/about/about-card";
+import { aboutSections } from "@/features/about/about-data";
 import { spacing } from "@/lib/theme/spacing";
+import { useTheme } from "@/lib/theme/use-theme";
 
 export default function AboutScreen() {
   const theme = useTheme();
 
   return (
-    <>
-      <Stack.Screen options={{ title: "Over de app" }} />
-      <ScrollView
-        style={{ backgroundColor: theme.background }}
-        contentInsetAdjustmentBehavior="automatic"
-        contentContainerStyle={styles.content}
-      >
-        <View style={styles.host}>
-          <Host matchContents style={{ width: "100%" }}>
-            <Column spacing={spacing.md}>
-              <Text textStyle={{ fontSize: 28, fontWeight: "bold", color: theme.text }}>
-                Rotary Youth Exchange Nederland
-              </Text>
-              <Text textStyle={{ color: theme.textSecondary }}>
-                Coming soon — wordt opnieuw opgebouwd in v13.
-              </Text>
-            </Column>
-          </Host>
-        </View>
-      </ScrollView>
-    </>
+    <ScrollView
+      style={[styles.container, { backgroundColor: theme.background }]}
+      showsVerticalScrollIndicator={false}
+      contentInsetAdjustmentBehavior="automatic"
+      automaticallyAdjustContentInsets
+    >
+      <View style={styles.content}>
+        {aboutSections.map((section) => (
+          <AboutCard key={section.id} section={section} />
+        ))}
+      </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  content: { padding: spacing.lg, gap: spacing.lg },
-  host: { minHeight: 120 },
+  container: { flex: 1 },
+  content: {
+    padding: spacing.md,
+    paddingTop: Platform.OS === "ios" ? spacing.sm : spacing.md,
+    paddingBottom: Platform.OS === "android" ? 100 : 40,
+  },
 });

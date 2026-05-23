@@ -35,6 +35,11 @@ export const Icons = {
   phone: { ios: "phone.fill", android: "phone" },
   mail: { ios: "envelope.fill", android: "mail" },
   external: { ios: "arrow.up.right.square", android: "open_in_new" },
+  // About
+  flag: { ios: "flag.fill", android: "flag" },
+  mission: { ios: "paperplane.fill", android: "rocket_launch" },
+  airplane: { ios: "airplane", android: "flight" },
+  heart: { ios: "heart.fill", android: "favorite" },
 } as const satisfies Record<string, IconPair>;
 
 export type IconName = keyof typeof Icons;
