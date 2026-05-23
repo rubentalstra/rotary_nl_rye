@@ -1,111 +1,186 @@
-import { useEffect, useRef, useState } from "react";
-import { StyleSheet, View, type ImageSourcePropType } from "react-native";
 import { Image } from "expo-image";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
-  PagerView,
-  type PagerViewOnPageSelectedEvent,
-  type PageScrollStateChangedEvent,
-  type PagerViewRef,
-} from "@expo/ui/community/pager-view";
-
-import { borderRadius, spacing } from "@/lib/theme/spacing";
-import { useTheme } from "@/lib/theme/use-theme";
+  Animated,
+  Dimensions,
+  Platform,
+  StyleSheet,
+  View,
+  type ImageSourcePropType,
+  type LayoutChangeEvent,
+} from "react-native";
 
 interface ImageCarouselProps {
   images: ImageSourcePropType[];
-  /** Auto-advance interval in ms. Set to 0 to disable. */
-  autoAdvanceMs?: number;
-  height?: number;
+  autoPlayInterval?: number;
 }
 
+const { width: screenWidth } = Dimensions.get("window");
+
+const shadowStyle = Platform.select({
+  ios: {
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.08,
+    shadowRadius: 20,
+  },
+  android: { elevation: 4 },
+  default: {},
+});
+
 /**
- * Swipeable image pager with an auto-advance timer and a page-dot indicator.
- * Uses the native pager from `@expo/ui/pager-view` (UIPageViewController on
- * iOS, ViewPager2 on Android) so swipe physics feel platform-native.
+ * Auto-rotating image carousel with infinite-loop illusion: when the user
+ * reaches the duplicated last frame, we silently snap back to the first.
  */
-export function ImageCarousel({ images, autoAdvanceMs = 4500, height = 220 }: ImageCarouselProps) {
-  const theme = useTheme();
-  const ref = useRef<PagerViewRef>(null);
-  const [page, setPage] = useState(0);
-  const [dragging, setDragging] = useState(false);
+export function ImageCarousel({ images, autoPlayInterval = 3000 }: ImageCarouselProps) {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [containerWidth, setContainerWidth] = useState(screenWidth - 32);
+  // `useMemo` (not `useRef(...).current`) so we don't touch a ref during render —
+  // the React 19 `react-hooks/refs` lint rule flags the legacy pattern.
+  const slideAnim = useMemo(() => new Animated.Value(0), []);
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  const animateToIndex = useCallback(
+    (index: number, duration: number = 500) => {
+      Animated.timing(slideAnim, {
+        toValue: -index * containerWidth,
+        duration,
+        useNativeDriver: true,
+      }).start();
+    },
+    [containerWidth, slideAnim],
+  );
+
+  const resetToFirstSlide = useCallback(() => {
+    slideAnim.setValue(0);
+    setCurrentImageIndex(0);
+  }, [slideAnim]);
+
+  const handleLayoutChange = useCallback(
+    (event: LayoutChangeEvent) => {
+      const { width } = event.nativeEvent.layout;
+      if (width !== containerWidth) {
+        setContainerWidth(width);
+      }
+    },
+    [containerWidth],
+  );
 
   useEffect(() => {
-    if (!autoAdvanceMs || images.length < 2 || dragging) return;
-    const timeoutId = setTimeout(() => {
-      const next = (page + 1) % images.length;
-      // `setPageWithoutAnimation` writes the SwiftUI scrollPosition binding
-      // straight from the JS thread. The animated `setPage` variant routes
-      // through `withAnimation(... 'worklet' ...)` inside @expo/ui, but the
-      // babel-preset-expo worklets plugin doesn't transform 'worklet'
-      // directives nested in node_modules/@expo/ui/src — calling it crashes
-      // with `NotSerializableException`. The native scrollPosition transition
-      // still animates the page change on its own.
-      ref.current?.setPageWithoutAnimation(next);
-    }, autoAdvanceMs);
-    return () => clearTimeout(timeoutId);
-  }, [page, dragging, autoAdvanceMs, images.length]);
+    if (images.length > 1 && containerWidth > 0) {
+      intervalRef.current = setInterval(() => {
+        setCurrentImageIndex((prevIndex) => {
+          const nextIndex = prevIndex + 1;
+          if (nextIndex >= images.length) {
+            animateToIndex(images.length, 500);
+            setTimeout(() => resetToFirstSlide(), 500);
+            return images.length;
+          }
+          return nextIndex;
+        });
+      }, autoPlayInterval);
+    }
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+        intervalRef.current = null;
+      }
+    };
+  }, [images.length, containerWidth, animateToIndex, resetToFirstSlide, autoPlayInterval]);
+
+  useEffect(() => {
+    if (containerWidth > 0 && currentImageIndex < images.length) {
+      animateToIndex(currentImageIndex);
+    }
+  }, [currentImageIndex, containerWidth, animateToIndex, images.length]);
+
+  if (images.length === 0) {
+    return null;
+  }
 
   return (
-    <View style={[styles.wrap, { height }]}>
-      <PagerView
-        ref={ref}
-        style={styles.pager}
-        initialPage={0}
-        onPageSelected={(event: PagerViewOnPageSelectedEvent) =>
-          setPage(event.nativeEvent.position)
-        }
-        onPageScrollStateChanged={(event: PageScrollStateChangedEvent) =>
-          setDragging(event.nativeEvent.pageScrollState !== "idle")
-        }
-      >
-        {images.map((source, index) => (
-          <View key={index} style={styles.page}>
-            <Image source={source} style={StyleSheet.absoluteFill} contentFit="cover" />
-          </View>
-        ))}
-      </PagerView>
+    <View style={styles.container} onLayout={handleLayoutChange}>
+      {images.length === 1 ? (
+        <Image source={images[0]} style={styles.image} contentFit="cover" />
+      ) : (
+        <>
+          <Animated.View
+            style={[
+              styles.slideContainer,
+              {
+                width: (images.length + 1) * containerWidth,
+                transform: [{ translateX: slideAnim }],
+              },
+            ]}
+          >
+            {images.map((image, idx) => (
+              <View
+                key={typeof image === "number" ? `slide-${image}` : `slide-${idx}`}
+                style={[styles.slideItem, { width: containerWidth }]}
+              >
+                <Image source={image} style={styles.image} contentFit="cover" />
+              </View>
+            ))}
+            <View key="duplicate" style={[styles.slideItem, { width: containerWidth }]}>
+              <Image source={images[0]} style={styles.image} contentFit="cover" />
+            </View>
+          </Animated.View>
 
-      {images.length > 1 ? (
-        <View style={styles.dots} pointerEvents="none">
-          {images.map((_, index) => (
-            <View
-              key={index}
-              style={[
-                styles.dot,
-                {
-                  backgroundColor:
-                    index === page ? theme.onPrimary : "rgba(255,255,255,0.5)",
-                },
-              ]}
-            />
-          ))}
-        </View>
-      ) : null}
+          <View style={styles.dotIndicators}>
+            {images.map((image, idx) => (
+              <View
+                key={typeof image === "number" ? `dot-${image}` : `dot-${idx}`}
+                style={[
+                  styles.dot,
+                  (idx === currentImageIndex ||
+                    (currentImageIndex === images.length && idx === 0)) &&
+                    styles.activeDot,
+                ]}
+              />
+            ))}
+          </View>
+        </>
+      )}
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  wrap: {
-    marginHorizontal: spacing.lg,
-    borderRadius: borderRadius.lg,
+  container: {
+    height: 200,
+    marginHorizontal: 16,
+    marginBottom: 16,
+    borderRadius: 12,
     overflow: "hidden",
+    position: "relative",
+    ...shadowStyle,
   },
-  pager: { flex: 1 },
-  page: { flex: 1 },
-  dots: {
+  slideContainer: {
+    flexDirection: "row",
+    height: "100%",
+  },
+  slideItem: { height: "100%" },
+  image: { width: "100%", height: "100%" },
+  dotIndicators: {
     position: "absolute",
-    bottom: spacing.md,
-    alignSelf: "center",
+    bottom: 12,
     left: 0,
     right: 0,
     flexDirection: "row",
     justifyContent: "center",
-    gap: spacing.xs,
+    alignItems: "center",
   },
   dot: {
-    width: 7,
-    height: 7,
+    width: 8,
+    height: 8,
     borderRadius: 4,
+    backgroundColor: "rgba(255, 255, 255, 0.5)",
+    marginHorizontal: 4,
+  },
+  activeDot: {
+    backgroundColor: "rgba(255, 255, 255, 0.9)",
+    width: 10,
+    height: 10,
+    borderRadius: 5,
   },
 });

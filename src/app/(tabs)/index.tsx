@@ -1,34 +1,37 @@
 import { Image } from "expo-image";
 import { router } from "expo-router";
+import { useMemo } from "react";
 import { Platform, ScrollView, StyleSheet, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import { HomeCard } from "@/components/home/home-card";
 import { ImageCarousel } from "@/components/home/image-carousel";
-import { spacing } from "@/lib/theme/spacing";
 import { useTheme } from "@/lib/theme/use-theme";
-
-const carouselImages = [
-  require("@/assets/home/carousel/outbound-25-26-group.jpeg"),
-  require("@/assets/home/carousel/inbounds-with-flags.jpeg"),
-  require("@/assets/home/carousel/inbound-andre-schiphol.jpeg"),
-];
 
 export default function HomeScreen() {
   const theme = useTheme();
 
+  const carouselImages = useMemo(
+    () => [
+      require("@/assets/home/carousel/outbound-25-26-group.jpeg"),
+      require("@/assets/home/carousel/inbounds-with-flags.jpeg"),
+      require("@/assets/home/carousel/inbound-andre-schiphol.jpeg"),
+    ],
+    [],
+  );
+
   return (
     <SafeAreaView
-      edges={["top"]}
       style={[styles.container, { backgroundColor: theme.background }]}
+      edges={["top"]}
     >
       <ScrollView
-        style={styles.scroll}
-        contentContainerStyle={styles.scrollContent}
-        contentInsetAdjustmentBehavior="automatic"
+        style={styles.scrollView}
         showsVerticalScrollIndicator={false}
+        contentInsetAdjustmentBehavior="automatic"
+        automaticallyAdjustContentInsets
       >
-        <View style={styles.logoWrap}>
+        <View style={styles.logoContainer}>
           <Image
             source={require("@/assets/home/rotary_rye_nl_logo_home.svg")}
             style={styles.logo}
@@ -38,14 +41,22 @@ export default function HomeScreen() {
 
         <ImageCarousel images={carouselImages} />
 
-        <View style={styles.grid}>
-          <View style={styles.row}>
-            <HomeCard icon="programs" title="Programma" onPress={() => router.push("/programs")} />
+        <View style={styles.gridContainer}>
+          <View style={styles.gridRow}>
+            <HomeCard
+              icon="programs"
+              title="Programma"
+              onPress={() => router.push("/programs")}
+            />
             <HomeCard icon="news" title="News" onPress={() => router.push("/news")} />
-            <HomeCard icon="calendar" title="Calendar" onPress={() => router.push("/calendar")} />
+            <HomeCard
+              icon="calendar"
+              title="Calendar"
+              onPress={() => router.push("/calendar")}
+            />
           </View>
 
-          <View style={styles.row}>
+          <View style={styles.gridRow}>
             <HomeCard
               icon="outbound"
               title="Op Exchange"
@@ -63,17 +74,17 @@ export default function HomeScreen() {
             />
           </View>
 
-          <View style={styles.row}>
+          <View style={styles.gridRowSingle}>
             <HomeCard
               icon="camps"
-              title="Zomerkampen"
-              variant="wide"
+              title="Zomerkampen Lijst"
+              variant="single"
               onPress={() => router.push("/camps-tours")}
             />
             <HomeCard
-              icon="clubs"
-              title="Voor Rotary Clubs"
-              variant="wide"
+              title="voor Rotary Clubs"
+              variant="single"
+              svgSource={require("@/assets/logo/rotary-logo-icon.svg")}
               onPress={() => router.push("/rotary-clubs")}
             />
           </View>
@@ -85,25 +96,27 @@ export default function HomeScreen() {
 
 const styles = StyleSheet.create({
   container: { flex: 1 },
-  scroll: { flex: 1 },
-  scrollContent: {
-    paddingBottom: Platform.OS === "android" ? 100 : 40,
-  },
-  logoWrap: {
+  scrollView: { flex: 1 },
+  logoContainer: {
     alignItems: "center",
-    paddingVertical: spacing.xl,
-    paddingHorizontal: spacing.lg,
+    marginBottom: 30,
+    paddingVertical: 20,
+    paddingHorizontal: 16,
   },
   logo: {
     width: "100%",
-    height: 70,
+    height: 80,
   },
-  grid: {
-    padding: spacing.lg,
-    gap: spacing.md,
+  gridContainer: {
+    paddingHorizontal: 16,
+    paddingBottom: Platform.OS === "android" ? 100 : 40,
   },
-  row: {
+  gridRow: {
     flexDirection: "row",
-    gap: spacing.md,
+    marginBottom: 16,
+  },
+  gridRowSingle: {
+    flexDirection: "row",
+    marginBottom: 30,
   },
 });

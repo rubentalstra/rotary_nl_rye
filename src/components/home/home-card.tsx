@@ -1,86 +1,135 @@
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import * as Haptics from "expo-haptics";
+import { Image } from "expo-image";
+import React, { useCallback, useMemo } from "react";
+import {
+  Platform,
+  Pressable,
+  StyleSheet,
+  Text,
+  View,
+  type ImageSourcePropType,
+} from "react-native";
 
 import { Icon } from "@/components/ui/icon";
-import { useHaptics } from "@/hooks/use-haptics";
 import type { IconName } from "@/lib/icons";
-import { borderRadius, spacing } from "@/lib/theme/spacing";
 import { useTheme } from "@/lib/theme/use-theme";
 
+export type HomeCardVariant = "default" | "single";
+
 interface HomeCardProps {
-  icon: IconName;
+  /** SF Symbol + Material Symbol mapping from `@/lib/icons`. Ignored when `svgSource` is set. */
+  icon?: IconName;
+  /** Optional SVG asset (tinted with the primary color) instead of a system symbol. */
+  svgSource?: ImageSourcePropType;
   title: string;
-  onPress: () => void;
-  variant?: "grid" | "wide";
+  variant?: HomeCardVariant;
+  onPress?: () => void;
 }
 
-/**
- * Tappable home-grid card with a native platform symbol on top and a label
- * underneath. `grid` cards sit three-across, `wide` cards take half a row.
- */
-export function HomeCard({ icon, title, onPress, variant = "grid" }: HomeCardProps) {
-  const theme = useTheme();
-  const haptics = useHaptics();
+const shadowStyle = Platform.select({
+  ios: {
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.08,
+    shadowRadius: 20,
+  },
+  android: { elevation: 4 },
+  default: {},
+});
+
+export const HomeCard = React.memo<HomeCardProps>(function HomeCard({
+  icon,
+  svgSource,
+  title,
+  variant = "default",
+  onPress,
+}) {
+  const { primary, primaryVariant, surface } = useTheme();
+  const isDefault = variant === "default";
+
+  const handlePress = useCallback(() => {
+    if (Platform.OS === "ios") {
+      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    }
+    onPress?.();
+  }, [onPress]);
+
+  const cardStyle = useMemo(
+    () => (isDefault ? styles.homeCard : styles.homeCardSingle),
+    [isDefault],
+  );
 
   return (
-    <Pressable
-      onPress={() => {
-        haptics.lightImpact();
-        onPress();
-      }}
-      style={({ pressed }) => [
-        styles.base,
-        variant === "grid" ? styles.grid : styles.wide,
-        {
-          backgroundColor: theme.surface,
-          borderColor: theme.outline,
-          shadowColor: theme.shadow,
-          opacity: pressed ? 0.7 : 1,
-        },
-      ]}
-      android_ripple={{ color: theme.surfaceVariant, foreground: true }}
-    >
-      <View style={styles.iconWrap}>
-        <Icon name={icon} size={32} tintColor={theme.iconActive} />
-      </View>
-      <Text style={[styles.title, { color: theme.text }]} numberOfLines={2}>
-        {title}
-      </Text>
-    </Pressable>
+    <View style={styles.cardWrapper}>
+      <Pressable
+        style={({ pressed }) => [cardStyle, { backgroundColor: surface }, pressed && styles.pressed]}
+        onPress={handlePress}
+        android_ripple={{ color: `${primaryVariant}20`, borderless: false }}
+      >
+        <View style={styles.cardContent}>
+          <View style={isDefault ? styles.iconContainer : styles.iconContainerSingle}>
+            {svgSource ? (
+              <Image
+                source={svgSource}
+                style={styles.svgIcon}
+                contentFit="contain"
+                tintColor={primary}
+              />
+            ) : icon ? (
+              <Icon name={icon} size={35} tintColor={primary} />
+            ) : null}
+          </View>
+          {isDefault ? (
+            <View style={styles.titleContainer}>
+              <Text style={[styles.cardTitle, { color: primary }]}>{title}</Text>
+            </View>
+          ) : (
+            <Text style={[styles.cardTitleSingle, { color: primary }]}>{title}</Text>
+          )}
+        </View>
+      </Pressable>
+    </View>
   );
-}
+});
 
 const styles = StyleSheet.create({
-  base: {
-    borderWidth: 1,
-    borderRadius: borderRadius.lg,
-    paddingVertical: spacing.lg,
-    paddingHorizontal: spacing.md,
-    alignItems: "center",
-    justifyContent: "center",
-    gap: spacing.sm,
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.08,
-    shadowRadius: 6,
-    elevation: 2,
-    overflow: "hidden",
-  },
-  grid: {
+  cardWrapper: {
     flex: 1,
-    aspectRatio: 1,
+    paddingHorizontal: 5,
   },
-  wide: {
+  homeCard: {
+    height: 120,
+    borderRadius: 10,
+    ...shadowStyle,
+  },
+  homeCardSingle: {
+    height: 80,
+    borderRadius: 10,
+    ...shadowStyle,
+  },
+  pressed: {
+    transform: [{ scale: 0.98 }],
+    opacity: 0.8,
+  },
+  cardContent: {
     flex: 1,
-    minHeight: 110,
-  },
-  iconWrap: {
-    width: 40,
-    height: 40,
-    alignItems: "center",
     justifyContent: "center",
+    alignItems: "center",
+    padding: 16,
   },
-  title: {
+  iconContainer: { marginBottom: 16 },
+  iconContainerSingle: { marginBottom: 10 },
+  svgIcon: { width: 35, height: 35 },
+  titleContainer: { width: 80, alignItems: "center" },
+  cardTitle: {
     fontSize: 14,
-    fontWeight: "600",
+    fontWeight: "400",
+    textAlign: "center",
+    maxWidth: 80,
+  },
+  cardTitleSingle: {
+    fontSize: 14,
+    fontWeight: "400",
     textAlign: "center",
   },
 });
