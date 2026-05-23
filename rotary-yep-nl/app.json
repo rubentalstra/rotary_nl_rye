@@ -3,7 +3,7 @@
     "name": "Rotary YEP NL",
     "slug": "rotary-yep-nl",
     "description": "The official app for Rotary Youth Exchange Netherlands, providing resources, information, and support for exchange students, families, and Rotary clubs.",
-    "owner": "Ruben Talstra",
+    "owner": "rotary-nederland",
     "version": "12.1.0",
     "scheme": "rotaryyepnl",
     "userInterfaceStyle": "automatic",
@@ -13,7 +13,6 @@
       "android"
     ],
     "ios": {
-      "buildNumber": "113",
       "appleTeamId": "A8S2486A44",
       "backgroundColor": "#17458f",
       "appStoreUrl": "https://apps.apple.com/nl/app/rotary-youth-exchange-nl/id1567096118",
@@ -43,7 +42,6 @@
       }
     },
     "android": {
-      "versionCode": 113,
       "package": "com.caelitechnologies.rotary_nl_rye",
       "playStoreUrl": "https://play.google.com/store/apps/details?id=com.caelitechnologies.rotary_nl_rye",
       "backgroundColor": "#17458f",
