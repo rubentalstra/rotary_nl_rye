@@ -14,6 +14,9 @@ importers:
       '@expo/ui':
         specifier: ~56.0.13
         version: 56.0.13(@babel/core@7.29.0)(@types/react@19.2.15)(expo@56.0.4)(react-dom@19.2.6(react@19.2.3))(react-native-reanimated@4.3.1(react-native-worklets@0.8.3(@babel/core@7.29.0)(@react-native/metro-config@0.85.3(@babel/core@7.29.0))(react-native@0.85.3(@babel/core@7.29.0)(@react-native/metro-config@0.85.3(@babel/core@7.29.0))(@types/react@19.2.15)(react@19.2.3))(react@19.2.3))(react-native@0.85.3(@babel/core@7.29.0)(@react-native/metro-config@0.85.3(@babel/core@7.29.0))(@types/react@19.2.15)(react@19.2.3))(react@19.2.3))(react-native-worklets@0.8.3(@babel/core@7.29.0)(@react-native/metro-config@0.85.3(@babel/core@7.29.0))(react-native@0.85.3(@babel/core@7.29.0)(@react-native/metro-config@0.85.3(@babel/core@7.29.0))(@types/react@19.2.15)(react@19.2.3))(react@19.2.3))(react-native@0.85.3(@babel/core@7.29.0)(@react-native/metro-config@0.85.3(@babel/core@7.29.0))(@types/react@19.2.15)(react@19.2.3))(react@19.2.3)
+      '@react-native-vector-icons/fontawesome5':
+        specifier: ^13.1.1
+        version: 13.1.1(@expo/config-plugins@56.0.8(typescript@6.0.3))(@react-native/assets-registry@0.85.3)(react-native@0.85.3(@babel/core@7.29.0)(@react-native/metro-config@0.85.3(@babel/core@7.29.0))(@types/react@19.2.15)(react@19.2.3))(react@19.2.3)
       '@react-native-vector-icons/ionicons':
         specifier: ^13.1.1
         version: 13.1.1(@expo/config-plugins@56.0.8(typescript@6.0.3))(@react-native/assets-registry@0.85.3)(react-native@0.85.3(@babel/core@7.29.0)(@react-native/metro-config@0.85.3(@babel/core@7.29.0))(@types/react@19.2.15)(react@19.2.3))(react@19.2.3)
@@ -1159,6 +1162,17 @@ packages:
       '@react-native-vector-icons/get-image':
         optional: true
       '@react-native/assets-registry':
+        optional: true
+
+  '@react-native-vector-icons/fontawesome5@13.1.1':
+    resolution: {integrity: sha512-UXXXLHvi3ui4dAcB5JN8PXObzCYYPvgAcjN1fReua2kkrtDyGDmv7xNsYqahbZ8dedX1yGokNkg9wRMHEE1Fwg==}
+    engines: {node: '>= 18.0.0'}
+    peerDependencies:
+      '@expo/config-plugins': '>=10.0.0'
+      react: '*'
+      react-native: '*'
+    peerDependenciesMeta:
+      '@expo/config-plugins':
         optional: true
 
   '@react-native-vector-icons/ionicons@13.1.1':
@@ -5549,6 +5563,17 @@ snapshots:
       react-native: 0.85.3(@babel/core@7.29.0)(@react-native/metro-config@0.85.3(@babel/core@7.29.0))(@types/react@19.2.15)(react@19.2.3)
     optionalDependencies:
       '@react-native/assets-registry': 0.85.3
+
+  '@react-native-vector-icons/fontawesome5@13.1.1(@expo/config-plugins@56.0.8(typescript@6.0.3))(@react-native/assets-registry@0.85.3)(react-native@0.85.3(@babel/core@7.29.0)(@react-native/metro-config@0.85.3(@babel/core@7.29.0))(@types/react@19.2.15)(react@19.2.3))(react@19.2.3)':
+    dependencies:
+      '@react-native-vector-icons/common': 13.0.0(@react-native/assets-registry@0.85.3)(react-native@0.85.3(@babel/core@7.29.0)(@react-native/metro-config@0.85.3(@babel/core@7.29.0))(@types/react@19.2.15)(react@19.2.3))(react@19.2.3)
+      react: 19.2.3
+      react-native: 0.85.3(@babel/core@7.29.0)(@react-native/metro-config@0.85.3(@babel/core@7.29.0))(@types/react@19.2.15)(react@19.2.3)
+    optionalDependencies:
+      '@expo/config-plugins': 56.0.8(typescript@6.0.3)
+    transitivePeerDependencies:
+      - '@react-native-vector-icons/get-image'
+      - '@react-native/assets-registry'
 
   '@react-native-vector-icons/ionicons@13.1.1(@expo/config-plugins@56.0.8(typescript@6.0.3))(@react-native/assets-registry@0.85.3)(react-native@0.85.3(@babel/core@7.29.0)(@react-native/metro-config@0.85.3(@babel/core@7.29.0))(@types/react@19.2.15)(react@19.2.3))(react@19.2.3)':
     dependencies:
