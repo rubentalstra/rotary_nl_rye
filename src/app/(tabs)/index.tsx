@@ -1,9 +1,18 @@
 import { Image } from "expo-image";
+import { router } from "expo-router";
 import { Platform, ScrollView, StyleSheet, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-import { useTheme } from "@/lib/theme/use-theme";
+import { HomeCard } from "@/components/home/home-card";
+import { ImageCarousel } from "@/components/home/image-carousel";
 import { spacing } from "@/lib/theme/spacing";
+import { useTheme } from "@/lib/theme/use-theme";
+
+const carouselImages = [
+  require("@/assets/home/carousel/outbound-25-26-group.jpeg"),
+  require("@/assets/home/carousel/inbounds-with-flags.jpeg"),
+  require("@/assets/home/carousel/inbound-andre-schiphol.jpeg"),
+];
 
 export default function HomeScreen() {
   const theme = useTheme();
@@ -27,20 +36,47 @@ export default function HomeScreen() {
           />
         </View>
 
-        <View
-          style={[
-            styles.heroImage,
-            {
-              backgroundColor: theme.surfaceVariant,
-              borderColor: theme.outline,
-            },
-          ]}
-        >
-          <Image
-            source={require("@/assets/home/carousel/outbound-25-26-group.jpeg")}
-            style={StyleSheet.absoluteFill}
-            contentFit="cover"
-          />
+        <ImageCarousel images={carouselImages} />
+
+        <View style={styles.grid}>
+          <View style={styles.row}>
+            <HomeCard icon="programs" title="Programma" onPress={() => router.push("/programs")} />
+            <HomeCard icon="news" title="News" onPress={() => router.push("/news")} />
+            <HomeCard icon="calendar" title="Calendar" onPress={() => router.push("/calendar")} />
+          </View>
+
+          <View style={styles.row}>
+            <HomeCard
+              icon="outbound"
+              title="Op Exchange"
+              onPress={() => router.push("/students/outbound")}
+            />
+            <HomeCard
+              icon="inbound"
+              title="To NL"
+              onPress={() => router.push("/students/inbound")}
+            />
+            <HomeCard
+              icon="rebound"
+              title="Rebound"
+              onPress={() => router.push("/students/rebound")}
+            />
+          </View>
+
+          <View style={styles.row}>
+            <HomeCard
+              icon="camps"
+              title="Zomerkampen"
+              variant="wide"
+              onPress={() => router.push("/camps-tours")}
+            />
+            <HomeCard
+              icon="clubs"
+              title="Voor Rotary Clubs"
+              variant="wide"
+              onPress={() => router.push("/rotary-clubs")}
+            />
+          </View>
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -60,13 +96,14 @@ const styles = StyleSheet.create({
   },
   logo: {
     width: "100%",
-    height: 80,
+    height: 70,
   },
-  heroImage: {
-    marginHorizontal: spacing.lg,
-    height: 220,
-    borderRadius: 16,
-    borderWidth: 1,
-    overflow: "hidden",
+  grid: {
+    padding: spacing.lg,
+    gap: spacing.md,
+  },
+  row: {
+    flexDirection: "row",
+    gap: spacing.md,
   },
 });
