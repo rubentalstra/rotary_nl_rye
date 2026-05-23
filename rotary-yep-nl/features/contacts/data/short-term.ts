@@ -20,6 +20,16 @@ export const shortTermContacts: Contact[] = [
     category: "shortterm",
   },
   {
+    id: "st-willemijn-van-waes",
+    name: "Willemijn van Waes",
+    role: "Coordinator Family to Family",
+    functions: ["Coordinator Family to Family"],
+    imageUrl:
+      "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/short-term/willemijn-van-waes.jpeg",
+    email: "F2F@rotaryyep.nl",
+    category: "shortterm",
+  },
+  {
     id: "st-marja-hofland",
     name: "Marja Hofland",
     role: "Inbound coördinator Zomerkampen",
