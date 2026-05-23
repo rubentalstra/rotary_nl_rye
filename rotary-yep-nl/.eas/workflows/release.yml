@@ -5,9 +5,16 @@ on:
     tags:
       - "v*.*.*"
 
+defaults:
+  tools:
+    node: "22.13.0"
+
 jobs:
   checks:
     name: Lint + typecheck + expo-doctor
+    defaults:
+      run:
+        working_directory: ./rotary-yep-nl
     steps:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
