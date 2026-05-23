@@ -6,8 +6,26 @@ on:
       - "v*.*.*"
 
 jobs:
+  checks:
+    name: Lint + typecheck + expo-doctor
+    steps:
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+      - name: TypeScript
+        run: pnpm exec tsc --noEmit
+      - name: ESLint
+        run: pnpm exec expo lint
+      - name: Expo Doctor
+        run: pnpm dlx expo-doctor
+
+  approve_release:
+    name: Manual approval before store submit
+    needs: [checks]
+    type: require-approval
+
   build_ios:
     name: Build iOS (production)
+    needs: [approve_release]
     type: build
     params:
       platform: ios
@@ -15,6 +33,7 @@ jobs:
 
   build_android:
     name: Build Android (production)
+    needs: [approve_release]
     type: build
     params:
       platform: android
@@ -35,3 +54,19 @@ jobs:
     params:
       build_id: ${{ needs.build_android.outputs.build_id }}
       profile: production
+
+  notify_release:
+    name: Post release summary
+    needs: [submit_ios, submit_android]
+    if: ${{ always() }}
+    type: github-comment
+    params:
+      body: |
+        ## Release ${{ github.ref_name }}
+
+        | Platform | Build | Submit |
+        | --- | --- | --- |
+        | iOS | ${{ needs.build_ios.status }} | ${{ needs.submit_ios.status }} |
+        | Android | ${{ needs.build_android.status }} | ${{ needs.submit_android.status }} |
+
+        Build artifacts: https://expo.dev/accounts/rotary-nederland/projects/rotary-yep-nl/builds

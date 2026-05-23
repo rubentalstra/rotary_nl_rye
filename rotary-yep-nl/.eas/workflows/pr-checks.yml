@@ -1,0 +1,33 @@
+name: PR checks
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  checks:
+    name: Lint + typecheck + expo-doctor
+    steps:
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: TypeScript
+        run: pnpm exec tsc --noEmit
+
+      - name: ESLint
+        run: pnpm exec expo lint
+
+      - name: Expo Doctor
+        run: pnpm dlx expo-doctor
+
+  comment_on_pr:
+    name: Post checks summary to PR
+    needs: [checks]
+    if: ${{ always() }}
+    type: github-comment
+    params:
+      body: |
+        ## EAS PR checks
+        - Status: **${{ needs.checks.status }}**
+        - Run: ${{ github.run_id }}
