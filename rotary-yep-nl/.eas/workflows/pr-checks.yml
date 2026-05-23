@@ -12,9 +12,6 @@ defaults:
 jobs:
   checks:
     name: Lint + typecheck + expo-doctor
-    defaults:
-      run:
-        working_directory: ./rotary-yep-nl
     steps:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
