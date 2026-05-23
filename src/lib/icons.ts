@@ -44,6 +44,9 @@ export const Icons = {
   warning: { ios: "exclamationmark.triangle.fill", android: "warning" },
   shield: { ios: "checkmark.shield.fill", android: "verified_user" },
   info: { ios: "info.circle.fill", android: "info" },
+  // Profile / people
+  person: { ios: "person.fill", android: "person" },
+  globe: { ios: "globe", android: "language" },
 } as const satisfies Record<string, IconPair>;
 
 export type IconName = keyof typeof Icons;
