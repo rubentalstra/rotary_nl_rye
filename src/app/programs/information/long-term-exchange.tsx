@@ -48,9 +48,6 @@ export default function LongTermExchangeScreen() {
             <View style={[styles.headerIcon, { backgroundColor: `${themeColors.primary}15` }]}>
               <Ionicons name="school-outline" size={32} color={themeColors.primary} />
             </View>
-            <Text style={[styles.headerTitle, { color: themeColors.text }]}>
-              Long Term Exchange
-            </Text>
             <Text style={[styles.headerSubtitle, { color: themeColors.textSecondary }]}>
               Een jaar High School in het buitenland via Rotary International
             </Text>
@@ -498,12 +495,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     marginBottom: 16,
-  },
-  headerTitle: {
-    fontSize: Platform.OS === "ios" ? 28 : 24,
-    fontWeight: Platform.OS === "ios" ? "700" : "600",
-    textAlign: "center",
-    marginBottom: 8,
   },
   headerSubtitle: {
     fontSize: 16,

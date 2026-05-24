@@ -6,7 +6,7 @@
 import { useMemo, useCallback } from "react";
 import { StyleSheet, View, FlatList, Platform } from "react-native";
 import * as Haptics from "expo-haptics";
-import { router, Stack } from "expo-router";
+import { router } from "expo-router";
 import { useTheme } from "@/lib/theme/use-theme";
 import { spacing } from "@/lib/theme/spacing";
 import { getCountryName } from "@/utils/flags";
@@ -57,7 +57,6 @@ export default function ReboundCountriesScreen() {
 
   return (
     <>
-      <Stack.Title large>Rebounds</Stack.Title>
       <FlatList
         style={{ backgroundColor: colors.background, flex: 1 }}
         data={countryGroups}
@@ -77,6 +76,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   contentContainer: {
+    paddingHorizontal: spacing.lg,
     paddingTop: spacing.lg,
     paddingBottom: spacing.xl,
   },

@@ -144,7 +144,6 @@ export default function OutboundScreen() {
   const IntroSection = useCallback(
     () => (
       <View style={styles.introContainer}>
-        <Text style={[styles.introTitle, { color: themeColors.primary }]}>Kandidaten</Text>
         <Text style={[styles.introText, { color: themeColors.textSecondary }]}>
           Wat leuk dat je geïnteresseerd in de mogelijkheden van Rotary voor uitwisseling.
           Wereldwijd gaan er jaarlijks zo&apos;n 8.000 studenten via Rotary op jaaruitwisseling, een
@@ -152,7 +151,7 @@ export default function OutboundScreen() {
         </Text>
       </View>
     ),
-    [themeColors.primary, themeColors.textSecondary],
+    [themeColors.textSecondary],
   );
 
   const SectionHeader = useCallback(
@@ -224,16 +223,12 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   listContainer: {
-    padding: 16,
+    paddingHorizontal: 16,
+    paddingTop: 16,
     paddingBottom: 34,
   },
   introContainer: {
     marginBottom: 32,
-  },
-  introTitle: {
-    fontSize: 24,
-    fontWeight: "600",
-    marginBottom: 16,
   },
   introText: {
     fontSize: 15,

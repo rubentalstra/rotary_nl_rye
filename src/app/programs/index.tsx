@@ -55,7 +55,6 @@ export default function ProgramsScreen() {
         case "intro":
           return (
             <View style={styles.introContainer}>
-              <Text style={[styles.introTitle, { color: colors.primary }]}>Programma&apos;s</Text>
               <Text style={[styles.introText, { color: colors.textSecondary }]}>
                 {item.introText}
               </Text>
@@ -76,7 +75,7 @@ export default function ProgramsScreen() {
           return null;
       }
     },
-    [colors.primary, colors.textSecondary, handleProgramPress],
+    [colors.textSecondary, handleProgramPress],
   );
 
   const keyExtractor = useCallback((item: ListItem, index: number) => `${item.type}-${index}`, []);
@@ -97,16 +96,12 @@ export default function ProgramsScreen() {
 
 const styles = StyleSheet.create({
   list: {
-    padding: spacing.md,
+    paddingHorizontal: spacing.lg,
+    paddingTop: spacing.md,
     paddingBottom: spacing.xl,
   },
   introContainer: {
     marginBottom: spacing.xl,
-  },
-  introTitle: {
-    fontSize: 24,
-    fontWeight: "600",
-    marginBottom: spacing.md,
   },
   introText: {
     fontSize: 15,

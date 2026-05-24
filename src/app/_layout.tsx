@@ -26,7 +26,7 @@ export default function RootLayout() {
           {/* News */}
           <Stack.Screen
             name="news/index"
-            options={{ title: "News", headerLargeTitle: true }}
+            options={{ title: "News", headerLargeTitleEnabled: true }}
           />
           <Stack.Screen name="news/[id]" options={{ title: "" }} />
 
@@ -36,7 +36,7 @@ export default function RootLayout() {
           {/* Programs */}
           <Stack.Screen
             name="programs/index"
-            options={{ title: "Programma's", headerLargeTitle: true }}
+            options={{ title: "Programma's", headerLargeTitleEnabled: true }}
           />
           <Stack.Screen
             name="programs/information/long-term-exchange"
@@ -57,22 +57,22 @@ export default function RootLayout() {
           {/* Rotary Clubs */}
           <Stack.Screen
             name="rotary-clubs/index"
-            options={{ title: "Voor Rotary Clubs", headerLargeTitle: true }}
+            options={{ title: "Voor Rotary Clubs", headerLargeTitleEnabled: true }}
           />
           <Stack.Screen name="rotary-clubs/[section]" />
 
           {/* Students — hubs */}
           <Stack.Screen
             name="students/inbound/index"
-            options={{ title: "Inbounds", headerLargeTitle: true }}
+            options={{ title: "Inbounds", headerLargeTitleEnabled: true }}
           />
           <Stack.Screen
             name="students/outbound/index"
-            options={{ title: "Outbounds", headerLargeTitle: true }}
+            options={{ title: "Outbounds", headerLargeTitleEnabled: true }}
           />
           <Stack.Screen
             name="students/rebound/index"
-            options={{ title: "Rebounds", headerLargeTitle: true }}
+            options={{ title: "Rebounds", headerLargeTitleEnabled: true }}
           />
 
           {/* Students — inbound long-term */}

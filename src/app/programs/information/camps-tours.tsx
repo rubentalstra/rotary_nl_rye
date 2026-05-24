@@ -52,7 +52,6 @@ export default function CampsToursScreen() {
             <View style={[styles.headerIcon, { backgroundColor: themeColors.primary + "15" }]}>
               <Ionicons name="sunny-outline" size={32} color={themeColors.primary} />
             </View>
-            <Text style={[styles.headerTitle, { color: themeColors.text }]}>Zomerkampen</Text>
             <Text style={[styles.headerSubtitle, { color: themeColors.textSecondary }]}>
               Zomerkampen en speciale kampen in Europa, Canada, VS en Taiwan
             </Text>
@@ -329,12 +328,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     marginBottom: 16,
-  },
-  headerTitle: {
-    fontSize: Platform.OS === "ios" ? 28 : 24,
-    fontWeight: Platform.OS === "ios" ? "700" : "600",
-    textAlign: "center",
-    marginBottom: 8,
   },
   headerSubtitle: {
     fontSize: 16,

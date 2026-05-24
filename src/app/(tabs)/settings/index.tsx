@@ -34,7 +34,7 @@ export default function SettingsScreen() {
 
   return (
     <>
-      <Stack.Screen options={{ title: "Instellingen", headerLargeTitle: true }} />
+      <Stack.Screen options={{ title: "Instellingen", headerLargeTitleEnabled: true }} />
       <Stack.Toolbar placement="right">
         <Stack.Toolbar.Button
           onPress={handleShareApp}

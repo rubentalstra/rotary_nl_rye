@@ -37,7 +37,6 @@ export default function FamilyToFamilyScreen() {
             <View style={[styles.headerIcon, { backgroundColor: `${themeColors.primary}15` }]}>
               <Ionicons name="home-outline" size={32} color={themeColors.primary} />
             </View>
-            <Text style={[styles.headerTitle, { color: themeColors.text }]}>Family To Family</Text>
             <Text style={[styles.headerSubtitle, { color: themeColors.textSecondary }]}>
               Short Term Exchange Program (STEP) voor 2x3 of 2x4 weken
             </Text>
@@ -289,12 +288,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     marginBottom: 16,
-  },
-  headerTitle: {
-    fontSize: Platform.OS === "ios" ? 28 : 24,
-    fontWeight: Platform.OS === "ios" ? "700" : "600",
-    textAlign: "center",
-    marginBottom: 8,
   },
   headerSubtitle: {
     fontSize: 16,

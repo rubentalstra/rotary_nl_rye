@@ -154,7 +154,6 @@ export default function InboundScreen() {
   const IntroSection = useCallback(
     () => (
       <View style={styles.introContainer}>
-        <Text style={[styles.introTitle, { color: themeColors.primary }]}>Inbounds</Text>
         <Text style={[styles.introText, { color: themeColors.textSecondary }]}>
           Wow, we&apos;re so excited that you will be our inbound exchange student for the coming
           year. For this to happen we will need some extra information so please watch your email
@@ -170,7 +169,7 @@ export default function InboundScreen() {
         </Text>
       </View>
     ),
-    [handleSandraContactPress, themeColors.link, themeColors.primary, themeColors.textSecondary],
+    [handleSandraContactPress, themeColors.link, themeColors.textSecondary],
   );
 
   const SectionHeader = useCallback(
@@ -253,16 +252,12 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   listContainer: {
-    padding: 16,
+    paddingHorizontal: 16,
+    paddingTop: 16,
     paddingBottom: 34,
   },
   introContainer: {
     marginBottom: 32,
-  },
-  introTitle: {
-    fontSize: 24,
-    fontWeight: "600",
-    marginBottom: 16,
   },
   introText: {
     fontSize: 15,

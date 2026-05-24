@@ -20,7 +20,7 @@ export default function EmergencyLayout() {
           color cascade. */}
       <Stack.Screen
         name="index"
-        options={{ title: "Emergency", headerLargeTitle: false }}
+        options={{ title: "Emergency", headerLargeTitleEnabled: false }}
       />
     </Stack>
   );
