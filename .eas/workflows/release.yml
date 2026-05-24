@@ -8,13 +8,14 @@ on:
 defaults:
   tools:
     node: "22.13.0"
+    pnpm: "11.2.2"
 
 jobs:
   checks:
     name: Lint + typecheck + expo-doctor
     steps:
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+      - uses: eas/checkout
+      - uses: eas/install_node_modules
       - name: TypeScript
         run: pnpm exec tsc --noEmit
       - name: ESLint
