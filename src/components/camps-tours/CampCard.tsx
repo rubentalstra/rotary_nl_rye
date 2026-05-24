@@ -1,438 +1,309 @@
-/**
- * Camp card component for displaying camp/tour information
- */
-
-import { StyleSheet, View, Pressable, Platform, Text, Linking } from "react-native";
-import Ionicons from "@react-native-vector-icons/ionicons";
-import { MaterialDesignIcons } from "@react-native-vector-icons/material-design-icons";
 import { Image } from "expo-image";
 import { router } from "expo-router";
-import { useTheme } from "@/lib/theme/use-theme";
-import { getFlagAsset, getCountryName } from "@/utils/flags";
+import { Linking, Platform, Pressable, StyleSheet, Text, View } from "react-native";
+
+import { Icon } from "@/components/ui/icon";
 import { isCampPast } from "@/features/camps-tours/api/fetch-camps";
 import type { Camp } from "@/features/camps-tours/types";
+import { useHaptics } from "@/hooks/use-haptics";
+import { borderRadius, spacing } from "@/lib/theme/spacing";
+import { useTheme } from "@/lib/theme/use-theme";
+import { getCountryName, getFlagAsset } from "@/utils/flags";
 
 interface CampCardProps {
   camp: Camp;
 }
 
-/**
- * Currency icon mapping using MaterialCommunityIcons
- * Using only verified icon names from the icon set
- */
-const CURRENCY_ICONS: Record<string, string> = {
-  EUR: "currency-eur",
-  USD: "currency-usd",
-  GBP: "currency-gbp",
-  JPY: "currency-jpy",
-  CHF: "currency-fra", // Swiss Franc
-  CAD: "currency-usd",
-  AUD: "currency-usd",
-  SEK: "cash", // Scandinavian - use generic cash
-  NOK: "cash",
-  DKK: "cash",
-  BRL: "currency-brl",
-  INR: "currency-inr",
-  TWD: "cash", // Taiwan Dollar - use generic cash
-  TRY: "currency-try",
-};
-
-/**
- * Get currency icon name for a given currency code
- */
-function getCurrencyIcon(code: string): string {
-  return CURRENCY_ICONS[code] || "cash";
-}
-
-/**
- * Check if a URL is a PDF file
- */
 function isPdfUrl(url: string): boolean {
   return url.toLowerCase().endsWith(".pdf");
 }
 
+function formatAge(min: string, max: string): string {
+  if (min && max) return `${min}–${max} jr`;
+  if (min) return `${min}+ jr`;
+  if (max) return `t/m ${max} jr`;
+  return "—";
+}
+
+function formatCost(contribution: string, currency: string): string {
+  if (!contribution) return "—";
+  if (contribution === "0") return "Gratis";
+  const symbol = CURRENCY_SYMBOLS[currency] ?? currency ?? "";
+  return symbol ? `${symbol} ${contribution}` : contribution;
+}
+
+const CURRENCY_SYMBOLS: Record<string, string> = {
+  EUR: "€",
+  USD: "$",
+  GBP: "£",
+  JPY: "¥",
+  CHF: "CHF",
+  CAD: "CA$",
+  AUD: "A$",
+  SEK: "kr",
+  NOK: "kr",
+  DKK: "kr",
+  BRL: "R$",
+  INR: "₹",
+  TWD: "NT$",
+  TRY: "₺",
+};
+
 export function CampCard({ camp }: CampCardProps) {
-  const colors = useTheme();
+  const theme = useTheme();
+  const { lightImpact } = useHaptics();
   const isPast = isCampPast(camp);
 
-  // Parse country codes and resolve names
-  const hostCountryCodes = camp.hostCountryCode
+  const codes = camp.hostCountryCode
     .split(/[\s,]+/)
     .map((c) => c.trim().toLowerCase())
     .filter(Boolean);
+  const primaryCode = codes[0];
+  const extraCount = Math.max(0, codes.length - 1);
 
-  const hasInvitation = camp.invitation && camp.invitation.trim() !== "";
+  const hasInvitation = Boolean(camp.invitation && camp.invitation.trim());
   const isPdf = hasInvitation && isPdfUrl(camp.invitation);
 
   const handlePress = () => {
-    if (hasInvitation) {
-      if (isPdf) {
-        // Open PDF in the PDF viewer. Cast: typed-routes regenerates on the
-        // next Metro reload; tsc reads stale .expo/types/router.d.ts until then.
-        router.push({
-          pathname: "/pdf-viewer",
-          params: {
-            url: camp.invitation,
-            title: camp.title,
-          },
-        } as never);
-      } else {
-        // Open website in browser
-        Linking.openURL(camp.invitation);
-      }
+    if (!hasInvitation) return;
+    lightImpact();
+    if (isPdf) {
+      router.push({
+        pathname: "/pdf-viewer",
+        params: { url: camp.invitation, title: camp.title },
+      } as never);
+    } else {
+      Linking.openURL(camp.invitation);
     }
   };
 
+  const flagAsset = primaryCode ? getFlagAsset(primaryCode) : null;
+  const countryName = primaryCode ? getCountryName(primaryCode) : "—";
+
   return (
     <Pressable
+      onPress={handlePress}
       style={({ pressed }) => [
         styles.card,
-        { backgroundColor: colors.card, borderColor: colors.border },
-        camp.isFull && styles.cardFull,
-        isPast && [styles.cardPast, { borderLeftColor: colors.textSecondary }],
+        {
+          backgroundColor: theme.card,
+          borderColor: theme.border,
+        },
+        isPast && styles.cardPast,
         pressed && styles.cardPressed,
-        Platform.OS === "ios" ? styles.shadowIOS : styles.shadowAndroid,
       ]}
-      onPress={handlePress}
-      android_ripple={{ color: "rgba(0, 122, 255, 0.2)", borderless: false }}
+      android_ripple={{ color: `${theme.primary}30` }}
     >
-      {/* Header */}
-      <View style={styles.cardHeader}>
-        <View style={styles.titleContainer}>
-          <Text style={[styles.title, { color: colors.text }]} numberOfLines={2}>
-            {camp.title}
-          </Text>
-          <View style={styles.badgeContainer}>
-            {isPast && (
-              <View style={[styles.pastBadge, { backgroundColor: colors.textSecondary }]}>
-                <Ionicons name="time" size={12} color="#fff" />
-                <Text style={styles.pastBadgeText}>AFGELOPEN</Text>
-              </View>
-            )}
-            {camp.isFull && (
-              <View style={[styles.fullBadge, isPast && styles.badgeSpacing]}>
-                <Ionicons name="warning" size={14} color="#fff" />
-                <Text style={styles.fullBadgeText}>VOL</Text>
-              </View>
-            )}
-          </View>
-        </View>
-        {hasInvitation && (
-          <View style={styles.actionIndicator}>
-            <Ionicons
-              name={isPdf ? "document-text-outline" : "globe-outline"}
-              size={18}
-              color={colors.textSecondary}
-            />
-          </View>
-        )}
+      <View style={styles.headerRow}>
+        <Text style={[styles.title, { color: theme.text }]} numberOfLines={2}>
+          {camp.title}
+        </Text>
+        {hasInvitation ? (
+          <Icon
+            name={isPdf ? "document" : "external"}
+            size={18}
+            tintColor={theme.textSecondary}
+          />
+        ) : null}
       </View>
 
-      {/* Body */}
-      <View style={styles.cardBody}>
-        {/* Details Grid - 2x3 symmetric layout */}
-        <View style={styles.detailsGrid}>
-          {/* Row 1: Country and District */}
-          <View style={styles.detailRow}>
-            {/* Country */}
-            <View style={styles.detailItem}>
-              <View style={styles.detailHeader}>
-                <Ionicons name="location-outline" size={14} color={colors.textSecondary} />
-                <Text style={[styles.detailLabel, { color: colors.textSecondary }]}>Land</Text>
-              </View>
-              <View style={styles.countryContainer}>
-                {hostCountryCodes.map((code, index) => {
-                  const flagAsset = getFlagAsset(code);
-                  const countryName = getCountryName(code);
-
-                  return (
-                    <View
-                      key={`${code}-${index}`}
-                      style={[styles.countryItem, { backgroundColor: colors.backgroundElevated }]}
-                    >
-                      {flagAsset && (
-                        <Image source={flagAsset} style={styles.flag} contentFit="cover" />
-                      )}
-                      {!flagAsset && (
-                        <View
-                          style={[
-                            styles.flag,
-                            styles.flagPlaceholder,
-                            { backgroundColor: colors.background },
-                          ]}
-                        >
-                          <Ionicons name="flag-outline" size={10} color={colors.textSecondary} />
-                        </View>
-                      )}
-                      <Text style={[styles.countryText, { color: colors.text }]}>
-                        {countryName}
-                      </Text>
-                    </View>
-                  );
-                })}
-              </View>
+      {(isPast || camp.isFull) && (
+        <View style={styles.badgeRow}>
+          {isPast ? (
+            <View style={[styles.badge, { borderColor: theme.textSecondary }]}>
+              <Text style={[styles.badgeText, { color: theme.textSecondary }]}>AFGELOPEN</Text>
             </View>
+          ) : null}
+          {camp.isFull ? (
+            <View style={[styles.badge, { borderColor: "#FF3B30" }]}>
+              <Text style={[styles.badgeText, { color: "#FF3B30" }]}>VOL</Text>
+            </View>
+          ) : null}
+        </View>
+      )}
 
-            {/* District */}
-            <View style={styles.detailItem}>
-              <View style={styles.detailHeader}>
-                <Ionicons name="business-outline" size={14} color={colors.textSecondary} />
-                <Text style={[styles.detailLabel, { color: colors.textSecondary }]}>District</Text>
+      <View style={[styles.divider, { backgroundColor: theme.border }]} />
+
+      <View style={styles.grid}>
+        <View style={styles.gridRow}>
+          <DetailCell
+            icon="location"
+            label="Land"
+            value={
+              <View style={styles.countryValue}>
+                {flagAsset ? (
+                  <Image source={flagAsset} style={styles.flag} contentFit="cover" />
+                ) : (
+                  <Icon name="flag" size={14} tintColor={theme.textSecondary} />
+                )}
+                <Text style={[styles.value, { color: theme.text }]} numberOfLines={1}>
+                  {countryName}
+                  {extraCount > 0 ? ` +${extraCount}` : ""}
+                </Text>
               </View>
+            }
+          />
+          <DetailCell
+            icon="district"
+            label="District"
+            value={
               <Text
                 style={[
-                  styles.detailValue,
-                  { color: camp.hostDistrict ? colors.text : colors.textSecondary },
+                  styles.value,
+                  { color: camp.hostDistrict ? theme.text : theme.textSecondary },
                 ]}
+                numberOfLines={1}
               >
                 {camp.hostDistrict || "—"}
               </Text>
-            </View>
-          </View>
+            }
+          />
+        </View>
 
-          {/* Row 2: Start Date and End Date */}
-          <View style={styles.detailRow}>
-            {/* Start Date */}
-            <View style={styles.detailItem}>
-              <View style={styles.detailHeader}>
-                <Ionicons name="calendar-outline" size={14} color={colors.textSecondary} />
-                <Text style={[styles.detailLabel, { color: colors.textSecondary }]}>Start</Text>
-              </View>
-              <Text
-                style={[styles.detailValue, { color: isPast ? colors.textSecondary : colors.text }]}
-              >
-                {camp.startDate}
+        <View style={styles.gridRow}>
+          <DetailCell
+            icon="calendar"
+            label="Start"
+            value={
+              <Text style={[styles.value, { color: theme.text }]}>{camp.startDate || "—"}</Text>
+            }
+          />
+          <DetailCell
+            icon="calendar"
+            label="Einde"
+            value={
+              <Text style={[styles.value, { color: theme.text }]}>{camp.endDate || "—"}</Text>
+            }
+          />
+        </View>
+
+        <View style={styles.gridRow}>
+          <DetailCell
+            icon="people"
+            label="Leeftijd"
+            value={
+              <Text style={[styles.value, { color: theme.text }]}>
+                {formatAge(camp.ageMin, camp.ageMax)}
               </Text>
-            </View>
-
-            {/* End Date */}
-            <View style={styles.detailItem}>
-              <View style={styles.detailHeader}>
-                <Ionicons name="calendar-outline" size={14} color={colors.textSecondary} />
-                <Text style={[styles.detailLabel, { color: colors.textSecondary }]}>Einde</Text>
-              </View>
-              <Text
-                style={[styles.detailValue, { color: isPast ? colors.textSecondary : colors.text }]}
-              >
-                {camp.endDate}
+            }
+          />
+          <DetailCell
+            icon="wallet"
+            label="Kosten"
+            value={
+              <Text style={[styles.value, { color: theme.text }]}>
+                {formatCost(camp.contribution, camp.currency)}
               </Text>
-            </View>
-          </View>
-
-          {/* Row 3: Age and Cost */}
-          <View style={styles.detailRow}>
-            {/* Age */}
-            <View style={styles.detailItem}>
-              <View style={styles.detailHeader}>
-                <Ionicons name="people-outline" size={14} color={colors.textSecondary} />
-                <Text style={[styles.detailLabel, { color: colors.textSecondary }]}>Leeftijd</Text>
-              </View>
-              <Text
-                style={[
-                  styles.detailValue,
-                  { color: camp.ageMin || camp.ageMax ? colors.text : colors.textSecondary },
-                ]}
-              >
-                {camp.ageMin && camp.ageMax
-                  ? `${camp.ageMin}-${camp.ageMax} jr`
-                  : camp.ageMin
-                    ? `${camp.ageMin}+ jr`
-                    : camp.ageMax
-                      ? `t/m ${camp.ageMax} jr`
-                      : "—"}
-              </Text>
-            </View>
-
-            {/* Cost with currency icon */}
-            <View style={styles.detailItem}>
-              <View style={styles.detailHeader}>
-                <Ionicons name="wallet-outline" size={14} color={colors.textSecondary} />
-                <Text style={[styles.detailLabel, { color: colors.textSecondary }]}>Kosten</Text>
-              </View>
-              <View style={styles.costContainer}>
-                {camp.contribution ? (
-                  camp.contribution === "0" ? (
-                    <Text style={[styles.detailValue, { color: colors.text }]}>Gratis</Text>
-                  ) : (
-                    <>
-                      <MaterialDesignIcons
-                        name={
-                          getCurrencyIcon(
-                            camp.currency,
-                          ) as React.ComponentProps<typeof MaterialDesignIcons>["name"]
-                        }
-                        size={18}
-                        color={colors.text}
-                        style={styles.currencyIcon}
-                      />
-                      <Text style={[styles.detailValue, { color: colors.text }]}>
-                        {camp.contribution}
-                      </Text>
-                    </>
-                  )
-                ) : (
-                  <Text style={[styles.detailValue, { color: colors.textSecondary }]}>—</Text>
-                )}
-              </View>
-            </View>
-          </View>
+            }
+          />
         </View>
       </View>
     </Pressable>
   );
 }
 
+interface DetailCellProps {
+  icon: "location" | "district" | "calendar" | "people" | "wallet";
+  label: string;
+  value: React.ReactNode;
+}
+
+function DetailCell({ icon, label, value }: DetailCellProps) {
+  const theme = useTheme();
+  return (
+    <View style={styles.cell}>
+      <View style={styles.cellLabelRow}>
+        <Icon name={icon} size={13} tintColor={theme.textSecondary} />
+        <Text style={[styles.label, { color: theme.textSecondary }]}>{label}</Text>
+      </View>
+      {value}
+    </View>
+  );
+}
+
 const styles = StyleSheet.create({
   card: {
-    borderRadius: 12,
-    marginBottom: 12,
-    overflow: "hidden",
-  },
-  shadowIOS: {
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.08,
-    shadowRadius: 8,
-  },
-  shadowAndroid: {
-    elevation: 2,
-    borderWidth: StyleSheet.hairlineWidth,
-  },
-  cardFull: {
-    borderLeftWidth: 4,
-    borderLeftColor: "#FF3B30",
+    borderRadius: borderRadius.md,
+    padding: spacing.md,
+    borderWidth: Platform.OS === "android" ? StyleSheet.hairlineWidth : 0,
+    ...(Platform.OS === "ios"
+      ? {}
+      : {
+          elevation: 1,
+        }),
   },
   cardPast: {
-    opacity: 0.7,
-    borderLeftWidth: 4,
+    opacity: 0.6,
   },
   cardPressed: {
-    opacity: 0.8,
-    transform: Platform.OS === "ios" ? [{ scale: 0.98 }] : [],
+    opacity: 0.7,
+    transform: Platform.OS === "ios" ? [{ scale: 0.99 }] : [],
   },
-  cardHeader: {
+  headerRow: {
     flexDirection: "row",
     alignItems: "flex-start",
-    justifyContent: "space-between",
-    paddingHorizontal: 16,
-    paddingTop: 16,
-    paddingBottom: 8,
-  },
-  titleContainer: {
-    flex: 1,
-    marginRight: 12,
+    gap: spacing.sm,
   },
   title: {
+    flex: 1,
     fontSize: 16,
     fontWeight: "600",
     lineHeight: 22,
-    marginBottom: 4,
   },
-  badgeContainer: {
-    flexDirection: "column",
-    alignItems: "flex-start",
+  badgeRow: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    gap: 6,
+    marginTop: 6,
+  },
+  badge: {
+    borderWidth: StyleSheet.hairlineWidth,
+    paddingHorizontal: 8,
+    paddingVertical: 2,
+    borderRadius: borderRadius.full,
+  },
+  badgeText: {
+    fontSize: 10,
+    fontWeight: "700",
+    letterSpacing: 0.5,
+  },
+  divider: {
+    height: StyleSheet.hairlineWidth,
+    marginTop: spacing.md,
+    marginBottom: spacing.md,
+  },
+  grid: {
+    gap: spacing.md,
+  },
+  gridRow: {
+    flexDirection: "row",
+    gap: spacing.md,
+  },
+  cell: {
+    flex: 1,
     gap: 4,
   },
-  pastBadge: {
+  cellLabelRow: {
     flexDirection: "row",
     alignItems: "center",
-    paddingHorizontal: 8,
-    paddingVertical: 3,
-    borderRadius: 10,
-    alignSelf: "flex-start",
+    gap: 4,
   },
-  pastBadgeText: {
-    fontSize: 10,
-    fontWeight: "600",
-    marginLeft: 3,
-    letterSpacing: 0.5,
-    color: "#FFFFFF",
-  },
-  fullBadge: {
-    flexDirection: "row",
-    alignItems: "center",
-    backgroundColor: "#FF3B30",
-    paddingHorizontal: 8,
-    paddingVertical: 4,
-    borderRadius: 12,
-    alignSelf: "flex-start",
-  },
-  fullBadgeText: {
-    fontSize: 11,
-    fontWeight: "600",
-    marginLeft: 4,
-    letterSpacing: 0.5,
-    color: "#FFFFFF",
-  },
-  badgeSpacing: {
-    marginTop: 0,
-  },
-  actionIndicator: {
-    width: 32,
-    height: 32,
-    borderRadius: 16,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  cardBody: {
-    paddingHorizontal: 16,
-    paddingBottom: 16,
-  },
-  detailsGrid: {
-    gap: 16,
-  },
-  detailRow: {
-    flexDirection: "row",
-    gap: 16,
-  },
-  detailItem: {
-    flex: 1,
-  },
-  detailHeader: {
-    flexDirection: "row",
-    alignItems: "center",
-    marginBottom: 6,
-  },
-  detailLabel: {
-    fontSize: 13,
+  label: {
+    fontSize: 12,
     fontWeight: "500",
-    marginLeft: 6,
   },
-  detailValue: {
+  value: {
     fontSize: 15,
     fontWeight: "500",
   },
-  countryContainer: {
-    flexDirection: "row",
-    flexWrap: "wrap",
-    gap: 8,
-  },
-  countryItem: {
+  countryValue: {
     flexDirection: "row",
     alignItems: "center",
-    paddingHorizontal: 8,
-    paddingVertical: 4,
-    borderRadius: 6,
-  },
-  countryText: {
-    fontSize: 14,
-    fontWeight: "500",
+    gap: 6,
   },
   flag: {
-    width: 16,
-    height: 12,
-    marginRight: 6,
+    width: 18,
+    height: 13,
     borderRadius: 2,
-  },
-  flagPlaceholder: {
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  costContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-  },
-  currencyIcon: {
-    marginRight: 4,
   },
 });

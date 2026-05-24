@@ -53,6 +53,13 @@ export const Icons = {
   refresh: { ios: "arrow.clockwise", android: "refresh" },
   folder: { ios: "folder.fill", android: "folder_open" },
   school: { ios: "graduationcap.fill", android: "school" },
+  // Camps detail
+  location: { ios: "mappin.and.ellipse", android: "location_on" },
+  district: { ios: "building.2.fill", android: "domain" },
+  people: { ios: "person.2.fill", android: "groups" },
+  wallet: { ios: "eurosign.circle.fill", android: "payments" },
+  search: { ios: "magnifyingglass", android: "search" },
+  clock: { ios: "clock.fill", android: "schedule" },
 } as const satisfies Record<string, IconPair>;
 
 export type IconName = keyof typeof Icons;

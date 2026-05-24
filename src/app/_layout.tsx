@@ -180,7 +180,10 @@ export default function RootLayout() {
           <Stack.Screen name="students/rebound/student-detail" />
 
           {/* Standalone */}
-          <Stack.Screen name="camps-tours" options={{ title: "Zomerkampen Lijst" }} />
+          <Stack.Screen
+            name="camps-tours"
+            options={{ title: "Zomerkampen", headerLargeTitleEnabled: true }}
+          />
           <Stack.Screen name="pdf-viewer" />
           <Stack.Screen name="settings/contributors" options={{ title: "Bijdragers" }} />
         </Stack>
