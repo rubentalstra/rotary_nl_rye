@@ -40,23 +40,12 @@ export interface FilterState {
 /**
  * Availability filter options
  */
-export type AvailabilityFilter = "alle" | "niet-vol" | "vol";
+export type AvailabilityFilter = "niet-vol" | "vol";
 
 /**
  * Timing filter options
  */
-export type TimingFilter = "alle" | "toekomstig" | "afgelopen";
-
-/**
- * Filter chip configuration
- */
-export interface FilterChipConfig {
-  id: string;
-  icon: string;
-  label: string;
-  isActive: boolean;
-  onPress: () => void;
-}
+export type TimingFilter = "toekomstig" | "afgelopen";
 
 /**
  * Camps query result

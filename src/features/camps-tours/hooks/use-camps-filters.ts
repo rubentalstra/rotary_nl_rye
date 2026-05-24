@@ -9,29 +9,23 @@ import { isCampPast } from "../api/fetch-camps";
 import type { Camp, CampsFilterResult, FilterState } from "@/features/camps-tours/types";
 import { getCountryName } from "@/utils/flags";
 
-const INITIAL_FILTERS: FilterState = {
-  availability: "alle",
-  timing: "alle",
+const DEFAULT_FILTERS: FilterState = {
+  availability: "niet-vol",
+  timing: "toekomstig",
   country: "",
 };
 
 export function useCampsFilters(camps: Camp[], query: string): CampsFilterResult {
-  const [filters, setFilters] = useState<FilterState>(INITIAL_FILTERS);
+  const [filters, setFilters] = useState<FilterState>(DEFAULT_FILTERS);
 
   const filteredCamps = useMemo(() => {
-    let filtered = [...camps];
+    let filtered = camps.filter((camp) =>
+      filters.availability === "vol" ? camp.isFull : !camp.isFull,
+    );
 
-    if (filters.availability === "niet-vol") {
-      filtered = filtered.filter((camp) => !camp.isFull);
-    } else if (filters.availability === "vol") {
-      filtered = filtered.filter((camp) => camp.isFull);
-    }
-
-    if (filters.timing === "toekomstig") {
-      filtered = filtered.filter((camp) => !isCampPast(camp));
-    } else if (filters.timing === "afgelopen") {
-      filtered = filtered.filter((camp) => isCampPast(camp));
-    }
+    filtered = filtered.filter((camp) =>
+      filters.timing === "afgelopen" ? isCampPast(camp) : !isCampPast(camp),
+    );
 
     if (filters.country) {
       const want = filters.country.toLowerCase();
@@ -57,14 +51,14 @@ export function useCampsFilters(camps: Camp[], query: string): CampsFilterResult
 
   const hasActiveFilters = useMemo(
     () =>
-      filters.availability !== "alle" ||
-      filters.timing !== "alle" ||
-      filters.country !== "",
+      filters.availability !== DEFAULT_FILTERS.availability ||
+      filters.timing !== DEFAULT_FILTERS.timing ||
+      filters.country !== DEFAULT_FILTERS.country,
     [filters],
   );
 
   const clearFilters = useCallback(() => {
-    setFilters(INITIAL_FILTERS);
+    setFilters(DEFAULT_FILTERS);
   }, []);
 
   return {

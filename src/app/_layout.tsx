@@ -184,6 +184,14 @@ export default function RootLayout() {
             name="camps-tours"
             options={{ title: "Zomerkampen", headerLargeTitleEnabled: true }}
           />
+          <Stack.Screen
+            name="country-picker"
+            options={{
+              presentation: "modal",
+              title: "Land",
+              headerLargeTitleEnabled: true,
+            }}
+          />
           <Stack.Screen name="pdf-viewer" />
           <Stack.Screen name="settings/contributors" options={{ title: "Bijdragers" }} />
         </Stack>

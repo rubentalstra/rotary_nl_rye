@@ -60,6 +60,8 @@ export const Icons = {
   wallet: { ios: "eurosign.circle.fill", android: "payments" },
   search: { ios: "magnifyingglass", android: "search" },
   clock: { ios: "clock.fill", android: "schedule" },
+  filter: { ios: "line.3.horizontal.decrease.circle", android: "tune" },
+  "filter-active": { ios: "line.3.horizontal.decrease.circle.fill", android: "tune" },
 } as const satisfies Record<string, IconPair>;
 
 export type IconName = keyof typeof Icons;
