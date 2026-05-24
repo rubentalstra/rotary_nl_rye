@@ -1,3 +1,14 @@
 {
-    "cmake.sourceDirectory": "/Users/rubentalstra/Programs/Privat/Rotary/rotary_nl_rye/rotary-yep-nl/node_modules/react-native-reanimated/android"
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit",
+    "source.organizeImports": "explicit"
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "search.exclude": {
+    "legacy/**": true,
+    "ios/**": true,
+    "android/**": true
+  }
 }

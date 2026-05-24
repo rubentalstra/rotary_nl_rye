@@ -1,0 +1,76 @@
+name: Release on git tag
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+
+defaults:
+  tools:
+    node: "22.13.0"
+
+jobs:
+  checks:
+    name: Lint + typecheck + expo-doctor
+    steps:
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+      - name: TypeScript
+        run: pnpm exec tsc --noEmit
+      - name: ESLint
+        run: pnpm exec expo lint
+      - name: Expo Doctor
+        run: pnpm dlx expo-doctor
+
+  approve_release:
+    name: Manual approval before store submit
+    needs: [checks]
+    type: require-approval
+
+  build_ios:
+    name: Build iOS (production)
+    needs: [approve_release]
+    type: build
+    params:
+      platform: ios
+      profile: production
+
+  build_android:
+    name: Build Android (production)
+    needs: [approve_release]
+    type: build
+    params:
+      platform: android
+      profile: production
+
+  submit_ios:
+    name: Submit iOS to App Store
+    needs: [build_ios]
+    type: submit
+    params:
+      build_id: ${{ needs.build_ios.outputs.build_id }}
+      profile: production
+
+  submit_android:
+    name: Submit Android to Play production
+    needs: [build_android]
+    type: submit
+    params:
+      build_id: ${{ needs.build_android.outputs.build_id }}
+      profile: production
+
+  notify_release:
+    name: Post release summary
+    needs: [submit_ios, submit_android]
+    if: ${{ always() }}
+    type: github-comment
+    params:
+      body: |
+        ## Release ${{ github.ref_name }}
+
+        | Platform | Build | Submit |
+        | --- | --- | --- |
+        | iOS | ${{ needs.build_ios.status }} | ${{ needs.submit_ios.status }} |
+        | Android | ${{ needs.build_android.status }} | ${{ needs.submit_android.status }} |
+
+        Build artifacts: https://expo.dev/accounts/rotary-nederland/projects/rotary-yep-nl/builds
