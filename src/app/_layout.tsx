@@ -5,58 +5,39 @@ import { Platform } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 import { useColorScheme } from "@/hooks/use-color-scheme";
-import { RotaryColors, RotaryTheme } from "@/lib/theme/colors";
 
 export default function RootLayout() {
   const scheme = useColorScheme();
   const isDark = scheme === "dark";
-  const theme = RotaryTheme[scheme];
 
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
-      <ThemeProvider
-        value={{
-          ...(isDark ? DarkTheme : DefaultTheme),
-          colors: {
-            ...(isDark ? DarkTheme : DefaultTheme).colors,
-            primary: RotaryColors.royalBlue,
-            background: theme.background,
-            card: theme.card,
-          },
-        }}
-      >
+      <ThemeProvider value={isDark ? DarkTheme : DefaultTheme}>
         <StatusBar style="auto" />
         <NavigationBar style="auto" />
         <Stack
           screenOptions={{
-            headerStyle: { backgroundColor: theme.card },
-            headerTitleStyle: {
-              color: theme.text,
-              fontWeight: "600",
-              fontSize: Platform.OS === "ios" ? 17 : 20,
-            },
-            headerLargeTitleStyle: { color: theme.text },
-            headerTintColor: theme.primary,
-            headerLargeTitle: true,
-            headerLargeTitleShadowVisible: false,
             headerShadowVisible: Platform.OS === "ios",
             headerBackButtonDisplayMode: "minimal",
           }}
         >
-          <Stack.Screen name="(tabs)" options={{ headerShown: false, title: "" }} />
+          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
 
           {/* News */}
-          <Stack.Screen name="news/index" options={{ title: "News" }} />
-          <Stack.Screen name="news/[id]" options={{ title: "", headerLargeTitle: false }} />
-
-          {/* Calendar */}
           <Stack.Screen
-            name="calendar/index"
-            options={{ title: "Calendar", headerLargeTitle: false }}
+            name="news/index"
+            options={{ title: "News", headerLargeTitle: true }}
           />
+          <Stack.Screen name="news/[id]" options={{ title: "" }} />
+
+          {/* Calendar — page is a month grid, no large title */}
+          <Stack.Screen name="calendar/index" options={{ title: "Calendar" }} />
 
           {/* Programs */}
-          <Stack.Screen name="programs/index" options={{ title: "Programma's" }} />
+          <Stack.Screen
+            name="programs/index"
+            options={{ title: "Programma's", headerLargeTitle: true }}
+          />
           <Stack.Screen
             name="programs/information/long-term-exchange"
             options={{ title: "Long Term Exchange" }}
@@ -74,13 +55,25 @@ export default function RootLayout() {
           <Stack.Screen name="programs/promo/video" options={{ title: "Video" }} />
 
           {/* Rotary Clubs */}
-          <Stack.Screen name="rotary-clubs/index" options={{ title: "Voor Rotary Clubs" }} />
-          <Stack.Screen name="rotary-clubs/[section]" options={{ headerLargeTitle: false }} />
+          <Stack.Screen
+            name="rotary-clubs/index"
+            options={{ title: "Voor Rotary Clubs", headerLargeTitle: true }}
+          />
+          <Stack.Screen name="rotary-clubs/[section]" />
 
           {/* Students — hubs */}
-          <Stack.Screen name="students/inbound/index" options={{ title: "Inbounds" }} />
-          <Stack.Screen name="students/outbound/index" options={{ title: "Outbounds" }} />
-          <Stack.Screen name="students/rebound/index" options={{ title: "Rebounds" }} />
+          <Stack.Screen
+            name="students/inbound/index"
+            options={{ title: "Inbounds", headerLargeTitle: true }}
+          />
+          <Stack.Screen
+            name="students/outbound/index"
+            options={{ title: "Outbounds", headerLargeTitle: true }}
+          />
+          <Stack.Screen
+            name="students/rebound/index"
+            options={{ title: "Rebounds", headerLargeTitle: true }}
+          />
 
           {/* Students — inbound long-term */}
           <Stack.Screen
@@ -107,14 +100,8 @@ export default function RootLayout() {
             name="students/inbound/long-term/travel"
             options={{ title: "Reizen" }}
           />
-          <Stack.Screen
-            name="students/inbound/long-term/students"
-            options={{ headerLargeTitle: false }}
-          />
-          <Stack.Screen
-            name="students/inbound/long-term/student-detail"
-            options={{ headerLargeTitle: false }}
-          />
+          <Stack.Screen name="students/inbound/long-term/students" />
+          <Stack.Screen name="students/inbound/long-term/student-detail" />
 
           {/* Students — outbound long-term */}
           <Stack.Screen
@@ -141,14 +128,8 @@ export default function RootLayout() {
             name="students/outbound/long-term/top-3-countries"
             options={{ title: "Top 3 landen" }}
           />
-          <Stack.Screen
-            name="students/outbound/long-term/students"
-            options={{ headerLargeTitle: false }}
-          />
-          <Stack.Screen
-            name="students/outbound/long-term/student-detail"
-            options={{ headerLargeTitle: false }}
-          />
+          <Stack.Screen name="students/outbound/long-term/students" />
+          <Stack.Screen name="students/outbound/long-term/student-detail" />
 
           {/* Students — short-term */}
           <Stack.Screen name="students/inbound/short-term/index" options={{ title: "Short Term" }} />
@@ -195,21 +176,12 @@ export default function RootLayout() {
           />
 
           {/* Students — rebound */}
-          <Stack.Screen
-            name="students/rebound/[country]"
-            options={{ headerLargeTitle: false }}
-          />
-          <Stack.Screen
-            name="students/rebound/student-detail"
-            options={{ headerLargeTitle: false }}
-          />
+          <Stack.Screen name="students/rebound/[country]" />
+          <Stack.Screen name="students/rebound/student-detail" />
 
           {/* Standalone */}
-          <Stack.Screen
-            name="camps-tours"
-            options={{ title: "Zomerkampen Lijst", headerLargeTitle: false }}
-          />
-          <Stack.Screen name="pdf-viewer" options={{ headerLargeTitle: false }} />
+          <Stack.Screen name="camps-tours" options={{ title: "Zomerkampen Lijst" }} />
+          <Stack.Screen name="pdf-viewer" />
           <Stack.Screen name="settings/contributors" options={{ title: "Bijdragers" }} />
         </Stack>
       </ThemeProvider>

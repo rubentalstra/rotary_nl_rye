@@ -5,9 +5,8 @@
 
 import { useMemo, useCallback } from "react";
 import { StyleSheet, View, FlatList, Platform } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
 import * as Haptics from "expo-haptics";
-import { router } from "expo-router";
+import { router, Stack } from "expo-router";
 import { useTheme } from "@/lib/theme/use-theme";
 import { spacing } from "@/lib/theme/spacing";
 import { getCountryName } from "@/utils/flags";
@@ -57,8 +56,10 @@ export default function ReboundCountriesScreen() {
   );
 
   return (
-    <SafeAreaView style={[styles.container, { backgroundColor: colors.background }]} edges={[]}>
+    <>
+      <Stack.Title large>Rebounds</Stack.Title>
       <FlatList
+        style={{ backgroundColor: colors.background, flex: 1 }}
         data={countryGroups}
         renderItem={renderCountry}
         keyExtractor={(item) => item.countryCode}
@@ -67,7 +68,7 @@ export default function ReboundCountriesScreen() {
         contentContainerStyle={styles.contentContainer}
         ItemSeparatorComponent={() => <View style={styles.separator} />}
       />
-    </SafeAreaView>
+    </>
   );
 }
 

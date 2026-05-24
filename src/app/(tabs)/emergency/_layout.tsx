@@ -11,10 +11,17 @@ export default function EmergencyLayout() {
           fontSize: Platform.OS === "ios" ? 20 : 22,
           color: "#ffffff",
         },
+        headerTintColor: "#ffffff",
         headerShadowVisible: Platform.OS === "ios",
       }}
     >
-      <Stack.Screen name="index" options={{ title: "Emergency" }} />
+      {/* Emergency uses an intentional red brand header; large title disabled
+          because explicit headerStyle overrides break the iOS large-title text
+          color cascade. */}
+      <Stack.Screen
+        name="index"
+        options={{ title: "Emergency", headerLargeTitle: false }}
+      />
     </Stack>
   );
 }
