@@ -1,10 +1,11 @@
 import { router } from "expo-router";
-import { useCallback } from "react";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { useCallback, useMemo } from "react";
+import { FlatList, StyleSheet, View } from "react-native";
 
+import { EmptyState } from "@/components/feedback/empty-state";
 import { ErrorState } from "@/components/feedback/error-state";
 import { LoadingState } from "@/components/feedback/loading-state";
-import { NewsList } from "@/components/news/news-list";
+import { NewsCard } from "@/components/news/news-card";
 import { useNews } from "@/features/news/use-news";
 import type { NewsItem } from "@/features/news/types";
 import { useTheme } from "@/lib/theme/use-theme";
@@ -30,30 +31,60 @@ export default function NewsScreen() {
     }
   }, []);
 
-  if (loading && items.length === 0) {
-    return (
-      <SafeAreaView style={{ flex: 1, backgroundColor: theme.background }} edges={[]}>
-        <LoadingState message="Nieuws laden..." />
-      </SafeAreaView>
-    );
-  }
+  const renderItem = useCallback(
+    ({ item }: { item: NewsItem }) => (
+      <NewsCard item={item} onPress={() => handleItemPress(item)} />
+    ),
+    [handleItemPress],
+  );
 
-  if (error && items.length === 0) {
+  const renderSeparator = useCallback(() => <View style={styles.separator} />, []);
+
+  const renderEmpty = useCallback(() => {
+    if (loading) return <LoadingState message="Nieuws laden..." />;
+    if (error) return <ErrorState message={error} onRetry={refresh} />;
     return (
-      <SafeAreaView style={{ flex: 1, backgroundColor: theme.background }} edges={[]}>
-        <ErrorState message={error} onRetry={refresh} />
-      </SafeAreaView>
+      <EmptyState
+        icon="news"
+        title="Geen nieuws"
+        message="Er zijn op dit moment geen nieuwsberichten."
+      />
     );
-  }
+  }, [loading, error, refresh]);
+
+  const listStyle = useMemo(
+    () => ({ backgroundColor: theme.background }),
+    [theme.background],
+  );
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: theme.background }} edges={[]}>
-      <NewsList
-        items={items}
-        onItemPress={handleItemPress}
-        refreshing={loading}
-        onRefresh={refresh}
-      />
-    </SafeAreaView>
+    <FlatList
+      data={items}
+      keyExtractor={(item) => String(item.id)}
+      renderItem={renderItem}
+      style={listStyle}
+      contentContainerStyle={styles.contentContainer}
+      ItemSeparatorComponent={renderSeparator}
+      ListEmptyComponent={renderEmpty}
+      showsVerticalScrollIndicator={false}
+      contentInsetAdjustmentBehavior="automatic"
+      refreshing={loading}
+      onRefresh={refresh}
+      removeClippedSubviews
+      initialNumToRender={10}
+      maxToRenderPerBatch={10}
+      windowSize={10}
+    />
   );
 }
+
+const styles = StyleSheet.create({
+  contentContainer: {
+    paddingHorizontal: 16,
+    paddingVertical: 8,
+    flexGrow: 1,
+  },
+  separator: {
+    height: 12,
+  },
+});

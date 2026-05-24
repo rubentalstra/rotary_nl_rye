@@ -1,6 +1,5 @@
 import { router, useLocalSearchParams } from "expo-router";
 import { StyleSheet, Text, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
 
 import { LoadingState } from "@/components/feedback/loading-state";
 import { NewsDetail } from "@/components/news/news-detail";
@@ -25,31 +24,21 @@ export default function NewsDetailScreen() {
   };
 
   if (loading) {
-    return (
-      <SafeAreaView style={{ flex: 1, backgroundColor: theme.background }} edges={["bottom"]}>
-        <LoadingState message="Artikel laden..." />
-      </SafeAreaView>
-    );
+    return <LoadingState message="Artikel laden..." />;
   }
 
   if (error || !newsItem) {
     return (
-      <SafeAreaView style={{ flex: 1, backgroundColor: theme.background }} edges={["bottom"]}>
-        <View style={styles.centered}>
-          <Icon name="alert" size={64} tintColor={theme.error} />
-          <Text style={[styles.errorText, { color: theme.error }]}>
-            {error ?? "Nieuwsbericht niet gevonden"}
-          </Text>
-        </View>
-      </SafeAreaView>
+      <View style={[styles.centered, { backgroundColor: theme.background }]}>
+        <Icon name="alert" size={64} tintColor={theme.error} />
+        <Text style={[styles.errorText, { color: theme.error }]}>
+          {error ?? "Nieuwsbericht niet gevonden"}
+        </Text>
+      </View>
     );
   }
 
-  return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: theme.background }} edges={["bottom"]}>
-      <NewsDetail item={newsItem} onOpenPdf={handleOpenPdf} />
-    </SafeAreaView>
-  );
+  return <NewsDetail item={newsItem} onOpenPdf={handleOpenPdf} />;
 }
 
 const styles = StyleSheet.create({

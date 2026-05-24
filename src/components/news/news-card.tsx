@@ -75,8 +75,6 @@ export const NewsCard = memo(NewsCardComponent);
 const styles = StyleSheet.create({
   card: {
     flexDirection: "row",
-    marginHorizontal: spacing.lg,
-    marginVertical: spacing.sm / 2,
     borderRadius: 12,
     borderWidth: Platform.OS === "android" ? StyleSheet.hairlineWidth : 0,
     overflow: "hidden",
