@@ -1,7 +1,7 @@
 {
   "name": "rotary-yep-nl",
   "main": "expo-router/entry",
-  "version": "13.0.0",
+  "version": "13.0.1",
   "description": "Rotary Youth Exchange Netherlands official mobile app.",
   "private": true,
   "packageManager": "pnpm@11.2.2",
@@ -20,6 +20,7 @@
   "dependencies": {
     "@expo/material-symbols": "~0.1.1",
     "@expo/ui": "~56.0.13",
+    "@react-native-async-storage/async-storage": "2.2.0",
     "@react-native-vector-icons/fontawesome5": "^13.1.1",
     "@react-native-vector-icons/ionicons": "^13.1.1",
     "@react-native-vector-icons/material-design-icons": "^13.1.1",
@@ -38,6 +39,7 @@
     "expo-image": "~56.0.9",
     "expo-insights": "~56.0.13",
     "expo-linking": "~56.0.11",
+    "expo-localization": "~56.0.6",
     "expo-navigation-bar": "~56.0.3",
     "expo-router": "~56.2.6",
     "expo-sharing": "~56.0.13",
@@ -48,6 +50,7 @@
     "expo-system-ui": "~56.0.5",
     "expo-video": "~56.1.2",
     "expo-web-browser": "~56.0.5",
+    "i18n-js": "^4.5.3",
     "react": "19.2.3",
     "react-native": "0.85.3",
     "react-native-calendars": "^1.1314.0",

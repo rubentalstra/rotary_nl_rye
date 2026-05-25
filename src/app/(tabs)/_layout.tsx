@@ -1,10 +1,12 @@
 import { NativeTabs } from "expo-router/unstable-native-tabs";
 import { Platform } from "react-native";
 
+import { useTranslation } from "@/lib/i18n/use-translation";
 import { useTheme } from "@/lib/theme/use-theme";
 
 export default function TabsLayout() {
   const theme = useTheme();
+  const { t } = useTranslation();
 
   return (
     <NativeTabs
@@ -13,7 +15,7 @@ export default function TabsLayout() {
       backgroundColor={theme.backgroundElevated}
     >
       <NativeTabs.Trigger name="index">
-        <NativeTabs.Trigger.Label>Home</NativeTabs.Trigger.Label>
+        <NativeTabs.Trigger.Label>{t("tabs.home")}</NativeTabs.Trigger.Label>
         {Platform.select({
           ios: <NativeTabs.Trigger.Icon sf={{ default: "house", selected: "house.fill" }} />,
           android: <NativeTabs.Trigger.Icon md="home" />,
@@ -21,7 +23,7 @@ export default function TabsLayout() {
       </NativeTabs.Trigger>
 
       <NativeTabs.Trigger name="about">
-        <NativeTabs.Trigger.Label>Over</NativeTabs.Trigger.Label>
+        <NativeTabs.Trigger.Label>{t("tabs.about")}</NativeTabs.Trigger.Label>
         {Platform.select({
           ios: (
             <NativeTabs.Trigger.Icon
@@ -33,7 +35,7 @@ export default function TabsLayout() {
       </NativeTabs.Trigger>
 
       <NativeTabs.Trigger name="emergency">
-        <NativeTabs.Trigger.Label>Noodgeval</NativeTabs.Trigger.Label>
+        <NativeTabs.Trigger.Label>{t("tabs.emergency")}</NativeTabs.Trigger.Label>
         {Platform.select({
           ios: (
             <NativeTabs.Trigger.Icon
@@ -48,7 +50,7 @@ export default function TabsLayout() {
       </NativeTabs.Trigger>
 
       <NativeTabs.Trigger name="contact">
-        <NativeTabs.Trigger.Label>Contact</NativeTabs.Trigger.Label>
+        <NativeTabs.Trigger.Label>{t("tabs.contact")}</NativeTabs.Trigger.Label>
         {Platform.select({
           ios: (
             <NativeTabs.Trigger.Icon
@@ -60,7 +62,7 @@ export default function TabsLayout() {
       </NativeTabs.Trigger>
 
       <NativeTabs.Trigger name="settings">
-        <NativeTabs.Trigger.Label>Instellingen</NativeTabs.Trigger.Label>
+        <NativeTabs.Trigger.Label>{t("tabs.settings")}</NativeTabs.Trigger.Label>
         {Platform.select({
           ios: <NativeTabs.Trigger.Icon sf="gearshape" />,
           android: <NativeTabs.Trigger.Icon md="settings" />,

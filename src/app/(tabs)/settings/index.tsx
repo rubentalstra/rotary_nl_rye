@@ -10,13 +10,16 @@ import {
 import ShareIcon from "@expo/material-symbols/share.xml";
 
 import { SettingsRow } from "@/components/settings/settings-row";
-import { useAppVersion } from "@/hooks/use-app-version";
+import { LanguagePicker } from "@/features/settings/components/language-picker";
 import { useSettingsActions } from "@/features/settings/use-settings-actions";
+import { useAppVersion } from "@/hooks/use-app-version";
+import { useTranslation } from "@/lib/i18n/use-translation";
 import { borderRadius, spacing } from "@/lib/theme/spacing";
 import { useTheme } from "@/lib/theme/use-theme";
 
 export default function SettingsScreen() {
   const theme = useTheme();
+  const { t } = useTranslation();
   const { formattedVersion } = useAppVersion();
   const {
     handlePrivacyPolicy,
@@ -29,16 +32,16 @@ export default function SettingsScreen() {
 
   const reviewSubtitle =
     Platform.OS === "ios"
-      ? "Laat een beoordeling achter in de App Store"
-      : "Laat een beoordeling achter in de Google Play Store";
+      ? t("settings.row_review_subtitle_ios")
+      : t("settings.row_review_subtitle_android");
 
   return (
     <>
-      <Stack.Screen options={{ title: "Instellingen", headerLargeTitleEnabled: true }} />
+      <Stack.Screen options={{ title: t("settings.title"), headerLargeTitleEnabled: true }} />
       <Stack.Toolbar placement="right">
         <Stack.Toolbar.Button
           onPress={handleShareApp}
-          accessibilityLabel="Deel de app"
+          accessibilityLabel={t("settings.share")}
           icon={
             Platform.OS === "ios"
               ? "square.and.arrow.up"
@@ -52,42 +55,46 @@ export default function SettingsScreen() {
         contentInsetAdjustmentBehavior="automatic"
         contentContainerStyle={styles.content}
       >
-        <SettingsSection title="Algemeen">
+        <SettingsSection title={t("settings.section_general")}>
           <SettingsRow
-            title="Volg ons op Instagram"
-            subtitle="@rotexnederland"
+            title={t("settings.row_instagram")}
+            subtitle={t("settings.row_instagram_subtitle")}
             onPress={handleSocialMedia}
           />
           <Divider />
           <SettingsRow
-            title="Beoordeel de App"
+            title={t("settings.row_review")}
             subtitle={reviewSubtitle}
             onPress={handleStoreReview}
           />
         </SettingsSection>
 
-        <SettingsSection title="Ontwikkeling">
+        <SettingsSection title={t("settings.section_preferences")}>
+          <LanguagePicker />
+        </SettingsSection>
+
+        <SettingsSection title={t("settings.section_development")}>
           <SettingsRow
-            title="Bijdragers"
-            subtitle="Bekijk app-bijdragers"
+            title={t("settings.row_contributors")}
+            subtitle={t("settings.row_contributors_subtitle")}
             onPress={handleContributors}
           />
           <Divider />
-          <SettingsRow title="App Versie" value={formattedVersion} />
+          <SettingsRow title={t("settings.row_version")} value={formattedVersion} />
         </SettingsSection>
 
-        <SettingsSection title="Juridisch">
-          <SettingsRow title="Privacybeleid" onPress={handlePrivacyPolicy} />
+        <SettingsSection title={t("settings.section_legal")}>
+          <SettingsRow title={t("settings.row_privacy")} onPress={handlePrivacyPolicy} />
           <Divider />
-          <SettingsRow title="Algemene Voorwaarden" onPress={handleTermsAndConditions} />
+          <SettingsRow title={t("settings.row_terms")} onPress={handleTermsAndConditions} />
         </SettingsSection>
 
         <View style={styles.footer}>
           <Text style={[styles.footerText, { color: theme.textSecondary }]}>
-            Rotary Youth Exchange Netherlands
+            {t("settings.footer_org")}
           </Text>
           <Text style={[styles.footerText, { color: theme.textSecondary }]}>
-            Gemaakt met liefde voor jonge wereldburgers
+            {t("settings.footer_tagline")}
           </Text>
         </View>
       </ScrollView>

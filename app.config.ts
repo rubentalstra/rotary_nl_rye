@@ -3,6 +3,7 @@ import type { ConfigContext, ExpoConfig } from 'expo/config';
 const plugins: ExpoConfig['plugins'] = [
   'expo-router',
   'expo-system-ui',
+  'expo-localization',
   [
     'expo-splash-screen',
     {
@@ -60,11 +61,15 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   description:
     'The official app for Rotary Youth Exchange Netherlands, providing resources, information, and support for exchange students, families, and Rotary clubs.',
   owner: 'rotary-nederland',
-  version: '13.0.0',
+  version: '13.0.1',
   scheme: 'rotaryyepnl',
   userInterfaceStyle: 'automatic',
   githubUrl: 'https://github.com/rubentalstra/rotary_nl_rye',
   platforms: ['ios', 'android'],
+  locales: {
+    nl: './assets/locales/nl.json',
+    en: './assets/locales/en.json',
+  },
   ios: {
     appleTeamId: 'A8S2486A44',
     backgroundColor: '#17458f',
