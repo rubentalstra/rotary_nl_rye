@@ -66,10 +66,6 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   userInterfaceStyle: 'automatic',
   githubUrl: 'https://github.com/rubentalstra/rotary_nl_rye',
   platforms: ['ios', 'android'],
-  locales: {
-    nl: './assets/locales/nl.json',
-    en: './assets/locales/en.json',
-  },
   ios: {
     appleTeamId: 'A8S2486A44',
     backgroundColor: '#17458f',
