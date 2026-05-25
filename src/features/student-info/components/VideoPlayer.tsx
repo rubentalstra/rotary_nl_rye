@@ -1,12 +1,14 @@
-import React, { memo, useState, useEffect } from "react";
-import { StyleSheet, View, Text, Pressable, Modal, Platform } from "react-native";
+import { memo, useState } from "react";
+import { Modal, Platform, Pressable, StyleSheet, Text, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Ionicons from "@react-native-vector-icons/ionicons";
-import { Image } from "expo-image";
-import { useVideoPlayer, VideoView, type VideoThumbnail } from "expo-video";
+import { useVideoPlayer, VideoView } from "expo-video";
 import { useEvent } from "expo";
-import { useTheme } from "@/lib/theme/use-theme";
+
 import { IconButton } from "@/components/ui/icon-button";
+import { VideoThumbnail } from "@/components/media/video-thumbnail";
+import { usePauseOnBackground } from "@/hooks/use-pause-on-background";
+import { useTheme } from "@/lib/theme/use-theme";
 
 interface VideoPlayerProps {
   /** URL to the video file */
@@ -19,56 +21,14 @@ interface VideoPlayerProps {
   thumbnailTime?: number;
 }
 
-/**
- * VideoPlayer - An embedded video player with thumbnail preview
- *
- * Generates a thumbnail from the video and displays it as a preview.
- * Opens a full-screen modal for video playback.
- */
 export const VideoPlayer = memo(function VideoPlayer({
   videoUrl,
   title,
   description,
   thumbnailTime = 15000,
 }: VideoPlayerProps) {
-  const colors = useTheme();
-  const insets = useSafeAreaInsets();
-
-  const [isVideoModalVisible, setIsVideoModalVisible] = useState(false);
-  const [thumbnailUri, setThumbnailUri] = useState<VideoThumbnail | null>(null);
-  const [thumbnailLoading, setThumbnailLoading] = useState(true);
-
-  const player = useVideoPlayer(videoUrl, (p) => {
-    p.loop = false;
-  });
-
-  const { status } = useEvent(player, "statusChange", {
-    status: player.status,
-  });
-
-  // Generate video thumbnail
-  useEffect(() => {
-    const generateThumbnail = async () => {
-      try {
-        setThumbnailLoading(true);
-        const thumbnails = await player.generateThumbnailsAsync([thumbnailTime / 1000]);
-        if (thumbnails.length > 0) {
-          setThumbnailUri(thumbnails[0]);
-        }
-      } catch (error) {
-        console.warn("Error generating video thumbnail:", error);
-      } finally {
-        setThumbnailLoading(false);
-      }
-    };
-
-    generateThumbnail();
-  }, [videoUrl, thumbnailTime, player]);
-
-  const handleCloseVideo = () => {
-    player.pause();
-    setIsVideoModalVisible(false);
-  };
+  const theme = useTheme();
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <>
@@ -76,91 +36,131 @@ export const VideoPlayer = memo(function VideoPlayer({
         style={[
           styles.videoCard,
           {
-            backgroundColor: colors.card,
-            borderColor: colors.border,
-            shadowColor: colors.shadow,
+            backgroundColor: theme.card,
+            borderColor: theme.border,
+            shadowColor: theme.shadow,
           },
         ]}
-        onPress={() => setIsVideoModalVisible(true)}
+        onPress={() => setIsOpen(true)}
+        accessibilityRole="button"
+        accessibilityLabel={`Play ${title}`}
       >
         <View style={styles.videoPreview}>
-          {thumbnailLoading ? (
-            <View style={styles.thumbnailLoading}>
-              <Ionicons name="image-outline" size={48} color={colors.textTertiary} />
-              <Text style={[styles.loadingThumbnailText, { color: colors.textTertiary }]}>
-                Loading thumbnail...
-              </Text>
-            </View>
-          ) : thumbnailUri ? (
-            <Image
-              source={thumbnailUri}
-              style={styles.thumbnail}
-              contentFit="cover"
-              transition={300}
-            />
-          ) : (
-            <View style={[styles.thumbnailFallback, { backgroundColor: colors.primary }]}>
-              <Ionicons name="play-circle-outline" size={48} color={colors.card} />
-              <Text style={[styles.fallbackText, { color: colors.card }]}>{title}</Text>
-            </View>
-          )}
+          <VideoThumbnail url={videoUrl} timeSeconds={thumbnailTime / 1000} />
           <View style={styles.playButtonOverlay}>
-            <View style={[styles.playButton, { backgroundColor: `${colors.primary}F0` }]}>
-              <Ionicons name="play" size={32} color={colors.card} />
+            <View style={[styles.playButton, { backgroundColor: `${theme.primary}F0` }]}>
+              <Ionicons name="play" size={32} color={theme.onPrimary} />
             </View>
           </View>
         </View>
         <View style={styles.videoInfo}>
-          <Text style={[styles.videoTitle, { color: colors.text }]}>{title}</Text>
-          <Text style={[styles.videoDescription, { color: colors.textSecondary }]}>
+          <Text style={[styles.videoTitle, { color: theme.text }]}>{title}</Text>
+          <Text style={[styles.videoDescription, { color: theme.textSecondary }]}>
             {description}
           </Text>
         </View>
       </Pressable>
 
-      {/* Video Modal */}
-      <Modal
-        visible={isVideoModalVisible}
-        animationType="slide"
-        presentationStyle="fullScreen"
-        onRequestClose={handleCloseVideo}
-      >
-        <View style={[styles.videoModalContainer, { backgroundColor: "#000" }]}>
-          <View style={[styles.videoModalHeader, { top: insets.top + 16 }]}>
-            <IconButton
-              icon="close"
-              onPress={handleCloseVideo}
-              size="medium"
-              variant="default"
-              color="#FFF"
-            />
-          </View>
-
-          <View style={styles.videoContainer}>
-            {status === "loading" && (
-              <View style={styles.loadingContainer}>
-                <Text style={styles.loadingText}>Loading video...</Text>
-              </View>
-            )}
-            <VideoView
-              style={styles.video}
-              player={player}
-              fullscreenOptions={{ enable: true }}
-              allowsPictureInPicture
-              nativeControls
-              contentFit="contain"
-            />
-          </View>
-
-          <View style={styles.videoInfoModal}>
-            <Text style={styles.videoTitleModal}>{title}</Text>
-            <Text style={styles.videoSubtitleModal}>Rotary Youth Exchange</Text>
-          </View>
-        </View>
-      </Modal>
+      {isOpen ? (
+        <VideoModal
+          videoUrl={videoUrl}
+          title={title}
+          onClose={() => setIsOpen(false)}
+        />
+      ) : null}
     </>
   );
 });
+
+interface VideoModalProps {
+  videoUrl: string;
+  title: string;
+  onClose: () => void;
+}
+
+function VideoModal({ videoUrl, title, onClose }: VideoModalProps) {
+  const insets = useSafeAreaInsets();
+
+  const player = useVideoPlayer(videoUrl, (p) => {
+    p.loop = false;
+    p.play();
+  });
+
+  usePauseOnBackground(player);
+
+  const { status, error } = useEvent(player, "statusChange", {
+    status: player.status,
+    error: undefined,
+  });
+
+  const handleClose = () => {
+    try {
+      player.pause();
+    } catch {
+      // Player may already be released — safe to ignore.
+    }
+    onClose();
+  };
+
+  const handleRetry = () => {
+    try {
+      player.replace(videoUrl);
+      player.play();
+    } catch {
+      // Best-effort retry.
+    }
+  };
+
+  return (
+    <Modal visible animationType="slide" presentationStyle="fullScreen" onRequestClose={handleClose}>
+      <View style={styles.videoModalContainer}>
+        <View style={[styles.videoModalHeader, { top: insets.top + 16 }]}>
+          <IconButton
+            icon="close"
+            onPress={handleClose}
+            size="medium"
+            variant="default"
+            color="#FFF"
+          />
+        </View>
+
+        <View style={styles.videoContainer}>
+          {status === "loading" ? (
+            <View style={styles.overlay}>
+              <Text style={styles.overlayText}>Video laden...</Text>
+            </View>
+          ) : null}
+
+          {status === "error" ? (
+            <View style={styles.overlay}>
+              <Ionicons name="alert-circle-outline" size={48} color="#FFF" />
+              <Text style={styles.overlayText}>Video kon niet worden geladen</Text>
+              {error?.message ? (
+                <Text style={styles.overlayDetail}>{error.message}</Text>
+              ) : null}
+              <Pressable style={styles.retryButton} onPress={handleRetry}>
+                <Text style={styles.retryText}>Opnieuw proberen</Text>
+              </Pressable>
+            </View>
+          ) : null}
+
+          <VideoView
+            style={styles.video}
+            player={player}
+            fullscreenOptions={{ enable: true }}
+            nativeControls
+            contentFit="contain"
+          />
+        </View>
+
+        <View style={styles.videoInfoModal}>
+          <Text style={styles.videoTitleModal}>{title}</Text>
+          <Text style={styles.videoSubtitleModal}>Rotary Youth Exchange</Text>
+        </View>
+      </View>
+    </Modal>
+  );
+}
 
 const styles = StyleSheet.create({
   videoCard: {
@@ -177,30 +177,6 @@ const styles = StyleSheet.create({
     height: 200,
     position: "relative",
     overflow: "hidden",
-  },
-  thumbnail: {
-    width: "100%",
-    height: "100%",
-  },
-  thumbnailLoading: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  loadingThumbnailText: {
-    marginTop: 8,
-    fontSize: 14,
-  },
-  thumbnailFallback: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  fallbackText: {
-    marginTop: 8,
-    fontSize: 16,
-    fontWeight: "600",
-    textAlign: "center",
   },
   playButtonOverlay: {
     position: "absolute",
@@ -237,9 +213,9 @@ const styles = StyleSheet.create({
     lineHeight: 20,
   },
 
-  // Video Modal
   videoModalContainer: {
     flex: 1,
+    backgroundColor: "#000",
   },
   videoModalHeader: {
     position: "absolute",
@@ -255,16 +231,42 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "70%",
   },
-  loadingContainer: {
+  overlay: {
     position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
     justifyContent: "center",
     alignItems: "center",
-    width: "100%",
-    height: "100%",
+    paddingHorizontal: 24,
+    zIndex: 5,
   },
-  loadingText: {
+  overlayText: {
     fontSize: 16,
     color: "#FFF",
+    marginTop: 8,
+    textAlign: "center",
+  },
+  overlayDetail: {
+    fontSize: 13,
+    color: "#CCC",
+    marginTop: 4,
+    textAlign: "center",
+  },
+  retryButton: {
+    marginTop: 16,
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    borderRadius: 8,
+    backgroundColor: "rgba(255, 255, 255, 0.15)",
+    borderWidth: StyleSheet.hairlineWidth,
+    borderColor: "rgba(255, 255, 255, 0.3)",
+  },
+  retryText: {
+    color: "#FFF",
+    fontSize: 14,
+    fontWeight: "600",
   },
   videoInfoModal: {
     padding: 20,

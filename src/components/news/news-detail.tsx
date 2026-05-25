@@ -1,10 +1,12 @@
 import { Image } from "expo-image";
 import { useVideoPlayer, VideoView } from "expo-video";
+import { useEvent } from "expo";
 import { Platform, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 
 import { Icon } from "@/components/ui/icon";
 import type { NewsItem, NewsTextBlock } from "@/features/news/types";
 import { useHaptics } from "@/hooks/use-haptics";
+import { usePauseOnBackground } from "@/hooks/use-pause-on-background";
 import type { ThemeColors } from "@/lib/theme/colors";
 import { spacing } from "@/lib/theme/spacing";
 import { useTheme } from "@/lib/theme/use-theme";
@@ -94,10 +96,28 @@ interface TextBlockViewProps {
   theme: ThemeColors;
 }
 
-function VideoBlock({ videoUrl }: { videoUrl: string }) {
+function VideoBlock({ videoUrl, theme }: { videoUrl: string; theme: ThemeColors }) {
   const player = useVideoPlayer(videoUrl, (p) => {
     p.loop = false;
   });
+
+  usePauseOnBackground(player);
+
+  const { status } = useEvent(player, "statusChange", {
+    status: player.status,
+  });
+
+  if (!videoUrl) return null;
+
+  if (status === "error") {
+    return (
+      <View style={[styles.videoContainer, styles.videoErrorContainer]}>
+        <Text style={[styles.videoErrorText, { color: theme.textSecondary }]}>
+          Video niet beschikbaar
+        </Text>
+      </View>
+    );
+  }
 
   return (
     <View style={styles.videoContainer}>
@@ -131,7 +151,7 @@ function TextBlockView({ block, theme }: TextBlockViewProps) {
             </View>
           ) : null}
 
-          {bodyItem.videoUrl ? <VideoBlock videoUrl={bodyItem.videoUrl} /> : null}
+          {bodyItem.videoUrl ? <VideoBlock videoUrl={bodyItem.videoUrl} theme={theme} /> : null}
         </View>
       ))}
     </View>
@@ -203,4 +223,12 @@ const styles = StyleSheet.create({
     backgroundColor: "#000",
   },
   video: { width: "100%", aspectRatio: 16 / 9 },
+  videoErrorContainer: {
+    aspectRatio: 16 / 9,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  videoErrorText: {
+    fontSize: 14,
+  },
 });

@@ -1,11 +1,14 @@
-import { useState, useCallback, useMemo } from "react";
-import { StyleSheet, View, Text, ScrollView, Pressable, Platform } from "react-native";
+import { useCallback, useMemo, useState } from "react";
+import { Platform, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Ionicons from "@react-native-vector-icons/ionicons";
-import { useAudioPlayer, useAudioPlayerStatus } from "expo-audio";
-import type { AudioStatus } from "expo-audio";
+import { useAudioPlayer, useAudioPlayerStatus, type AudioStatus } from "expo-audio";
 import * as Haptics from "expo-haptics";
+
+import { usePauseOnBackground } from "@/hooks/use-pause-on-background";
 import { useTheme } from "@/lib/theme/use-theme";
+import type { ThemeColors } from "@/lib/theme/colors";
+
 type Podcast = { title: string; description: string; url: string };
 
 const podcasts: Podcast[] = [
@@ -23,49 +26,141 @@ const podcasts: Podcast[] = [
   },
 ];
 
-// Helper function to format time in seconds to MM:SS
-const formatTime = (timeInSeconds: number): string => {
-  if (!timeInSeconds || timeInSeconds === 0) return "0:00";
-  const minutes = Math.floor(timeInSeconds / 60);
-  const seconds = Math.floor(timeInSeconds % 60);
-  return `${minutes}:${seconds.toString().padStart(2, "0")}`;
-};
+function formatTime(seconds: number): string {
+  if (!seconds || seconds <= 0) return "0:00";
+  const minutes = Math.floor(seconds / 60);
+  const remainder = Math.floor(seconds % 60);
+  return `${minutes}:${remainder.toString().padStart(2, "0")}`;
+}
+
+export default function PodcastPromo() {
+  const theme = useTheme();
+  const [playingIndex, setPlayingIndex] = useState<number | null>(null);
+
+  const activeUrl = playingIndex !== null ? podcasts[playingIndex].url : null;
+  const player = useAudioPlayer(activeUrl);
+  const status = useAudioPlayerStatus(player);
+
+  usePauseOnBackground(player);
+
+  const handlePodcastPress = useCallback(
+    async (index: number) => {
+      try {
+        await Haptics.selectionAsync();
+      } catch {
+        // Haptics may fail on simulator — non-fatal.
+      }
+
+      if (playingIndex === index) {
+        if (status.playing) {
+          player.pause();
+        } else {
+          if (status.didJustFinish) {
+            try {
+              await player.seekTo(0);
+            } catch {
+              // Best-effort rewind.
+            }
+          }
+          player.play();
+        }
+        return;
+      }
+
+      setPlayingIndex(index);
+      // Source change triggers useAudioPlayer to reload; play after a microtask
+      // so the new source is in flight before play() is invoked.
+      queueMicrotask(() => {
+        try {
+          player.play();
+        } catch {
+          // Player may not yet have the new source attached — ignored.
+        }
+      });
+    },
+    [playingIndex, status.playing, status.didJustFinish, player],
+  );
+
+  const handleRetry = useCallback(() => {
+    if (playingIndex === null) return;
+    try {
+      player.replace(podcasts[playingIndex].url);
+      player.play();
+    } catch {
+      // Best-effort retry.
+    }
+  }, [playingIndex, player]);
+
+  return (
+    <SafeAreaView
+      style={[styles.safeArea, { backgroundColor: theme.background }]}
+      edges={["bottom"]}
+    >
+      <ScrollView
+        contentContainerStyle={[styles.container, { backgroundColor: theme.background }]}
+      >
+        <View style={[styles.headerSection, { backgroundColor: theme.card }]}>
+          <View style={[styles.headerIcon, { backgroundColor: `${theme.primary}15` }]}>
+            <Ionicons name="headset-outline" size={32} color={theme.primary} />
+          </View>
+          <Text style={[styles.headerTitle, { color: theme.text }]}>Promo Podcast</Text>
+          <Text style={[styles.headerSubtitle, { color: theme.textSecondary }]}>
+            Hoe is het nou om een paar maanden ouders te zijn van een exchange student? Luister naar
+            de ervaringen van gastouders.
+          </Text>
+        </View>
+
+        {podcasts.map((podcast, index) => (
+          <PodcastRow
+            key={podcast.url}
+            podcast={podcast}
+            index={index}
+            isActive={playingIndex === index}
+            status={status}
+            theme={theme}
+            onPress={handlePodcastPress}
+            onRetry={handleRetry}
+          />
+        ))}
+
+        <View style={{ height: 40 }} />
+      </ScrollView>
+    </SafeAreaView>
+  );
+}
 
 interface PodcastRowProps {
-  index: number;
   podcast: Podcast;
+  index: number;
   isActive: boolean;
-  onPress: (index: number) => Promise<void>;
   status: AudioStatus;
-  styles: any;
-  themeColors: any;
+  theme: ThemeColors;
+  onPress: (index: number) => Promise<void>;
+  onRetry: () => void;
 }
 
 function PodcastRow({
-  index,
   podcast,
+  index,
   isActive,
-  onPress,
   status,
-  styles,
-  themeColors,
+  theme,
+  onPress,
+  onRetry,
 }: PodcastRowProps) {
-  const handlePress = useCallback(async () => {
-    try {
-      await Haptics.selectionAsync();
-      await onPress(index);
-    } catch (error) {
-      console.warn("Playback toggle error:", error);
-    }
+  const handlePress = useCallback(() => {
+    onPress(index).catch((error) => {
+      console.warn("[podcast] playback toggle failed", error);
+    });
   }, [index, onPress]);
 
-  // Compute derived state using useMemo for better performance
-  const playbackState = useMemo(() => {
+  const playback = useMemo(() => {
     if (!isActive) {
       return {
         isPlaying: false,
         isBuffering: false,
         isLoaded: false,
+        hasError: false,
         currentTime: 0,
         duration: 0,
         progress: 0,
@@ -75,13 +170,22 @@ function PodcastRow({
       };
     }
 
-    const { playing, isBuffering, isLoaded, currentTime, duration } = status;
-    const progress = duration > 0 ? (currentTime / duration) * 100 : 0;
+    const { playing, isBuffering, isLoaded, currentTime, duration, reasonForWaitingToPlay } =
+      status;
+    const safeDuration = duration ?? 0;
+    const safeCurrent = currentTime ?? 0;
+    const progress = safeDuration > 0 ? (safeCurrent / safeDuration) * 100 : 0;
+    const hasError =
+      reasonForWaitingToPlay === "noItemToPlay" ||
+      reasonForWaitingToPlay === "evaluatingBufferingRate";
 
-    let buttonIcon: "play" | "pause" | "reload-outline" = "play";
+    let buttonIcon: "play" | "pause" | "reload-outline" | "alert-circle-outline" = "play";
     let statusMessage = "";
 
-    if (isBuffering) {
+    if (hasError && !isLoaded) {
+      buttonIcon = "alert-circle-outline";
+      statusMessage = "Podcast kon niet worden geladen";
+    } else if (isBuffering) {
       buttonIcon = "reload-outline";
       statusMessage = "Buffering...";
     } else if (!isLoaded) {
@@ -94,11 +198,12 @@ function PodcastRow({
       isPlaying: playing,
       isBuffering,
       isLoaded,
-      currentTime: currentTime || 0,
-      duration: duration || 0,
+      hasError,
+      currentTime: safeCurrent,
+      duration: safeDuration,
       progress,
       buttonIcon,
-      showProgress: isLoaded && duration > 0,
+      showProgress: isLoaded && safeDuration > 0,
       statusMessage,
     };
   }, [isActive, status]);
@@ -108,15 +213,15 @@ function PodcastRow({
       style={({ pressed }) => [
         styles.podcastCard,
         {
-          backgroundColor: themeColors.card,
-          borderColor: themeColors.border,
-          shadowColor: themeColors.shadow,
+          backgroundColor: theme.card,
+          borderColor: theme.border,
+          shadowColor: theme.shadow,
         },
-        isActive && !playbackState.isLoaded && styles.podcastCardLoading,
+        isActive && !playback.isLoaded && !playback.hasError && styles.podcastCardLoading,
         pressed && styles.podcastCardPressed,
       ]}
       onPress={handlePress}
-      disabled={isActive && !playbackState.isLoaded}
+      disabled={isActive && !playback.isLoaded && !playback.hasError}
       accessibilityRole="button"
       accessibilityLabel={`Play ${podcast.title}`}
     >
@@ -124,148 +229,86 @@ function PodcastRow({
         <View
           style={[
             styles.playButton,
-            { backgroundColor: `${themeColors.primary}15` },
-            playbackState.isBuffering && styles.playButtonBuffering,
+            { backgroundColor: `${theme.primary}15` },
+            playback.isBuffering && styles.playButtonBuffering,
           ]}
         >
           <Ionicons
-            name={playbackState.buttonIcon}
+            name={playback.buttonIcon}
             size={24}
             color={
-              isActive && !playbackState.isLoaded ? themeColors.textTertiary : themeColors.primary
+              playback.hasError
+                ? theme.error
+                : isActive && !playback.isLoaded
+                  ? theme.textTertiary
+                  : theme.primary
             }
           />
         </View>
 
         <View style={styles.podcastInfo}>
-          <Text style={[styles.podcastTitle, { color: themeColors.text }]} numberOfLines={2}>
+          <Text style={[styles.podcastTitle, { color: theme.text }]} numberOfLines={2}>
             {podcast.title}
           </Text>
           <Text
-            style={[styles.podcastDescription, { color: themeColors.textSecondary }]}
+            style={[styles.podcastDescription, { color: theme.textSecondary }]}
             numberOfLines={3}
           >
             {podcast.description}
           </Text>
 
-          {isActive && (
+          {isActive ? (
             <>
-              {/* Status indicator */}
-              {playbackState.statusMessage && (
-                <Text style={[styles.statusText, { color: themeColors.primary }]}>
-                  {playbackState.statusMessage}
+              {playback.statusMessage ? (
+                <Text
+                  style={[
+                    styles.statusText,
+                    { color: playback.hasError ? theme.error : theme.primary },
+                  ]}
+                >
+                  {playback.statusMessage}
                 </Text>
-              )}
+              ) : null}
 
-              {/* Progress bar */}
-              {playbackState.showProgress && (
+              {playback.hasError ? (
+                <Pressable
+                  style={[styles.retryButton, { borderColor: theme.error }]}
+                  onPress={onRetry}
+                  accessibilityRole="button"
+                  accessibilityLabel="Opnieuw proberen"
+                >
+                  <Text style={[styles.retryText, { color: theme.error }]}>Opnieuw proberen</Text>
+                </Pressable>
+              ) : null}
+
+              {playback.showProgress ? (
                 <>
-                  <View style={[styles.progressBar, { backgroundColor: themeColors.border }]}>
+                  <View style={[styles.progressBar, { backgroundColor: theme.border }]}>
                     <View
                       style={[
                         styles.progressFill,
                         {
-                          backgroundColor: themeColors.primary,
-                          width: `${playbackState.progress}%`,
+                          backgroundColor: theme.primary,
+                          width: `${playback.progress}%`,
                         },
                       ]}
                     />
                   </View>
                   <View style={styles.timeInfo}>
-                    <Text style={[styles.timeText, { color: themeColors.textSecondary }]}>
-                      {formatTime(playbackState.currentTime)}
+                    <Text style={[styles.timeText, { color: theme.textSecondary }]}>
+                      {formatTime(playback.currentTime)}
                     </Text>
-                    <Text style={[styles.timeText, { color: themeColors.textSecondary }]}>
-                      {formatTime(playbackState.duration)}
+                    <Text style={[styles.timeText, { color: theme.textSecondary }]}>
+                      {formatTime(playback.duration)}
                     </Text>
                   </View>
                 </>
-              )}
+              ) : null}
             </>
-          )}
+          ) : null}
         </View>
       </View>
     </Pressable>
-  );
-}
-
-export default function PodcastPromo() {
-  const themeColors = useTheme();
-
-  const [playingIndex, setPlayingIndex] = useState<number | null>(null);
-
-  // Use default configuration to avoid simulator audio issues
-  const player = useAudioPlayer(null);
-  const status = useAudioPlayerStatus(player);
-
-  // No audio configuration - let expo-audio use defaults to avoid simulator issues
-
-  // Remove app state handling that may interfere with simulator audio
-  // Let the system handle audio lifecycle naturally
-
-  const handlePodcastPress = useCallback(
-    async (index: number) => {
-      if (playingIndex === index) {
-        // Toggle play/pause for current podcast
-        if (status.playing) {
-          player.pause();
-        } else {
-          // Handle replay from end
-          if (status.didJustFinish) {
-            await player.seekTo(0);
-          }
-          player.play();
-        }
-      } else {
-        // Switch to new podcast
-        const podcast = podcasts[index];
-        setPlayingIndex(index);
-
-        // Basic replace and play as per Expo Audio documentation
-        player.replace(podcast.url);
-        player.play();
-      }
-    },
-    [playingIndex, status.playing, status.didJustFinish, player],
-  );
-
-  return (
-    <SafeAreaView
-      style={[styles.safeArea, { backgroundColor: themeColors.background }]}
-      edges={["bottom"]}
-    >
-      <ScrollView
-        contentContainerStyle={[styles.container, { backgroundColor: themeColors.background }]}
-      >
-        {/* Header */}
-        <View style={[styles.headerSection, { backgroundColor: themeColors.card }]}>
-          <View style={[styles.headerIcon, { backgroundColor: `${themeColors.primary}15` }]}>
-            <Ionicons name="headset-outline" size={32} color={themeColors.primary} />
-          </View>
-          <Text style={[styles.headerTitle, { color: themeColors.text }]}>Promo Podcast</Text>
-          <Text style={[styles.headerSubtitle, { color: themeColors.textSecondary }]}>
-            Hoe is het nou om een paar maanden ouders te zijn van een exchange student? Luister naar
-            de ervaringen van gastouders.
-          </Text>
-        </View>
-
-        {/* Podcast List */}
-        {podcasts.map((podcast, index) => (
-          <PodcastRow
-            key={podcast.url}
-            index={index}
-            podcast={podcast}
-            isActive={playingIndex === index}
-            onPress={handlePodcastPress}
-            status={status}
-            styles={styles}
-            themeColors={themeColors}
-          />
-        ))}
-
-        <View style={{ height: 40 }} />
-      </ScrollView>
-    </SafeAreaView>
   );
 }
 
@@ -285,7 +328,6 @@ const styles = StyleSheet.create({
     padding: 16,
     paddingBottom: 40,
   },
-  // Header Styles
   headerSection: {
     borderRadius: 16,
     padding: 20,
@@ -316,7 +358,6 @@ const styles = StyleSheet.create({
     textAlign: "center",
     paddingHorizontal: 10,
   },
-  // Podcast Card Styles
   podcastCard: {
     borderRadius: 16,
     marginBottom: 12,
@@ -384,5 +425,17 @@ const styles = StyleSheet.create({
     fontWeight: "500",
     marginBottom: 8,
     fontStyle: "italic",
+  },
+  retryButton: {
+    alignSelf: "flex-start",
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    borderRadius: 8,
+    borderWidth: StyleSheet.hairlineWidth,
+    marginBottom: 8,
+  },
+  retryText: {
+    fontSize: 13,
+    fontWeight: "600",
   },
 });

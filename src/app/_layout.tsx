@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { DarkTheme, DefaultTheme, Stack, ThemeProvider } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { NavigationBar } from "expo-navigation-bar";
@@ -5,10 +6,17 @@ import { Platform } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 import { useColorScheme } from "@/hooks/use-color-scheme";
+import { ensureAudioSession } from "@/lib/media/audio-session";
 
 export default function RootLayout() {
   const scheme = useColorScheme();
   const isDark = scheme === "dark";
+
+  useEffect(() => {
+    ensureAudioSession().catch((error) => {
+      console.warn("[audio-session] init failed", error);
+    });
+  }, []);
 
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
