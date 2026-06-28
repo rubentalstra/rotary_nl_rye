@@ -13,6 +13,7 @@ export default function HomeScreen() {
 
   const carouselImages = useMemo(
     () => [
+      require("@/assets/home/carousel/informatie-ochtend-19-september-2026.jpg"),
       require("@/assets/home/carousel/outbound-25-26-group.jpeg"),
       require("@/assets/home/carousel/inbounds-with-flags.jpeg"),
       require("@/assets/home/carousel/inbound-andre-schiphol.jpeg"),
