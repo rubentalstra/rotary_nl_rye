@@ -61,7 +61,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   description:
     'The official app for Rotary Youth Exchange Netherlands, providing resources, information, and support for exchange students, families, and Rotary clubs.',
   owner: 'rotary-nederland',
-  version: '13.0.3',
+  version: '13.0.4',
   scheme: 'rotaryyepnl',
   userInterfaceStyle: 'automatic',
   githubUrl: 'https://github.com/rubentalstra/rotary_nl_rye',

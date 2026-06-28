@@ -4,6 +4,13 @@ dedupePeerDependents: true
 allowBuilds:
   msgpackr-extract: true
   unrs-resolver: true
+overrides:
+  ws@7: '^7.5.11'
+  ws@8: '^8.21.0'
+  js-yaml@4: '^4.2.0'
+  uuid@7: '^11.1.1'
+  '@babel/core@<7.29.1': '^7.29.1'
+  '@expo/metro-runtime': '~56.0.15'
 minimumReleaseAgeExclude:
   - '@expo/cli@56.1.11'
   - '@expo/config-plugins@56.0.8'
