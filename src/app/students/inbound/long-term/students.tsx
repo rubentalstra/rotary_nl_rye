@@ -15,7 +15,7 @@ export default function InboundStudentsScreen() {
     navigation.setOptions({
       headerTitle: () => (
         <View style={styles.headerTitleContainer}>
-          <Text style={[styles.headerTitle, { color: colors.text }]}>Class of 2025-26</Text>
+          <Text style={[styles.headerTitle, { color: colors.text }]}>Class of 2026-27</Text>
           <Text style={[styles.headerSubtitle, { color: colors.textSecondary }]}>
             {totalCount} students · {countryGroups.length} countries
           </Text>

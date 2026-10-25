@@ -1,4 +1,4 @@
-import { Image } from "expo-image";
+import { Image, type ImageProps } from "expo-image";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   Animated,
@@ -6,12 +6,11 @@ import {
   Platform,
   StyleSheet,
   View,
-  type ImageSourcePropType,
   type LayoutChangeEvent,
 } from "react-native";
 
 interface ImageCarouselProps {
-  images: ImageSourcePropType[];
+  images: ImageProps["source"][];
   autoPlayInterval?: number;
 }
 

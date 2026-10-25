@@ -1,5 +1,5 @@
 /**
- * Inbound students data (Class of 2025-2026)
+ * Inbound students data (Class of 2026-2027)
  * Students coming TO the Netherlands
  */
 
@@ -13,264 +13,219 @@ type InboundStudentData = Omit<Student, "id" | "type">;
 
 const inboundStudentData: InboundStudentData[] = [
   {
-    name: "Alejandra Lopez Avilla",
-    bio: "Ik ben Alejandra López Avila en ik kom uit Tucumán, Argentinië. Ik ben 16 jaar oud en ik woon in een klein stadje genaamd Spanbroek. Ik heb niet veel hobby's, maar ik ben begonnen met tennissen toen ik hier aankwam.\n\nI was inspired by my older siblings to join the Rotary Youth Exchange. I wanted to learn another culture and language, it's a way to open your mind and connect with the world. It's definitely a once in a lifetime experience that I get to live.\n\nI hope that by the end of the year I grow up and mature as a person, also learn how to speak fluent dutch and integrate to the culture.",
+    name: "Abril Giuliano",
+    bio: "Hallo, ik ben Abril Giuliano. Ik ben 16 jaar en kom uit Argentinië. Ik woon momenteel in Enschede.\n\nIk heb ervoor gekozen om op uitwisseling te gaan om mensen van over de hele wereld te leren kennen en nieuwe culturen en talen te ontdekken.\n\nIk vind het erg leuk om te hockeyen, te sporten in het algemeen en tijd door te brengen met mijn vrienden.\n\nIk ben heel dankbaar dat ik de kans heb gekregen om deze ervaring mee te maken en een nieuw land en een nieuwe cultuur te leren kennen.\n\nIk hoop dat dit jaar in Nederland onvergetelijk wordt en dat ik vriendschappen voor het leven zal opbouwen.",
     imageUrl:
-      "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/inbound/long-term/25-26/alejandra-lopez-avilla.jpg",
+      "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/inbound/long-term/26-27/abril-giuliano.png",
     homeCountryCode: "ar",
     hostCountryCode: "nl",
-    year: "2025-2026",
+    year: "2026-2027",
   },
   {
-    name: "Alma Agoston",
-    bio: "Ik ben Alma, ik ben 17 jaar en ik kom uit Italië, uit Verona. Ik hou van dansen en piano spelen.\n\nI decided to do an exchange year because I believe that this is an opportunity that can change your life. By travelling you get to know so much more about the world, about new cultures, about new people and yourself too.\n\nI really hope that by the end of the year I'll be very sad to go back home, and that might sound weird, but that means that I've had tons of fun here in the Netherlands, and which I'm already having after two months.",
+    name: "Agustina Pavez",
+    bio: "Hallo! Mijn naam is Agustina pavez, ik ben 17 jaar oud, ik kom uit Chili en ik ben in het uitwisselingsjaar 2026-2027 in Nederlands!!\n\nIk heb ervoor gekozen om op uitwisseling te gaan omdat ik het een interessante uitdaging vond die mij zou helpen om mezelf verder te ontwikkelen als persoon. Ik wilde graag uit mijn comfortzone stappen, nieuwe mensen ontmoeten en een andere cultuur leren kennen.\n\nIn mijn vrije tijd doe ik graag aan sport. Mijn favoriete sport is handbal en ik vind het leuk om actief bezig te zijn. Daarnaast hou ik ervan om uit te gaan, sociaal te zijn en tijd door te brengen met mijn familie en vrienden. Ik vind het ook leuk om nieuwe dingen te proberen en nieuwe mensen te leren kennen.\n\nIk ben erg blij en dankbaar dat ik deze bijzondere ervaring in Nederland mag meemaken. Ik heb hier al veel mooie momenten beleefd en ik hoop nog veel meer herinneringen te maken, nieuwe vrienden te leren kennen en veel te leren over de Nederlandse cultuur.\n\nIk wil eigenlijk helemaal niet dat mijn uitwisselingsjaar eindigt, omdat ik nu al weet dat ik deze ervaring en alle mensen die ik hier heb leren kennen heel erg ga missen.\n\nIk hoop dat mijn uitwisselingsjaar een mooie, bijzondere en onvergetelijke ervaring wordt!",
     imageUrl:
-      "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/inbound/long-term/25-26/alma-agoston.jpg",
-    homeCountryCode: "it",
-    hostCountryCode: "nl",
-    year: "2025-2026",
-  },
-  {
-    name: "Alois Meunier",
-    bio: "Ik ben Aloïs Meunier. Ik koom uit Frankrijk. Ik ben 17 jaar oud. Mijn hobbies zijn: muziek luisteren, singen en triathlon.\n\nI joined this exchange because my professionnal project is to become a mathematics teacher in the university here in Netherlands.\n\nI expect to be fluent in Dutch and to know in which university I want to go in Netherlands.",
-    imageUrl:
-      "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/inbound/long-term/25-26/alois-meunier.jpg",
-    homeCountryCode: "fr",
-    hostCountryCode: "nl",
-    year: "2025-2026",
-  },
-  {
-    name: "Andre Moreno",
-    bio: "Ik ben André Moreno, Ik ben 16 jaar oud en ik kom uit Brazilië en in Nederland ik woon in Gemert, Ik speel basketbal.\n\nI join in the exchange for to learn a new culture and a new language.\n\nI expect a nice year with a lot of new experiences.",
-    imageUrl:
-      "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/inbound/long-term/25-26/andre-moreno.jpg",
-    homeCountryCode: "br",
-    hostCountryCode: "nl",
-    year: "2025-2026",
-  },
-  {
-    name: "Angelica Manetti",
-    bio: "Ik ben Angelica Manetti, ik kom uit Italië, ik ben zeventien jaar oud en mijn hobby's zijn koken en volleybal.\n\nWhy did you join this exchange?\nI decided to take part in this exchange program to discover new cultures and traditions, but above all for personal growth—to push myself out of my comfort zone and prove to myself that I can do it. Before leaving, I knew it would be very difficult, but I also knew I could handle it, and I still believe that now, because opportunities like this aren't available to everyone.\n\nWhat you expect to be at the end of the year.\nBy the end of the year, I expect to have learned English very well—and, above all, to be able to speak Dutch well. I also expect to leave the Netherlands feeling nostalgic for the friends I've made during the year, especially the other exchange students. I hope to have learned what it really means to be away for a year from my friends and from the things we hold dearest.",
-    imageUrl:
-      "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/inbound/long-term/25-26/angelica-manetti.jpg",
-    homeCountryCode: "it",
-    hostCountryCode: "nl",
-    year: "2025-2026",
-  },
-  {
-    name: "Anna Julia Lima",
-    bio: "Ik ben Anna en ik kom uit Brazilië. Ik ben zestien jaar oud en ik woon nu in Nederland voor mijn uitwisseling. Ik vind het leuk om nieuwe mensen te leren kennen en meer over de Nederlandse cultuur te ontdekken. In mijn vrije tijd maak ik graag foto's, reis ik naar nieuwe plekken en hou ik van mode. Ook luister ik graag naar muziek en breng ik tijd door met mijn vrienden.\n\nIk doe mee aan dit uitwisselingsprogramma omdat ik een nieuwe cultuur wil leren kennen, mijn Engels wil verbeteren en Nederlands wil leren spreken. Ik wil ook zelfstandiger worden en mensen uit verschillende landen ontmoeten. Aan het einde van het jaar verwacht ik dat ik veel over mezelf heb geleerd, mooie herinneringen heb gemaakt, beter Nederlands kan spreken en meer zelfvertrouwen heb gekregen.",
-    imageUrl:
-      "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/inbound/long-term/25-26/anna-julia-lima.jpg",
-    homeCountryCode: "br",
-    hostCountryCode: "nl",
-    year: "2025-2026",
-  },
-  {
-    name: "Aranzazu Urruti",
-    bio: "Mijn naam is Zazu. Ik kom uit Argentinië. Ik ben 17 jaar oud. Ik hou van paardrijden en tennissen.\n\nIt's something I've always wanted to do, I am always interested in learning about other cultures.\n\nBecome a more confident, more dependent person and have overcome fears.",
-    imageUrl:
-      "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/inbound/long-term/25-26/aranzazu-urruti.jpg",
-    homeCountryCode: "ar",
-    hostCountryCode: "nl",
-    year: "2025-2026",
-  },
-  {
-    name: "Augusto Ziulkoski Gehlen",
-    bio: "Hoi!! Ik ben Guto, ik ben 17 jaar oud en ik kom uit het zuiden van Brazilië. Ik woon nu in Epe. Mijn hobby's zijn koken, volleybal spelen, atletiek en mountainbiking. Ik wilde de uitwisseling graag doen, omdat ik van nieuwe culturen kan leren en van reizen houd. Aan het einde van het uitwisselingsjaar hoop ik Nederlands te kunnen spreken, leuke nieuwe mensen hebben ontmoet en een zelfstandiger persoon te zijn.",
-    imageUrl:
-      "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/inbound/long-term/25-26/augusto-ziulkoski-gehlen.jpg",
-    homeCountryCode: "br",
-    hostCountryCode: "nl",
-    year: "2025-2026",
-  },
-  {
-    name: "Bautistia Fidalgo",
-    bio: "Hallo, ik ben Bautista fidalgo, ik kom uit Argentinië en ik ben 18 jaar oud, ik ben erg blij dat ik de kans krijg om een uitwisseling naar Nederland te doen, het is een prachtig land met een heel andere cultuur.\n\nDe reden voor deze uitwisseling was om uit mijn comfortzone te komen en kansen te krijgen om hier te studeren en de taal te leren.\n\nIk hou van bergbeklimmen, muziek luisteren, sky, surfen en ik hou van vliegtuigen.\n\nIk mis mijn vrienden en familie uit Argentinië heel erg, maar ik ontmoet mooie mensen en maak banden waarvan ik denk dat ze voor altijd zullen zijn\n\nTegen het einde van dit jaar hoop ik veel landen te zien en lekker te eten.",
-    imageUrl:
-      "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/inbound/long-term/25-26/bautistia-fidalgo.jpg",
-    homeCountryCode: "ar",
-    hostCountryCode: "nl",
-    year: "2025-2026",
-  },
-  {
-    name: "Caitlyn Bonass",
-    bio: "Ik heet Caitlyn Bonass! Ik kom uit Missouri, Verenigde Staten. Ik ben achttien jaar. Ik speel volleybal, ik haak en ik zit bij scouting.\n\nI learned about RYE through a RYLA camp in Oklahoma and knew I wanted to go on exchange after meeting the students there from around the world. I'm really excited to be in the Netherlands and can't wait to learn all about the culture and language here! I want to make a difference in the world and there is no better way to try than to understand what you want to change!\n\nI love the opportunity to improve myself and learn through experience. I want to leave a long lasting impression on the people I meet and prove that an open mind and a determination to learn can take you anywhere!",
-    imageUrl:
-      "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/inbound/long-term/25-26/caitlyn-bonass.jpg",
-    homeCountryCode: "us",
-    hostCountryCode: "nl",
-    year: "2025-2026",
-  },
-  {
-    name: "Camilla Purnomo",
-    bio: "Hallo! Mijn naam is Camilla Putri Purnomo. Ik kom uit Indonesië, uit Semarang, een stad in Centraal Java met ongeveer drie miljoen inwoners. Ik ben zestien jaar oud, en ik word zeventien op elf november. In mijn vrije tijd kook ik graag en speel ik badminton. Mijn lievelingseten hier in Nederland is op dit moment kapsalon!\n\nI joined this exchange to learn more about the Netherlands and its culture. Even though the Dutch and Indonesia share a complex history, I want to promote peace and understanding between our countries. I also hope to build many meaningful connections, new families and friends, and to experience life from a completely different perspective.\n\nBy the end of the year, I hope to speak Dutch fluently and earn a Dutch language certificate. I also wish to discover a new version of myself, one that has grown through the challenges and differences between Indonesia and the Netherlands. Most of all, I hope to create beautiful and everlasting memories during my exchange year.",
-    imageUrl:
-      "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/inbound/long-term/25-26/camilla-purnomo.jpg",
-    homeCountryCode: "id",
-    hostCountryCode: "nl",
-    year: "2025-2026",
-  },
-  {
-    name: "Chelsea Armstrong",
-    bio: "Ik ben Chelsea Armstrong. Ik kom uit Canada. Ik ben zestien jaar oud. Ik speel piano, en ik hou van kunst, lezen, wandelen, en in de natuur zijn.\n\nI first learned about the rotary youth exchange because my step brother went on an exchange to Switzerland. I decided to go on an exchange as well because I thought it was a really great opportunity to meet people from all over the world, learn a new language and experience being immersed in a new culture, and just to be able to try new things and step outside my comfort zone.\n\nAt the end of the year I hope I am able to speak Dutch, and I also hope that I will have made lots of amazing memories! I want to make lasting connections with all kinds of different people, and I already know that by the end of the year I will not want to leave all the people I will have met! I will have lived a completely different life, and a part of me will always be in the Netherlands.",
-    imageUrl:
-      "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/inbound/long-term/25-26/chelsea-armstrong.jpg",
-    homeCountryCode: "ca",
-    hostCountryCode: "nl",
-    year: "2025-2026",
-  },
-  {
-    name: "Cristina de Palma",
-    bio: "Ik ben Cristina, ik kom uit Italië, ik ben zeventien jaar oud en ik hou van lezen, koken en boksen.",
-    imageUrl:
-      "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/inbound/long-term/25-26/cristina-de-palma.jpg",
-    homeCountryCode: "it",
-    hostCountryCode: "nl",
-    year: "2025-2026",
-  },
-  {
-    name: "Dante Peruzzo",
-    bio: "Hallo! Ik ben Dante Peruzzo! Ik kom uit Argentinië. Ik ben 15 jaar. Ik vind kunst en gim leuke.\n\nI joined the exchange because my sister made two exchanges before, and she had a really good time, so I wanted to have a great time too.\n\nMy objective for the exange is to be a more sociable person, learn Dutch, make many friends and learn about the Dutch culture.",
-    imageUrl:
-      "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/inbound/long-term/25-26/dante-peruzzo.jpg",
-    homeCountryCode: "ar",
-    hostCountryCode: "nl",
-    year: "2025-2026",
-  },
-  {
-    name: "Decker Gilette",
-    bio: "Hallo! Ik ben Decker. Ik ben 17 en ik kom uit California in de Verenigde Staten. Ik speel graag tennis en athletics. I chose to join the exchange in order to see the world from a new perspective and make life-long friends. I expect to be able to hold conversations in Dutch and understand more complex words. I also expect to have made a new family on the other side of the world.",
-    imageUrl:
-      "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/inbound/long-term/25-26/decker-gilette.jpg",
-    homeCountryCode: "us",
-    hostCountryCode: "nl",
-    year: "2025-2026",
-  },
-  {
-    name: "Ellie Fiano",
-    bio: "Hoi hoi! Ik ben Ellie Fiano en ik ben zeventien. Ik kom uit America van een kleine staat heet Leavenworth in Washington State. Ik woon nu in Dronrijp in Friesland en het is een echt mooi dorp. Mijn hobby's zijn dans (ballet, jazz, en contemporary), piano, en schrijven!\n\nI joined the Rotary Exchange Program because I wanted to explore a place different than my hometown. Leavenworth is a very small place to live where everyone knows everyone and while it is a beautiful place, I wanted to be surrounded with something new. At the end of the year, I hope to have achieved at least B2 proficiency in Dutch and have made connections that I can return to here in the Netherlands. I wish to have grown as a person and feel more comfortable outside of my comfort zone, which I have already started to achieve!",
-    imageUrl:
-      "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/inbound/long-term/25-26/ellie-fiano.jpg",
-    homeCountryCode: "us",
-    hostCountryCode: "nl",
-    year: "2025-2026",
-  },
-  {
-    name: "Gabriela Nadalini",
-    bio: "Ik ben Gabriela, ik ben zeventien jaar oud en ik woon nu in Oudenbosch en Etten-Leur. Ik speel tennis en lees graag boeken. I wanted to do an exchange year because I think it's a once in a lifetime opportunity, and I've always wanted to travel and know more cultures. By the end of the year I expect to know how to speak Dutch and to have had the best year ever.",
-    imageUrl:
-      "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/inbound/long-term/25-26/gabriela-nadalini.jpg",
-    homeCountryCode: "br",
-    hostCountryCode: "nl",
-    year: "2025-2026",
-  },
-  {
-    name: "Jonah Favaro",
-    bio: "Hoi, ik ben Jonah. Ik kom uit Idaho in de Verenigde Staten. Ik ben zestien jaar oud, en mijn hobby's zijn vintage winkelen en sporten. I joined the rotary youth exchange program for a couple of different reasons. My best friend made rotary youth exchange seem like something that could change a person's life, and I was interested in a change. She was very inspirational, and pushed me into making a choice I didn't even know I could make. Now that I'm on exchange, I also can realize that I joined to give that same change to everyone I could. Either that be through putting a good image on rotary itself, helping in my host community, or even just talking about it to anyone I know. I hope to embark on this exchange with this idea in mind until my exchange ends, and possibly even after. So, by the end of this year, I hope that I can proudly say that this year I was a good ambassador to my country, made the most of my exchange as possible, and integrated as much as possible into my host culture. I not only want to say it, but I would also like to show it, through the friends ive made and families I've stayed with and through what I've learned within ten months.",
-    imageUrl:
-      "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/inbound/long-term/25-26/jonah-favaro.jpg",
-    homeCountryCode: "us",
-    hostCountryCode: "nl",
-    year: "2025-2026",
-  },
-  {
-    name: "Joshua Bolke",
-    bio: "Hallo ik ben Josh, ik heb 16 jaar en ik kom uit New York. Mijn hobbies zijn hardlopen een fietsen. I joined this exchange to be able to able to step outside my comfort zone and experience new things. I hope to be able to grow as a person developing new skills and improving my language capabilities.",
-    imageUrl:
-      "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/inbound/long-term/25-26/joshua-bolke.jpg",
-    homeCountryCode: "us",
-    hostCountryCode: "nl",
-    year: "2025-2026",
-  },
-  {
-    name: "Juan Agreda",
-    bio: "Hallo allemaal, mijn naam is Juan Manuel Agreda Alván. Ik kom uit Peru, ik ben 17 jaar oud en ik hou erg van sporten, vooral van competitieve sporten zoals volleybal en voetbal. Ik dans ook een traditionele dans uit mijn land, de Marinera.\n\nWaarom heb je meegedaan aan het uitwisselingsprogramma?\n\nOmdat ik meer plekken wilde zien. Ik heb ook een droom: 1.000.000 mensen helpen, en dankzij deze fantastische uitwisseling zal ik veel leren, zodat ik veel mensen in Peru kan helpen.\n\nWat hoop je tegen het einde van het jaar bereikt te hebben?\n\nTegen het einde van het jaar wil ik een compleet ander persoon zijn, volwassener zijn en mensen veel sneller kunnen helpen dan ik nu doe. Ik heb ook geleerd dat elke prestatie een heel, heel moeilijk pad kent, zoals niet bij je ouders en familie kunnen zijn, of niet bij je vrienden kunnen zijn. Maar de rest is er, en ik, net als iedereen bij Rotary, ben klaar om deze uitdaging aan te gaan.",
-    imageUrl:
-      "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/inbound/long-term/25-26/juan-agreda.jpg",
-    homeCountryCode: "pe",
-    hostCountryCode: "nl",
-    year: "2025-2026",
-  },
-  {
-    name: "Justine Overbeck Chilcoat",
-    bio: "Ik ben Justine. Ik kom uit de United States, uit California. Ik ben Achttien. Mijn hobby's zijn kust, zingen, zwemmen, en lezen.\n\nWhy did you join this exchange? - I did this exchange because I really wanted to push myself out of my comfort zone, to experience something entirely new, and to also explore a new culture and learn a new language. The majority of my family has also gone on exchange and have been a part of rotary and hearing their stories also inspired me to do this.\n\nWhat do you expect to be at the end of the year? - At the end of this I definitely expect to be a bit of a new person. To be more independent, hopefully a little more outgoing, and of course to at least be able to speak the Dutch language at a beginner level. I also expect to have some great families and friends at the end of the year that I can always come back and see.",
-    imageUrl:
-      "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/inbound/long-term/25-26/justine-overbeck-chilcoat.jpg",
-    homeCountryCode: "us",
-    hostCountryCode: "nl",
-    year: "2025-2026",
-  },
-  {
-    name: "Kaera Yata",
-    bio: "Hi!!! I'm Kaera Yata. I came from Japan. I am 16 years old. My hobby is to draw pictures. I came here because I wanted to find the difference between the other countries. My goal from this year is I want to speak Dutch fluently.",
-    imageUrl:
-      "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/inbound/long-term/25-26/kaera-yata.jpg",
-    homeCountryCode: "jp",
-    hostCountryCode: "nl",
-    year: "2025-2026",
-  },
-  {
-    name: "Kolby Orriss",
-    bio: "Ik ben Kolby. I kom uit Alberta, Canada. Ik ben 17 jaar oud. Sinds ik in Nederland ben, ben ik lid geworden van een handbalteam.\n\nI joined this exchange for the same reasons many of us did: to see the world, experience a new culture, and meet new people. But beyond that, I wanted to challenge myself—to discover who I am outside the expectations of friends, family, and teachers. It is a fresh start, an opportunity to explore who I am and who I can become.\n\nBy the end of the year, I hope to be able to hold conversations in Dutch and form connections with so many people from all different backgrounds. I want to grow in every aspect of myself, becoming unrecognizable in the best way possible. I hope to have a heart full of gratitude for every moment I have experience here and to carry that thankfulness with me always.",
-    imageUrl:
-      "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/inbound/long-term/25-26/kolby-orriss.jpg",
-    homeCountryCode: "ca",
-    hostCountryCode: "nl",
-    year: "2025-2026",
-  },
-  {
-    name: "Lalo Montiel",
-    bio: "Ik heet Lalo Montiel. Ik ben zeventien jaar oud en ik kom uit Tulancingo, een stad in de deelstaat Hidalgo in Mexico. Ik ben een vriendelijke en nieuwsgierige persoon die graag nieuwe dingen leert en openstaat voor andere culturen.\n\nIk kom uit Tulancingo, een mooie stad omringd door bergen. De mensen daar zijn erg vriendelijk en de Mexicaanse cultuur is warm en kleurrijk. In mijn stad is eten heel belangrijk, en er is altijd muziek en gezelligheid.\n\nIk ben zeventien jaar oud en ik zit nog op de middelbare school. Dit uitwisselingsjaar is een groot avontuur voor mij.\n\nIk hou heel veel van muziek, want het helpt mij om te ontspannen en mezelf te uiten. Ik kijk ook graag films in mijn vrije tijd, en ik speel en kijk graag voetbal. Muziek, sport en films maken mij altijd blij.\n\nWhy did you join this exchange?\nIk heb besloten om aan dit uitwisselingsprogramma mee te doen omdat ik unieke ervaringen wilde opdoen en wilde zien hoe mensen in andere delen van de wereld hun leven leiden. Ik wil leren van andere culturen en mijn manier van denken verbreden.\n\nWhat do you expect to be at the end of the year?\nAan het einde van het jaar hoop ik dat ik als persoon gegroeid ben, dat ik meer over mezelf heb geleerd en dat ik veel bijzondere mensen heb ontmoet die ik voor de rest van mijn leven zal blijven herinneren.",
-    imageUrl:
-      "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/inbound/long-term/25-26/lalo-montiel.jpg",
-    homeCountryCode: "mx",
-    hostCountryCode: "nl",
-    year: "2025-2026",
-  },
-  {
-    name: "Santiago Cuello",
-    bio: "Ik ben Santiago Cuello, Ik kom uit Chile vanuit de stad Iquique. Ik ben 16 jaar, ik hou van surfen, atletiek, en piano spelen en ik woon hier in Woudenberg.\n\nI wanted to go on an exchange because I wanted to live a new life, try new cultures, learn new languages and try to gather more maturity and see life in multiple ways. I have been interested in going into an exchange for a long time and also thinking about how my life would be without my family and friends. But I would admit that Netherlands wasn't my first choice, it was never a place that I imagined that I would end up doing an exchange, but here I am and I have to say that I was prove that I deserved to be here and that was the correct choice to stick with this country and explore something completely new and learn all from 0. I expect that at the end of my exchange a new person arrive to Chile, a person that learned all that its needed to grow and with knowledge about a totally new language and culture, also I want to get more information about medicine in the different ways that exist, learn more about the human brain and how to become a great neurosurgeon that had lived through an exchange and changed the way he sees life and people. I also want to give the best of myself in this country so people can get to know me better and realize that I am a fun person. Lastly I want to say that I want to bring things that will innovate my life in Chile or maybe tell knowledge that in my country is totally unknown, I want to arrive as a new person, a Santiago that has seen the life in a way that maybe people from my age doesn't see it as I saw it, I want to get to know abilities or things that I never thought that I was going to be able to do, like living a new life by my own, without the presence of my parents or family.",
-    imageUrl:
-      "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/inbound/long-term/25-26/santiago-cuello.jpg",
+      "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/inbound/long-term/26-27/agustina-pavez.jpg",
     homeCountryCode: "cl",
     hostCountryCode: "nl",
-    year: "2025-2026",
+    year: "2026-2027",
   },
   {
-    name: "Santiago Galvis Mora",
-    bio: "Hallo Mijn naam is Santiago en ik kom uit Colombia. Ik ben 17 jaar oud. Mijn hobby's zijn muziek luisteren en vechtsporten.\n\nI joined this exchange because I wanted to learn about a new culture and improve my English and Dutch.\n\nAt the end of the year, I hope to be more independent, confident, and have many good memories from my time in the Netherlands.",
+    name: "Amelia Hinckley",
+    bio: "HI my name is Amelia hinckley but most people call me Mia. I’m 17 years old. I’m from the Utah in the United States. I like doing a lot of things some of my favorite are hanging out with friends, hiking,  reading, drawing, and playing my violin. I don’t have anything to specific that I’m excited for but I want to see as much of the Netherlands as possible I want to see a lot of art and I want to try as many new things as possible.",
     imageUrl:
-      "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/inbound/long-term/25-26/santiago-galvis-mora.jpg",
-    homeCountryCode: "co",
-    hostCountryCode: "nl",
-    year: "2025-2026",
-  },
-  {
-    name: "Silas Iverson",
-    bio: "Hoi! Ik ben Silas Iverson, ik ben vijftien jaar oud, ik kom uit New Mexico, VS, en ik woon nu in Enkhuizen. Mijn hobbies zijn zwemmen, DJing, Formula 1 kijken, en sim racing. Ik heb dit exchange gedaan omdat ik wil graag de hele wereld te zien, en Nederland is echt zo anders dan thuis. At the end of the exchange, I hope to be a better, wiser, more experienced, and knowledgeable person.",
-    imageUrl:
-      "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/inbound/long-term/25-26/silas-iverson.jpg",
+      "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/inbound/long-term/26-27/amelia-hinckley.jpg",
     homeCountryCode: "us",
     hostCountryCode: "nl",
-    year: "2025-2026",
+    year: "2026-2027",
   },
   {
-    name: "Valentina Flores Ultramari",
-    bio: "Hoi! Ik ben Valentina Flores Ultramari en ik ben 15 jaar. Ik kom uit Curitiba, in het zuiden van Brazilië. En ik woon nu in Nijkerk. Mijn hobby's zijn basketbal spelen en piano spelen. It has always been my dream to go on a long term exchange and I couldn't be more excited to be able to do it here in the Netherlands. I am really appreciative to get to know more about the Dutch culture and to experience daily life in this amazing country. At the end of the year, I expect to be able to communicate and understand Dutch, to have made connections for my whole life, as well as to have grown as a person during the year, being more confident about my decisions and having more responsibility about myself. Overall, to be able to look back at it as the best year of my life!",
+    name: "Bella-Ann Hedderman",
+    bio: "Hello! I am Bella-Ann Hedderman and I am from Pennsylvania in the US. I love theater and colorguard! I love to sing and dance a lot! Colorguard is a sport with the marching band where you spin flags and other props to convey a story. I really like talking with everyone so never be afraid to talk to me! This year I am excited to learn about anything I can!",
     imageUrl:
-      "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/inbound/long-term/25-26/valentina-flores-ultramari.jpg",
+      "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/inbound/long-term/26-27/bella-ann-hedderman.jpg",
+    homeCountryCode: "us",
+    hostCountryCode: "nl",
+    year: "2026-2027",
+  },
+  {
+    name: "Caro Campos",
+    bio: "Vanuit Mexico naar Nederland: ik ben Caro Campos, een Mexicaans meisje dat erg trots is op haar land, haar tradities en haar gewoonten. Mexico is verdeeld in 32 deelstaten, en één daarvan is Hidalgo, de staat waar ik vandaan kom. In deze staat ligt mijn stad, Tulancingo de Bravo.\n\nOp mijn zeventiende kan ik zeggen dat ik mezelf goed genoeg ken om te weten dat een van de dingen die ik het leukst vind, films en series kijken is. Ik vind het ook erg leuk om te tekenen en om nieuwe hobby’s te ontdekken. Ik vind het interessant om meer te weten te komen over de culturen van andere landen en de verschillen tussen ons te ontdekken, maar ook om te zien welke dingen we met elkaar gemeen hebben.\n\nDaarnaast heb ik veel interesse in Internationale Betrekkingen, vooral in diplomatie en in het begrijpen van hoe landen met elkaar omgaan. Ik vind het interessant om verschillende perspectieven, culturen en geschiedenissen te leren kennen en te begrijpen hoe landen, ondanks hun verschillen, met elkaar kunnen communiceren, samenwerken en door middel van dialoog naar oplossingen kunnen zoeken. Ik denk dat deze uitwisseling een mooie kans is om meer over deze interesse te leren, niet alleen vanuit wat ik in een klaslokaal kan leren, maar ook door een andere cultuur daadwerkelijk te ervaren en te leren kennen.\n\nWat ik van dit jaar hoop, is veel meer dan alleen een nieuwe taal leren of een nieuw land leren kennen. Ik hoop mezelf beter te leren kennen, uit mijn comfortzone te stappen en te leren omgaan met situaties die ik misschien nooit eerder had verwacht mee te maken.\n\nIk wil mensen uit verschillende delen van de wereld leren kennen, van hun culturen leren en tegelijkertijd een stukje van mijn eigen cultuur met hen delen. Ik wil een stukje van Mexico met me meenemen en tegelijkertijd naar huis terugkeren met een klein stukje van iedere plek, persoon en ervaring die deel uitmaakt van dit jaar.\n\nIk weet dat er geweldige momenten zullen zijn, maar ook moeilijke momenten, en ik wil van al deze ervaringen leren. Uiteindelijk hoop ik terug te kunnen kijken en te voelen dat dit jaar mij heeft geholpen om te groeien, zelfstandiger te worden en nieuwe dingen over de wereld en over mezelf te ontdekken.",
+    imageUrl:
+      "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/inbound/long-term/26-27/caro-campos.jpg",
+    homeCountryCode: "mx",
+    hostCountryCode: "nl",
+    year: "2026-2027",
+  },
+  {
+    name: "Charli",
+    bio: "Hoi hoi! Ik ben Charli en ik kom uit Canada! Ik been achttien jaar oud en ik ben heel enthousiast om hier in Nederland te wonen!It has always been my dream to travel the world and learn about different cultures and Rotary has given me this incredible opportunity to do so. In Canada I play softball and Ringette (similar to ice hockey) but I wanted to try something new and am now playing field hockey-it’s been so much fun!I hope by the end of the year I’ve grown into a new version of myself-in the best way possible. I want to make a life for myself here and make meaningful connections with new friends and family. I want to fully immerse myself in the Dutch culture and by the end of the year be able to express myself clearly in Dutch. I’m so excited for this new chapter!",
+    imageUrl:
+      "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/inbound/long-term/26-27/charli.jpg",
+    homeCountryCode: "ca",
+    hostCountryCode: "nl",
+    year: "2026-2027",
+  },
+  {
+    name: "Elena",
+    bio: "Hi, I’m Elena and I’m from Italy! I’m 17 years old, and I decided to embark on this experience after essentially living for three months alongside an American girl who was doing her year abroad with Rotary. She was actually staying with my cousins—who live in the apartment right below mine—so I was very much a part of that experience too. Seeing her joy, her independence, and her enthusiasm really excited me, and I’m so happy to be here! Speaking of family, mine isn't very big: I have wonderful parents, an older sister who is 23, and an older brother who is almost 27. I’m the youngest!I have a very close bond with my siblings—so close, in fact, that we even got a matching tattoo together! I also have a really strong bond with my parents, something I’ve come to appreciate even more while being away from them. Of course, my family also includes my aunts, uncles, and cousins; as I mentioned earlier, they live in the apartment below mine, so we all grew up together like siblings in the courtyard shared with my grandparents, who live right next door. All in all, we’re a very close-knit family. A little about me: I attend a technical high school specializing in graphic design, and I’m currently in my fourth year. I’m completing this fourth year here in the Netherlands, and when I return to Italy, I’ll have to take a short test to move up to the next grade without losing the year I spent here. I like my school and what I do because I’m a very creative person full of ideas. I enjoy drawing, painting, and making things by hand; in fact, I created some decorated wooden pieces featuring my host family's names for them. I really love hands-on activities. In my free time, I watch a lot of movies and TV series—I’m a huge fan—and I also love baking and, above all, hanging out with friends. Friends are essential to me, and mine are like a second family.The night before I left, they serenaded me outside my house, singing all those sad songs that always make you cry! They gave me the strength and courage to set off. I also really love animals—especially kittens—and this year in Italy, I took up Pilates with my sister. I played volleyball for eleven years, but due to various issues—both physical and emotional—I had to quit, and it’s a bit of a sore subject for me now. Since then, I haven't been able to bring myself to start another team sport, so I turned to Pilates instead—which, I have to say, I really enjoy! I’m expecting lots of new experiences and changes from this trip, but above all, a lot of personal growth. I know that when I return home, I’ll be much more responsible, mature, and mindful. Change and the future have always been my biggest fears. Through this experience, I’m overcoming that fear; it certainly isn't easy—in fact, there are moments when I wonder if I made the right decision—but I know that’s normal. After all, I decided to go live on my own for a year at seventeen, and I’m proud of myself just for that. So, I think that’s everything you need to know about me!\n\nThanks you so much!\n\nElena",
+    imageUrl:
+      "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/inbound/long-term/26-27/elena-it.jpg",
+    homeCountryCode: "it",
+    hostCountryCode: "nl",
+    year: "2026-2027",
+  },
+  {
+    name: "Elena",
+    bio: "Ik ben Elena, ik ben 16 jaar oud en ik kom uit Tucumán, Argentinië, een plek vol bergen, muziek, traditie en veel persoonlijkheid. Maar als er iets is dat mij echt definieert, dan is het wel dat ik nooit tevreden ben met altijd op dezelfde plek blijven.Ik dans Argentijnse folklore sinds ik 3 jaar oud was, en na vele jaren leren heb ik onlangs een van mijn grote doelen bereikt: mezelf ontvangen als leraar folklore. Dans is een groot deel van wie ik ben en ook een van mijn favoriete manieren om een stukje Argentinië overal ter wereld mee te nemen.Ik hou van uitdagingen, nieuwe mensen ontmoeten, sporten - vooral volleybal en voetbal - en ervaringen die me uit mijn comfortzone halen. Daarom beleefde ik uiteindelijk een van de grootste avonturen van mijn leven: Argentinië verlaten en naar Nederland reizen voor een uitwisseling.Ik ben nieuwsgierig, energiek en nogal avontuurlijk. Ik zeg graag dat ik naar Nederland ben gekomen om de wereld te leren kennen, maar ik ben waarschijnlijk ook gekomen om een nieuwe versie van mezelf te ontdekken. En terwijl ik nieuwe culturen, talen en manieren van leven leer, heb ik een extra missie: ervoor zorgen dat iedereen die ik ontmoet een beetje meer weet over Argentinië. 🇦🇷🌍",
+    imageUrl:
+      "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/inbound/long-term/26-27/elena-ar.png",
+    homeCountryCode: "ar",
+    hostCountryCode: "nl",
+    year: "2026-2027",
+  },
+  {
+    name: "Hannah Masters",
+    bio: "Hoi! Ik heet Hannah Masters en ik ben 16 jaar oud. Ik kom uit Brantford, Ontario, in Canada.\n\nI chose to participate in a Rotary Youth Exchange to gain independence, immerse myself in a new culture, and connect with my familial roots here. I truly believe that gaining global perspectives and maintaining an open mind as an exchange student offers lessons that go far beyond what a traditional classroom can teach. In fact, during my very first month, I’ve already loved biking to school and getting to know my amazing host family!\n\nIn my free time, I enjoy sewing clothes and quilts, gardening, spending time with my extended family and playing the contrabass in my Canadian school band.\n\nI am so grateful for my home and host Rotary Clubs for making this opportunity possible. Over the coming months, I look forward to having detailed conversations in Dutch, becoming a more resilient and independent version of myself, and building lifelong friendships with both locals and fellow exchange students.",
+    imageUrl:
+      "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/inbound/long-term/26-27/hannah-masters.png",
+    homeCountryCode: "ca",
+    hostCountryCode: "nl",
+    year: "2026-2027",
+  },
+  {
+    name: "Irene",
+    bio: "Hi, I am Irene, but everyone calls me Nene. I am sixteen years old and from Genoa, a coastal city in northern Italy surrounded by mountains.\n\nI live in the city center with my family and our 13-year-old cat, Futura. My 21-year-old sister, Elisabetta, studies at university and has been my comfort person since I was born. My dad is a fireman and my mom is a social worker; they always support me.\n\nFor 13 years, I practiced various styles of dance, though hip-hop was my favorite and the one I continued dancing until this summer. Another very important hobby of mine is theater; when I was little I did musicals, while in recent years I've done improv. This has allowed a more creative and curious part of me to develop.\n\nMy favorite subjects are math and science, so I will definitely do something related to those at university, maybe even outside of Italy. My passion for travel started thanks to my parents, who by taking me and my sister with them on every adventure showed me how wonderful it is to discover a new culture and new places with your own eyes, and to realize that perhaps the most beautiful place in existence isn't necessarily the one where we live, but rather that there is so much outside of it.\n\nI am very happy to have the opportunity to discover another culture with new habits and customs, but above all to rediscover myself and new hobbies that I might not have discovered in Italy. Ever since I was little, whenever I am in a new place I imagine my life if I had been born there, who my friends would be, and what my routine would be. This year abroad gives me the chance to discover a new routine in a new country. I hope to get to know a new culture deeply and immerse myself totally in it for a year.",
+    imageUrl:
+      "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/inbound/long-term/26-27/irene.jpg",
+    homeCountryCode: "it",
+    hostCountryCode: "nl",
+    year: "2026-2027",
+  },
+  {
+    name: "Júlia",
+    bio: "Hoi, ik ben Júlia, ik ben 17 jaar oud en kom uit Brazilië. Momenteel woon ik in Uden, in het zuiden van Nederland. In mijn vrije tijd kijk ik graag films en houd van koken, lezen en sporten. Ik heb besloten deel te nemen aan reen uitwisselingsprogramma omdat ik uit mijn comfortzone wilde stappen en een nieuwe taal en cultuur wilde leren kennen. Tijdens mijn uitwisselingsjaar hoop ik veel te leren, zelfstandiger te worden, nieuwe vrienden te maken en onvergetelijke herinneringen te creëren.",
+    imageUrl:
+      "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/inbound/long-term/26-27/julia.jpg",
     homeCountryCode: "br",
     hostCountryCode: "nl",
-    year: "2025-2026",
+    year: "2026-2027",
+  },
+  {
+    name: "Liz",
+    bio: "Hi! My name is Liz, I’m 16 and I’m from Barcelona, Spain.\n\nI’ve been doing aerial silks for four years, and it’s probably one of the things I enjoy the most. I also love watching movies and playing some videogames. My favorites foods are carbonara and sushi, so hopefully I can find some good places in the Netherlands.\n\nI decided to do this exchange because I wanted to do something different and have a cool experience. I’m excited to meet new people, see what life is like in the Netherlands and just experience a lot of new things. I’d also love to visit lots of places while I’m there and come back home with a bunch of good memories.",
+    imageUrl:
+      "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/inbound/long-term/26-27/liz.jpg",
+    homeCountryCode: "es",
+    hostCountryCode: "nl",
+    year: "2026-2027",
+  },
+  {
+    name: "Lorenzo",
+    bio: "Hoi! I’m Lorenzo, I’m 16 years old, and I’m an exchange student from Brazil, from the city of Assis, São Paulo! 🇧🇷\n\nI’m really interested in art, architecture, international relations, music, and traveling. I play the violin, and I really enjoy discovering new places, learning about different cultures, and meeting new people.\n\nI’m spending my exchange year living in Bennekom and going to school in Wageningen. I’m especially excited to experience the Dutch culture at all, travel around Europe, make new friends, and, of course, learn Dutch!\n\nDoei!",
+    imageUrl:
+      "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/inbound/long-term/26-27/lorenzo.jpg",
+    homeCountryCode: "br",
+    hostCountryCode: "nl",
+    year: "2026-2027",
+  },
+  {
+    name: "Martina Caglieris",
+    bio: "Hallo, ik ben Martina Caglieris. Ik ben 16 jaar oud en kom uit Argentinië. Op dit moment woon ik in Oosterhout.\n\nIk heb ervoor gekozen om op uitwisseling te gaan omdat ik graag nieuwe mensen wil ontmoeten, andere culturen wil ontdekken en mijn Nederlands wil verbeteren.\n\nIn mijn vrije tijd doe ik graag aan sport. Ik doe aan gymnastiek en vind het leuk om actief bezig te zijn. Daarnaast vind ik het leuk om tijd door te brengen met mijn vrienden en nieuwe dingen te proberen.\n\nIk ben erg blij en dankbaar dat ik deze bijzondere ervaring in Nederland mag meemaken. Ik hoop veel mooie herinneringen te maken, nieuwe vrienden te leren kennen en veel te leren over de Nederlandse cultuur.\n\nIk hoop dat mijn uitwisselingsjaar een mooie en onvergetelijke ervaring",
+    imageUrl:
+      "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/inbound/long-term/26-27/martina-caglieris.jpg",
+    homeCountryCode: "ar",
+    hostCountryCode: "nl",
+    year: "2026-2027",
+  },
+  {
+    name: "Naya",
+    bio: "Hoi hoii! Ik ben Naya, ik ben 15 jaar oud en kom uit Surabaya, Indonesië District 3420. Ik ben dit jaar in Hengelo District 1560 als uitwisselingsstudent. Ik zit op het Montessori College Twente in 4 VWO. Ik vind het leuk om piano te spelen, muziek te luisteren en nieuwe mensen te leren kennen. Ik kijk ernaar uit om dit jaar veel nieuwe dingen te leren en Nederland beter te leren kennen! 🇮🇩🇳🇱\n\nMijn Insta: @nayanaarnederland :DD",
+    imageUrl:
+      "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/inbound/long-term/26-27/naya.jpg",
+    homeCountryCode: "id",
+    hostCountryCode: "nl",
+    year: "2026-2027",
+  },
+  {
+    name: "Onbekend (Los Angeles)",
+    bio: "I have lived in Los Angeles, USA all my life and I came to the Netherlands for the gezellig atmosphere, bike culture, and more sustainable way of life. I’m excited to learn Dutch, get involved in my area, and have new experiences. I enjoy working with nature, learning languages, and programming",
+    imageUrl:
+      "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/inbound/long-term/26-27/onbekend-los-angeles.jpg",
+    homeCountryCode: "us",
+    hostCountryCode: "nl",
+    year: "2026-2027",
+  },
+  {
+    name: "Paola",
+    bio: "Mijn naam is Paola en ik kom uit Brazilië. Ik ben 18 jaar oud en ik woon momenteel in Nederland als uitwisselingsstudent. Ik ben een nieuwsgierig en sociaal persoon, hoewel ik soms een beetje verlegen ben als ik iemand voor het eerst ontmoet. Ik vind het leuk om nieuwe plekken te ontdekken, foto’s te maken en verschillende dingen te beleven. Muziek is altijd een belangrijk onderdeel van mijn leven geweest, vooral musicals. Ik speel keyboard in de band van mijn vader. Daarnaast doe ik al jarenlang aan synchroonzwemmen, wat een groot deel van mijn leven is.\n\nIk heb ervoor gekozen om op uitwisseling te gaan omdat ik uit mijn comfortzone wilde stappen en wilde ervaren hoe het is om in een ander land te wonen. Ik kijk ernaar uit om meer over Nederland, de tradities en het dagelijks leven te leren, maar ook om een beetje van de Braziliaanse cultuur te delen met de mensen die ik ontmoet. Ik hoop dat dit jaar mij leert omgaan met nieuwe situaties, zelfstandiger te worden en de wereld vanuit een ander perspectief te bekijken. Als mijn uitwisseling voorbij is, hoop ik dat ik als persoon ben gegroeid, onvergetelijke herinneringen heb gemaakt en vriendschappen heb opgebouwd die ik nog lang zal behouden.",
+    imageUrl:
+      "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/inbound/long-term/26-27/paola.jpg",
+    homeCountryCode: "br",
+    hostCountryCode: "nl",
+    year: "2026-2027",
+  },
+  {
+    name: "Parker Johnson",
+    bio: "Hallo iedereen! Mijn naam is Parker Johnson, ik ben 17 jaar oud en ik kom uit East Wenatchee, in Amerika. Ik verblijf in de stad Almere voor mijn uitwisselingsprogramma.Er zijn veel redenen waarom ik uitwisselingsstudent wilde worden en bij Rotary wilde komen. Mijn ouders moedigden me altijd aan om de wereld buiten mijn stadje te verkennen en verschillende culturen te begrijpen. Mijn moeder maakte in haar tijd deel uit van Rotary en was zelf een uitwisselingsstudent. Op een avond bracht ze het idee ter sprake om een uitwisselingsstudent te worden, en eerlijk gezegd aarzelde ik eerst een beetje. Maar kort daarna ontmoette ik enkele uitwisselingsstudenten in mijn district, en het inspireerde me echt om er zelf een te worden. Ik wilde mijn cultuur en tradities delen, stereotypen doorbreken en vriendschappen sluiten van over de hele wereld. Ik wilde ook leren over verschillende culturen en manieren van leven in vergelijking met de mijne. Het is echt prachtig om vriendschappen op te bouwen met zulke geweldige mensen door deze geweldige ervaring die ik zo dankbaar ben te hebben.Nederland is zo'n mooie plek met zijn architectuur, toegankelijke plaatsen en heerlijk eten. Ik hoop een impact te hebben in mijn gemeenschap en school, en wat ik leer van mijn uitwisseling te nemen en het te delen met mensen in mijn stad. Hoe dan ook, ik ben zo opgewonden voor mijn uitwisselingsjaar en de once-in-a-lifetime ervaringen!",
+    imageUrl:
+      "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/inbound/long-term/26-27/parker-johnson.jpg",
+    homeCountryCode: "us",
+    hostCountryCode: "nl",
+    year: "2026-2027",
+  },
+  {
+    name: "Quinten Van Geloven",
+    bio: "Hallo, ik ben Quinten Van Geloven. Ik kom uit Canada en ben 17 jaar oud. Ik houd van muziek luisteren en maken, koken en werken op de boerderij.\n\nIk vind het geweldig om dit jaar in Nederland te zijn en meer te leren over de cultuur en de taal. Ik heb voor deze uitwisseling gekozen om te ontdekken wat voor persoon ik wil worden door opnieuw contact te maken met mijn wortels; mijn grootouders zijn namelijk vanuit Haarlem naar Canada geëmigreerd.\n\nIk ben erg benieuwd hoe dit jaar zal verlopen en ik ben blij dat ik hier ben.\n\nIk hoop nog meer prachtige herinneringen te maken, een nieuwe taal te leren en blijvende vriendschappen te sluiten.",
+    imageUrl:
+      "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/inbound/long-term/26-27/quinten-van-geloven.jpg",
+    homeCountryCode: "ca",
+    hostCountryCode: "nl",
+    year: "2026-2027",
+  },
+  {
+    name: "Romane Perrée",
+    bio: "Hallo, mijn naam is Romane Perrée; ik ben 16 jaar en kom uit Frankrijk, om precies te zijn uit Normandië. Ik verblijf een jaar in Nederland. Ik ga dit jaar in Leeuwarden wonen. In mijn vrije tijd houd ik van zwemmen, de zee, lezen, naar muziek luisteren, films kijken en sporten. Ik ben dan ook blij dat ik dicht bij de zee woon. Nederland was mijn eerste keuze omdat ik graag in Gent wil studeren en daarom Nederlands moet leren. Ik heb de Nederlandse cultuur ontdekt toen ik begon met het leren van de taal en dat beviel me goed.  Ik hoop dit jaar vloeiend Nederlands te leren spreken, de cultuur te leren kennen, mooie vriendschappen te sluiten, kortom: me thuis te voelen in Nederland.",
+    imageUrl:
+      "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/inbound/long-term/26-27/romane-perree.jpg",
+    homeCountryCode: "fr",
+    hostCountryCode: "nl",
+    year: "2026-2027",
+  },
+  {
+    name: "Ryu",
+    bio: "Hi everyone! My name is Ryu, I’m 15 years old, and I’m from Thailand. I’m currently doing a Rotary Youth Exchange in the Netherlands and staying in Alphen aan den Rijn.\n\nI enjoy playing sports like badminton and volleyball, and I also like bouldering, and hanging out with friends. I’m really excited to experience Dutch culture, meet new people, and make new friends during my exchange year. I’m looking forward to having lots of new experiences and memories here!",
+    imageUrl:
+      "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/inbound/long-term/26-27/ryu.jpg",
+    homeCountryCode: "th",
+    hostCountryCode: "nl",
+    year: "2026-2027",
+  },
+  {
+    name: "Sam",
+    bio: "Hey, I’m Sam, and I’m from California in the US. I enjoy music, art, photography and traveling. I can play the bass guitar and the tuba, and was learning piano before leaving for exchange. I’m excited to be able to explore this year, and to meet new people.",
+    imageUrl:
+      "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/inbound/long-term/26-27/sam.jpg",
+    homeCountryCode: "us",
+    hostCountryCode: "nl",
+    year: "2026-2027",
+  },
+  {
+    name: "Telma Ulvila",
+    bio: "Ik heet Telma Ulvila en ik kom uit Finland. Ik ben zeventien jaar. Mijn hobby's zijn zingen, lezen en bakken. Ik hou ook van wandelen en fietsen.\n\nIk wilde graag op uitwisseling gaan omdat ik erg geïnteresseerd ben in andere culturen en talen. Ik wilde ook graag nieuwe mensen leren kennen en zelfstandiger worden.\n\nDit jaar kijk ik ernaar uit om meer over Nederland te leren, nieuwe dingen te proberen en nieuwe plekken te bezoeken.",
+    imageUrl:
+      "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/inbound/long-term/26-27/telma-ulvila.png",
+    homeCountryCode: "fi",
+    hostCountryCode: "nl",
+    year: "2026-2027",
   },
 ];
 
 /**
- * Current inbound students (with dynamically generated IDs)
+ * Current inbound students (with dynamically generated IDs, unique per home country)
  */
 export const inboundStudents: Student[] = inboundStudentData.map((data) => ({
   ...data,
-  id: generateStudentId(data.name, "inbound"),
+  id: generateStudentId(`${data.name} ${data.homeCountryCode}`, "inbound"),
   type: "inbound" as const,
 }));

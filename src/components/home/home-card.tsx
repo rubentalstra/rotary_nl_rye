@@ -1,14 +1,7 @@
 import * as Haptics from "expo-haptics";
-import { Image } from "expo-image";
+import { Image, type ImageProps } from "expo-image";
 import React, { useCallback, useMemo } from "react";
-import {
-  Platform,
-  Pressable,
-  StyleSheet,
-  Text,
-  View,
-  type ImageSourcePropType,
-} from "react-native";
+import { Platform, Pressable, StyleSheet, Text, View } from "react-native";
 
 import { Icon } from "@/components/ui/icon";
 import type { IconName } from "@/lib/icons";
@@ -20,7 +13,7 @@ interface HomeCardProps {
   /** SF Symbol + Material Symbol mapping from `@/lib/icons`. Ignored when `svgSource` is set. */
   icon?: IconName;
   /** Optional SVG asset (tinted with the primary color) instead of a system symbol. */
-  svgSource?: ImageSourcePropType;
+  svgSource?: ImageProps["source"];
   title: string;
   variant?: HomeCardVariant;
   onPress?: () => void;
@@ -62,7 +55,11 @@ export const HomeCard = React.memo<HomeCardProps>(function HomeCard({
   return (
     <View style={styles.cardWrapper}>
       <Pressable
-        style={({ pressed }) => [cardStyle, { backgroundColor: surface }, pressed && styles.pressed]}
+        style={({ pressed }) => [
+          cardStyle,
+          { backgroundColor: surface },
+          pressed && styles.pressed,
+        ]}
         onPress={handlePress}
         android_ripple={{ color: `${primaryVariant}20`, borderless: false }}
       >

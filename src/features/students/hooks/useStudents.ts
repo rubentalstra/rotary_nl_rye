@@ -3,7 +3,12 @@
  */
 
 import { useMemo } from "react";
-import { inboundStudents, outboundStudents, reboundStudents } from "../data";
+import {
+  inboundArchiveStudents,
+  inboundStudents,
+  outboundStudents,
+  reboundStudents,
+} from "../data";
 import {
   groupByHomeCountry,
   groupByHostCountry,
@@ -55,12 +60,33 @@ export function useStudents(type: StudentType) {
 }
 
 /**
+ * Get archived inbound students for a previous class year
+ */
+export function useInboundArchive(year: string) {
+  const students = useMemo(() => inboundArchiveStudents.filter((s) => s.year === year), [year]);
+
+  const countryGroups = useMemo<CountryGroup[]>(() => groupByHomeCountry(students), [students]);
+
+  return {
+    students,
+    countryGroups,
+    totalCount: students.length,
+    countryCount: countryGroups.length,
+  };
+}
+
+/**
  * Get a single student by ID
  */
 export function useStudent(id: string): Student | undefined {
   return useMemo(() => {
     // Search in all student lists
-    const allStudents = [...inboundStudents, ...outboundStudents, ...reboundStudents];
+    const allStudents = [
+      ...inboundStudents,
+      ...inboundArchiveStudents,
+      ...outboundStudents,
+      ...reboundStudents,
+    ];
     return allStudents.find((s) => s.id === id);
   }, [id]);
 }

@@ -57,7 +57,7 @@ export async function setCache<T>(key: string, data: T, ttlMinutes: number = 10)
       expiresAt: Date.now() + ttlMinutes * 60 * 1000,
     };
     const file = new File(CACHE_DIR, `${key}.json`);
-    file.write(JSON.stringify(entry));
+    await file.write(JSON.stringify(entry));
   } catch (error) {
     console.warn("Cache write failed:", error);
   }

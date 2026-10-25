@@ -1,11 +1,11 @@
 # Expo HAS CHANGED
 
-Read the exact versioned docs at https://docs.expo.dev/versions/v57.0.0/ before writing any code.
+Read the exact versioned docs at https://docs.expo.dev/versions/v58.0.0/ before writing any code.
 @AGENTS.md
 
 ## Project: Rotary YEP NL (v13)
 
-Expo SDK 57 mobile app for Rotary Youth Exchange Netherlands. Native @expo/ui UI on iOS (SwiftUI) and Android (Jetpack Compose). No web target. iOS 16.4 minimum, Android Material 3.
+Expo SDK 58 mobile app for Rotary Youth Exchange Netherlands. Native @expo/ui UI on iOS (SwiftUI) and Android (Jetpack Compose). No web target. iOS 16.4 minimum, Android Material 3.
 
 ## Folder layout (SDK 56 template default — `src/` at root)
 

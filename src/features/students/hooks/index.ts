@@ -8,4 +8,5 @@ export {
   useFindStudent,
   useSearchStudents,
   useStudentsByCountry,
+  useInboundArchive,
 } from "./useStudents";

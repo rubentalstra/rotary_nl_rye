@@ -16,7 +16,7 @@ interface StudentsListProps {
   countryGroups: CountryGroup[];
   totalCount: number;
   onStudentPress: (student: Student) => void;
-  ListHeaderComponent?: React.ComponentType | React.ReactElement | null;
+  ListHeaderComponent?: React.ComponentType | React.ReactElement;
 }
 
 interface SectionData {

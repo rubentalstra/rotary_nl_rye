@@ -3,11 +3,15 @@ import { StyleSheet, View, Text, FlatList, Pressable, Platform } from "react-nat
 import { Image } from "expo-image";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Ionicons from "@react-native-vector-icons/ionicons";
-import FontAwesome5, { type FontAwesome5SolidIconName } from "@react-native-vector-icons/fontawesome5";
+import FontAwesome5, {
+  type FontAwesome5SolidIconName,
+} from "@react-native-vector-icons/fontawesome5";
 import { router } from "expo-router";
 
 import * as Haptics from "expo-haptics";
 import { useTheme } from "@/lib/theme/use-theme";
+import { inboundArchiveYears } from "@/features/students";
+
 interface MenuItem {
   title: string;
   subtitle?: string;
@@ -59,7 +63,12 @@ export default function LongTermInboundScreen() {
               item.type === "class" ? styles.classIconContainer : styles.infoIconContainer,
             ]}
           >
-            <FontAwesome5 iconStyle="solid" name={item.icon} size={22} color={themeColors.primary} />
+            <FontAwesome5
+              iconStyle="solid"
+              name={item.icon}
+              size={22}
+              color={themeColors.primary}
+            />
           </View>
           <View style={styles.textContainer}>
             <Text style={[styles.menuTitle, { color: themeColors.text }]}>{item.title}</Text>
@@ -92,13 +101,25 @@ export default function LongTermInboundScreen() {
   const classOfItems: MenuItem[] = useMemo(
     () => [
       {
-        title: "Class of 2025-26",
+        title: "Class of 2026-27",
         subtitle: "Meet the incoming exchange students",
         icon: "users" as FontAwesome5SolidIconName,
         route: "/students/inbound/long-term/students",
         type: "class",
       },
     ],
+    [],
+  );
+
+  const archiveItems: MenuItem[] = useMemo(
+    () =>
+      inboundArchiveYears.map((year) => ({
+        title: `Class of ${year.slice(0, 5)}${year.slice(7)}`,
+        subtitle: "Previous incoming exchange students",
+        icon: "history" as FontAwesome5SolidIconName,
+        route: `/students/inbound/long-term/archive?year=${year}`,
+        type: "class" as const,
+      })),
     [],
   );
 
@@ -160,12 +181,15 @@ export default function LongTermInboundScreen() {
       { type: "sectionHeader", title: "Current Students" },
       ...classOfItems.map((item) => ({ type: "menuItem", item })),
       { type: "spacer" },
+      { type: "sectionHeader", title: "Previous Classes" },
+      ...archiveItems.map((item) => ({ type: "menuItem", item })),
+      { type: "spacer" },
       { type: "sectionHeader", title: "Information for Incoming Students" },
       ...informationItems.map((item) => ({ type: "menuItem", item })),
     ];
 
     return allItems;
-  }, [classOfItems, informationItems]);
+  }, [archiveItems, classOfItems, informationItems]);
 
   const renderItem = useCallback(
     ({ item }: { item: any }) => {

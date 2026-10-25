@@ -2,7 +2,7 @@
 
 ## Stack
 
-- Expo SDK 57, expo-router (file-based), React Native 0.86, React 19.2, TypeScript 6
+- Expo SDK 58, expo-router (file-based), React Native 0.88, React 19.3, TypeScript 6
 - Hermes v1 default, New Architecture
 - Native UI: `@expo/ui/swift-ui` on iOS, `@expo/ui/jetpack-compose` on Android
 - No web target. No React Native primitives where `@expo/ui` has an equivalent.
@@ -10,7 +10,7 @@
 
 ## Source of truth for APIs
 
-Always check https://docs.expo.dev/versions/v57.0.0/ before writing code that touches an Expo module. SDK 57 carries forward the SDK 56 API surface (file-system async copy/move, expo/fetch as default, status-bar/navigation-bar declarative API).
+Always check https://docs.expo.dev/versions/v58.0.0/ before writing code that touches an Expo module. SDK 58 carries forward the SDK 56 API surface (file-system async copy/move, expo/fetch as default, status-bar/navigation-bar declarative API).
 
 ## Conventions
 

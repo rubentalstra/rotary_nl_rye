@@ -121,6 +121,7 @@ function RootLayoutInner() {
           options={{ title: t("routes.travel") }}
         />
         <Stack.Screen name="students/inbound/long-term/students" />
+        <Stack.Screen name="students/inbound/long-term/archive" />
         <Stack.Screen name="students/inbound/long-term/student-detail" />
 
         {/* Students — outbound long-term */}

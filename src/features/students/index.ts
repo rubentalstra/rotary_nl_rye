@@ -21,11 +21,14 @@ export {
   useFindStudent,
   useSearchStudents,
   useStudentsByCountry,
+  useInboundArchive,
 } from "./hooks";
 
 // Data
 export {
   inboundStudents,
+  inboundArchiveStudents,
+  inboundArchiveYears,
   outboundStudents,
   reboundStudents,
   getAvailableYears,
