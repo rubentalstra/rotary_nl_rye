@@ -140,6 +140,7 @@ export const mdjcContacts: Contact[] = [
     imageUrl:
       "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/eric-kamst.jpg",
     email: "djc@rotary-d1600.nl",
+    phone: "+31618124627",
     club: "RC Rijswijk",
     district: "1600",
     category: "mdjc",

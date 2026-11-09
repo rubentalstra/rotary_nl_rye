@@ -1,16 +1,25 @@
 import { useCallback, useMemo } from "react";
-import { StyleSheet, View, Text, FlatList, Pressable, Platform } from "react-native";
+import {
+  StyleSheet,
+  View,
+  Text,
+  FlatList,
+  Pressable,
+  Platform,
+  type ImageSourcePropType,
+} from "react-native";
 import { Image } from "expo-image";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Ionicons from "@react-native-vector-icons/ionicons";
 import FontAwesome5, {
   type FontAwesome5SolidIconName,
 } from "@react-native-vector-icons/fontawesome5";
-import { router } from "expo-router";
+import { router, Stack } from "expo-router";
+import HistoryIcon from "@expo/material-symbols/history.xml";
 
 import * as Haptics from "expo-haptics";
 import { useTheme } from "@/lib/theme/use-theme";
-import { inboundArchiveYears } from "@/features/students";
+import { useTranslation } from "@/lib/i18n/use-translation";
 
 interface MenuItem {
   title: string;
@@ -22,6 +31,7 @@ interface MenuItem {
 
 export default function LongTermInboundScreen() {
   const themeColors = useTheme();
+  const { t } = useTranslation();
 
   const handleItemPress = useCallback(async (route: string) => {
     try {
@@ -111,18 +121,6 @@ export default function LongTermInboundScreen() {
     [],
   );
 
-  const archiveItems: MenuItem[] = useMemo(
-    () =>
-      inboundArchiveYears.map((year) => ({
-        title: `Class of ${year.slice(0, 5)}${year.slice(7)}`,
-        subtitle: "Previous incoming exchange students",
-        icon: "history" as FontAwesome5SolidIconName,
-        route: `/students/inbound/long-term/archive?year=${year}`,
-        type: "class" as const,
-      })),
-    [],
-  );
-
   const informationItems: MenuItem[] = useMemo(
     () => [
       {
@@ -181,15 +179,12 @@ export default function LongTermInboundScreen() {
       { type: "sectionHeader", title: "Current Students" },
       ...classOfItems.map((item) => ({ type: "menuItem", item })),
       { type: "spacer" },
-      { type: "sectionHeader", title: "Previous Classes" },
-      ...archiveItems.map((item) => ({ type: "menuItem", item })),
-      { type: "spacer" },
       { type: "sectionHeader", title: "Information for Incoming Students" },
       ...informationItems.map((item) => ({ type: "menuItem", item })),
     ];
 
     return allItems;
-  }, [archiveItems, classOfItems, informationItems]);
+  }, [classOfItems, informationItems]);
 
   const renderItem = useCallback(
     ({ item }: { item: any }) => {
@@ -216,24 +211,35 @@ export default function LongTermInboundScreen() {
   );
 
   return (
-    <SafeAreaView
-      style={[styles.safeArea, { backgroundColor: themeColors.background }]}
-      edges={["bottom"]}
-    >
-      <View style={[styles.container, { backgroundColor: themeColors.background }]}>
-        <FlatList
-          data={renderContent()}
-          renderItem={renderItem}
-          keyExtractor={useCallback((item: any, index: number) => `${item.type}-${index}`, [])}
-          showsVerticalScrollIndicator={false}
-          contentInsetAdjustmentBehavior="automatic"
-          contentContainerStyle={styles.listContainer}
-          removeClippedSubviews={true}
-          maxToRenderPerBatch={10}
-          windowSize={10}
+    <>
+      <Stack.Toolbar placement="right">
+        <Stack.Toolbar.Button
+          onPress={() => handleItemPress("/students/inbound/long-term/previous-classes")}
+          accessibilityLabel={t("routes.previous_classes")}
+          icon={
+            Platform.OS === "ios" ? "clock.arrow.circlepath" : (HistoryIcon as ImageSourcePropType)
+          }
         />
-      </View>
-    </SafeAreaView>
+      </Stack.Toolbar>
+      <SafeAreaView
+        style={[styles.safeArea, { backgroundColor: themeColors.background }]}
+        edges={["bottom"]}
+      >
+        <View style={[styles.container, { backgroundColor: themeColors.background }]}>
+          <FlatList
+            data={renderContent()}
+            renderItem={renderItem}
+            keyExtractor={useCallback((item: any, index: number) => `${item.type}-${index}`, [])}
+            showsVerticalScrollIndicator={false}
+            contentInsetAdjustmentBehavior="automatic"
+            contentContainerStyle={styles.listContainer}
+            removeClippedSubviews={true}
+            maxToRenderPerBatch={10}
+            windowSize={10}
+          />
+        </View>
+      </SafeAreaView>
+    </>
   );
 }
 

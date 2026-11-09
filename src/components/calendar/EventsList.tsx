@@ -7,7 +7,11 @@ import { FlatList, StyleSheet, Text, View } from "react-native";
 import Ionicons from "@react-native-vector-icons/ionicons";
 import { useTheme } from "@/lib/theme/use-theme";
 import { EventCard } from "@/components/calendar/EventCard";
-import { getDisplayDate, getEventsForDay, sortEventsByTime } from "@/features/calendar/utils/date-utils";
+import {
+  getDisplayDate,
+  getEventsForDay,
+  sortEventsByTime,
+} from "@/features/calendar/utils/date-utils";
 import type { CalendarEvent, EventsData } from "@/features/calendar/types";
 
 interface EventsListProps {
@@ -69,6 +73,7 @@ export function EventsList({
       ListEmptyComponent={renderEmptyState}
       contentContainerStyle={styles.listContent}
       showsVerticalScrollIndicator={false}
+      contentInsetAdjustmentBehavior="automatic"
     />
   );
 }

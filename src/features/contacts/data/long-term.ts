@@ -20,6 +20,18 @@ export const longTermContacts: Contact[] = [
     category: "longterm",
   },
   {
+    id: "lt-toon-ter-ellen",
+    name: "Toon ter Ellen",
+    role: "Coördinator outbound",
+    functions: ["Coördinator outbound"],
+    bio: "Mijn naam is Toon ter Ellen, coördinator outbound van het Rotary Longterm Exchange Program.\n\nZelf ben ik in 2016-2017 een jaar op exchange geweest. Toen heb ik een jaar in Brazilië gewoond, de beste ervaring van mijn leven. Deze ervaring heeft me er ook toe gedreven me te blijven inzetten voor de Rotary Youth Exchange.\n\nIn het dagelijks leven ben ik fiscalist, houd ik van reizen, koken en sporten.\n\nVoor mijn tijd bij de MDJC ben ik vier jaar lid en bestuur geweest van Rotex, de vereniging van oud-uitwisselingsstudenten.\n\nDit programma is een geweldig en voor iedereen die de kans krijgt heb ik maar één advies: doen!",
+    imageUrl:
+      "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/long-term/toon-ter-ellen.jpg",
+    email: "longtermout@rotaryyep.nl",
+    phone: "+31613602987",
+    category: "longterm",
+  },
+  {
     id: "lt-sandra-cools-wemer",
     name: "Sandra Cools-Wemer",
     role: "Inbound coördinator",
