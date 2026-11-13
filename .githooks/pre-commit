@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+# .githooks/pre-commit (install: git config core.hooksPath .githooks)
+#
+# Refuses a commit whose staged files carry a private key block, a GitHub or
+# GitLab token, or a signing certificate. Release secrets live in Actions
+# secrets and the owner's Keychain, never in the tree.
+
+set -euo pipefail
+
+status=0
+while IFS= read -r -d '' f; do
+  case "$f" in
+  *.p12 | *.cer | *.p8 | *.mobileprovision | *.provisionprofile)
+    echo "pre-commit: $f is a signing certificate or key; it never enters the repository" >&2
+    status=1
+    continue
+    ;;
+  esac
+  if git show ":$f" 2>/dev/null | grep -qE -- '-----BEGIN ([A-Z]+ )?PRIVATE KEY( BLOCK)?-----|(ghp|gho|ghu|ghs|ghr)_[A-Za-z0-9]{36}|github_pat_[A-Za-z0-9_]{60,}|glpat-[A-Za-z0-9_-]{20}'; then
+    echo "pre-commit: $f carries a private key or a token" >&2
+    status=1
+  fi
+done < <(git diff --cached --name-only -z --diff-filter=ACMR)
+exit "$status"

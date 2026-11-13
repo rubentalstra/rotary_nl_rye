@@ -1,0 +1,87 @@
+name: CI
+
+# Every pull request and every push to main: the shell scripts and the
+# workflows are linted, RotaryKit's tests run on the Mac, and the iOS app is
+# built and its hosted tests run on the iPhone 18 Pro Max simulator. No job
+# needs a secret. The changelog fragment check is changelog.yml: it also runs
+# when a label changes, which must not restart (and cancel) this workflow.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions: {}
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  # The xcode-27 image is Apple Silicon on macOS 27; the app needs Xcode 27.
+  DEVELOPER_DIR: /Applications/Xcode_27.1.app/Contents/Developer
+
+jobs:
+  guards:
+    name: shell scripts and workflows
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: shellcheck (style floor)
+        run: shellcheck --severity=style scripts/*/*.sh .claude/hooks/*.sh .githooks/*
+      - name: actionlint
+        env:
+          ACTIONLINT_VERSION: 1.7.12
+          # sha256 of actionlint_<version>_linux_amd64.tar.gz from the release's
+          # checksums.txt; update both lines together.
+          ACTIONLINT_SHA256: 8aca8db96f1b94770f1b0d72b6dddcb1ebb8123cb3712530b08cc387b349a3d8
+        run: |
+          archive="$RUNNER_TEMP/actionlint.tar.gz"
+          curl -fsSL --proto '=https' --tlsv1.2 -o "$archive" \
+            "https://github.com/rhysd/actionlint/releases/download/v$ACTIONLINT_VERSION/actionlint_${ACTIONLINT_VERSION}_linux_amd64.tar.gz"
+          echo "$ACTIONLINT_SHA256  $archive" | sha256sum --check --strict
+          tar -xzf "$archive" -C "$RUNNER_TEMP" actionlint
+          "$RUNNER_TEMP/actionlint" -color
+
+  kit:
+    name: RotaryKit tests
+    runs-on: xcode-27
+    timeout-minutes: 20
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: swift test
+        run: swift test --package-path ios/RotaryKit -Xswiftc -warnings-as-errors
+
+  ios:
+    name: iOS app build and tests
+    runs-on: xcode-27
+    timeout-minutes: 30
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      # Unsigned: the simulator needs no signing identity. Warnings are errors
+      # through the project's SWIFT_TREAT_WARNINGS_AS_ERRORS.
+      - name: build and run the hosted tests
+        run: |
+          xcodebuild test -project ios/RotaryYEP.xcodeproj -scheme RotaryYEP \
+            -destination 'platform=iOS Simulator,name=iPhone 18 Pro Max' \
+            -derivedDataPath build/DerivedData -resultBundlePath build/Tests.xcresult \
+            CODE_SIGNING_ALLOWED=NO
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        if: failure()
+        with:
+          name: test-results
+          path: build/Tests.xcresult/
+          if-no-files-found: warn

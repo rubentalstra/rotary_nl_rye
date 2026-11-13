@@ -1,0 +1,31 @@
+# Weekly version updates, one grouped pull request per ecosystem.
+# - GitHub Actions stay pinned to a commit SHA: Dependabot updates the SHA and
+#   the version comment on the same line.
+# - Swift: Dependabot reads ios/RotaryKit/Package.swift. It does not read the
+#   Xcode project, so a package the app adds directly is updated by hand.
+# - The archived React Native app (archive/) gets no updates.
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    groups:
+      actions:
+        patterns: ["*"]
+    labels: [dependencies, no-changelog]
+    commit-message:
+      prefix: ci
+      include: scope
+
+  - package-ecosystem: swift
+    directory: /ios/RotaryKit
+    schedule:
+      interval: weekly
+    groups:
+      swift:
+        patterns: ["*"]
+    labels: [dependencies]
+    commit-message:
+      prefix: chore
+      include: scope

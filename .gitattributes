@@ -1,0 +1,21 @@
+# Text is stored and checked out with LF line endings.
+* text=auto eol=lf
+*.swift text eol=lf
+*.kt text eol=lf
+*.kts text eol=lf
+*.md text eol=lf
+*.xcstrings text eol=lf
+*.pbxproj text eol=lf
+*.xcconfig text eol=lf
+*.sh text eol=lf
+
+# Images, and the layers of the Icon Composer app icon, are never diffed or
+# merged as text.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.pdf binary
+**/*.icon/Assets/** binary
+
+# The language bar counts the native apps, not the archived React Native app.
+archive/** linguist-vendored

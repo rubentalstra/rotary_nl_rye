@@ -1,0 +1,33 @@
+# Categories for GitHub's generated release notes. The body of a release is
+# its CHANGELOG.md section; this only shapes the list of pull requests GitHub
+# generates. Pull requests with no-changelog are left out.
+changelog:
+  exclude:
+    labels:
+      - no-changelog
+  categories:
+    - title: Features
+      labels:
+        - feature
+    - title: Fixes
+      labels:
+        - bug
+    - title: Security
+      labels:
+        - security
+    - title: Dependencies
+      labels:
+        - dependencies
+    - title: Documentation
+      labels:
+        - documentation
+    - title: CI and tooling
+      labels:
+        - ci
+        - chore
+        - refactor
+        - perf
+        - test
+    - title: Other changes
+      labels:
+        - "*"

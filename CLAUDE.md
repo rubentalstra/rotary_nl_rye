@@ -1,35 +1,142 @@
-# Expo HAS CHANGED
+# CLAUDE.md
 
-Read the exact versioned docs at https://docs.expo.dev/versions/v58.0.0/ before writing any code.
-@AGENTS.md
+Rotary YEP NL is the app of Rotary Youth Exchange Netherlands, for exchange
+students, host families, clubs and counsellors: news, the calendar, programs
+and camps, students and clubs, contacts and emergency numbers. MIT. It is being
+rebuilt as two **fully native apps**: iOS first (SwiftUI, `ios/`), Android
+later (Kotlin and Jetpack Compose, `android/`). The React Native app that
+shipped as 13.x is frozen in `archive/` as a reference only. Swift is written
+as `.claude/rules/swift.md` says; Apple's own guidance is in `.claude/skills/`.
 
-## Project: Rotary YEP NL (v13)
+## Repository map
 
-Expo SDK 58 mobile app for Rotary Youth Exchange Netherlands. Native @expo/ui UI on iOS (SwiftUI) and Android (Jetpack Compose). No web target. iOS 16.4 minimum, Android Material 3.
+- `ios/`: the iOS app. `RotaryYEP.xcodeproj` (committed; synchronized folders,
+  so adding a file needs no project edit; shared scheme `RotaryYEP`).
+  Settings: `App.xcconfig` (version, build number, bundle id, display name,
+  icon), included by `Debug.xcconfig` (then the optional, git-ignored
+  `Local.xcconfig`) and `Release.xcconfig`. The project file holds the rest:
+  team `A8S2486A44`, iOS 26.0, Swift 6 with the Swift 7 upcoming features,
+  warnings as errors.
+  `ios/RotaryYEP/`: the app, one folder per feature with its `@Observable`
+  model and views; `App/` the wiring (`RotaryYEPApp`, `ContentView` for now);
+  `AppIcon.icon` the Icon Composer app icon (`icon.json` plus one SVG per
+  layer; check it in light, dark, tinted and clear); `Assets.xcassets`;
+  `Localizable.xcstrings` (nl source, en).
+  `ios/RotaryYEPTests/`: hosted Swift Testing suites for the built app
+  (`BundleTests`: bundle id, display name, version).
+  `ios/RotaryKit/`: the local Swift package with everything without a screen
+  (iOS 26 and macOS 26, so `swift test` runs on the Mac). `RotaryCore` is its
+  first module (`AppIdentity`: the bundle id and App Store id).
+- `android/`: the Android app, not started. Package
+  `com.caelitechnologies.rotary_nl_rye` (Play Store listing) never changes.
+- `archive/`: the React Native app (v13, Expo SDK 58), `archive/README.md`.
+  Never built, never edited, never imported from. Read it to see what a screen
+  did and to take its content: `archive/src/features/*/data/*.json` (students,
+  clubs, contacts, programs), `archive/src/lib/i18n/locales/{nl,en}.json` (all
+  texts), `archive/assets/` (flags, pictures, logos).
+- `privacy_policy.md`, `terms_and_conditions.md`: linked from the store
+  listings; keep them at the root.
+- `.claude/`: `settings.json` (hooks), `hooks/` (secrets, attribution,
+  dangerous commands, shellcheck, session context), `rules/swift.md`,
+  `skills/` (Apple's skills, exported per Mac by
+  `bash scripts/dev/xcode-skills.sh`, git-ignored; `skills/README.md` says
+  which to read when).
+- `.github/`: `workflows/ci.yml` (shellcheck and actionlint, `swift test` of
+  RotaryKit, `xcodebuild test` on the iPhone 18 Pro Max simulator),
+  `workflows/changelog.yml` (the fragment guard), issue forms, PR template,
+  `CODEOWNERS`, `dependabot.yml`, `release.yml` (release-note categories),
+  `actionlint.yaml` (the `xcode-27` runner label).
+- `scripts/gh/`: `issue.sh` (file an issue with type, priority and effort),
+  `labels.sh` (the label set), `rel.sh` (sub-issues and blocked-by),
+  `protect-main.sh` (the `main` ruleset). `scripts/release/changelog.sh` and
+  `scripts/checks/changelog-guard.sh`: the changelog fragments.
+  `scripts/dev/xcode-skills.sh`: exports Apple's skills.
+- `.githooks/`: `pre-commit` (refuses private keys, tokens, certificates) and
+  `commit-msg` (strips AI attribution). Install once per clone:
+  `git config core.hooksPath .githooks`.
 
-## Folder layout (SDK 56 template default — `src/` at root)
+## Hard rules
 
-- `src/app/` — Expo Router routes (file-based)
-- `src/components/` — shared UI built on @expo/ui
-- `src/features/<feature>/` — feature modules (`components/`, `hooks/`, `data/`, `api/`)
-- `src/lib/` — theme, cache, config, types
-- `src/hooks/` — cross-feature React hooks
-- `src/utils/` — pure functions (date, flags, communications)
-- `src/constants/` — theme constants (Colors, Spacing, Fonts) — from the SDK 56 template
-- `assets/` — images, icons, flags, fonts (sibling to `src/`)
-- `legacy/` — the v12 app, frozen, excluded from build (do NOT edit or import from here)
+- **Never push to `main` or merge a pull request.** Work on a
+  conventional-type branch, push it and open a pull request; Ruben merges.
+  The Claude Bash hook refuses a push to `main` and `gh pr merge`.
+- **The identifiers never change.** iOS bundle id
+  `com.caelitechnologies.rotary-nl-rye` under team `A8S2486A44`, App Store id
+  `1567096118`; Android package `com.caelitechnologies.rotary_nl_rye`. The
+  native apps are updates of the existing store listings; another id is a new
+  app and loses every user. `BundleTests` and `AppIdentityTests` check it.
+- **The version continues from 13.2.1.** The first native release is 14.0.0.
+- **Native only.** No React Native, Expo, Flutter, Kotlin Multiplatform or
+  other cross-platform layer, and no web views for screens the platform can
+  draw. Each app uses its platform's own frameworks first; a third-party
+  package needs a reason in its pull request.
+- **No secrets in the tree.** Signing certificates, App Store Connect keys and
+  keystores live in the Keychain and Actions secrets. The pre-commit hook and
+  the Claude `protect_secrets.sh` hook refuse them.
+- **Every user-facing string in Dutch and English.**
+- **Never weaken, skip or delete a test** to make a build pass.
+- **No AI attribution in commits, PRs or issues.** No `Co-authored-by`, no
+  "Generated with", no robot emoji. The `commit-msg` hook strips it and the
+  Claude Bash hook refuses the command.
+- **Prose has no AI tells**, in UI text, docs, commits and PRs: no em dashes,
+  no "·" as a separator, no "not X but Y", no buzzwords.
 
-## Rules
+## Gates (run before every commit)
 
-- Path aliases: `@/*` → `./src/*`, `@/assets/*` → `./assets/*` (template default).
-- No barrel `index.ts` files. Direct imports only.
-- No `import { X as Y }` aliases. Rename the export instead.
-- Platform-specific UI lives in `Foo.ios.tsx` / `Foo.android.tsx` siblings. Compose `@expo/ui/swift-ui` on iOS, `@expo/ui/jetpack-compose` on Android.
-- Icons: SF Symbols on iOS (via `expo-symbols`), Material Symbols on Android (via `@expo/material-symbols` + `@expo/ui/jetpack-compose` `Icon`).
-- Do NOT use `@expo/vector-icons` (deprecated in SDK 56).
-- Native folders (`ios/`, `android/`) are gitignored. Run `npx expo prebuild` to regenerate.
-- Static data lives in `src/features/<feature>/data/*.json`.
+The same as CI (`.github/workflows/ci.yml`), warnings as errors:
 
-## Migration approach
+```bash
+export DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer
+swift test --package-path ios/RotaryKit -Xswiftc -warnings-as-errors
+xcodebuild test -project ios/RotaryYEP.xcodeproj -scheme RotaryYEP \
+  -destination 'platform=iOS Simulator,name=iPhone 18 Pro Max' \
+  -derivedDataPath build/DerivedData CODE_SIGNING_ALLOWED=NO
+shellcheck --severity=style scripts/*/*.sh .claude/hooks/*.sh .githooks/*
+actionlint
+bash scripts/release/changelog.sh --check
+```
 
-The `src/` directory was seeded with the SDK 56 default template (NativeTabs, ThemedText/ThemedView, animated-icon, color-scheme hook). We're rebuilding the v12 features on top of that scaffold page-by-page, swapping React Native primitives for `@expo/ui` native components as we go.
+The default simulator is the **iPhone 18 Pro Max**. A UI change is looked at
+before it is called done: run it there and on an iPad simulator, in light and
+dark mode, in Dutch and English, at the largest Dynamic Type size, and check
+for truncation (the `device-interaction` skill takes screenshots and taps).
+
+## Workflow
+
+The tracker is this repository's GitHub Issues (`rubentalstra/rotary_nl_rye`,
+a personal account, so no native issue types or fields). Every issue carries
+three labels: its type (`bug`, `feature`, `task`), its priority
+(`priority:urgent|high|medium|low`) and its effort (`effort:high|medium|low`;
+`low` is one sitting, `medium` one pull request, `high` more than one), plus
+`ios` or `android` when it is about one app. A task also carries exactly one
+work-kind label (`documentation`, `chore`, `refactor`, `perf`, `test`, `ci`).
+File one with `scripts/gh/issue.sh new <type> <priority> <effort> <gh issue
+create args>`, never a bare `gh issue create`. Epics are parents
+(`scripts/gh/rel.sh parent <child> <epic>`); order is `rel.sh blocked-by`.
+Read an issue with `gh issue view <n> --json title,body,comments`.
+
+A change reaches `main` through a pull request on a conventional-type branch
+(a bug is `fix/`, a feature `feat/`, a task its work kind), with
+conventional commit subjects in English (`feat: …`, `fix: …`). The PR body
+says what changed and why and closes its issue. Squash merges only.
+
+Every change a person using the app notices adds a fragment under
+`changelog.d/` (`changelog.d/README.md`), never a line under `[Unreleased]` in
+`CHANGELOG.md`; the `Changelog` workflow fails a pull request that changes
+`ios/RotaryYEP/`, `ios/RotaryKit/Sources/` or `android/app/src/main/` without
+one, unless it has the `no-changelog` label.
+
+Prefer what Pullwatch (`~/RustroverProjects/pullwatch`) and FerroLICENCE
+(`~/RustroverProjects/FerroLICENCE`) already do and have proven (CI, hooks,
+release lane, rules) over designing it again.
+
+## Porting a screen from the archive
+
+1. Read the screen in `archive/src/app/` and its feature in
+   `archive/src/features/<feature>/`, and the texts it uses in
+   `archive/src/lib/i18n/locales/`.
+2. Move its data into RotaryKit (a model, a JSON resource or a client, with
+   tests), then build the screen in `ios/RotaryYEP/<Feature>/` the iOS way
+   (`.claude/rules/swift.md`, `swiftui-specialist`), not as a copy of the
+   React Native layout.
+3. Its texts go into `Localizable.xcstrings` in Dutch and English.

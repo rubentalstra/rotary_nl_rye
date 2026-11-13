@@ -1,0 +1,5 @@
+# The xcode-27 image (Apple Silicon, macOS 27, Xcode 27) is a GitHub-hosted
+# preview label that actionlint does not know yet.
+self-hosted-runner:
+  labels:
+    - xcode-27

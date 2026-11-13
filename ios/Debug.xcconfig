@@ -1,0 +1,5 @@
+// Debug builds (Xcode Cmd-R, tests): the shared settings.
+#include "App.xcconfig"
+
+// Per-Mac overrides, never in git (.gitignore); may be missing.
+#include? "Local.xcconfig"

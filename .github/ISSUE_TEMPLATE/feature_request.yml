@@ -1,0 +1,23 @@
+name: Feature request
+description: Propose something new for the app, or an improvement.
+labels: [feature]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        A maintainer sets the priority and the effort during triage, so you do
+        not need to choose them.
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: The problem you want to solve, and who it affects (students, host families, clubs, counsellors).
+    validations:
+      required: true
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed solution
+      description: What you want the app to do.
+    validations:
+      required: true

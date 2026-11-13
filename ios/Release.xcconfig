@@ -1,0 +1,2 @@
+// Release builds (archive, App Store): the shared settings.
+#include "App.xcconfig"

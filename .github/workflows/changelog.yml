@@ -1,0 +1,50 @@
+name: Changelog
+
+# A pull request that changes the app carries a changelog fragment
+# (changelog.d/README.md), unless it has the no-changelog label. Its own
+# workflow, so adding or removing that label re-runs only this check, not
+# the whole CI (whose concurrency would cancel a running build).
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, labeled, unlabeled]
+
+permissions: {}
+
+concurrency:
+  group: changelog-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  changelog:
+    name: changelog fragment
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - name: the changelog scripts prove themselves
+        run: |
+          bash scripts/release/changelog.sh --self-test
+          bash scripts/checks/changelog-guard.sh --self-test
+      # The label waives the fragment, never the fragments' form.
+      - name: every fragment is well formed
+        run: bash scripts/release/changelog.sh --check
+      # The label comes from the event; this workflow also runs on `labeled`
+      # and `unlabeled`, so setting or removing no-changelog checks again.
+      - name: a fragment for a change to the app, no line under [Unreleased]
+        env:
+          BASE: ${{ github.event.pull_request.base.sha }}
+          HEAD: ${{ github.event.pull_request.head.sha }}
+          WAIVED: ${{ contains(github.event.pull_request.labels.*.name, 'no-changelog') }}
+        run: |
+          if [ "$WAIVED" = "true" ]; then
+            bash scripts/checks/changelog-guard.sh --waived "$BASE" "$HEAD"
+          else
+            bash scripts/checks/changelog-guard.sh "$BASE" "$HEAD"
+          fi
+

@@ -1,0 +1,50 @@
+name: Bug report
+description: Report something in the app that does not work.
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting a bug. A maintainer sets the priority during
+        triage, so you do not need to choose one.
+  - type: dropdown
+    id: platform
+    attributes:
+      label: Platform
+      options:
+        - iPhone
+        - iPad
+        - Android
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: App version and OS version
+      description: Settings in the app shows the app version, for example "14.0.0 (3) on iOS 26.2".
+    validations:
+      required: true
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: What goes wrong, in one or two sentences.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behaviour
+    validations:
+      required: true
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots
+      description: Optional, but they help a lot.
