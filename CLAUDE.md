@@ -31,9 +31,16 @@ as `.claude/rules/swift.md` says; Apple's own guidance is in `.claude/skills/`.
   logo or text (HIG, Launching).
   `ios/RotaryYEPTests/`: hosted Swift Testing suites for the built app
   (`BundleTests`: bundle id, display name, version).
+  `ios/RotaryYEPUITests/`: XCUITests; `TabTourUITests` walks every tab and a
+  person in Dutch light and English dark and keeps a screenshot of each step
+  in the result bundle (`xcrun xcresulttool export attachments`).
   `ios/RotaryKit/`: the local Swift package with everything without a screen
   (iOS 26 and macOS 26, so `swift test` runs on the Mac). `RotaryCore` is its
-  first module (`AppIdentity`: the bundle id and App Store id).
+  first module: `AppIdentity` (the bundle id and App Store id),
+  `Organisation/` (`Person`, `Role`, `ContactGroup`, `ContactLinks`, and the
+  people in `Person+MDJC`, `+LongTerm`, `+ShortTerm`, `+ROTEX`,
+  `+Confidants`), `About/` (`AboutTopic`) and its own
+  `Localizable.xcstrings`.
 - `android/`: the Android app, not started. Package
   `com.caelitechnologies.rotary_nl_rye` (Play Store listing) never changes.
 - `archive/`: the React Native app (v13, Expo SDK 58), `archive/README.md`.
@@ -82,6 +89,16 @@ as `.claude/rules/swift.md` says; Apple's own guidance is in `.claude/skills/`.
   navigation and lists, SF Symbols, Liquid Glass from the system, Dynamic
   Type, the Human Interface Guidelines. No custom cards, headers or carousels
   that imitate the React Native layout when a system component does the job.
+- **Apple's mechanisms, never home-made ones.** Greenfield: v13 only says
+  what information exists. Content is typed Swift values in RotaryKit; every
+  text a person reads is a `LocalizedStringResource(…, bundle: #bundle,
+  comment:)` in the module's String Catalog (never JSON with our own
+  translations); a closed set is an `enum` (`CaseIterable`, `Identifiable`
+  with `var id: Self { self }`), never string ids; a record is `Identifiable`
+  by its natural identity (a person by `PersonNameComponents`), never an
+  invented slug; something defined once is referenced, never copied (the
+  emergency group references the team's people). Before building any
+  mechanism, check the SDK and Apple's skills for the one Apple ships.
 - **Native only.** No React Native, Expo, Flutter, Kotlin Multiplatform or
   other cross-platform layer, and no web views for screens the platform can
   draw. Each app uses its platform's own frameworks first; a third-party

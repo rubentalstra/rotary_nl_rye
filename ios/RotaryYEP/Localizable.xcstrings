@@ -1,6 +1,66 @@
 {
   "sourceLanguage": "nl",
   "strings": {
+    "Ambulance, brandweer of politie, bij levensgevaar of een misdrijf dat nu gebeurt.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ambulance, fire brigade or police, when a life is in danger or a crime is happening now."
+          }
+        }
+      }
+    },
+    "Bel": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Call"
+          }
+        }
+      }
+    },
+    "Bel %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Call %@"
+          }
+        }
+      }
+    },
+    "Bel 112": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Call 112"
+          }
+        }
+      }
+    },
+    "Bericht": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Message"
+          }
+        }
+      }
+    },
+    "Club": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Club"
+          }
+        }
+      }
+    },
     "Contact": {
       "localizations": {
         "en": {
@@ -21,12 +81,42 @@
         }
       }
     },
+    "District": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "District"
+          }
+        }
+      }
+    },
     "Dit scherm komt in een volgende versie.": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "This screen is coming in a later version."
+          }
+        }
+      }
+    },
+    "E-mail": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Email"
+          }
+        }
+      }
+    },
+    "Goed om te weten": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Good to know"
           }
         }
       }
@@ -41,12 +131,62 @@
         }
       }
     },
+    "Houd het adres en telefoonnummer van je gastgezin altijd bij je.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Always keep your host family's address and phone number with you."
+          }
+        }
+      }
+    },
     "Instellingen": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Settings"
+          }
+        }
+      }
+    },
+    "Je gastouders helpen je bij een afspraak met de huisarts, het ziekenhuis of de tandarts.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your host parents help you with an appointment at the doctor, the hospital or the dentist."
+          }
+        }
+      }
+    },
+    "Mail": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mail"
+          }
+        }
+      }
+    },
+    "Mail %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mail %@"
+          }
+        }
+      }
+    },
+    "Naam, rol of club": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Name, role or club"
           }
         }
       }
@@ -71,12 +211,62 @@
         }
       }
     },
+    "Over %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "About %@"
+          }
+        }
+      }
+    },
+    "Rollen": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Roles"
+          }
+        }
+      }
+    },
+    "Rotary": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rotary"
+          }
+        }
+      }
+    },
     "Taal": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Language"
+          }
+        }
+      }
+    },
+    "Telefoon": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phone"
+          }
+        }
+      }
+    },
+    "WhatsApp": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "WhatsApp"
           }
         }
       }

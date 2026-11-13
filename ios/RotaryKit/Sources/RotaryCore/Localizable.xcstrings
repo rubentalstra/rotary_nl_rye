@@ -1,0 +1,644 @@
+{
+  "sourceLanguage": "nl",
+  "strings": {
+    "Activiteiten inbounds": {
+      "comment": "Role: organises activities for inbound students.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Activities for inbounds"
+          }
+        }
+      }
+    },
+    "Administrateur Long Term": {
+      "comment": "Role: administrator of the Long Term Exchange.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Long Term administrator"
+          }
+        }
+      }
+    },
+    "Advocaat": {
+      "comment": "Role of an independent confidant: lawyer.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lawyer"
+          }
+        }
+      }
+    },
+    "Ambassadeurschap: je vertegenwoordigt je eigen land en cultuur in je gastland": {
+      "comment": "About tab: what the programme encourages.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Being an ambassador: you represent your own country and culture in your host country"
+          }
+        }
+      }
+    },
+    "Begrip en respect voor andere culturen": {
+      "comment": "About tab: a value of Rotary Youth Exchange.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Understanding of and respect for other cultures"
+          }
+        }
+      }
+    },
+    "Beheerder website en app": {
+      "comment": "Role: maintains the website and this app.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Website and app administrator"
+          }
+        }
+      }
+    },
+    "Commissiehoofd extern": {
+      "comment": "Role: head of the ROTEX committee for external relations.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Committee head, external relations"
+          }
+        }
+      }
+    },
+    "Commissiehoofd inbounds": {
+      "comment": "Role: head of the ROTEX committee for inbound students.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Committee head, inbounds"
+          }
+        }
+      }
+    },
+    "Commissiehoofd pre-rebounds": {
+      "comment": "Role: head of the ROTEX committee for students about to go abroad.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Committee head, pre-rebounds"
+          }
+        }
+      }
+    },
+    "Commissielid extern": {
+      "comment": "Role: member of the ROTEX committee for external relations.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Committee member, external relations"
+          }
+        }
+      }
+    },
+    "Commissielid inbounds": {
+      "comment": "Role: member of the ROTEX committee for inbound students.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Committee member, inbounds"
+          }
+        }
+      }
+    },
+    "Commissielid pre-rebounds": {
+      "comment": "Role: member of the ROTEX committee for students about to go abroad.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Committee member, pre-rebounds"
+          }
+        }
+      }
+    },
+    "Coördinator Amerika, Canada, Azië en Europa": {
+      "comment": "Role: coordinates exchanges with the United States, Canada, Asia and Europe.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Coordinator for the United States, Canada, Asia and Europe"
+          }
+        }
+      }
+    },
+    "Coördinator Dutch Orientation Course": {
+      "comment": "Role: coordinates the Dutch Orientation Course (DOC) for inbound students.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dutch Orientation Course coordinator"
+          }
+        }
+      }
+    },
+    "Coördinator Family to Family": {
+      "comment": "Role: coordinates the Family to Family programme.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Family to Family coordinator"
+          }
+        }
+      }
+    },
+    "Coördinator Midden- en Zuid-Amerika": {
+      "comment": "Role: coordinates exchanges with Central and South America.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Coordinator for Central and South America"
+          }
+        }
+      }
+    },
+    "Coördinator Midden- en Zuid-Amerika en Europa": {
+      "comment": "Role: coordinates exchanges with Central and South America and Europe.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Coordinator for Central and South America and Europe"
+          }
+        }
+      }
+    },
+    "Coördinator inbound": {
+      "comment": "Role: coordinates foreign students coming to the Netherlands.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inbound coordinator"
+          }
+        }
+      }
+    },
+    "Coördinator inbound zomerkampen": {
+      "comment": "Role: coordinates foreign students at summer camps in the Netherlands.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inbound coordinator for summer camps"
+          }
+        }
+      }
+    },
+    "Coördinator outbound": {
+      "comment": "Role: coordinates Dutch students going abroad.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Outbound coordinator"
+          }
+        }
+      }
+    },
+    "Coördinator zomerkampen buitenland": {
+      "comment": "Role: coordinates summer camps abroad.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Coordinator for summer camps abroad"
+          }
+        }
+      }
+    },
+    "Culturele uitwisseling: de taal, gebruiken en gewoonten van een ander land leren": {
+      "comment": "About tab: what the programme encourages.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cultural exchange: learning the language, customs and habits of another country"
+          }
+        }
+      }
+    },
+    "Districtsjeugdcommissaris %@": {
+      "comment": "Role: youth commissioner of the Rotary district with this number, such as 1590. The number is an identifier, never formatted.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "District youth commissioner %@"
+          }
+        }
+      }
+    },
+    "Het team van de Long Term Exchange": {
+      "comment": "What the Long Term team is, under its name.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The Long Term Exchange team"
+          }
+        }
+      }
+    },
+    "Het team van de Short Term Exchange": {
+      "comment": "What the Short Term team is, under its name.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The Short Term Exchange team"
+          }
+        }
+      }
+    },
+    "Hoofd activiteiten": {
+      "comment": "Role: head of activities at ROTEX.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Head of activities"
+          }
+        }
+      }
+    },
+    "Huisartsenpraktijk": {
+      "comment": "Role of an independent confidant: a GP's practice.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "GP practice"
+          }
+        }
+      }
+    },
+    "Internationaal begrip en vrede, door jongeren wereldwijd met elkaar te verbinden": {
+      "comment": "About tab: what the programme encourages.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "International understanding and peace, by connecting young people around the world"
+          }
+        }
+      }
+    },
+    "Landelijk counselor": {
+      "comment": "Role: national counsellor who supports exchange students.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "National counsellor"
+          }
+        }
+      }
+    },
+    "Long Term": {
+      "comment": "Name of the Long Term Exchange team in the Contact tab.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Long Term"
+          }
+        }
+      }
+    },
+    "Long Term Exchange: 10 tot 11 maanden": {
+      "comment": "About tab: an exchange programme and its length.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Long Term Exchange: 10 to 11 months"
+          }
+        }
+      }
+    },
+    "MDJC": {
+      "comment": "Name of the Multi-District Youth Committee, a team in the Contact tab.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "MDJC"
+          }
+        }
+      }
+    },
+    "Multi District Jeugd Commissie": {
+      "comment": "What the MDJC team is, under its name.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Multi-District Youth Committee"
+          }
+        }
+      }
+    },
+    "Niet verbonden aan Rotary. Voor als je iets vertrouwelijk wilt bespreken, zoals seksuele intimidatie.": {
+      "comment": "Explains when to call an independent confidant.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Not connected to Rotary. For when you want to discuss something in confidence, such as sexual harassment."
+          }
+        }
+      }
+    },
+    "Onafhankelijke vertrouwenspersonen": {
+      "comment": "Heading of the confidants who are not part of Rotary.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Independent confidants"
+          }
+        }
+      }
+    },
+    "Onze missie": {
+      "comment": "About tab: heading.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Our mission"
+          }
+        }
+      }
+    },
+    "Oud-uitwisselingsstudenten": {
+      "comment": "What ROTEX is, under its name.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Returned exchange students"
+          }
+        }
+      }
+    },
+    "Penningmeester": {
+      "comment": "Role: treasurer.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Treasurer"
+          }
+        }
+      }
+    },
+    "Persoonlijke groei en ontwikkeling": {
+      "comment": "About tab: a value of Rotary Youth Exchange.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Personal growth and development"
+          }
+        }
+      }
+    },
+    "Persoonlijke groei: uit je comfortzone stappen, zelfstandig worden en je aanpassen aan een nieuwe omgeving": {
+      "comment": "About tab: what the programme encourages.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Personal growth: stepping out of your comfort zone, becoming independent and adapting to new surroundings"
+          }
+        }
+      }
+    },
+    "ROTEX": {
+      "comment": "Name of ROTEX, the association of returned exchange students, in the Contact tab.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ROTEX"
+          }
+        }
+      }
+    },
+    "Rotary Youth Exchange": {
+      "comment": "Heading of the emergency contacts within Rotary Youth Exchange.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rotary Youth Exchange"
+          }
+        }
+      }
+    },
+    "Rotary Youth Exchange geeft jongeren de kans om een jaar of korter in het buitenland te wonen, naar school te gaan en een nieuwe cultuur te ontdekken.": {
+      "comment": "About tab: the mission, followed by what the programme encourages.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rotary Youth Exchange gives young people the chance to live abroad for a year or less, go to school there and discover a new culture."
+          }
+        }
+      }
+    },
+    "Rotary organiseert al 55 jaar internationale jeugduitwisselingen. Jeugduitwisseling zit in het DNA van Rotary: jongeren hebben de toekomst, voor Rotary en voor de wereld. Sinds 2010 is jeugdzaken met jeugduitwisseling de vijfde Avenue of Service van Rotary. Elk jaar zijn er wereldwijd 7.000 uitwisselingen. In Nederland organiseert de Multi District Jeugd Commissie (MDJC) ze.": {
+      "comment": "About tab: who Rotary Youth Exchange Netherlands is.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rotary has organised international youth exchanges for 55 years. Youth exchange is in Rotary's DNA: young people hold the future, for Rotary and for the world. Since 2010, youth service with youth exchange has been Rotary's fifth Avenue of Service. Every year there are 7,000 exchanges worldwide. In the Netherlands, the Multi-District Youth Committee (MDJC) organises them."
+          }
+        }
+      }
+    },
+    "Secretaris": {
+      "comment": "Role: secretary.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Secretary"
+          }
+        }
+      }
+    },
+    "Secretaris MDJC": {
+      "comment": "Role: secretary of the Multi-District Youth Committee (MDJC).",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "MDJC secretary"
+          }
+        }
+      }
+    },
+    "Service above self": {
+      "comment": "About tab: Rotary's motto as a value. Usually kept in English.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Service above self"
+          }
+        }
+      }
+    },
+    "Short Term": {
+      "comment": "Name of the Short Term Exchange team in the Contact tab.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Short Term"
+          }
+        }
+      }
+    },
+    "Short Term Exchange: twee keer twee weken (noordelijk halfrond) of twee keer vier weken (zuidelijk halfrond)": {
+      "comment": "About tab: an exchange programme and its length.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Short Term Exchange: twice two weeks (northern hemisphere) or twice four weeks (southern hemisphere)"
+          }
+        }
+      }
+    },
+    "To build peace one young person at a time.": {
+      "comment": "Rotary Youth Exchange's motto. Usually kept in English.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "To build peace one young person at a time."
+          }
+        }
+      }
+    },
+    "Uitwisselingsprogramma's": {
+      "comment": "About tab: heading.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Exchange programmes"
+          }
+        }
+      }
+    },
+    "Voorzitter": {
+      "comment": "Role: chair of a team or of ROTEX.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chair"
+          }
+        }
+      }
+    },
+    "Voorzitter Long Term": {
+      "comment": "Role: chair of the Long Term Exchange team.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Long Term chair"
+          }
+        }
+      }
+    },
+    "Voorzitter Rotary Youth Exchange": {
+      "comment": "Role: chair of Rotary Youth Exchange Netherlands.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chair of Rotary Youth Exchange"
+          }
+        }
+      }
+    },
+    "Vriendschap en vrede wereldwijd": {
+      "comment": "About tab: a value of Rotary Youth Exchange.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Friendship and peace around the world"
+          }
+        }
+      }
+    },
+    "Waarden": {
+      "comment": "About tab: heading.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Values"
+          }
+        }
+      }
+    },
+    "Wie zijn wij": {
+      "comment": "About tab: heading.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Who we are"
+          }
+        }
+      }
+    },
+    "Zomerkampen": {
+      "comment": "About tab: an exchange programme.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Summer camps"
+          }
+        }
+      }
+    }
+  },
+  "version": "1.1"
+}

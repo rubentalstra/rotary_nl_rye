@@ -18,11 +18,19 @@
 			remoteGlobalIDString = 000000000000000100000000;
 			remoteInfo = RotaryYEP;
 		};
+		000000000000000301000000 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 000000000000000000000000 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 000000000000000100000000;
+			remoteInfo = RotaryYEP;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		000000000000000000000120 /* RotaryYEP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RotaryYEP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		000000000000000000000121 /* RotaryYEPTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RotaryYEPTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		000000000000000000000122 /* RotaryYEPUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RotaryYEPUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		000000000000000000000130 /* App.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = App.xcconfig; sourceTree = "<group>"; };
 		000000000000000000000131 /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
 		000000000000000000000132 /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
@@ -40,6 +48,11 @@
 			path = RotaryYEPTests;
 			sourceTree = "<group>";
 		};
+		000000000000000000000012 /* RotaryYEPUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = RotaryYEPUITests;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,6 +63,11 @@
 			);
 		};
 		000000000000000230000000 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			files = (
+			);
+		};
+		000000000000000430000000 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			files = (
 			);
@@ -66,6 +84,7 @@
 				000000000000000000000133 /* Info.plist */,
 				000000000000000000000010 /* RotaryYEP */,
 				000000000000000000000011 /* RotaryYEPTests */,
+				000000000000000000000012 /* RotaryYEPUITests */,
 				000000000000000000000020 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -75,6 +94,7 @@
 			children = (
 				000000000000000000000120 /* RotaryYEP.app */,
 				000000000000000000000121 /* RotaryYEPTests.xctest */,
+				000000000000000000000122 /* RotaryYEPUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -124,6 +144,27 @@
 			productReference = 000000000000000000000121 /* RotaryYEPTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		000000000000000400000000 /* RotaryYEPUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 000000000000000410000000 /* Build configuration list for PBXNativeTarget "RotaryYEPUITests" */;
+			buildPhases = (
+				000000000000000420000000 /* Sources */,
+				000000000000000430000000 /* Frameworks */,
+				000000000000000440000000 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				000000000000000311000000 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				000000000000000000000012 /* RotaryYEPUITests */,
+			);
+			name = RotaryYEPUITests;
+			productName = RotaryYEPUITests;
+			productReference = 000000000000000000000122 /* RotaryYEPUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -138,6 +179,10 @@
 						CreatedOnToolsVersion = 26.3;
 					};
 					000000000000000200000000 = {
+						CreatedOnToolsVersion = 27.1;
+						TestTargetID = 000000000000000100000000;
+					};
+					000000000000000400000000 = {
 						CreatedOnToolsVersion = 27.1;
 						TestTargetID = 000000000000000100000000;
 					};
@@ -163,6 +208,7 @@
 			targets = (
 				000000000000000100000000 /* RotaryYEP */,
 				000000000000000200000000 /* RotaryYEPTests */,
+				000000000000000400000000 /* RotaryYEPUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -174,6 +220,11 @@
 			);
 		};
 		000000000000000240000000 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			files = (
+			);
+		};
+		000000000000000440000000 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			files = (
 			);
@@ -191,6 +242,11 @@
 			files = (
 			);
 		};
+		000000000000000420000000 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			files = (
+			);
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -198,6 +254,11 @@
 			isa = PBXTargetDependency;
 			target = 000000000000000100000000 /* RotaryYEP */;
 			targetProxy = 000000000000000300000000 /* PBXContainerItemProxy */;
+		};
+		000000000000000311000000 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 000000000000000100000000 /* RotaryYEP */;
+			targetProxy = 000000000000000301000000 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -437,6 +498,34 @@
 			};
 			name = Release;
 		};
+		000000000000000411000000 /* Debug configuration for PBXNativeTarget "RotaryYEPUITests" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.caelitechnologies.rotary-nl-rye.uitests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = RotaryYEP;
+			};
+			name = Debug;
+		};
+		000000000000000412000000 /* Release configuration for PBXNativeTarget "RotaryYEPUITests" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.caelitechnologies.rotary-nl-rye.uitests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = RotaryYEP;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -461,6 +550,14 @@
 			buildConfigurations = (
 				000000000000000211000000 /* Debug configuration for PBXNativeTarget "RotaryYEPTests" */,
 				000000000000000212000000 /* Release configuration for PBXNativeTarget "RotaryYEPTests" */,
+			);
+			defaultConfigurationName = Release;
+		};
+		000000000000000410000000 /* Build configuration list for PBXNativeTarget "RotaryYEPUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				000000000000000411000000 /* Debug configuration for PBXNativeTarget "RotaryYEPUITests" */,
+				000000000000000412000000 /* Release configuration for PBXNativeTarget "RotaryYEPUITests" */,
 			);
 			defaultConfigurationName = Release;
 		};
