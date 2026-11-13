@@ -1,0 +1,29 @@
+// Build settings of the app target that change by hand, in one place.
+// Included by Debug.xcconfig and Release.xcconfig; the project file holds
+// everything else (language mode, warnings, deployment target).
+
+// MARKETING_VERSION is CFBundleShortVersionString; the release tag is
+// v$(MARKETING_VERSION). The native app continues the App Store listing of
+// the React Native app (last release 13.2.1), so it starts at 14.0.0.
+// CURRENT_PROJECT_VERSION is CFBundleVersion and goes up with every upload to
+// App Store Connect.
+MARKETING_VERSION = 14.0.0
+CURRENT_PROJECT_VERSION = 1
+
+// Never change: the App Store listing (id1567096118), push tokens and every
+// user's data hang on this bundle id under team A8S2486A44.
+PRODUCT_BUNDLE_IDENTIFIER = com.caelitechnologies.rotary-nl-rye
+
+// The name under the icon on the home screen.
+INFOPLIST_KEY_CFBundleDisplayName = Rotary YEP NL
+INFOPLIST_KEY_LSApplicationCategoryType = public.app-category.education
+// The app uses only the encryption iOS itself provides (HTTPS).
+INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO
+
+// AppIcon.icon is the Icon Composer bundle in RotaryYEP/.
+ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon
+
+// The app target is UI with its models on the main actor, so everything is
+// @MainActor by default (Xcode's default for new apps). RotaryKit stays
+// nonisolated by default.
+SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor

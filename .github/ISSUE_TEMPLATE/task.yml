@@ -1,0 +1,23 @@
+name: Task
+description: Maintenance, documentation, a refactor, or tooling work.
+labels: [task]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        A maintainer sets the priority, the effort and the one work-kind label
+        during triage.
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: What needs doing and why, in a few sentences.
+    validations:
+      required: true
+  - type: textarea
+    id: done
+    attributes:
+      label: Done when
+      description: The observable result that closes this task.
+    validations:
+      required: true
