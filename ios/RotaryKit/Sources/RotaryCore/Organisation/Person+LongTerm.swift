@@ -6,7 +6,7 @@ extension Person {
     static let toonTerEllen = Person(
         name: PersonNameComponents(givenName: "Toon", familyName: "ter Ellen"),
         roles: [.outboundCoordinator],
-        phone: "+31613602987",
+        phone: "06 13 60 29 87",
         email: "longtermout@rotaryyep.nl",
         photoURL: URL(string: "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/long-term/toon-ter-ellen.jpg"),
         bio: "Mijn naam is Toon ter Ellen, coördinator outbound van het Rotary Longterm Exchange Program.\n\nZelf ben ik in 2016-2017 een jaar op exchange geweest. Toen heb ik een jaar in Brazilië gewoond, de beste ervaring van mijn leven. Deze ervaring heeft me er ook toe gedreven me te blijven inzetten voor de Rotary Youth Exchange.\n\nIn het dagelijks leven ben ik fiscalist, houd ik van reizen, koken en sporten.\n\nVoor mijn tijd bij de MDJC ben ik vier jaar lid en bestuur geweest van Rotex, de vereniging van oud-uitwisselingsstudenten.\n\nDit programma is een geweldig en voor iedereen die de kans krijgt heb ik maar één advies: doen!"
@@ -15,7 +15,7 @@ extension Person {
     static let sandraCoolsWemer = Person(
         name: PersonNameComponents(givenName: "Sandra", familyName: "Cools-Wemer"),
         roles: [.inboundCoordinator],
-        phone: "+31625530062",
+        phone: "06 25 53 00 62",
         email: "longtermin@rotaryyep.nl",
         club: "Rotaryclub Lingewaard-Bemmel",
         district: "1550",
@@ -26,21 +26,21 @@ extension Person {
     static let jitteWigbold = Person(
         name: PersonNameComponents(givenName: "Jitte", familyName: "Wigbold"),
         roles: [.inboundCoordinator],
-        phone: "+31627908753",
+        phone: "06 27 90 87 53",
         photoURL: URL(string: "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/jitte-wigbold.jpg")
     )
 
     static let jetBebseler = Person(
         name: PersonNameComponents(givenName: "Jet", familyName: "Bebseler"),
         roles: [.inboundCoordinator],
-        phone: "+31640638088",
+        phone: "06 40 63 80 88",
         photoURL: URL(string: "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/jet-bebseler.jpg")
     )
 
     static let benMureau = Person(
         name: PersonNameComponents(givenName: "Ben", familyName: "Mureau"),
         roles: [.administratorLongTerm],
-        phone: "+31651911244",
+        phone: "06 51 91 12 44",
         email: "longtermadmin@rotaryyep.nl",
         club: "RC Oldenzaal",
         district: "1560 OOST-NEDERLAND",
@@ -51,7 +51,7 @@ extension Person {
     static let bettyRijkmansSiemens = Person(
         name: PersonNameComponents(givenName: "Betty", familyName: "Rijkmans-Siemens"),
         roles: [.coordinatorOrientationCourse, .coordinatorSummerCampsAbroad],
-        phone: "+31629523379",
+        phone: "06 29 52 33 79",
         email: "doc@rotaryyep.nl",
         club: "Rotaryclub Meppel",
         district: "1590 NOORD-NEDERLAND",
@@ -62,7 +62,7 @@ extension Person {
     static let basSiebring = Person(
         name: PersonNameComponents(givenName: "Bas", familyName: "Siebring"),
         roles: [.coordinatorOrientationCourse],
-        phone: "+31618022550",
+        phone: "06 18 02 25 50",
         email: "doc@rotaryyep.nl",
         photoURL: URL(string: "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/long-term/bas-siebring.jpeg"),
         bio: "Mijn naam is Bas Siebring. In het dagelijks leven ben ik docent scheikunde."
@@ -71,7 +71,7 @@ extension Person {
     static let hillekeVanDerVeer = Person(
         name: PersonNameComponents(givenName: "Hilleke", familyName: "van der Veer"),
         roles: [.nationalCounselor],
-        phone: "+31638300427",
+        phone: "06 38 30 04 27",
         email: "hillekevdveer@gmail.com",
         photoURL: URL(string: "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/long-term/hilleke-van-der-veer-2.jpg"),
         bio: "Mijn naam is Hilleke van der Veer en ik ben de landelijke counselor van de inbounds."
@@ -80,7 +80,7 @@ extension Person {
     static let christianVanDam = Person(
         name: PersonNameComponents(givenName: "Christian", familyName: "van Dam"),
         roles: [.nationalCounselor],
-        phone: "+31620956610",
+        phone: "06 20 95 66 10",
         email: "c.vandam@outlook.com",
         photoURL: URL(string: "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/christian-van-dam.jpg")
     )
@@ -88,7 +88,7 @@ extension Person {
     static let rubenTalstra = Person(
         name: PersonNameComponents(givenName: "Ruben", familyName: "Talstra"),
         roles: [.webAppMaster],
-        phone: "+31611212774",
+        phone: "06 11 21 27 74",
         email: "RubenTalstra1211@outlook.com",
         photoURL: URL(string: "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/long-term/ruben-talstra.jpg"),
         bio: "Mijn naam is Ruben Talstra en ik ben de web-app master van de long term exchange."

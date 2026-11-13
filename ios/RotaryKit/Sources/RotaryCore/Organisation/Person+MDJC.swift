@@ -6,7 +6,7 @@ extension Person {
     static let barbaraTusveld = Person(
         name: PersonNameComponents(givenName: "Barbara", familyName: "Tusveld"),
         roles: [.chairYouthExchange],
-        phone: "+31655128529",
+        phone: "06 55 12 85 29",
         email: "chair@rotaryyep.nl",
         club: "RC Lelystad",
         district: "1590 NOORD-NEDERLAND",
@@ -17,7 +17,7 @@ extension Person {
     static let clasineScheepers = Person(
         name: PersonNameComponents(givenName: "Clasine", familyName: "Scheepers"),
         roles: [.secretaryMDJC],
-        phone: "+31652710977",
+        phone: "06 52 71 09 77",
         email: "secretary@rotaryyep.nl",
         club: "RC Huizen",
         district: "1570 MIDDEN-NEDERLAND",
@@ -38,7 +38,7 @@ extension Person {
     static let margaOosterveld = Person(
         name: PersonNameComponents(givenName: "Marga", familyName: "Oosterveld"),
         roles: [.chairLongTerm, .coordinatorAmericasAsiaEurope],
-        phone: "+31629586813",
+        phone: "06 29 58 68 13",
         email: "marga_bart@yahoo.com",
         club: "Rotary Club Oosterwolde",
         district: "1590 NOORD-NEDERLAND",
@@ -49,7 +49,7 @@ extension Person {
     static let ernstZiengs = Person(
         name: PersonNameComponents(givenName: "Ernst", familyName: "Ziengs"),
         roles: [.districtYouthCommissioner(district: 1550)],
-        phone: "+31653985449",
+        phone: "06 53 98 54 49",
         email: "ernstziengs@icloud.com",
         club: "RC Weert-Land van Horne",
         district: "1550",
@@ -60,7 +60,7 @@ extension Person {
     static let stevenStolp = Person(
         name: PersonNameComponents(givenName: "Steven", familyName: "Stolp"),
         roles: [.districtYouthCommissioner(district: 1560), .activitiesInbounds],
-        phone: "+310630569469",
+        phone: "06 30 56 94 69",
         email: "djc@rotary-d1560.nl",
         club: "RC Bennekom",
         district: "1560 OOST-NEDERLAND",
@@ -71,7 +71,7 @@ extension Person {
     static let ernaVanDijk = Person(
         name: PersonNameComponents(givenName: "Erna", familyName: "van Dijk"),
         roles: [.districtYouthCommissioner(district: 1570)],
-        phone: "+31612300695",
+        phone: "06 12 30 06 95",
         email: "djc@rotary-d1570.nl",
         club: "Scherpenzeel- Woudenberg",
         district: "1570",
@@ -82,7 +82,7 @@ extension Person {
     static let marioMeeuwse = Person(
         name: PersonNameComponents(givenName: "Mario", familyName: "Meeuwse"),
         roles: [.districtYouthCommissioner(district: 1580)],
-        phone: "+31629541915",
+        phone: "06 29 54 19 15",
         email: "mario.meeuwse@rabobank.nl",
         club: "RC Haarlemmermeer",
         district: "1580",
@@ -93,7 +93,7 @@ extension Person {
     static let judithSiebring = Person(
         name: PersonNameComponents(givenName: "Judith", familyName: "Siebring"),
         roles: [.districtYouthCommissioner(district: 1590), .coordinatorLatinAmerica, .coordinatorLatinAmericaEurope],
-        phone: "+31652682275",
+        phone: "06 52 68 22 75",
         email: "judith@talaria.eu",
         club: "RC Emmen-'t Loo",
         district: "1590 NOORD-NEDERLAND",
@@ -104,7 +104,7 @@ extension Person {
     static let ericKamst = Person(
         name: PersonNameComponents(givenName: "Eric", familyName: "Kamst"),
         roles: [.districtYouthCommissioner(district: 1600)],
-        phone: "+31618124627",
+        phone: "06 18 12 46 27",
         email: "djc@rotary-d1600.nl",
         club: "RC Rijswijk",
         district: "1600",
