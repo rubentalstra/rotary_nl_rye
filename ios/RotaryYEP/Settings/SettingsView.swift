@@ -1,21 +1,25 @@
+import RotaryCore
 import SwiftUI
 import UIKit
 
-/// The root of the Settings tab. The app's language is the iOS per-app
-/// language (Settings, Rotary YEP NL, Language), so the app has no picker of
-/// its own; this row opens that page.
+/// The root of the Settings tab: the app's language, sharing and reviewing
+/// the app, its legal pages and which version this is.
 struct SettingsView: View {
     var body: some View {
         NavigationStack {
             Form {
                 LanguageSection()
+                AppSection()
+                LegalSection()
+                AboutAppSection()
             }
             .navigationTitle(Text(AppTab.settings.title))
         }
     }
 }
 
-/// Opens the app's page in iOS Settings, where its language is chosen.
+/// Opens the app's page in iOS Settings, where its language is chosen. The
+/// app has no picker of its own: iOS keeps a language per app.
 private struct LanguageSection: View {
     @Environment(\.openURL) private var openURL
 
@@ -38,6 +42,68 @@ private struct LanguageSection: View {
         } footer: {
             Text("De app volgt de taal van je iPhone. Kies een andere taal voor alleen deze app in Instellingen.")
         }
+    }
+}
+
+/// Telling others about the app.
+private struct AppSection: View {
+    var body: some View {
+        Section {
+            ShareLink(
+                item: AppIdentity.appStoreURL,
+                subject: Text(verbatim: "Rotary YEP NL"),
+                message: Text("De app van Rotary Youth Exchange Nederland.")
+            ) {
+                Label("Deel de app", systemImage: "square.and.arrow.up")
+            }
+            Link(destination: AppIdentity.writeReviewURL) {
+                Label("Beoordeel de app", systemImage: "star")
+            }
+            Link(destination: AppIdentity.instagramURL) {
+                LabeledContent {
+                    Text(verbatim: "@rotexnederland")
+                } label: {
+                    Label("ROTEX op Instagram", systemImage: "camera")
+                }
+            }
+        }
+    }
+}
+
+/// The privacy policy and terms, read in the app.
+private struct LegalSection: View {
+    var body: some View {
+        Section {
+            Link(destination: AppIdentity.privacyPolicyURL) {
+                Label("Privacybeleid", systemImage: "hand.raised")
+            }
+            Link(destination: AppIdentity.termsURL) {
+                Label("Algemene voorwaarden", systemImage: "doc.text")
+            }
+        }
+        .onOpenURL(prefersInApp: true)
+    }
+}
+
+/// Which version is running.
+private struct AboutAppSection: View {
+    var body: some View {
+        Section {
+            LabeledContent("Versie", value: Bundle.main.versionDescription)
+        } footer: {
+            Text(verbatim: "Rotary Youth Exchange Nederland")
+                .frame(maxWidth: .infinity)
+                .padding(.top)
+        }
+    }
+}
+
+private extension Bundle {
+    /// "14.0.0 (3)": the version and the build number, as Settings shows them.
+    var versionDescription: String {
+        let version = object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? ""
+        let build = object(forInfoDictionaryKey: "CFBundleVersion") as? String ?? ""
+        return "\(version) (\(build))"
     }
 }
 
