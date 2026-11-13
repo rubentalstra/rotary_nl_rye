@@ -68,6 +68,21 @@ Apple's sample apps (Food Truck, Backyard Birds) and Pullwatch.
 - Access: only what the app uses is `public` in RotaryKit; what only the
   package's modules share is `package`; the rest is `private` or internal.
 
+## Content
+
+- Content that ships in the app (people, roles, About) is typed Swift values
+  in RotaryKit, one area per folder, one group per file (`Person+ROTEX.swift`).
+- Every text a person reads is `LocalizedStringResource("Dutch text",
+  bundle: #bundle, comment: "what it is, for the translator")`, extracted into
+  the module's `Localizable.xcstrings`. A value interpolated that is an
+  identifier, not a quantity (a district, a year), goes in as
+  `String(value)`, so it is never formatted as `1.590`.
+- Text written by a person about themselves (a bio) is a plain `String`,
+  shown as written and not translated.
+- A closed set is an `enum` with `var id: Self { self }`; a record is
+  `Identifiable` by its natural identity. No string ids, no slugs.
+- Define a thing once and reference it; never copy a record into a second list.
+
 ## What runs where
 
 Both the app and RotaryKit build with strict concurrency, approachable

@@ -15,7 +15,9 @@ let package = Package(
         .library(name: "RotaryCore", targets: ["RotaryCore"]),
     ],
     targets: [
-        .target(name: "RotaryCore"),
+        // The organisation's people and the About topics as typed values; their
+        // text in the module's String Catalog (nl source, en).
+        .target(name: "RotaryCore", resources: [.process("Localizable.xcstrings")]),
         .testTarget(name: "RotaryCoreTests", dependencies: ["RotaryCore"]),
     ]
 )

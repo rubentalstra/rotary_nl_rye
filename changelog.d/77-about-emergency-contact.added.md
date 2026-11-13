@@ -1,0 +1,1 @@
+- About, Emergency and Contact are native screens. Emergency puts Call 112 first, then the people of Rotary Youth Exchange and the independent confidants, each one tap from a call or mail. Contact lists the four teams with photos and search; a person's page has call, message, WhatsApp and mail buttons, their roles, club and own words.
