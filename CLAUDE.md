@@ -36,7 +36,8 @@ as `.claude/rules/swift.md` says; Apple's own guidance is in `.claude/skills/`.
   in the result bundle (`xcrun xcresulttool export attachments`).
   `ios/RotaryKit/`: the local Swift package with everything without a screen
   (iOS 26 and macOS 26, so `swift test` runs on the Mac). `RotaryCore` is its
-  first module: `AppIdentity` (the bundle id and App Store id),
+  first module: `AppIdentity` (the bundle id, App Store id and the app's
+  pages: listing, review sheet, privacy policy, terms, Instagram),
   `Organisation/` (`Person`, `Role`, `ContactGroup`, `ContactLinks`, and the
   people in `Person+MDJC`, `+LongTerm`, `+ShortTerm`, `+ROTEX`,
   `+Confidants`), `About/` (`AboutTopic`) and its own

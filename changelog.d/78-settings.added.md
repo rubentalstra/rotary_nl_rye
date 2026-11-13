@@ -1,0 +1,1 @@
+- Settings: choose the app's language, share or rate the app, follow ROTEX on Instagram, read the privacy policy and terms inside the app, and see the version. The contributors page is gone.

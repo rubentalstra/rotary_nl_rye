@@ -1,6 +1,16 @@
 {
   "sourceLanguage": "nl",
   "strings": {
+    "Algemene voorwaarden": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Terms and conditions"
+          }
+        }
+      }
+    },
     "Ambulance, brandweer of politie, bij levensgevaar of een misdrijf dat nu gebeurt.": {
       "localizations": {
         "en": {
@@ -41,6 +51,16 @@
         }
       }
     },
+    "Beoordeel de app": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rate the app"
+          }
+        }
+      }
+    },
     "Bericht": {
       "localizations": {
         "en": {
@@ -71,12 +91,32 @@
         }
       }
     },
+    "De app van Rotary Youth Exchange Nederland.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The app of Rotary Youth Exchange Netherlands."
+          }
+        }
+      }
+    },
     "De app volgt de taal van je iPhone. Kies een andere taal voor alleen deze app in Instellingen.": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "The app follows your iPhone's language. Choose another language for just this app in Settings."
+          }
+        }
+      }
+    },
+    "Deel de app": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Share the app"
           }
         }
       }
@@ -221,6 +261,26 @@
         }
       }
     },
+    "Privacybeleid": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Privacy policy"
+          }
+        }
+      }
+    },
+    "ROTEX op Instagram": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ROTEX on Instagram"
+          }
+        }
+      }
+    },
     "Rollen": {
       "localizations": {
         "en": {
@@ -257,6 +317,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Phone"
+          }
+        }
+      }
+    },
+    "Versie": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Version"
           }
         }
       }
