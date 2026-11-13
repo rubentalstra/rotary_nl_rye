@@ -19,9 +19,16 @@ as `.claude/rules/swift.md` says; Apple's own guidance is in `.claude/skills/`.
   warnings as errors.
   `ios/RotaryYEP/`: the app, one folder per feature with its `@Observable`
   model and views; `App/` the wiring (`RotaryYEPApp`, `ContentView` for now);
+  `Navigation/` the tabs (`AppTab`, `MainTabView`) and `AppRouter`; one
+  folder per tab root (`Home/`, `About/`, `Emergency/`, `Contact/`,
+  `Settings/`); `General/` shared views (`ComingSoonView` for screens not
+  rebuilt yet);
   `AppIcon.icon` the Icon Composer app icon (`icon.json` plus one SVG per
   layer; check it in light, dark, tinted and clear); `Assets.xcassets`;
-  `Localizable.xcstrings` (nl source, en).
+  `Localizable.xcstrings` (nl source, en). `ios/Info.plist` holds only the
+  launch screen (`UILaunchScreen` with the `LaunchBackground` colour): Apple's
+  launch screen is the first screen without content, never a splash with a
+  logo or text (HIG, Launching).
   `ios/RotaryYEPTests/`: hosted Swift Testing suites for the built app
   (`BundleTests`: bundle id, display name, version).
   `ios/RotaryKit/`: the local Swift package with everything without a screen
@@ -50,7 +57,9 @@ as `.claude/rules/swift.md` says; Apple's own guidance is in `.claude/skills/`.
   `labels.sh` (the label set), `rel.sh` (sub-issues and blocked-by),
   `protect-main.sh` (the `main` ruleset). `scripts/release/changelog.sh` and
   `scripts/checks/changelog-guard.sh`: the changelog fragments.
-  `scripts/dev/xcode-skills.sh`: exports Apple's skills.
+  `scripts/dev/xcode-skills.sh`: exports Apple's skills; `sync-strings.sh`
+  (with `catalog-tidy.py`) writes the extracted text into the String Catalogs,
+  which xcodebuild alone does not.
 - `.githooks/`: `pre-commit` (refuses private keys, tokens, certificates) and
   `commit-msg` (strips AI attribution). Install once per clone:
   `git config core.hooksPath .githooks`.
@@ -66,6 +75,13 @@ as `.claude/rules/swift.md` says; Apple's own guidance is in `.claude/skills/`.
   native apps are updates of the existing store listings; another id is a new
   app and loses every user. `BundleTests` and `AppIdentityTests` check it.
 - **The version continues from 13.2.1.** The first native release is 14.0.0.
+- **Apple-native look and feel, never a copy of v13.** The v13 screens were
+  not native; fixing that is the point of the rewrite. Take the *content* and
+  the *purpose* of a v13 screen from the archive, then design the screen the
+  way Apple's own apps do (Settings, Health, App Store, Weather): system
+  navigation and lists, SF Symbols, Liquid Glass from the system, Dynamic
+  Type, the Human Interface Guidelines. No custom cards, headers or carousels
+  that imitate the React Native layout when a system component does the job.
 - **Native only.** No React Native, Expo, Flutter, Kotlin Multiplatform or
   other cross-platform layer, and no web views for screens the platform can
   draw. Each app uses its platform's own frameworks first; a third-party
@@ -94,6 +110,7 @@ xcodebuild test -project ios/RotaryYEP.xcodeproj -scheme RotaryYEP \
 shellcheck --severity=style scripts/*/*.sh .claude/hooks/*.sh .githooks/*
 actionlint
 bash scripts/release/changelog.sh --check
+bash scripts/dev/sync-strings.sh && git diff --exit-code -- '*.xcstrings'
 ```
 
 The default simulator is the **iPhone 18 Pro Max**. A UI change is looked at
@@ -136,7 +153,11 @@ release lane, rules) over designing it again.
    `archive/src/features/<feature>/`, and the texts it uses in
    `archive/src/lib/i18n/locales/`.
 2. Move its data into RotaryKit (a model, a JSON resource or a client, with
-   tests), then build the screen in `ios/RotaryYEP/<Feature>/` the iOS way
-   (`.claude/rules/swift.md`, `swiftui-specialist`), not as a copy of the
-   React Native layout.
-3. Its texts go into `Localizable.xcstrings` in Dutch and English.
+   tests).
+3. Design the screen anew in `ios/RotaryYEP/<Feature>/` as Apple would
+   (Hard rules; `.claude/rules/swift.md`, `swiftui-specialist`, the HIG):
+   ask which system component fits (a `List`, a `Form`, a
+   `NavigationSplitView`, a `ShareLink`, a `ContentUnavailableView`) before
+   drawing anything custom.
+4. Its texts go into `Localizable.xcstrings` in Dutch and English
+   (`bash scripts/dev/sync-strings.sh`, then add the English).

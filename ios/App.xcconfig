@@ -27,3 +27,10 @@ ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon
 // @MainActor by default (Xcode's default for new apps). RotaryKit stays
 // nonisolated by default.
 SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor
+
+// The hand-written part of Info.plist (the launch screen); Xcode merges it
+// with the generated keys above.
+INFOPLIST_FILE = Info.plist
+
+// The app's tint: Rotary royal blue, sky blue in dark mode (Assets.xcassets).
+ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor

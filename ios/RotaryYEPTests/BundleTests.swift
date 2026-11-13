@@ -14,6 +14,13 @@ import Testing
         #expect(info["CFBundleDisplayName"] as? String == "Rotary YEP NL")
     }
 
+    /// Apple's launch screen: the first screen's background, no splash image.
+    @Test func `The launch screen is the first screen's background`() throws {
+        let launch = try #require(info["UILaunchScreen"] as? [String: Any])
+        #expect(launch["UIColorName"] as? String == "LaunchBackground")
+        #expect(launch["UIImageName"] == nil)
+    }
+
     @Test func `The version continues after the React Native app`() throws {
         let version = try #require(info["CFBundleShortVersionString"] as? String)
         let major = try #require(version.split(separator: ".").first.flatMap { Int($0) })

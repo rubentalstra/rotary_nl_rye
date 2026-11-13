@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<!--
+	Only what the generated Info.plist cannot hold; Xcode merges the rest from
+	the INFOPLIST_KEY_ build settings.
+
+	The launch screen, as Apple's Human Interface Guidelines ask: it looks like
+	the first screen without its content (the background of the first tab), so
+	the app appears to open at once. No logo, no text, no splash: the HIG calls
+	a launch screen "not an opportunity for artistic expression" and not a
+	branding moment. LaunchBackground (Assets.xcassets) matches the first
+	screen's background in light and dark mode; change both together.
+	-->
+	<key>UILaunchScreen</key>
+	<dict>
+		<key>UIColorName</key>
+		<string>LaunchBackground</string>
+	</dict>
+</dict>
+</plist>
