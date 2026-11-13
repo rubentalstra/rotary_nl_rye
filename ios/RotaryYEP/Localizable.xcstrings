@@ -1,7 +1,86 @@
 {
-  "sourceLanguage" : "nl",
-  "strings" : {
-
+  "sourceLanguage": "nl",
+  "strings": {
+    "Contact": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Contact"
+          }
+        }
+      }
+    },
+    "De app volgt de taal van je iPhone. Kies een andere taal voor alleen deze app in Instellingen.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The app follows your iPhone's language. Choose another language for just this app in Settings."
+          }
+        }
+      }
+    },
+    "Dit scherm komt in een volgende versie.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This screen is coming in a later version."
+          }
+        }
+      }
+    },
+    "Home": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Home"
+          }
+        }
+      }
+    },
+    "Instellingen": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Settings"
+          }
+        }
+      }
+    },
+    "Noodgeval": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Emergency"
+          }
+        }
+      }
+    },
+    "Over": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "About"
+          }
+        }
+      }
+    },
+    "Taal": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Language"
+          }
+        }
+      }
+    }
   },
-  "version" : "1.1"
+  "version": "1.1"
 }

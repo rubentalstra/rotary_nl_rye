@@ -167,6 +167,14 @@ examples.
   names, semantic colours and text styles. Liquid Glass comes from the system:
   `.glassEffect` only on a custom floating control, never behind content.
   Toolbars through `.toolbar` with `ToolbarItem` placements.
+- **Native, not ported.** A screen is designed the way Apple's own apps
+  would show its content, never copied from the v13 React Native layout
+  (CLAUDE.md, Hard rules). System components first; anything custom needs a
+  reason the system cannot meet.
+- **Launch screen.** `UILaunchScreen` in `ios/Info.plist`: the background of
+  the first screen (`LaunchBackground`), nothing else. No logo, text or
+  splash animation, as the HIG asks; the first screen itself is where the
+  brand shows.
 - **iPad.** Every screen works at every size class and in Split View and Stage
   Manager (`app-resizability`). A list-detail feature uses
   `NavigationSplitView`, which collapses to a stack on iPhone.

@@ -85,3 +85,26 @@ jobs:
           name: test-results
           path: build/Tests.xcresult/
           if-no-files-found: warn
+
+  strings:
+    name: String Catalogs in step with the code
+    runs-on: xcode-27
+    timeout-minutes: 30
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      # LocalizationTests only sees text that is in a catalog, and new text
+      # only gets there through sync-strings.sh. If the script changes a
+      # catalog, someone added or removed text without syncing (and
+      # translating) it.
+      - name: sync-strings.sh changes nothing
+        run: |
+          bash scripts/dev/sync-strings.sh
+          if ! git diff --exit-code --stat -- '*.xcstrings'; then
+            echo "::error::The String Catalogs are not in step with the code. Run bash scripts/dev/sync-strings.sh, add the English for every new entry, and commit the catalogs."
+            git diff -- '*.xcstrings' | head -80
+            exit 1
+          fi

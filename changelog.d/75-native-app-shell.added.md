@@ -1,0 +1,1 @@
+- The app is rebuilt natively for iPhone and iPad: a tab bar with Home, About, Emergency, Contact and Settings in the Liquid Glass design of iOS 26, in Dutch and English, with the language chosen per app in iOS Settings.
