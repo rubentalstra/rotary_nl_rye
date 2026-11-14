@@ -59,7 +59,9 @@ final class CampsUITests: XCTestCase {
         let invitation = app.buttons.matching(NSPredicate(format: "label CONTAINS %@", language == "nl" ? "uitnodiging" : "invitation")).firstMatch
         XCTAssertTrue(invitation.waitForExistence(timeout: 5), "no invitation button")
         invitation.tap()
-        XCTAssertTrue(app.otherElements["QLPreviewControllerView"].waitForExistence(timeout: 20) || app.navigationBars.buttons.count > 1, "Quick Look did not open")
+        // Quick Look's bar shows the document's name once it is open.
+        let quickLook = app.descendants(matching: .any).matching(NSPredicate(format: "label CONTAINS %@", "discover-india-international-youth-camp")).firstMatch
+        XCTAssertTrue(quickLook.waitForExistence(timeout: 40), "Quick Look did not open the document")
         // A large PDF takes a moment to draw its first page.
         _ = XCTWaiter.wait(for: [XCTestExpectation(description: "first page drawn")], timeout: 4)
         snapshot("\(language)-camp-invitation")

@@ -15,6 +15,7 @@ let package = Package(
         .library(name: "RotaryCore", targets: ["RotaryCore"]),
         .library(name: "RotaryCamps", targets: ["RotaryCamps"]),
         .library(name: "RotaryNews", targets: ["RotaryNews"]),
+        .library(name: "RotaryCalendar", targets: ["RotaryCalendar"]),
     ],
     dependencies: [
         // Unpacks the summer camps spreadsheet (an XLSX file is a ZIP archive);
@@ -34,6 +35,10 @@ let package = Package(
         .target(name: "RotaryNews", dependencies: ["RotaryCore"]),
         // Fixtures/news.json is the published file of 2 October 2025.
         .testTarget(name: "RotaryNewsTests", dependencies: ["RotaryNews"], resources: [.copy("Fixtures")]),
+        // The MDJC calendar through the Google Calendar API v3.
+        .target(name: "RotaryCalendar", dependencies: ["RotaryCore"]),
+        // Fixtures/events.json is the API's answer of 14 November 2026, people's details removed.
+        .testTarget(name: "RotaryCalendarTests", dependencies: ["RotaryCalendar"], resources: [.copy("Fixtures")]),
     ]
 )
 

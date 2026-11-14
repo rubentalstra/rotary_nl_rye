@@ -31,22 +31,27 @@ final class NewsUITests: XCTestCase {
         _ = XCTWaiter.wait(for: [XCTestExpectation(description: "covers load")], timeout: 3)
         snapshot("\(language)-news")
 
-        latest.tap()
-        XCTAssertTrue(app.otherElements["QLPreviewControllerView"].waitForExistence(timeout: 20) || app.navigationBars.buttons.count > 1, "Quick Look did not open")
-        _ = XCTWaiter.wait(for: [XCTestExpectation(description: "first page drawn")], timeout: 3)
-        snapshot("\(language)-news-pdf")
-        // Quick Look's close button is the first in its bar.
-        app.navigationBars.buttons.firstMatch.tap()
-
-        // The article is near the end of the list: scroll until it is on screen.
+        // An article first: it is near the end of the list, so scroll until it is on screen.
         let article = app.buttons.matching(NSPredicate(format: "label CONTAINS %@", "Corona")).firstMatch
-        for _ in 0..<6 where !(article.exists && article.isHittable) {
+        for _ in 0..<8 where !(article.exists && article.isHittable) {
             app.collectionViews.firstMatch.swipeUp()
         }
         XCTAssertTrue(article.waitForExistence(timeout: 5), "no article")
         article.tap()
-        _ = XCTWaiter.wait(for: [XCTestExpectation(description: "article loads")], timeout: 2)
+        XCTAssertTrue(app.staticTexts["nieuws 2021 Corona"].waitForExistence(timeout: 5), "the article did not open")
         snapshot("\(language)-news-article")
+        app.navigationBars.buttons.firstMatch.tap()
+
+        // Then the newest newsletter, last: it opens in Quick Look, whose bar
+        // shows the document's name once it is open.
+        for _ in 0..<8 where !(latest.exists && latest.isHittable) {
+            app.collectionViews.firstMatch.swipeDown()
+        }
+        latest.tap()
+        let quickLook = app.descendants(matching: .any).matching(NSPredicate(format: "label CONTAINS %@", "jaarverslag-2024-2025")).firstMatch
+        XCTAssertTrue(quickLook.waitForExistence(timeout: 40), "Quick Look did not open the newsletter")
+        _ = XCTWaiter.wait(for: [XCTestExpectation(description: "first page drawn")], timeout: 3)
+        snapshot("\(language)-news-pdf")
     }
 
     private func snapshot(_ name: String) {
