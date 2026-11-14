@@ -46,4 +46,58 @@
     <string name="home_photo_outbounds" description="Home carousel: caption of a group photo of the Dutch students going abroad that year.">De outbounds van 2025/2026</string>
     <string name="home_photo_inbounds" description="Home carousel: caption of a photo of foreign students holding their flags.">Inbounds met de vlaggen van hun land</string>
     <string name="home_photo_arrival" description="Home carousel: caption of a photo of a foreign student arriving at Schiphol airport.">Aankomst van een inbound op Schiphol</string>
+    <string name="camps_search" description="Camps: the search field's placeholder.">Kamp of land</string>
+    <string name="camps_age" description="Camps: the age filter, and what an age is on a camp's page.">Leeftijd</string>
+    <string name="camps_any_age" description="Camps: no age filter.">Elke leeftijd</string>
+    <string name="camps_countries" description="Camps: the countries filter.">Landen</string>
+    <string name="camps_all_countries" description="Camps: no country filter.">Alle landen</string>
+    <string name="camps_hide_full" description="Camps: the filter that leaves out full camps.">Verberg volle kampen</string>
+    <string name="camps_clear_filters" description="Camps: the button that removes every filter.">Wis filters</string>
+    <string name="camps_sort" description="Camps: the sort menu, for TalkBack.">Sorteer op</string>
+    <string name="camps_sort_date" description="Camps: order by first day.">Datum</string>
+    <string name="camps_sort_price" description="Camps: order by price.">Prijs</string>
+    <string name="camps_full" description="Camps: a camp that takes nobody more.">Vol</string>
+    <string name="camps_none" description="Camps: no camp passes the search and filters.">Geen kamp past bij je filters.</string>
+    <string name="camps_offline_title" description="Camps: no network and no copy from before.">Geen verbinding</string>
+    <string name="camps_offline" description="Camps: what to do without a connection.">Maak verbinding met internet om de kampen te laden.</string>
+    <string name="camps_unavailable_title" description="Camps: the sheet could not be read.">Kampen niet beschikbaar</string>
+    <string name="camps_unavailable" description="Camps: the sheet could not be read, explained.">De lijst met zomerkampen kon niet worden gelezen. Probeer het later opnieuw.</string>
+    <string name="action_retry" description="A button that tries to load again.">Probeer opnieuw</string>
+    <string name="camps_when" description="Camp page: heading of the dates.">Wanneer</string>
+    <string name="camps_from" description="Camp page: the first day.">Van</string>
+    <string name="camps_until" description="Camp page: the last day.">Tot en met</string>
+    <string name="camps_length" description="Camp page: how long the camp is.">Duur</string>
+    <string name="camps_who" description="Camp page: heading of the ages, cost and districts.">Voor wie</string>
+    <string name="camps_cost" description="Camp page: what the camp costs.">Kosten</string>
+    <string name="camps_not_known" description="Camp page: the sheet gives no amount.">Niet bekend</string>
+    <string name="camps_view_invitation" description="Camp page: opens the camp's invitation (a PDF).">Bekijk de uitnodiging</string>
+    <string name="camps_view_website" description="Camp page: opens the organiser's website.">Bekijk de website</string>
+    <plurals name="camps_countries_chosen" description="Camps: the countries filter with countries chosen.">
+        <item quantity="one">%1$d land</item>
+        <item quantity="other">%1$d landen</item>
+    </plurals>
+    <plurals name="camps_show_past" description="Camps: the filter that shows camps that are over, with how many.">
+        <item quantity="one">Toon %1$d afgelopen kamp</item>
+        <item quantity="other">Toon %1$d afgelopen kampen</item>
+    </plurals>
+    <plurals name="camps_nights" description="Camp page: the nights between the first and last day.">
+        <item quantity="one">%1$d nacht</item>
+        <item quantity="other">%1$d nachten</item>
+    </plurals>
+    <plurals name="camps_host_districts" description="Camp page: the Rotary district or districts that host the camp.">
+        <item quantity="one">Gastdistrict</item>
+        <item quantity="other">Gastdistricten</item>
+    </plurals>
+    <plurals name="camps_age_years" description="Camps: an age, such as 16 jaar.">
+        <item quantity="one">%1$d jaar</item>
+        <item quantity="other">%1$d jaar</item>
+    </plurals>
+    <plurals name="camps_ages_short" description="Camps: the ages that may join, in the list, such as 15–18 jaar; counted by the oldest age.">
+        <item quantity="one">%1$d–%2$d jaar</item>
+        <item quantity="other">%1$d–%2$d jaar</item>
+    </plurals>
+    <plurals name="camps_ages_long" description="Camps: the ages that may join, on a camp's page; counted by the oldest age.">
+        <item quantity="one">%1$d tot %2$d jaar</item>
+        <item quantity="other">%1$d tot %2$d jaar</item>
+    </plurals>
 </resources>

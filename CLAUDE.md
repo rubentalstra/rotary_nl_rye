@@ -122,7 +122,12 @@ reference only. Swift is written as `.claude/rules/swift.md` says, Kotlin as
   `PersonListItem`, list section headers, `rememberOpenLink`), `home/`
   (`HomeScreen`: banner, Material carousel of `HomePhoto`, tiles of
   `HomeDestination` in rows of three with a last row of two, as on iOS;
-  `DestinationScreen` for a part not rebuilt yet), `about/`
+  `DestinationScreen` for a part not rebuilt yet), `camps/`
+  (`CampRepository`, `CampsViewModel` deriving the sections off the main
+  thread, `CampsScreen` with filter chips, a country sheet and sticky month
+  headers, `CampDetailScreen` with its assisted `CampDetailViewModel`,
+  invitations in a Custom Tab or the PDF viewer), `di/NetworkModule` (Hilt:
+  one OkHttp client with an HTTP cache, also Coil's), `about/`
   (`AboutScreen`), `emergency/` (`EmergencyScreen`: the 112 campaign image,
   the emergency people and confidants with call and mail), `contact/`
   (`ContactScreen`: team tabs and a Material search bar; `PersonRoute` by
@@ -138,6 +143,12 @@ reference only. Swift is written as `.claude/rules/swift.md` says, Kotlin as
   people, roles, groups and About topics are **generated** from the Swift by
   `python3 -I scripts/dev/android-content.py` (CI checks they are in step):
   edit the Swift, run the script, never edit the generated files.
+  `:core` also has `networking/CachedFetch` (OkHttp: revalidated online,
+  the last copy offline). `:camps`: `Spreadsheet` (java.util.zip and the
+  platform's XML parser), `CampSheet`, `Camp`, `CampFeed`, tested on the
+  same `zomerkampen.xlsx` fixture as iOS and with MockWebServer. Hilt
+  (KSP) injects the ViewModels; screens are stateless with a route that
+  connects their ViewModel.
 - `archive/`: the React Native app (v13, Expo SDK 58), `archive/README.md`.
   Never built, never edited, never imported from. Read it to see what a screen
   did and to take its content: `archive/src/features/*/data/*.json` (students,

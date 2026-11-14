@@ -7,6 +7,7 @@
     <!-- The language per app (Android 13 and later) comes from
          generateLocaleConfig in build.gradle.kts: Dutch and English. -->
     <application
+        android:name=".RotaryApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"

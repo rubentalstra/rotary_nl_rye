@@ -6,8 +6,10 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.caelitechnologies.rotary_nl_rye.ui.theme.RotaryTheme
+import dagger.hilt.android.AndroidEntryPoint
 
 /** The one activity: the system splash screen, then the app edge to edge. */
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         installSplashScreen()
