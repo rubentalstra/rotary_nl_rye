@@ -51,6 +51,7 @@ import com.caelitechnologies.rotary_nl_rye.core.programmes.ExchangeProgramme
 import com.caelitechnologies.rotary_nl_rye.ui.components.ListSectionFooter
 import com.caelitechnologies.rotary_nl_rye.ui.components.ListSectionHeader
 import com.caelitechnologies.rotary_nl_rye.ui.components.currentLocale
+import com.caelitechnologies.rotary_nl_rye.ui.components.materialSymbol
 import com.caelitechnologies.rotary_nl_rye.ui.components.rememberOpenLink
 import java.util.Locale
 
@@ -75,7 +76,7 @@ fun ProgrammeDetailScreen(programme: ExchangeProgramme, onBack: () -> Unit, onSu
     ) { padding ->
         LazyColumn(contentPadding = padding, modifier = Modifier.fillMaxSize().consumeWindowInsets(padding)) {
             if (programme.photos.isNotEmpty()) {
-                item(key = "photos", contentType = "photos") { Photos(programme.photos, onPhoto = { fullScreen = it }) }
+                item(key = "photos", contentType = "photos") { ProgrammePhotos(programme.photos, onPhoto = { fullScreen = it }) }
             }
             item(key = "tagline", contentType = "tagline") {
                 Text(
@@ -94,7 +95,7 @@ fun ProgrammeDetailScreen(programme: ExchangeProgramme, onBack: () -> Unit, onSu
                 ListItem(
                     headlineContent = { Text(stringResource(point.title)) },
                     supportingContent = point.text?.let { { Text(stringResource(it)) } },
-                    leadingContent = { Icon(painterResource(highlightIcon(point.symbol)), contentDescription = null, tint = MaterialTheme.colorScheme.primary) },
+                    leadingContent = { Icon(painterResource(materialSymbol(point.symbol)), contentDescription = null, tint = MaterialTheme.colorScheme.primary) },
                 )
             }
             programme.destinations.forEach { group -> destinations(group, locale) }
@@ -121,7 +122,7 @@ fun ProgrammeDetailScreen(programme: ExchangeProgramme, onBack: () -> Unit, onSu
             }
         }
     }
-    fullScreen?.let { photo -> PhotoViewer(photo, onDismiss = { fullScreen = null }) }
+    fullScreen?.let { photo -> ProgrammePhotoViewer(photo, onDismiss = { fullScreen = null }) }
 }
 
 /** Age, length, price and selection: a small title over each value, so long values wrap at any text size. */
@@ -166,7 +167,7 @@ private fun LazyListScope.destinations(group: ExchangeProgramme.DestinationGroup
 /** The photos in Material's carousel, each with what it shows; a tap opens one full screen. */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun Photos(photos: List<ProgrammePhoto>, onPhoto: (ProgrammePhoto) -> Unit) {
+internal fun ProgrammePhotos(photos: List<ProgrammePhoto>, onPhoto: (ProgrammePhoto) -> Unit) {
     val showFullScreen = stringResource(R.string.programme_photo_full_screen)
     HorizontalMultiBrowseCarousel(
         state = rememberCarouselState { photos.size },
@@ -201,7 +202,7 @@ private fun Photos(photos: List<ProgrammePhoto>, onPhoto: (ProgrammePhoto) -> Un
 
 /** A photo on its own, as large as the screen allows, on black, with what it shows; back or close closes it. */
 @Composable
-private fun PhotoViewer(photo: ProgrammePhoto, onDismiss: () -> Unit) {
+internal fun ProgrammePhotoViewer(photo: ProgrammePhoto, onDismiss: () -> Unit) {
     Dialog(onDismissRequest = onDismiss, properties = DialogProperties(usePlatformDefaultWidth = false)) {
         Box(Modifier.fillMaxSize().background(Color.Black)) {
             Image(

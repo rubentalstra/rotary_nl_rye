@@ -38,10 +38,20 @@ import com.caelitechnologies.rotary_nl_rye.contact.ContactScreen
 import com.caelitechnologies.rotary_nl_rye.contact.PersonRoute
 import com.caelitechnologies.rotary_nl_rye.contact.PersonScreen
 import com.caelitechnologies.rotary_nl_rye.emergency.EmergencyScreen
-import com.caelitechnologies.rotary_nl_rye.home.DestinationScreen
 import com.caelitechnologies.rotary_nl_rye.home.HomeDestination
 import com.caelitechnologies.rotary_nl_rye.home.HomeScreen
 import com.caelitechnologies.rotary_nl_rye.navigation.AppTab
+import com.caelitechnologies.rotary_nl_rye.students.GuideScreen
+import com.caelitechnologies.rotary_nl_rye.students.InboundGuideRoute
+import com.caelitechnologies.rotary_nl_rye.students.InboundScreen
+import com.caelitechnologies.rotary_nl_rye.students.OutboundGuideRoute
+import com.caelitechnologies.rotary_nl_rye.students.OutboundProgrammeRoute
+import com.caelitechnologies.rotary_nl_rye.students.OutboundProgrammeScreen
+import com.caelitechnologies.rotary_nl_rye.students.OutboundScreen
+import com.caelitechnologies.rotary_nl_rye.students.StudentDetailScreen
+import com.caelitechnologies.rotary_nl_rye.students.StudentListRoute
+import com.caelitechnologies.rotary_nl_rye.students.StudentListRouteScreen
+import com.caelitechnologies.rotary_nl_rye.students.StudentRoute
 import com.caelitechnologies.rotary_nl_rye.programmes.PodcastRoute
 import com.caelitechnologies.rotary_nl_rye.programmes.PodcastRouteScreen
 import com.caelitechnologies.rotary_nl_rye.programmes.ProgrammeDetailScreen
@@ -90,8 +100,19 @@ fun RotaryApp() {
                     onPodcast = { navigator.navigate(PodcastRoute) },
                     onVideo = { navigator.navigate(VideoRoute(it)) },
                 )
+                HomeDestination.Outbound -> OutboundScreen(
+                    onBack = navigator::goBack,
+                    onClass = navigator::navigate,
+                    onProgramme = { navigator.navigate(OutboundProgrammeRoute(it)) },
+                )
+                HomeDestination.Inbound -> InboundScreen(
+                    onBack = navigator::goBack,
+                    onClass = navigator::navigate,
+                    onGuide = navigator::navigate,
+                    onEarlier = { navigator.navigate(StudentListRoute.EarlierInbounds) },
+                )
+                HomeDestination.Rebound -> StudentListRouteScreen(StudentListRoute.Rebounds, onBack = navigator::goBack, onStudent = { navigator.navigate(StudentRoute(it)) })
                 HomeDestination.Calendar -> CalendarRoute(onBack = navigator::goBack, onEvent = { navigator.navigate(EventRoute(it.id)) })
-                else -> DestinationScreen(destination, onBack = navigator::goBack)
             }
         }
         entry<CampRoute> { route -> CampDetailRoute(route, onBack = navigator::goBack) }
@@ -102,6 +123,23 @@ fun RotaryApp() {
         }
         entry<PodcastRoute> { PodcastRouteScreen(onBack = navigator::goBack) }
         entry<VideoRoute> { route -> VideoRouteScreen(route, onBack = navigator::goBack) }
+        entry<OutboundProgrammeRoute> { route ->
+            OutboundProgrammeScreen(
+                route.programme,
+                onBack = navigator::goBack,
+                onClass = navigator::navigate,
+                onGuide = navigator::navigate,
+                onProgramme = { navigator.navigate(ProgrammeRoute(route.programme)) },
+                onSummerCamps = { navigator.navigate(HomeDestination.SummerCamps) },
+            )
+        }
+        // Navigation 3 matches an entry by its exact class, so each kind of list has its own.
+        entry<StudentListRoute.Class> { route -> StudentListRouteScreen(route, onBack = navigator::goBack, onStudent = { navigator.navigate(StudentRoute(it)) }) }
+        entry<StudentListRoute.EarlierInbounds> { route -> StudentListRouteScreen(route, onBack = navigator::goBack, onStudent = { navigator.navigate(StudentRoute(it)) }) }
+        entry<StudentListRoute.Rebounds> { route -> StudentListRouteScreen(route, onBack = navigator::goBack, onStudent = { navigator.navigate(StudentRoute(it)) }) }
+        entry<StudentRoute> { route -> route.student?.let { StudentDetailScreen(it, onBack = navigator::goBack) } }
+        entry<OutboundGuideRoute> { route -> GuideScreen(route.guide, onBack = navigator::goBack) }
+        entry<InboundGuideRoute> { route -> GuideScreen(route.guide, onBack = navigator::goBack) }
         entry<ArticleRoute> { route -> ArticleRouteScreen(route, onBack = navigator::goBack) }
         entry<EventRoute> { route -> EventDetailRoute(route, onBack = navigator::goBack) }
         entry<PersonRoute> { route ->

@@ -83,7 +83,7 @@ fun ProgrammesScreen(
 
 /** A programme: its first photo (or its symbol), its name, one line on it, and who it is for. */
 @Composable
-private fun ProgrammeItem(programme: ExchangeProgramme, onClick: () -> Unit) {
+internal fun ProgrammeItem(programme: ExchangeProgramme, onClick: () -> Unit) {
     ListItem(
         headlineContent = { Text(stringResource(programme.title)) },
         supportingContent = {

@@ -1,8 +1,9 @@
 """scripts/dev/android-content.py: the Android app's content, from the iOS app's.
 
-The organisation (people, roles, teams), the About topics and the Rotary clubs'
-guides, documents and topics are written once,
-in Swift, in ios/RotaryKit/Sources/RotaryCore. This script reads those sources
+The organisation (people, roles, teams), the About topics, the Rotary clubs'
+guides, documents and topics and the programmes are written once, in Swift,
+in ios/RotaryKit/Sources/RotaryCore; the students and their guides in
+RotaryStudents. This script reads those sources
 and the iOS String Catalog (for the English) and writes the matching Kotlin
 files and the Dutch and English strings.xml of android/core. Edit the Swift,
 then run it:
@@ -538,6 +539,207 @@ private const val PODCAST = \"""" + ep_base + """\"
 private const val VIDEOS = \"""" + vid_base + """\"
 """)
 
+# --- Students ------------------------------------------------------------------------------
+stu_src = repo / "ios/RotaryKit/Sources/RotaryStudents"
+stu_catalog = json.loads((stu_src / "Localizable.xcstrings").read_text())["strings"]
+(pkg_dir / "students").mkdir(parents=True, exist_ok=True)
+STU_HEADER = HEADER.replace("RotaryCore", "RotaryStudents")
+
+# The students: v13's, from the JSON resources, as typed values.
+student_counts = {}
+for direction in ("inbound", "outbound"):
+    records = json.loads((stu_src / f"Resources/{direction}.json").read_text())
+    student_counts[direction] = len(records)
+    rows = []
+    for r in records:
+        dest = "Destination.Europe" if r["destination"] == "europe" else f'Destination.Country("{r["destination"]}")'
+        photo = kt_string(r["photo"]) if r.get("photo") else "null"
+        rows.append(
+            f'    ExchangeStudent(PersonName({kt_string(r["given"])}, {kt_string(r["family"])}), ExchangeDirection.{direction.capitalize()}, '
+            f'ExchangeYear({r["year"]}), "{r["home"]}", {dest}, {photo},\n        {kt_string(r["bio"])}),'
+        )
+    (pkg_dir / f"students/{direction.capitalize()}Students.kt").write_text(STU_HEADER + f"""package com.caelitechnologies.rotary_nl_rye.core.students
+
+import com.caelitechnologies.rotary_nl_rye.core.organisation.PersonName
+
+/** Every {direction} of the v13 app, from ios/RotaryKit/Sources/RotaryStudents/Resources/{direction}.json. */
+internal val {direction}Students: List<ExchangeStudent> = listOf(
+""" + "\n".join(rows) + "\n)\n")
+
+
+def balanced(text: str, start: int) -> int:
+    """The index just past the bracket that closes the one at `start`, skipping string literals."""
+    depth, i = 0, start
+    while i < len(text):
+        c = text[i]
+        if c == '"':
+            i += 1
+            while text[i] != '"':
+                i += 2 if text[i] == "\\" else 1
+        elif c in "([":
+            depth += 1
+        elif c in ")]":
+            depth -= 1
+            if depth == 0:
+                return i + 1
+        i += 1
+    raise SystemExit("unbalanced")
+
+
+def top_level_args(text: str) -> list[str]:
+    """The arguments of a call's text (without its parentheses), split on top-level commas."""
+    args, depth, cur, i = [], 0, "", 0
+    while i < len(text):
+        c = text[i]
+        if c == '"':
+            j = i + 1
+            while text[j] != '"':
+                j += 2 if text[j] == "\\" else 1
+            cur += text[i:j + 1]
+            i = j + 1
+            continue
+        if c in "([":
+            depth += 1
+        elif c in ")]":
+            depth -= 1
+        if c == "," and depth == 0:
+            args.append(cur.strip())
+            cur = ""
+        else:
+            cur += c
+        i += 1
+    if cur.strip():
+        args.append(cur.strip())
+    return args
+
+
+guide_strings: dict[str, list[tuple[str, str, str]]] = {"outbound": [], "inbound": []}
+
+
+def guide_string(kind: str, name: str, swift: str) -> str:
+    """A guide text, kept in v13's language (shouldTranslate: false on iOS)."""
+    m = LSR.fullmatch(swift.strip())
+    if m is None:
+        raise SystemExit(f"not a string resource: {swift[:80]}")
+    key = unescape_swift(catalog_key(m.group(1)))
+    if stu_catalog.get(key, {}).get("shouldTranslate") is not False:
+        raise SystemExit(f"guide text that iOS translates: {key!r}")
+    guide_strings[kind].append((name, unescape_swift(m.group(1)), unescape_swift(m.group(2))))
+    return "R.string." + name
+
+
+def optional(kind: str, name: str, swift: str) -> str:
+    return "null" if swift == "nil" else guide_string(kind, name, swift)
+
+
+def labelled(args: list[str]) -> dict[str, str]:
+    return {a.split(":", 1)[0].strip(): a.split(":", 1)[1].strip() for a in args}
+
+
+def guide_items(kind: str, prefix: str, text: str) -> list[str]:
+    items, i, n = [], 0, 0
+    while True:
+        m = re.compile(r"\.(text|point|fact|step|question|note|mail)\(").search(text, i)
+        if m is None:
+            return items
+        end = balanced(text, m.end() - 1)
+        args = top_level_args(text[m.end():end - 1])
+        n += 1
+        name = f"{prefix}_{n}"
+        kind_ = m.group(1)
+        if kind_ in ("text", "question", "note"):
+            items.append(f"GuideItem.{kind_.capitalize()}({guide_string(kind, name, args[0])})")
+        elif kind_ == "point":
+            a = labelled(args)
+            items.append(f'GuideItem.Point("{a["systemImage"].strip(chr(34))}", {optional(kind, name + "_title", a["title"])}, {optional(kind, name + "_text", a["text"])})')
+        elif kind_ == "fact":
+            a = labelled(args)
+            items.append(f'GuideItem.Fact("{a["systemImage"].strip(chr(34))}", {guide_string(kind, name + "_title", a["title"])}, {guide_string(kind, name + "_value", a["value"])})')
+        elif kind_ == "step":
+            a = labelled(args)
+            items.append(f'GuideItem.Step({optional(kind, name + "_title", a["title"])}, {optional(kind, name + "_text", a["text"])})')
+        else:
+            a = labelled(args)
+            subject = "null" if a["subject"] == "nil" else a["subject"]
+            items.append(f'GuideItem.Mail({a["address"]}, {subject})')
+        i = end
+
+
+def guide_enum(kind: str, swift: str, doc: str, extra_param: str, extra_values: dict[str, str]) -> tuple[str, int]:
+    cases = enum_cases(swift)
+    titles = {c: lit for c, lit, _ in cases_with_resources(property_body(swift, "title"))}
+    entries = []
+    for case in cases:
+        n = f"{kind}_guide_{snake(case)}"
+        title = guide_string(kind, n + "_title", LSR.search(case_block(property_body(swift, "title"), case)).group(0))
+        subtitle = guide_string(kind, n + "_subtitle", LSR.search(case_block(property_body(swift, "subtitle"), case)).group(0))
+        symbol = re.search(r'"([^"]+)"', case_block(property_body(swift, "systemImage"), case)).group(1)
+        body = case_block(property_body(swift, "sections"), case)
+        sections, i, s = [], 0, 0
+        while (m := body.find("GuideSection(", i)) != -1:
+            end = balanced(body, m + len("GuideSection"))
+            args = top_level_args(body[m + len("GuideSection("):end - 1])
+            s += 1
+            sec_title = optional(kind, f"{n}_section_{s}", args[0])
+            items = guide_items(kind, f"{n}_section_{s}_item", args[1])
+            sections.append(f"GuideSection(\n                {sec_title},\n                listOf(\n                    " + ",\n                    ".join(items) + ",\n                ),\n            )")
+            i = end
+        extra = f"\n        programme = {extra_values[case]}," if extra_param else ""
+        entries.append(f"""    {camel(case)}(
+        title = {title},
+        subtitle = {subtitle},
+        symbol = "{symbol}",{extra}
+        sections = listOf(
+            """ + ",\n            ".join(sections) + """,
+        ),
+    )""")
+    name = "OutboundGuide" if kind == "outbound" else "InboundGuide"
+    params = f"""    @param:StringRes override val title: Int,
+    /** One line on what the page tells. */
+    @param:StringRes override val subtitle: Int,
+    /** The SF Symbol iOS shows; the app maps it to a Material Symbol. */
+    override val symbol: String,
+""" + (f"    {extra_param},\n" if extra_param else "") + "    override val sections: List<GuideSection>,\n"
+    imports = "import androidx.annotation.StringRes\nimport com.caelitechnologies.rotary_nl_rye.core.R\n" + ("import com.caelitechnologies.rotary_nl_rye.core.programmes.ExchangeProgramme\n" if extra_param else "")
+    (pkg_dir / f"students/{name}.kt").write_text(STU_HEADER + f"package com.caelitechnologies.rotary_nl_rye.core.students\n\n{imports}\n/**\n * {doc}\n */\nenum class {name}(\n{params}) : StudentGuide {{\n" + ",\n".join(entries) + ";\n}\n")
+    return name, len(cases)
+
+
+out_swift = (stu_src / "OutboundGuide.swift").read_text()
+prog_map_swift = (stu_src / "OutboundGuide+Programme.swift").read_text()
+programme_of = {}
+for m in re.finditer(r"case ((?:\.\w+(?:, )?)+): \.(\w+)", property_body(prog_map_swift, "programme")):
+    for c in re.findall(r"\.(\w+)", m.group(1)):
+        programme_of[c] = "ExchangeProgramme." + camel(m.group(2))
+_, outbound_guides = guide_enum(
+    "outbound", out_swift,
+    "The pages for Dutch students who want to go abroad, as v13 wrote them (in\n * Dutch, on purpose), per programme: the year exchange, the summer camps and\n * Family to Family.",
+    "/** The programme the page is about. */\n    val programme: ExchangeProgramme", programme_of,
+)
+_, inbound_guides = guide_enum(
+    "inbound", (stu_src / "InboundGuide.swift").read_text(),
+    "The pages for students coming to the Netherlands for a school year, as v13\n * wrote them (in English, on purpose): welcome, flight and arrival,\n * language, insurance and travel.",
+    "", {},
+)
+
+
+def attr(s: str) -> str:
+    return s.replace("&", "&amp;").replace('"', "&quot;").replace("<", "&lt;")
+
+
+for kind, locale, language in (("outbound", "nl", "Dutch"), ("inbound", "en", "English")):
+    lines = [
+        '<?xml version="1.0" encoding="utf-8"?>',
+        f"<!-- Generated by scripts/dev/android-content.py from RotaryStudents: the {kind} guides, kept in\n     v13's language ({language}) on purpose (shouldTranslate: false on iOS). Edit the Swift, never this file. -->",
+        f'<resources xmlns:tools="http://schemas.android.com/tools" tools:locale="{locale}">',
+    ]
+    for name, text, comment in guide_strings[kind]:
+        formatted = False
+        lines.append(f'    <string name="{name}" description="{attr(comment)}" translatable="false">{android_escape(text, formatted).replace("&", "&amp;").replace("<", "&lt;")}</string>')
+    lines.append("</resources>")
+    (out / "res/values").mkdir(parents=True, exist_ok=True)
+    (out / f"res/values/strings_{kind}_guides.xml").write_text("\n".join(lines) + "\n")
+
 # --- strings.xml -------------------------------------------------------------------
 def xml(entries, english):
     lines = ['<?xml version="1.0" encoding="utf-8"?>']
@@ -560,4 +762,4 @@ def xml(entries, english):
 (out / "res/values-en").mkdir(parents=True, exist_ok=True)
 (out / "res/values/strings.xml").write_text(xml(strings_nl, False))
 (out / "res/values-en/strings.xml").write_text(xml(strings_nl, True))
-print(f"{count} people, {len(role_cases)} roles, {len(entries)} groups, {len(about_entries)} topics, {len(doc_cases)} club documents, {len(guide_cases)} guides, {len(topic_cases)} club topics, {len(prog_entries)} programmes, {len(eps)} episodes, {len(vids)} videos, {len(strings_nl)} strings ({len(dutch_only)} Dutch only)")
+print(f"{count} people, {len(role_cases)} roles, {len(entries)} groups, {len(about_entries)} topics, {len(doc_cases)} club documents, {len(guide_cases)} guides, {len(topic_cases)} club topics, {len(prog_entries)} programmes, {len(eps)} episodes, {len(vids)} videos, {student_counts["inbound"]} inbounds, {student_counts["outbound"]} outbounds, {outbound_guides + inbound_guides} student guides, {len(strings_nl)} strings ({len(dutch_only)} Dutch only)")

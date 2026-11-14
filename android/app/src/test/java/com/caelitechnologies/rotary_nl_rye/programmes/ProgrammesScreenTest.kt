@@ -13,6 +13,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.caelitechnologies.rotary_nl_rye.core.programmes.ExchangeProgramme
 import com.caelitechnologies.rotary_nl_rye.core.programmes.PodcastEpisode
 import com.caelitechnologies.rotary_nl_rye.core.programmes.PromoVideo
+import com.caelitechnologies.rotary_nl_rye.ui.components.materialSymbol
 import com.caelitechnologies.rotary_nl_rye.ui.theme.RotaryTheme
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotEquals
@@ -87,7 +88,7 @@ class ProgrammesScreenTest {
     @Test
     fun `every highlight has a Material Symbol of its own`() {
         ExchangeProgramme.entries.flatMap { it.highlights.points }.filter { it.symbol != "star" }.forEach {
-            assertNotEquals(it.symbol, highlightIcon("star"), highlightIcon(it.symbol))
+            assertNotEquals(it.symbol, materialSymbol("star"), materialSymbol(it.symbol))
         }
     }
 }

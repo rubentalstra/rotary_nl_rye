@@ -135,7 +135,14 @@ reference only. Swift is written as `.claude/rules/swift.md` says, Kotlin as
   `MediaSessionService` that accepts only trusted controllers, driven by
   `PodcastViewModel` through a `MediaController`; `VideoScreen` with Media3's
   Material 3 `Player`, its ExoPlayer in `VideoViewModel`; the texts Dutch only,
-  `translatable="false"`, as on iOS), `news/` (`NewsRepository`, `NewsViewModel`, `NewsScreen`
+  `translatable="false"`, as on iOS), `students/` (`OutboundScreen`,
+  `OutboundProgrammeScreen`, `InboundScreen` with the earlier classes in the
+  top bar, `StudentListScreen` with `StudentListViewModel` for a class, the
+  rebounds and earlier inbounds: per country or exchange year, searchable;
+  `StudentDetailScreen` with `StatusLabel`, `GuideScreen` for any
+  `StudentGuide`; one Navigation 3 entry per `StudentListRoute` case, as an
+  entry matches its exact class), `ui/components/MaterialSymbol` (the SF
+  Symbol names in the shared content to Material Symbols), `news/` (`NewsRepository`, `NewsViewModel`, `NewsScreen`
   with the newest item large, `ArticleScreen`), `calendar/`
   (`CalendarRepository`, `CalendarViewModel`, `CalendarScreen` with date
   badges, `EventDetailScreen`: Maps, Android's own add-event screen, no
@@ -155,11 +162,15 @@ reference only. Swift is written as `.claude/rules/swift.md` says, Kotlin as
   `AppIdentity`, `organisation/` (`Person`, `PersonName`, `Role`,
   `ContactGroup`, `Organisation`, `ContactLinks`, the people in
   `People*.kt`) and `about/AboutTopic`, `clubs/` (`ClubTopic`, `ClubGuide`, `ClubDocument`) and
-  `programmes/`,
+  `programmes/` and `students/`,
   with Dutch and English strings. The people, roles, groups, About topics
   and the Rotary clubs' content, and `programmes/` (`ExchangeProgramme`,
   `PodcastEpisode`, `PromoVideo`; strings iOS keeps Dutch only become
-  `translatable="false"`) are **generated** from the Swift by
+  `translatable="false"`), and `students/` (the students as typed values from
+  RotaryStudents' JSON, `OutboundGuide` and `InboundGuide` with their texts in
+  `strings_outbound_guides.xml` and `strings_inbound_guides.xml`, kept in v13's
+  language) are **generated**; `ExchangeStudent` and the guide types are
+  written by hand from the Swift by
   `python3 -I scripts/dev/android-content.py` (CI checks they are in step):
   edit the Swift, run the script, never edit the generated files.
   `:core` also has `networking/CachedFetch` (OkHttp: revalidated online,
