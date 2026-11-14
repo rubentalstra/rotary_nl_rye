@@ -123,7 +123,9 @@ as `.claude/rules/swift.md` says; Apple's own guidance is in `.claude/skills/`.
   which to read when).
 - `.github/`: `workflows/ci.yml` (shellcheck and actionlint, `swift test` of
   RotaryKit, `xcodebuild test` on the iPhone 18 Pro Max simulator),
-  `workflows/changelog.yml` (the fragment guard), issue forms, PR template,
+  `workflows/changelog.yml` (the fragment guard), `workflows/release.yml`
+  (a tag uploads to TestFlight and prepares the App Store version;
+  `docs/releasing.md`), issue forms, PR template,
   `CODEOWNERS`, `dependabot.yml`, `release.yml` (release-note categories),
   `actionlint.yaml` (the `xcode-27` runner label).
 - `scripts/dev/run-sim.sh`: builds, installs and launches the app on the
@@ -131,7 +133,10 @@ as `.claude/rules/swift.md` says; Apple's own guidance is in `.claude/skills/`.
   simulators); run it after every UI change.
 - `scripts/gh/`: `issue.sh` (file an issue with type, priority and effort),
   `labels.sh` (the label set), `rel.sh` (sub-issues and blocked-by),
-  `protect-main.sh` (the `main` ruleset). `scripts/release/changelog.sh` and
+  `protect-main.sh` (the `main` ruleset). `scripts/release/`:
+  `check-version.sh`, `notes.sh`, `release.sh` (archive, cloud signing,
+  upload), `ExportOptions.plist`, `app-store-connect.swift` (next build
+  number, What to Test, What's New). `scripts/release/changelog.sh` and
   `scripts/checks/changelog-guard.sh`: the changelog fragments.
   `scripts/dev/xcode-skills.sh`: exports Apple's skills; `sync-strings.sh`
   (with `catalog-tidy.py`) writes the extracted text into the String Catalogs,
