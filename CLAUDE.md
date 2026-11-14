@@ -19,6 +19,10 @@ as `.claude/rules/swift.md` says; Apple's own guidance is in `.claude/skills/`.
   warnings as errors.
   `ios/RotaryYEP/`: the app, one folder per feature with its `@Observable`
   model and views; `App/` the wiring (`RotaryYEPApp`, `ContentView` for now);
+  `Camps/`: `CampsModel` (loading, search, filters: age, countries, hide
+  full, show past; order by date or price), `CampsView` (sections per month),
+  `CampRow`, `CampFilterMenu` (one toolbar menu), `CampDetailView` (the
+  invitation in the in-app browser).
   `Home/`: `HomeView` (banner, `PhotoCarousel`, the tile grid: three to a
   row when the width allows, as on the Pro Max, else two), `HomePhoto` and
   `HomeDestination` (enums; a destination not rebuilt yet opens
@@ -52,7 +56,14 @@ as `.claude/rules/swift.md` says; Apple's own guidance is in `.claude/skills/`.
   `Organisation/` (`Person`, `Role`, `ContactGroup`, `ContactLinks`, and the
   people in `Person+MDJC`, `+LongTerm`, `+ShortTerm`, `+ROTEX`,
   `+Confidants`), `About/` (`AboutTopic`) and its own
-  `Localizable.xcstrings`.
+  `Localizable.xcstrings`. `RotaryCamps`: the summer camps from
+  `zomerkampen.xlsx` on rotary.nl (`CampFeed`, loaded through `URLCache`:
+  revalidated online, the last copy offline), read by `Spreadsheet`
+  (ZIPFoundation unpacks the XLSX, Foundation's `XMLParser` reads the parts)
+  and `CampSheet` (columns by header; Excel serial and text dates, district
+  lists, trailing spaces), into `Camp`; tested against the real file in
+  `Tests/RotaryCampsTests/Fixtures/`. Network goes through `HTTPClient`
+  (`RotaryCore/Networking`).
 - `android/`: the Android app, not started. Package
   `com.caelitechnologies.rotary_nl_rye` (Play Store listing) never changes.
 - `archive/`: the React Native app (v13, Expo SDK 58), `archive/README.md`.

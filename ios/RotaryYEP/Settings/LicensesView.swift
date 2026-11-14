@@ -69,6 +69,11 @@ nonisolated struct License: Identifiable, Sendable {
             summary: "MIT. De merklogo's komen van Simple Icons (CC0); de merken zijn van hun eigenaren.",
             file: "simple-icons-swift-LICENSE"
         ),
+        License(
+            name: "ZIPFoundation",
+            summary: "MIT. Pakt de lijst met zomerkampen uit.",
+            file: "ZIPFoundation-LICENSE"
+        ),
     ]
 }
 
