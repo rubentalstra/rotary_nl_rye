@@ -1,5 +1,6 @@
 import RotaryCore
 import SimpleIcons
+import SimpleIconsSwiftUI
 import SwiftUI
 
 /// Everything about one person, laid out as the Contacts app does: photo and
@@ -111,11 +112,16 @@ private struct QuickActions: View {
                     QuickAction("Bel", url: ContactLinks.call(phone)) {
                         Image(systemName: "phone.fill")
                     }
-                    QuickAction("Bericht", url: ContactLinks.message(phone)) {
-                        Image(systemName: "message.fill")
-                    }
-                    QuickAction("WhatsApp", url: ContactLinks.whatsApp(phone)) {
-                        BrandIcon(.whatsapp(), relativeTo: .title3)
+                    // A landline cannot receive a text or WhatsApp, so only a mobile number offers them.
+                    if ContactLinks.isMobile(phone) {
+                        QuickAction("Bericht", url: ContactLinks.message(phone)) {
+                            Image(systemName: "message.fill")
+                        }
+                        QuickAction("WhatsApp", url: ContactLinks.whatsApp(phone)) {
+                            // In WhatsApp's own green: the glass draws a plain shape too faint to read.
+                            BrandIcon(.whatsapp(), relativeTo: .title3)
+                                .foregroundStyle(Color(simpleIcon: .whatsapp()))
+                        }
                     }
                 }
                 if let email = person.email {
@@ -149,6 +155,7 @@ private struct QuickAction<Icon: View>: View {
                     Text(title)
                         .font(.caption)
                 }
+                .foregroundStyle(.primary)
                 .frame(minWidth: 56)
             }
             .buttonStyle(.glass)

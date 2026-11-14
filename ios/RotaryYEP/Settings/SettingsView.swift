@@ -85,6 +85,11 @@ private struct LegalSection: View {
             Link(destination: AppIdentity.termsURL) {
                 Label("Algemene voorwaarden", systemImage: "doc.text")
             }
+            NavigationLink {
+                LicensesView()
+            } label: {
+                Label("Licenties", systemImage: "text.badge.checkmark")
+            }
         }
         .onOpenURL(prefersInApp: true)
     }

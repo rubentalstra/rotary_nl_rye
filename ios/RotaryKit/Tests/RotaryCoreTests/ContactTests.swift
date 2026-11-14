@@ -32,6 +32,11 @@ import Testing
         #expect(ContactLinks.message("06 12 34 56 78")?.absoluteString == "sms:+31612345678")
         #expect(ContactLinks.whatsApp("06 12 34 56 78")?.absoluteString == "https://wa.me/31612345678")
         #expect(ContactLinks.call("+49 30 1234567")?.absoluteString == "tel:+49301234567")
+    }
+
+    @Test(arguments: [("06 12 34 56 78", true), ("+31 6 12345678", true), ("0182 61 26 76", false), ("+49 30 1234567", false)])
+    func `Only a mobile number can receive a text or WhatsApp`(phone: String, mobile: Bool) {
+        #expect(ContactLinks.isMobile(phone) == mobile)
         #expect(ContactLinks.mail(" chair@rotaryyep.nl")?.absoluteString == "mailto:chair@rotaryyep.nl")
     }
 }

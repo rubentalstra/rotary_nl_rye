@@ -22,6 +22,12 @@ public enum ContactLinks {
         URL(string: "mailto:\(address.trimmingCharacters(in: .whitespaces))")
     }
 
+    /// Whether a Dutch number is a mobile number (06), which can receive a
+    /// text or WhatsApp; a landline cannot.
+    public static func isMobile(_ phone: String) -> Bool {
+        international(phone).hasPrefix("+316")
+    }
+
     /// A Dutch number in international form: the leading 0 becomes +31
     /// (`06 12 34 56 78` is `+31612345678`); a number that already starts
     /// with `+` keeps its country.

@@ -1,6 +1,16 @@
 {
   "sourceLanguage": "nl",
   "strings": {
+    "112, als elke seconde telt": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "112, when every second counts"
+          }
+        }
+      }
+    },
     "Algemene voorwaarden": {
       "localizations": {
         "en": {
@@ -37,16 +47,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "Call %@"
-          }
-        }
-      }
-    },
-    "Bel 112": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Call 112"
           }
         }
       }
@@ -151,6 +151,16 @@
         }
       }
     },
+    "Foto van %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Photo of %@"
+          }
+        }
+      }
+    },
     "Goed om te weten": {
       "localizations": {
         "en": {
@@ -197,6 +207,26 @@
           "stringUnit": {
             "state": "translated",
             "value": "Your host parents help you with an appointment at the doctor, the hospital or the dentist."
+          }
+        }
+      }
+    },
+    "Licenties": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Licences"
+          }
+        }
+      }
+    },
+    "MIT. De merklogo's komen van Simple Icons (CC0); de merken zijn van hun eigenaren.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "MIT. The brand logos come from Simple Icons (CC0); the brands belong to their owners."
           }
         }
       }
@@ -271,6 +301,16 @@
         }
       }
     },
+    "ROTEX": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ROTEX"
+          }
+        }
+      }
+    },
     "ROTEX op Instagram": {
       "localizations": {
         "en": {
@@ -311,12 +351,32 @@
         }
       }
     },
+    "Team": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Team"
+          }
+        }
+      }
+    },
     "Telefoon": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Phone"
+          }
+        }
+      }
+    },
+    "Toont de foto groot.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Shows the photo full size."
           }
         }
       }
