@@ -1,6 +1,65 @@
 {
   "sourceLanguage": "nl",
   "strings": {
+    "%@ – %@": {
+      "comment": "A camp's first and last day, such as 26 Dec – 8 Jan.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ – %2$@"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "new",
+            "value": "%1$@ – %2$@"
+          }
+        }
+      }
+    },
+    "%lld jaar": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld years"
+          }
+        }
+      }
+    },
+    "%lld tot %lld jaar": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld to %lld years"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "new",
+            "value": "%1$lld tot %2$lld jaar"
+          }
+        }
+      }
+    },
+    "%lld–%lld jaar": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld–%lld years"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "new",
+            "value": "%1$lld–%2$lld jaar"
+          }
+        }
+      }
+    },
     "112, als elke seconde telt": {
       "localizations": {
         "en": {
@@ -43,12 +102,42 @@
         }
       }
     },
+    "Alle landen": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "All countries"
+          }
+        }
+      }
+    },
     "Ambulance, brandweer of politie, bij levensgevaar of een misdrijf dat nu gebeurt.": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Ambulance, fire brigade or police, when a life is in danger or a crime is happening now."
+          }
+        }
+      }
+    },
+    "Bekijk de uitnodiging": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "View the invitation"
+          }
+        }
+      }
+    },
+    "Bekijk de website": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "View the website"
           }
         }
       }
@@ -113,6 +202,16 @@
         }
       }
     },
+    "Datum": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Date"
+          }
+        }
+      }
+    },
     "De app van Rotary Youth Exchange Nederland.": {
       "localizations": {
         "en": {
@@ -133,6 +232,16 @@
         }
       }
     },
+    "De lijst met zomerkampen kon niet worden gelezen. Probeer het later opnieuw.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The list of summer camps could not be read. Try again later."
+          }
+        }
+      }
+    },
     "De outbounds van 2025-2026": {
       "comment": "Home carousel: caption of a group photo of the Dutch students going abroad that year.",
       "localizations": {
@@ -140,6 +249,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "The outbounds of 2025-2026"
+          }
+        }
+      }
+    },
+    "Deel": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Share"
           }
         }
       }
@@ -174,12 +293,42 @@
         }
       }
     },
+    "Document niet geopend": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Document not opened"
+          }
+        }
+      }
+    },
     "E-mail": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Email"
+          }
+        }
+      }
+    },
+    "Elke leeftijd": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Any age"
+          }
+        }
+      }
+    },
+    "Filter": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Filter"
           }
         }
       }
@@ -194,12 +343,72 @@
         }
       }
     },
+    "Gastdistrict": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Host district"
+          }
+        }
+      }
+    },
+    "Gastdistricten": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Host districts"
+          }
+        }
+      }
+    },
+    "Geen kamp past bij je filters.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No camp matches your filters."
+          }
+        }
+      }
+    },
+    "Geen kampen": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No camps"
+          }
+        }
+      }
+    },
+    "Geen verbinding": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No connection"
+          }
+        }
+      }
+    },
     "Goed om te weten": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Good to know"
+          }
+        }
+      }
+    },
+    "Het document kon niet worden geladen. Controleer je verbinding en probeer het opnieuw.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The document could not be loaded. Check your connection and try again."
           }
         }
       }
@@ -266,6 +475,66 @@
         }
       }
     },
+    "Kamp of land": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Camp or country"
+          }
+        }
+      }
+    },
+    "Kampen laden…": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Loading camps…"
+          }
+        }
+      }
+    },
+    "Kampen niet beschikbaar": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Camps unavailable"
+          }
+        }
+      }
+    },
+    "Kosten": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cost"
+          }
+        }
+      }
+    },
+    "Landen": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Countries"
+          }
+        }
+      }
+    },
+    "Leeftijd": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Age"
+          }
+        }
+      }
+    },
     "Licenties": {
       "localizations": {
         "en": {
@@ -286,6 +555,26 @@
         }
       }
     },
+    "MIT. Pakt de lijst met zomerkampen uit.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "MIT. Unpacks the list of summer camps."
+          }
+        }
+      }
+    },
+    "Maak verbinding met internet om de zomerkampen te laden.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Connect to the internet to load the summer camps."
+          }
+        }
+      }
+    },
     "Mail": {
       "localizations": {
         "en": {
@@ -302,6 +591,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Mail %@"
+          }
+        }
+      }
+    },
+    "Mijn leeftijd": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "My age"
           }
         }
       }
@@ -327,6 +626,26 @@
         }
       }
     },
+    "Nachten": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nights"
+          }
+        }
+      }
+    },
+    "Niet bekend": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Not known"
+          }
+        }
+      }
+    },
     "Nieuws": {
       "comment": "Home tile: news.",
       "localizations": {
@@ -344,6 +663,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Emergency"
+          }
+        }
+      }
+    },
+    "OK": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "OK"
           }
         }
       }
@@ -379,12 +708,32 @@
         }
       }
     },
+    "Prijs": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Price"
+          }
+        }
+      }
+    },
     "Privacybeleid": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Privacy policy"
+          }
+        }
+      }
+    },
+    "Probeer opnieuw": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Try again"
           }
         }
       }
@@ -451,6 +800,16 @@
         }
       }
     },
+    "Sorteer op": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sort by"
+          }
+        }
+      }
+    },
     "Taal": {
       "localizations": {
         "en": {
@@ -481,6 +840,56 @@
         }
       }
     },
+    "Toon %lld afgelopen kampen": {
+      "localizations": {
+        "en": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Show %lld past camp"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Show %lld past camps"
+                }
+              }
+            }
+          }
+        },
+        "nl": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Toon %lld afgelopen kamp"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Toon %lld afgelopen kampen"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "Toon afgelopen kampen": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show past camps"
+          }
+        }
+      }
+    },
     "Toont de foto groot.": {
       "localizations": {
         "en": {
@@ -491,12 +900,52 @@
         }
       }
     },
+    "Tot en met": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Until"
+          }
+        }
+      }
+    },
+    "Van": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "From"
+          }
+        }
+      }
+    },
+    "Verberg volle kampen": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hide full camps"
+          }
+        }
+      }
+    },
     "Versie": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Version"
+          }
+        }
+      }
+    },
+    "Vol": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Full"
           }
         }
       }
@@ -512,12 +961,42 @@
         }
       }
     },
+    "Voor wie": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Who can join"
+          }
+        }
+      }
+    },
+    "Wanneer": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "When"
+          }
+        }
+      }
+    },
     "WhatsApp": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "WhatsApp"
+          }
+        }
+      }
+    },
+    "Wis filters": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clear filters"
           }
         }
       }

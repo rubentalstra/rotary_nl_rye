@@ -13,12 +13,22 @@ let package = Package(
     platforms: [.iOS(.v26), .macOS(.v26)],
     products: [
         .library(name: "RotaryCore", targets: ["RotaryCore"]),
+        .library(name: "RotaryCamps", targets: ["RotaryCamps"]),
+    ],
+    dependencies: [
+        // Unpacks the summer camps spreadsheet (an XLSX file is a ZIP archive);
+        // Foundation's XMLParser reads the parts. Pinned to an exact release.
+        .package(url: "https://github.com/weichsel/ZIPFoundation.git", exact: "0.9.20"),
     ],
     targets: [
         // The organisation's people and the About topics as typed values; their
         // text in the module's String Catalog (nl source, en).
         .target(name: "RotaryCore", resources: [.process("Localizable.xcstrings")]),
         .testTarget(name: "RotaryCoreTests", dependencies: ["RotaryCore"]),
+        // The summer camps: zomerkampen.xlsx from rotary.nl, read into typed camps.
+        .target(name: "RotaryCamps", dependencies: ["RotaryCore", .product(name: "ZIPFoundation", package: "ZIPFoundation")]),
+        // Fixtures/zomerkampen.xlsx is the published file of 16 September 2026.
+        .testTarget(name: "RotaryCampsTests", dependencies: ["RotaryCamps"], resources: [.copy("Fixtures")]),
     ]
 )
 

@@ -1,0 +1,1 @@
+- Summer camps: every camp and tour abroad from the published list, by month, with the flag, dates, ages and price. Search by camp or country, filter by your age, by country, without full camps or with past ones, sort by date or price, and open a camp for its dates, nights, cost, host district and invitation. The list works offline with the last copy.

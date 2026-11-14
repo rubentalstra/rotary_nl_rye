@@ -19,8 +19,13 @@ struct HomeView: View {
             // The banner is the title: the bar stays out of the way until a screen is pushed.
             .toolbarVisibility(.hidden, for: .navigationBar)
             .navigationDestination(for: HomeDestination.self) { destination in
-                ComingSoonView(title: destination.title, systemImage: destination.systemImage)
-                    .navigationTitle(Text(destination.title))
+                switch destination {
+                case .summerCamps:
+                    CampsView()
+                default:
+                    ComingSoonView(title: destination.title, systemImage: destination.systemImage)
+                        .navigationTitle(Text(destination.title))
+                }
             }
         }
     }
