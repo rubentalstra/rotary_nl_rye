@@ -1,5 +1,6 @@
 package com.caelitechnologies.rotary_nl_rye
 
+import com.caelitechnologies.rotary_nl_rye.core.AppIdentity
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
@@ -8,6 +9,7 @@ class AppIdentityTest {
     @Test
     fun `the package is the Play Store listing's`() {
         assertEquals("com.caelitechnologies.rotary_nl_rye", BuildConfig.APPLICATION_ID)
+        assertEquals(AppIdentity.PACKAGE_NAME, BuildConfig.APPLICATION_ID)
     }
 
     @Test

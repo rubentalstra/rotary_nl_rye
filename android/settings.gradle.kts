@@ -24,3 +24,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "Rotary YEP NL"
 include(":app")
+include(":core")
