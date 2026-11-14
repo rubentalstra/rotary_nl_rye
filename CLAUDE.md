@@ -117,7 +117,13 @@ reference only. Swift is written as `.claude/rules/swift.md` says, Kotlin as
   edge), `RotaryApp` (the tabs in `NavigationSuiteScaffold`: a bar on phones,
   a rail on wide windows), `navigation/` (`AppTab`, `NavigationState` and
   `Navigator`: a Navigation 3 back stack per tab), `ui/theme/` (Rotary's
-  colours in light and dark, no dynamic colour). `res/values/strings.xml`
+  colours in light and dark, no dynamic colour), `ui/components/`
+  (`TabScaffold`, `PersonPhoto` with Coil, `OrganisationBadge`,
+  `PersonListItem`, list section headers, `rememberOpenLink`), `about/`
+  (`AboutScreen`), `emergency/` (`EmergencyScreen`: the 112 campaign image,
+  the emergency people and confidants with call and mail), `contact/`
+  (`ContactScreen`: team tabs and a Material search bar; `PersonRoute` by
+  name; `PersonScreen` with the Contacts-style quick actions; `PhotoDialog`). `res/values/strings.xml`
   Dutch, `values-en/` English, per-app language from `generateLocaleConfig`;
   the adaptive icon with a themed (monochrome) layer, drawn from the iOS
   icon's SVGs; tab icons are Material Symbols. Tests on the JVM

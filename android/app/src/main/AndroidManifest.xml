@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <!-- Photos of the people, and later the news and calendar, come from the internet. -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <!-- The language per app (Android 13 and later) comes from
          generateLocaleConfig in build.gradle.kts: Dutch and English. -->
     <application

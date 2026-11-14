@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Every text a person reads, in Dutch (the app's own language);
      values-en/ has the English. -->
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:locale="nl">
     <string name="app_name" translatable="false">Rotary YEP NL</string>
     <string name="tab_home" description="Tab: the home page.">Home</string>
     <string name="tab_about" description="Tab: about Rotary Youth Exchange.">Over</string>
@@ -9,4 +9,29 @@
     <string name="tab_contact" description="Tab: the teams to contact.">Contact</string>
     <string name="tab_settings" description="Tab: the app's settings.">Instellingen</string>
     <string name="coming_soon" description="A screen that is not rebuilt yet.">Dit scherm komt in een volgende versie.</string>
+    <string name="emergency_good_to_know" description="Tab Emergency: heading of the tips.">Goed om te weten</string>
+    <string name="emergency_tip_address" description="Tab Emergency: a tip.">Houd het adres en telefoonnummer van je gastgezin altijd bij je.</string>
+    <string name="emergency_tip_doctor" description="Tab Emergency: a tip.">Je gastouders helpen je bij een afspraak met de huisarts, het ziekenhuis of de tandarts.</string>
+    <string name="emergency_112_image" description="Tab Emergency: what the 112 campaign image says, for TalkBack.">112, als elke seconde telt</string>
+    <string name="emergency_112_when" description="Tab Emergency: when to call 112.">Ambulance, brandweer of politie, bij levensgevaar of een misdrijf dat nu gebeurt.</string>
+    <string name="contact_search" description="Tab Contact: the search field's placeholder.">Naam, rol of club</string>
+    <string name="contact_search_clear" description="Tab Contact: the button that empties the search, for TalkBack.">Zoekopdracht wissen</string>
+    <string name="contact_no_results" description="Tab Contact: nothing in the team matches the search.">Niemand gevonden voor ‘%1$s’.</string>
+    <string name="action_call" description="Person page: the button that opens the dialler.">Bel</string>
+    <string name="action_message" description="Person page: the button that opens Messages.">Bericht</string>
+    <string name="action_mail" description="Person page: the button that opens mail.">Mail</string>
+    <string name="action_call_person" description="A call button, for TalkBack: Call and the person\'s name.">Bel %1$s</string>
+    <string name="action_mail_person" description="A mail button, for TalkBack: Mail and the person\'s name.">Mail %1$s</string>
+    <string name="action_back" description="The back button in the top bar, for TalkBack.">Terug</string>
+    <string name="action_close" description="The button that closes the full-screen photo, for TalkBack.">Sluiten</string>
+    <string name="person_contact" description="Person page: heading of the phone number and email address.">Contact</string>
+    <string name="person_phone" description="Person page: what a landline number is.">Telefoon</string>
+    <string name="person_mobile" description="Person page: what a mobile number is.">Mobiel</string>
+    <string name="person_email" description="Person page: what an email address is.">E-mail</string>
+    <string name="person_roles" description="Person page: heading of the person\'s roles.">Rollen</string>
+    <string name="person_club" description="Person page: what the Rotary club is.">Club</string>
+    <string name="person_district" description="Person page: what the Rotary district is.">District</string>
+    <string name="person_about" description="Person page: heading of the person\'s own words, with their given name.">Over %1$s</string>
+    <string name="person_photo_of" description="The full-screen photo, for TalkBack.">Foto van %1$s</string>
+    <string name="person_show_photo" description="Person page: what tapping the photo does, for TalkBack.">Toont de foto groot</string>
 </resources>
