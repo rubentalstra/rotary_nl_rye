@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- The window behind Compose; RotaryTheme draws everything else. -->
+    <style name="Theme.RotaryYEP" parent="android:Theme.Material.Light.NoActionBar" />
+
+    <!-- The system splash screen (Android 12 and later, and the same on
+         10 and 11 through core-splashscreen): the app icon on the launch
+         background, then the app. Nothing of our own. -->
+    <style name="Theme.RotaryYEP.Starting" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/launch_background</item>
+        <item name="windowSplashScreenAnimatedIcon">@mipmap/ic_launcher</item>
+        <item name="postSplashScreenTheme">@style/Theme.RotaryYEP</item>
+    </style>
+</resources>

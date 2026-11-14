@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The colours the system draws before Compose does: the adaptive icon's
+     background and the splash screen. The theme's colours are in
+     ui/theme/Color.kt. -->
+<resources>
+    <color name="ic_launcher_background">#FFFFFFFF</color>
+    <color name="launch_background">#FFFFFFFF</color>
+</resources>

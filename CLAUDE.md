@@ -3,10 +3,12 @@
 Rotary YEP NL is the app of Rotary Youth Exchange Netherlands, for exchange
 students, host families, clubs and counsellors: news, the calendar, programs
 and camps, students and clubs, contacts and emergency numbers. MIT. It is being
-rebuilt as two **fully native apps**: iOS first (SwiftUI, `ios/`), Android
-later (Kotlin and Jetpack Compose, `android/`). The React Native app that
-shipped as 13.x is frozen in `archive/` as a reference only. Swift is written
-as `.claude/rules/swift.md` says; Apple's own guidance is in `.claude/skills/`.
+rebuilt as two **fully native apps**: iOS (SwiftUI, `ios/`, in TestFlight)
+and Android (Kotlin and Jetpack Compose, `android/`, being built: epic #101).
+The React Native app that shipped as 13.x is frozen in `archive/` as a
+reference only. Swift is written as `.claude/rules/swift.md` says, Kotlin as
+`.claude/rules/kotlin.md` says; Apple's and Google's own guidance is in
+`.claude/skills/`.
 
 ## Repository map
 
@@ -107,8 +109,19 @@ as `.claude/rules/swift.md` says; Apple's own guidance is in `.claude/skills/`.
   or timed). Network goes through `HTTPClient`, and a feed that changes now and then through
   `CachedFetch` (`RotaryCore/Networking`): revalidated online, the last copy
   offline.
-- `android/`: the Android app, not started. Package
-  `com.caelitechnologies.rotary_nl_rye` (Play Store listing) never changes.
+- `android/`: the Android app, a Gradle project (AGP 9.5, Kotlin 2.4,
+  compileSdk and targetSdk 37, minSdk 29; versions in
+  `gradle/libs.versions.toml`). Package and `applicationId`
+  `com.caelitechnologies.rotary_nl_rye` (Play Store listing) never change;
+  versionName 14.0.0. `:app`: `MainActivity` (system splash screen, edge to
+  edge), `RotaryApp` (the tabs in `NavigationSuiteScaffold`: a bar on phones,
+  a rail on wide windows), `navigation/` (`AppTab`, `NavigationState` and
+  `Navigator`: a Navigation 3 back stack per tab), `ui/theme/` (Rotary's
+  colours in light and dark, no dynamic colour). `res/values/strings.xml`
+  Dutch, `values-en/` English, per-app language from `generateLocaleConfig`;
+  the adaptive icon with a themed (monochrome) layer, drawn from the iOS
+  icon's SVGs; tab icons are Material Symbols. Tests on the JVM
+  (`src/test/`: `AppIdentityTest`, Compose tests through Robolectric).
 - `archive/`: the React Native app (v13, Expo SDK 58), `archive/README.md`.
   Never built, never edited, never imported from. Read it to see what a screen
   did and to take its content: `archive/src/features/*/data/*.json` (students,
@@ -118,9 +131,10 @@ as `.claude/rules/swift.md` says; Apple's own guidance is in `.claude/skills/`.
   listings; keep them at the root.
 - `.claude/`: `settings.json` (hooks), `hooks/` (secrets, attribution,
   dangerous commands, shellcheck, session context), `rules/swift.md`,
-  `skills/` (Apple's skills, exported per Mac by
-  `bash scripts/dev/xcode-skills.sh`, git-ignored; `skills/README.md` says
-  which to read when).
+  `rules/kotlin.md`, `skills/` (Apple's skills, exported per Mac by
+  `bash scripts/dev/xcode-skills.sh`, and Google's Android skills, pinned,
+  installed by `bash scripts/dev/android-skills.sh`; both git-ignored;
+  `skills/README.md` says which to read when).
 - `.github/`: `workflows/ci.yml` (shellcheck and actionlint, `swift test` of
   RotaryKit, `xcodebuild test` on the iPhone 18 Pro Max simulator),
   `workflows/changelog.yml` (the fragment guard), `workflows/release.yml`
@@ -158,13 +172,16 @@ as `.claude/rules/swift.md` says; Apple's own guidance is in `.claude/skills/`.
   native apps are updates of the existing store listings; another id is a new
   app and loses every user. `BundleTests` and `AppIdentityTests` check it.
 - **The version continues from 13.2.1.** The first native release is 14.0.0.
-- **Apple-native look and feel, never a copy of v13.** The v13 screens were
-  not native; fixing that is the point of the rewrite. Take the *content* and
-  the *purpose* of a v13 screen from the archive, then design the screen the
-  way Apple's own apps do (Settings, Health, App Store, Weather): system
-  navigation and lists, SF Symbols, Liquid Glass from the system, Dynamic
-  Type, the Human Interface Guidelines. No custom cards, headers or carousels
-  that imitate the React Native layout when a system component does the job.
+- **Native look and feel on each platform, never a copy of v13 or of the
+  other app.** The v13 screens were not native; fixing that is the point of
+  the rewrite. Take the *content* and the *purpose* of a screen from the
+  archive (or the iOS app), then design it the way the platform's own apps
+  do. On iOS (Settings, Health, App Store, Weather): system navigation and
+  lists, SF Symbols, Liquid Glass from the system, Dynamic Type, the Human
+  Interface Guidelines. On Android (Contacts, Calendar, Settings): Material 3
+  components, adaptive navigation, Material Symbols, edge to edge
+  (`.claude/rules/kotlin.md`). No custom cards, headers or carousels that
+  imitate the React Native layout when a system component does the job.
 - **Apple's mechanisms, never home-made ones.** Greenfield: v13 only says
   what information exists. Content is typed Swift values in RotaryKit; every
   text a person reads is a `LocalizedStringResource(…, bundle: #bundle,
@@ -204,6 +221,8 @@ shellcheck --severity=style scripts/*/*.sh .claude/hooks/*.sh .githooks/*
 actionlint
 bash scripts/release/changelog.sh --check
 bash scripts/dev/sync-strings.sh && git diff --exit-code -- '*.xcstrings'
+# Android (JAVA_HOME: Android Studio's JDK, see .claude/rules/kotlin.md)
+(cd android && ./gradlew :app:assembleDebug :app:testDebugUnitTest :app:lintDebug)
 ```
 
 The default simulator is the **iPhone 18 Pro Max**. A UI change is looked at

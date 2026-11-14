@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Every text a person reads, in Dutch (the app's own language);
+     values-en/ has the English. -->
+<resources>
+    <string name="app_name" translatable="false">Rotary YEP NL</string>
+    <string name="tab_home" description="Tab: the home page.">Home</string>
+    <string name="tab_about" description="Tab: about Rotary Youth Exchange.">Over</string>
+    <string name="tab_emergency" description="Tab: emergency numbers and people.">Noodgeval</string>
+    <string name="tab_contact" description="Tab: the teams to contact.">Contact</string>
+    <string name="tab_settings" description="Tab: the app's settings.">Instellingen</string>
+    <string name="coming_soon" description="A screen that is not rebuilt yet.">Dit scherm komt in een volgende versie.</string>
+</resources>
