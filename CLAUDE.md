@@ -119,7 +119,10 @@ reference only. Swift is written as `.claude/rules/swift.md` says, Kotlin as
   `Navigator`: a Navigation 3 back stack per tab), `ui/theme/` (Rotary's
   colours in light and dark, no dynamic colour), `ui/components/`
   (`TabScaffold`, `PersonPhoto` with Coil, `OrganisationBadge`,
-  `PersonListItem`, list section headers, `rememberOpenLink`), `about/`
+  `PersonListItem`, list section headers, `rememberOpenLink`), `home/`
+  (`HomeScreen`: banner, Material carousel of `HomePhoto`, tiles of
+  `HomeDestination` in rows of three with a last row of two, as on iOS;
+  `DestinationScreen` for a part not rebuilt yet), `about/`
   (`AboutScreen`), `emergency/` (`EmergencyScreen`: the 112 campaign image,
   the emergency people and confidants with call and mail), `contact/`
   (`ContactScreen`: team tabs and a Material search bar; `PersonRoute` by

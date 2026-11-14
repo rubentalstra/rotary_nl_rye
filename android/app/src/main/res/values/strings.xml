@@ -34,4 +34,16 @@
     <string name="person_about" description="Person page: heading of the person\'s own words, with their given name.">Over %1$s</string>
     <string name="person_photo_of" description="The full-screen photo, for TalkBack.">Foto van %1$s</string>
     <string name="person_show_photo" description="Person page: what tapping the photo does, for TalkBack.">Toont de foto groot</string>
+    <string name="home_programmes" description="Home tile: the exchange programmes.">Programma\'s</string>
+    <string name="home_news" description="Home tile: news.">Nieuws</string>
+    <string name="home_calendar" description="Home tile: the calendar of events.">Agenda</string>
+    <string name="home_outbound" description="Home tile: for Dutch students going abroad.">Op exchange</string>
+    <string name="home_inbound" description="Home tile: for foreign students coming to the Netherlands.">Naar Nederland</string>
+    <string name="home_rebound" description="Home tile: for students back from their exchange.">Rebound</string>
+    <string name="home_summer_camps" description="Home tile: the list of summer camps.">Zomerkampen</string>
+    <string name="home_rotary_clubs" description="Home tile: information for Rotary clubs.">Voor Rotary-clubs</string>
+    <string name="home_photo_information_morning" description="Home carousel: caption of a photo of the information morning.">Informatieochtend, 19 september 2026</string>
+    <string name="home_photo_outbounds" description="Home carousel: caption of a group photo of the Dutch students going abroad that year.">De outbounds van 2025/2026</string>
+    <string name="home_photo_inbounds" description="Home carousel: caption of a photo of foreign students holding their flags.">Inbounds met de vlaggen van hun land</string>
+    <string name="home_photo_arrival" description="Home carousel: caption of a photo of a foreign student arriving at Schiphol airport.">Aankomst van een inbound op Schiphol</string>
 </resources>

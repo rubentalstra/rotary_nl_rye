@@ -24,6 +24,9 @@ import com.caelitechnologies.rotary_nl_rye.contact.ContactScreen
 import com.caelitechnologies.rotary_nl_rye.contact.PersonRoute
 import com.caelitechnologies.rotary_nl_rye.contact.PersonScreen
 import com.caelitechnologies.rotary_nl_rye.emergency.EmergencyScreen
+import com.caelitechnologies.rotary_nl_rye.home.DestinationScreen
+import com.caelitechnologies.rotary_nl_rye.home.HomeDestination
+import com.caelitechnologies.rotary_nl_rye.home.HomeScreen
 import com.caelitechnologies.rotary_nl_rye.navigation.AppTab
 import com.caelitechnologies.rotary_nl_rye.navigation.Navigator
 import com.caelitechnologies.rotary_nl_rye.navigation.rememberNavigationState
@@ -47,8 +50,12 @@ fun RotaryApp() {
                 AppTab.About -> AboutScreen()
                 AppTab.Emergency -> EmergencyScreen()
                 AppTab.Contact -> ContactScreen(onPerson = { navigator.navigate(PersonRoute(it)) })
-                AppTab.Home, AppTab.Settings -> ComingSoonScreen(tab)
+                AppTab.Home -> HomeScreen(onDestination = navigator::navigate)
+                AppTab.Settings -> ComingSoonScreen(tab)
             }
+        }
+        entry<HomeDestination> { destination ->
+            DestinationScreen(destination, onBack = navigator::goBack)
         }
         entry<PersonRoute> { route ->
             route.person?.let { PersonScreen(it, onBack = navigator::goBack) }
