@@ -122,6 +122,13 @@ reference only. Swift is written as `.claude/rules/swift.md` says, Kotlin as
   the adaptive icon with a themed (monochrome) layer, drawn from the iOS
   icon's SVGs; tab icons are Material Symbols. Tests on the JVM
   (`src/test/`: `AppIdentityTest`, Compose tests through Robolectric).
+  `:core`: everything without a screen, as RotaryCore is on iOS:
+  `AppIdentity`, `organisation/` (`Person`, `PersonName`, `Role`,
+  `ContactGroup`, `Organisation`, `ContactLinks`, the people in
+  `People*.kt`) and `about/AboutTopic`, with Dutch and English strings. The
+  people, roles, groups and About topics are **generated** from the Swift by
+  `python3 -I scripts/dev/android-content.py` (CI checks they are in step):
+  edit the Swift, run the script, never edit the generated files.
 - `archive/`: the React Native app (v13, Expo SDK 58), `archive/README.md`.
   Never built, never edited, never imported from. Read it to see what a screen
   did and to take its content: `archive/src/features/*/data/*.json` (students,
@@ -154,7 +161,9 @@ reference only. Swift is written as `.claude/rules/swift.md` says, Kotlin as
   (next build number, What to Test, What's New, a new distribution
   certificate). `scripts/release/changelog.sh` and
   `scripts/checks/changelog-guard.sh`: the changelog fragments.
-  `scripts/dev/xcode-skills.sh`: exports Apple's skills; `sync-strings.sh`
+  `scripts/dev/xcode-skills.sh`: exports Apple's skills;
+  `android-skills.sh` installs Google's; `android-content.py` generates
+  android/core's content from RotaryCore's Swift; `sync-strings.sh`
   (with `catalog-tidy.py`) writes the extracted text into the String Catalogs,
   which xcodebuild alone does not.
 - `.githooks/`: `pre-commit` (refuses private keys, tokens, certificates) and
@@ -222,7 +231,8 @@ actionlint
 bash scripts/release/changelog.sh --check
 bash scripts/dev/sync-strings.sh && git diff --exit-code -- '*.xcstrings'
 # Android (JAVA_HOME: Android Studio's JDK, see .claude/rules/kotlin.md)
-(cd android && ./gradlew :app:assembleDebug :app:testDebugUnitTest :app:lintDebug)
+python3 -I scripts/dev/android-content.py && git diff --exit-code -- android/core
+(cd android && ./gradlew assembleDebug testDebugUnitTest lintDebug)
 ```
 
 The default simulator is the **iPhone 18 Pro Max**. A UI change is looked at
