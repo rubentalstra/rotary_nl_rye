@@ -3,19 +3,14 @@ package com.caelitechnologies.rotary_nl_rye
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
-import androidx.compose.material3.LargeTopAppBar
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.adaptive.navigationsuite.NavigationSuiteScaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
@@ -24,10 +19,16 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation3.runtime.NavKey
 import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.ui.NavDisplay
+import com.caelitechnologies.rotary_nl_rye.about.AboutScreen
+import com.caelitechnologies.rotary_nl_rye.contact.ContactScreen
+import com.caelitechnologies.rotary_nl_rye.contact.PersonRoute
+import com.caelitechnologies.rotary_nl_rye.contact.PersonScreen
+import com.caelitechnologies.rotary_nl_rye.emergency.EmergencyScreen
 import com.caelitechnologies.rotary_nl_rye.navigation.AppTab
 import com.caelitechnologies.rotary_nl_rye.navigation.Navigator
 import com.caelitechnologies.rotary_nl_rye.navigation.rememberNavigationState
 import com.caelitechnologies.rotary_nl_rye.navigation.toEntries
+import com.caelitechnologies.rotary_nl_rye.ui.components.TabScaffold
 import com.caelitechnologies.rotary_nl_rye.ui.theme.RotaryTheme
 
 /**
@@ -41,7 +42,17 @@ fun RotaryApp() {
     val navigationState = rememberNavigationState(startRoute = AppTab.Home, topLevelRoutes = AppTab.entries.toSet())
     val navigator = remember(navigationState) { Navigator(navigationState) }
     val entryProvider = entryProvider<NavKey> {
-        entry<AppTab> { tab -> TabScreen(tab) }
+        entry<AppTab> { tab ->
+            when (tab) {
+                AppTab.About -> AboutScreen()
+                AppTab.Emergency -> EmergencyScreen()
+                AppTab.Contact -> ContactScreen(onPerson = { navigator.navigate(PersonRoute(it)) })
+                AppTab.Home, AppTab.Settings -> ComingSoonScreen(tab)
+            }
+        }
+        entry<PersonRoute> { route ->
+            route.person?.let { PersonScreen(it, onBack = navigator::goBack) }
+        }
     }
     NavigationSuiteScaffold(
         navigationSuiteItems = {
@@ -68,20 +79,10 @@ fun RotaryApp() {
     }
 }
 
-/** A top-level screen; each tab shows its title until its screen is rebuilt. */
-@OptIn(ExperimentalMaterial3Api::class)
+/** A tab whose screen is not rebuilt yet: its title and a line saying so. */
 @Composable
-private fun TabScreen(tab: AppTab) {
-    val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior()
-    Scaffold(
-        modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
-        topBar = {
-            LargeTopAppBar(
-                title = { Text(stringResource(tab.label)) },
-                scrollBehavior = scrollBehavior,
-            )
-        },
-    ) { padding ->
+private fun ComingSoonScreen(tab: AppTab) {
+    TabScaffold(title = stringResource(tab.label)) { padding ->
         Box(
             modifier = Modifier
                 .fillMaxSize()

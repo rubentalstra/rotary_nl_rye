@@ -1,0 +1,1 @@
+- Android: About, Emergency and Contact. Emergency shows 112 first, then the people of Rotary Youth Exchange and the independent confidants, each one tap from a call or mail. Contact has the four teams in tabs with search; a person's page has call, message, WhatsApp and mail buttons, their number and address, roles, club and own words, and their photo full screen.
