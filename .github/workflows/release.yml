@@ -2,9 +2,12 @@ name: Release
 
 # A tag vX.Y.Z-beta.N on main uploads a test build to TestFlight; a tag
 # vX.Y.Z uploads the release build and prepares App Store version X.Y.Z.
-# The app is archived, signed by Apple's cloud signing and uploaded by
+# The app is archived, signed with the team's Apple Distribution
+# certificate (from the secrets, in a keychain of its own) and uploaded by
 # scripts/release/release.sh, the same script the maintainer can run on his
-# Mac, with one App Store Connect API key (Admin role). The build number is
+# Mac, with an App Store Connect API key. Apple's cloud signing is not used:
+# it writes the certificate name "Ruben Daniël Talstra" decomposed into the
+# app's designated requirement, which App Store Connect rejects. The build number is
 # the next one App Store Connect has not seen. When the build is processed,
 # the changelog becomes TestFlight's What to Test and, for a final version,
 # the App Store's What's New; the version gets the build, and the
@@ -55,13 +58,15 @@ jobs:
           ASC_KEY: ${{ secrets.ASC_KEY }}
           ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
           ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+          DISTRIBUTION_P12: ${{ secrets.DISTRIBUTION_P12 }}
+          DISTRIBUTION_P12_PASSWORD: ${{ secrets.DISTRIBUTION_P12_PASSWORD }}
         run: |
           missing=()
-          for name in ASC_KEY ASC_KEY_ID ASC_ISSUER_ID; do
+          for name in ASC_KEY ASC_KEY_ID ASC_ISSUER_ID DISTRIBUTION_P12 DISTRIBUTION_P12_PASSWORD; do
             [ -n "${!name}" ] || missing+=("$name")
           done
           if ((${#missing[@]})); then
-            echo "::error title=Release secrets missing::${missing[*]} not set in $GITHUB_REPOSITORY. The release needs the App Store Connect API key; see docs/releasing.md."
+            echo "::error title=Release secrets missing::${missing[*]} not set in $GITHUB_REPOSITORY. The release needs the App Store Connect API key and the Apple Distribution certificate; see docs/releasing.md."
             exit 1
           fi
           echo "ok: every release secret is set"
@@ -85,6 +90,24 @@ jobs:
         run: |
           umask 077
           printf '%s\n' "$ASC_KEY" > "$RUNNER_TEMP/asc-key.p8"
+      - name: the Apple Distribution certificate, in a keychain of its own
+        env:
+          P12: ${{ secrets.DISTRIBUTION_P12 }}
+          P12_PASSWORD: ${{ secrets.DISTRIBUTION_P12_PASSWORD }}
+        run: |
+          keychain="$RUNNER_TEMP/release.keychain-db"
+          password="$(uuidgen)"
+          umask 077
+          printf '%s' "$P12" | base64 --decode > "$RUNNER_TEMP/distribution.p12"
+          security create-keychain -p "$password" "$keychain"
+          security set-keychain-settings -lut 5400 "$keychain"
+          security unlock-keychain -p "$password" "$keychain"
+          security import "$RUNNER_TEMP/distribution.p12" -k "$keychain" -P "$P12_PASSWORD" -T /usr/bin/codesign
+          security set-key-partition-list -S apple-tool:,apple: -s -k "$password" "$keychain" >/dev/null
+          read -r -a existing <<<"$(security list-keychains -d user | tr -d '"' | tr '\n' ' ')"
+          security list-keychains -d user -s "$keychain" "${existing[@]}"
+          rm "$RUNNER_TEMP/distribution.p12"
+          security find-identity -v -p codesigning "$keychain"
       - name: the next build number
         id: build
         env:
@@ -128,6 +151,8 @@ jobs:
             echo "Build $BUILD_NUMBER of $VERSION is in TestFlight."
             [ "$FINAL" = true ] && echo "App Store version $VERSION has it; submit it for review in App Store Connect."
           } >> "$GITHUB_STEP_SUMMARY"
-      - name: remove the API key
+      - name: remove the API key and the keychain
         if: always()
-        run: rm -f "$RUNNER_TEMP/asc-key.p8"
+        run: |
+          rm -f "$RUNNER_TEMP/asc-key.p8"
+          security delete-keychain "$RUNNER_TEMP/release.keychain-db" 2>/dev/null || true

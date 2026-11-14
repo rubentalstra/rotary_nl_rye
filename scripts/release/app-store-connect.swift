@@ -3,6 +3,10 @@
 //
 //   swift app-store-connect.swift text NOTES_FILE
 //       Prints the notes as they will read in App Store Connect; needs no key.
+//   swift app-store-connect.swift certificate CSR_FILE OUT_FILE
+//       Asks for an Apple Distribution certificate for the request in
+//       CSR_FILE (PEM) and writes it to OUT_FILE (DER); for the yearly
+//       renewal in docs/releasing.md.
 //   swift app-store-connect.swift next-build-number
 //       Prints a build number higher than every build of the app (and than
 //       122, the React Native app's last), for the next upload.
@@ -219,6 +223,26 @@ func prepareAppStoreVersion(_ client: Client, version: String, buildID: String, 
     print("App Store: version \(version) has this build and What's New in \(localizations.count) languages; submit it for review in App Store Connect")
 }
 
+/// A new Apple Distribution certificate for a certificate signing request.
+func distributionCertificate(_ client: Client, csr: String) async throws -> Data {
+    let body = csr
+        .components(separatedBy: .newlines)
+        .filter { !$0.hasPrefix("-----") }
+        .joined()
+    let json = try await client.call("POST", "/v1/certificates", body: ["data": [
+        "type": "certificates",
+        "attributes": ["certificateType": "DISTRIBUTION", "csrContent": body],
+    ]])
+    guard let data = json["data"] as? [String: Any],
+          let content = attribute(data, "certificateContent") as? String,
+          let der = Data(base64Encoded: content)
+    else { throw Failure(description: "App Store Connect sent no certificate") }
+    if let expiry = attribute(data, "expirationDate") as? String {
+        print("Apple Distribution certificate made; it expires \(expiry)")
+    }
+    return der
+}
+
 // MARK: - Main
 
 let arguments = Array(CommandLine.arguments.dropFirst())
@@ -229,6 +253,10 @@ do {
         print(storeText(markdown))
     case "next-build-number":
         print(try await nextBuildNumber(Client()))
+    case "certificate" where arguments.count == 3:
+        guard let csr = try? String(contentsOfFile: arguments[1], encoding: .utf8) else { fail("cannot read \(arguments[1])") }
+        let der = try await distributionCertificate(Client(), csr: csr)
+        try der.write(to: URL(fileURLWithPath: arguments[2]))
     case "notes" where arguments.count >= 4:
         let version = arguments[1]
         let build = arguments[2]
@@ -242,7 +270,7 @@ do {
             try await prepareAppStoreVersion(client, version: version, buildID: buildID, text: text)
         }
     default:
-        fail("usage: app-store-connect.swift text NOTES_FILE | next-build-number | notes VERSION BUILD NOTES_FILE [--app-store]")
+        fail("usage: app-store-connect.swift text NOTES_FILE | next-build-number | certificate CSR_FILE OUT_FILE | notes VERSION BUILD NOTES_FILE [--app-store]")
     }
 } catch {
     fail("\(error)")
