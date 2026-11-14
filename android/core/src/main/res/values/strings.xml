@@ -64,4 +64,39 @@
     <string name="about_values_point_2" description="About tab: a value of Rotary Youth Exchange.">Persoonlijke groei en ontwikkeling</string>
     <string name="about_values_point_3" description="About tab: a value of Rotary Youth Exchange.">Vriendschap en vrede wereldwijd</string>
     <string name="about_values_point_4" description="About tab: Rotary's motto as a value. Usually kept in English.">Service above self</string>
+    <string name="club_document_youth_commissioner_handbook" description="Rotary clubs: a document's title.">Handboek jeugdcommissaris</string>
+    <string name="club_document_host_family_visit" description="Rotary clubs: a document's title, the form for visiting host families.">Huisbezoek gastgezinnen</string>
+    <string name="club_document_conduct_certificate_form" description="Rotary clubs: a document's title. VOG is the Dutch certificate of conduct.">Verzamelformulier VOG-gegevens</string>
+    <string name="club_document_youth_volunteer_declaration" description="Rotary clubs: a document's title.">Verklaring Jeugd Vrijwilliger (VJV)</string>
+    <string name="club_document_training_attendance_list" description="Rotary clubs: a document's title, the attendance list of the district youth commissioner's training.">Presentielijst DJC-training</string>
+    <string name="club_document_for_secondary_schools" description="Rotary clubs: a document's title, information for secondary schools.">Voor middelbare scholen</string>
+    <string name="club_document_arrival_checklist" description="Rotary clubs: a document's title, the checklist for preparing the exchange student's arrival.">Actielijst voorbereiding komst jaarstudent</string>
+    <string name="club_document_rules_for_inbounds" description="Rotary clubs: a document's title; the document is in English.">Rules and Information for Inbounds</string>
+    <string name="club_document_travel_rules" description="Rotary clubs: a document's title.">Reisregels in en buiten Nederland</string>
+    <string name="club_document_host_family_handbook" description="Rotary clubs: a document's title.">Handboek gastgezin</string>
+    <string name="club_document_first_night_questions" description="Rotary clubs: a document's title; the questions to discuss on a student's first night with a host family.">First Night Questions</string>
+    <string name="club_document_counselor_handbook" description="Rotary clubs: a document's title.">Handboek counselor</string>
+    <string name="club_document_code_of_policies" description="Rotary clubs: a document's title.">Code of Policies: regels en interventies</string>
+    <string name="club_document_code_of_conduct" description="Rotary clubs: a document's title, the code of conduct for volunteers.">Gedragscode vrijwilligers MDJC</string>
+    <string name="club_guide_youth_commissioner" description="Rotary clubs: heading of the documents for the club's youth commissioner.">Jeugdcommissaris</string>
+    <string name="club_guide_youth_commissioner_summary" description="Rotary clubs: under the youth commissioner's documents.">Voor de jeugdcommissaris van de club die een student uitzendt en ontvangt.</string>
+    <string name="club_guide_host_family" description="Rotary clubs: heading of the documents for host families.">Gastgezin</string>
+    <string name="club_guide_host_family_summary" description="Rotary clubs: under the host family documents.">Voor de gezinnen die de student een deel van het jaar in huis hebben.</string>
+    <string name="club_guide_counselor" description="Rotary clubs: heading of the documents for the student's counsellor.">Counselor</string>
+    <string name="club_guide_counselor_summary" description="Rotary clubs: under the counsellor's documents.">Voor de counselor die de student het hele jaar begeleidt.</string>
+    <string name="club_guide_all_clubs" description="Rotary clubs: heading of the rules every club follows.">Voor alle clubs</string>
+    <string name="club_guide_all_clubs_summary" description="Rotary clubs: under the documents for every club.">De regels en de gedragscode van het uitwisselingsprogramma.</string>
+    <string name="club_introduction" description="Rotary clubs: the welcome at the top of the page.">Wat leuk dat jullie als Rotary-club een jaarstudent willen supporten, en daarmee ook een jaar lang een student uit het buitenland in jullie club ontvangen en begeleiden. Misschien heeft een scholier jullie benaderd, of komt de wens van een van jullie clubleden.</string>
+    <string name="club_topic_sponsoring" description="Rotary clubs: topic heading.">Supporten: wat houdt het in?</string>
+    <string name="club_topic_sponsoring_1" description="Rotary clubs, sponsoring: what it means.">Een Rotary-club treedt op als support voor een scholier die als ambassadeur van Rotary International een schooljaar naar het buitenland wil. Dat kan voor alle jongeren, uit Rotary-gezinnen en daarbuiten. In hetzelfde jaar ontvangt de club een buitenlandse scholier. Die gaat hier naar school met leeftijdsgenoten en woont het jaar bij twee tot hooguit vier gastgezinnen.</string>
+    <string name="club_topic_sponsoring_2" description="Rotary clubs, sponsoring: the age guideline.">Voor het uitzenden en ontvangen gelden als richtlijn leeftijden van 15½ tot 18½ jaar.</string>
+    <string name="club_topic_exchange" description="Rotary clubs: topic heading.">De uitwisseling</string>
+    <string name="club_topic_exchange_1" description="Rotary clubs, the exchange.">De uitwisseling gaat uit van wederkerigheid: elke Rotary-club die een scholier uitzendt, ontvangt in hetzelfde jaar een jaarstudent. Die woont het jaar bij verschillende gastgezinnen, die de club van tevoren bezoekt.</string>
+    <string name="club_topic_costs" description="Rotary clubs: topic heading.">Kosten</string>
+    <string name="club_topic_costs_1" description="Rotary clubs, costs: sponsoring is free, hosting is not.">Een Nederlandse scholier supporten kost jullie club niets. Een jaarstudent ontvangen wel, en het een kan niet zonder het ander.</string>
+    <string name="club_topic_costs_2" description="Rotary clubs, costs: the amounts. Keep the amounts exactly.">Voor een heel schooljaar kost het ontvangen jullie club hooguit € 2.000. De landelijke organisatie MDJC vindt het programma zo belangrijk dat ze elke club die host € 1.250 subsidie geeft. Jullie club betaalt dan hooguit € 750 voor het hele jaar.</string>
+    <string name="club_topic_host_families" description="Rotary clubs: topic heading.">Gastgezinnen</string>
+    <string name="club_topic_host_families_1" description="Rotary clubs, host families: finding them.">De clubjeugdcommissaris zoekt samen met de scholier die uitgezonden wil worden drie gastgezinnen en een reservegezin. Kinderen van dezelfde leeftijd in het gezin zijn fijn maar niet nodig: daarmee vindt een student sneller aansluiting, maar oudere echtparen zijn vaak fantastische gastouders, en in gezinnen met kleine kinderen leert een student vaak sneller Nederlands.</string>
+    <string name="club_topic_host_families_2" description="Rotary clubs, host families: working with another club.">Samenwerken met een andere Rotary-club kan een goede keuze zijn en geeft meer mogelijkheden om gastgezinnen te vinden.</string>
+    <string name="club_topic_host_families_3" description="Rotary clubs, host families: where to learn more.">Oud-uitwisselingsstudenten komen graag vertellen over hun ervaringen, om jullie club te informeren of enthousiast te maken. Meer informatie krijgen jullie bij de leden van de MDJC of bij jullie districtsjeugdcommissaris.</string>
 </resources>

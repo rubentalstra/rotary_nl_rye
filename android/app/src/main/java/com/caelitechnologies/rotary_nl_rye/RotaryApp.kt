@@ -29,6 +29,11 @@ import com.caelitechnologies.rotary_nl_rye.news.NewsRoute
 import com.caelitechnologies.rotary_nl_rye.camps.CampDetailRoute
 import com.caelitechnologies.rotary_nl_rye.camps.CampRoute
 import com.caelitechnologies.rotary_nl_rye.camps.CampsRoute
+import com.caelitechnologies.rotary_nl_rye.clubs.ClubGuideRoute
+import com.caelitechnologies.rotary_nl_rye.clubs.ClubGuideScreen
+import com.caelitechnologies.rotary_nl_rye.clubs.ClubTopicRoute
+import com.caelitechnologies.rotary_nl_rye.clubs.ClubTopicScreen
+import com.caelitechnologies.rotary_nl_rye.clubs.RotaryClubsScreen
 import com.caelitechnologies.rotary_nl_rye.contact.ContactScreen
 import com.caelitechnologies.rotary_nl_rye.contact.PersonRoute
 import com.caelitechnologies.rotary_nl_rye.contact.PersonScreen
@@ -66,12 +71,19 @@ fun RotaryApp() {
         entry<HomeDestination> { destination ->
             when (destination) {
                 HomeDestination.SummerCamps -> CampsRoute(onBack = navigator::goBack, onCamp = { navigator.navigate(CampRoute(it)) })
+                HomeDestination.RotaryClubs -> RotaryClubsScreen(
+                    onBack = navigator::goBack,
+                    onTopic = { navigator.navigate(ClubTopicRoute(it)) },
+                    onGuide = { navigator.navigate(ClubGuideRoute(it)) },
+                )
                 HomeDestination.News -> NewsRoute(onBack = navigator::goBack, onArticle = { navigator.navigate(ArticleRoute(it.id)) })
                 HomeDestination.Calendar -> CalendarRoute(onBack = navigator::goBack, onEvent = { navigator.navigate(EventRoute(it.id)) })
                 else -> DestinationScreen(destination, onBack = navigator::goBack)
             }
         }
         entry<CampRoute> { route -> CampDetailRoute(route, onBack = navigator::goBack) }
+        entry<ClubTopicRoute> { route -> ClubTopicScreen(route.topic, onBack = navigator::goBack) }
+        entry<ClubGuideRoute> { route -> ClubGuideScreen(route.guide, onBack = navigator::goBack) }
         entry<ArticleRoute> { route -> ArticleRouteScreen(route, onBack = navigator::goBack) }
         entry<EventRoute> { route -> EventDetailRoute(route, onBack = navigator::goBack) }
         entry<PersonRoute> { route ->

@@ -124,4 +124,7 @@
         <item quantity="one">Toon %1$d afgelopen evenement</item>
         <item quantity="other">Toon %1$d afgelopen evenementen</item>
     </plurals>
+    <string name="clubs_search" description="Rotary clubs: the search field's placeholder.">Onderwerp of document</string>
+    <string name="clubs_general" description="Rotary clubs: heading of the topics.">Algemene informatie</string>
+    <string name="clubs_documents" description="Rotary clubs: heading of the roles and their documents.">Documenten</string>
 </resources>

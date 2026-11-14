@@ -1,0 +1,1 @@
+- Android: For Rotary clubs, with what hosting an exchange student means (sponsoring, the exchange, costs, host families) and the documents for the youth commissioner, host families, counsellors and every club, opened in the PDF viewer. Search finds a topic or document by name.
