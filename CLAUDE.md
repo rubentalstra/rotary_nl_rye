@@ -126,7 +126,13 @@ reference only. Swift is written as `.claude/rules/swift.md` says, Kotlin as
   (`CampRepository`, `CampsViewModel` deriving the sections off the main
   thread, `CampsScreen` with filter chips, a country sheet and sticky month
   headers, `CampDetailScreen` with its assisted `CampDetailViewModel`,
-  invitations in a Custom Tab or the PDF viewer), `di/NetworkModule` (Hilt:
+  invitations in a Custom Tab or the PDF viewer), `news/` (`NewsRepository`, `NewsViewModel`, `NewsScreen`
+  with the newest item large, `ArticleScreen`), `calendar/`
+  (`CalendarRepository`, `CalendarViewModel`, `CalendarScreen` with date
+  badges, `EventDetailScreen`: Maps, Android's own add-event screen, no
+  meeting links; no month view, Android has no system one),
+  `ui/components/OpenDocument` (PDFs in the PDF viewer, videos in the
+  player, the rest in a Custom Tab), `di/NetworkModule` (Hilt:
   one OkHttp client with an HTTP cache, also Coil's), `about/`
   (`AboutScreen`), `emergency/` (`EmergencyScreen`: the 112 campaign image,
   the emergency people and confidants with call and mail), `contact/`
@@ -146,7 +152,11 @@ reference only. Swift is written as `.claude/rules/swift.md` says, Kotlin as
   `:core` also has `networking/CachedFetch` (OkHttp: revalidated online,
   the last copy offline). `:camps`: `Spreadsheet` (java.util.zip and the
   platform's XML parser), `CampSheet`, `Camp`, `CampFeed`, tested on the
-  same `zomerkampen.xlsx` fixture as iOS and with MockWebServer. Hilt
+  same `zomerkampen.xlsx` fixture as iOS and with MockWebServer.
+  `:news` (`NewsFeed`, `NewsItem`) and `:calendar` (`CalendarFeed`,
+  `CalendarEvent`; the API key is read from `ios/App.xcconfig` into
+  `BuildConfig`, requests carry the package and signing certificate),
+  kotlinx.serialization, tested on iOS's fixtures. Hilt
   (KSP) injects the ViewModels; screens are stateless with a route that
   connects their ViewModel.
 - `archive/`: the React Native app (v13, Expo SDK 58), `archive/README.md`.

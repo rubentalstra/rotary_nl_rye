@@ -1,0 +1,544 @@
+{
+ "kind": "calendar#events",
+ "etag": "\"p32npvimrlq3pe0o\"",
+ "summary": "MDJC",
+ "description": "Stichting Rotary Multidistrict Jeugdzaken\n",
+ "updated": "2026-09-24T13:53:08.276Z",
+ "timeZone": "Europe/Amsterdam",
+ "accessRole": "reader",
+ "items": [
+  {
+   "kind": "calendar#event",
+   "etag": "\"3463862973818000\"",
+   "id": "280ap25re9i7t5l1o57bhc1dbr",
+   "status": "confirmed",
+   "htmlLink": "https://www.google.com/calendar/event?eid=MjgwYXAyNXJlOWk3dDVsMW81N2JoYzFkYnIgcnllLm5ldGhlcmxhbmRzQG0",
+   "created": "2024-11-18T12:04:46.000Z",
+   "updated": "2024-11-18T12:04:46.909Z",
+   "summary": "Oriëntatieweekend Jaaruitwisseling",
+   "start": {
+    "date": "2025-11-07"
+   },
+   "end": {
+    "date": "2025-11-10"
+   },
+   "transparency": "transparent",
+   "iCalUID": "280ap25re9i7t5l1o57bhc1dbr@google.com",
+   "sequence": 0,
+   "eventType": "default"
+  },
+  {
+   "kind": "calendar#event",
+   "etag": "\"3463863308920000\"",
+   "id": "6h81n5nrrt0gvojfgunv6g5paj",
+   "status": "confirmed",
+   "htmlLink": "https://www.google.com/calendar/event?eid=Nmg4MW41bnJydDBndm9qZmd1bnY2ZzVwYWogcnllLm5ldGhlcmxhbmRzQG0",
+   "created": "2024-11-18T12:07:34.000Z",
+   "updated": "2024-11-18T12:07:34.460Z",
+   "summary": "Inbounds Residentieweekend Den Haag",
+   "start": {
+    "date": "2025-11-14"
+   },
+   "end": {
+    "date": "2025-11-17"
+   },
+   "transparency": "transparent",
+   "iCalUID": "6h81n5nrrt0gvojfgunv6g5paj@google.com",
+   "sequence": 0,
+   "eventType": "default"
+  },
+  {
+   "kind": "calendar#event",
+   "etag": "\"3527261695975038\"",
+   "id": "0accna41kqvqjo04p8giiq8e9p",
+   "status": "confirmed",
+   "htmlLink": "https://www.google.com/calendar/event?eid=MGFjY25hNDFrcXZxam8wNHA4Z2lpcThlOXAgcnllLm5ldGhlcmxhbmRzQG0",
+   "created": "2024-11-18T12:07:56.000Z",
+   "updated": "2025-11-20T09:27:27.987Z",
+   "summary": "Inbounds Sponsorloop weekend Middelharnis",
+   "start": {
+    "date": "2025-12-12"
+   },
+   "end": {
+    "date": "2025-12-14"
+   },
+   "transparency": "transparent",
+   "iCalUID": "0accna41kqvqjo04p8giiq8e9p@google.com",
+   "sequence": 1,
+   "eventType": "default"
+  },
+  {
+   "kind": "calendar#event",
+   "etag": "\"3527261762970110\"",
+   "id": "3jeq560j81fcqb3nq47oirnl6e",
+   "status": "confirmed",
+   "htmlLink": "https://www.google.com/calendar/event?eid=M2plcTU2MGo4MWZjcWIzbnE0N29pcm5sNmUgcnllLm5ldGhlcmxhbmRzQG0",
+   "created": "2025-11-20T09:28:01.000Z",
+   "updated": "2025-11-20T09:28:01.485Z",
+   "summary": "Bijeenkomst Zomerkampen in Nederland",
+   "location": "Woerden, Nederland",
+   "start": {
+    "date": "2026-01-24"
+   },
+   "end": {
+    "date": "2026-01-25"
+   },
+   "transparency": "transparent",
+   "iCalUID": "3jeq560j81fcqb3nq47oirnl6e@google.com",
+   "sequence": 0,
+   "eventType": "default"
+  },
+  {
+   "kind": "calendar#event",
+   "etag": "\"3484454072803518\"",
+   "id": "02va1oovdjom7jcr8h762t982u",
+   "status": "confirmed",
+   "htmlLink": "https://www.google.com/calendar/event?eid=MDJ2YTFvb3Zkam9tN2pjcjhoNzYydDk4MnUgcnllLm5ldGhlcmxhbmRzQG0",
+   "created": "2025-03-17T15:57:16.000Z",
+   "updated": "2025-03-17T15:57:16.401Z",
+   "summary": "NL Doet Inbounds weekend",
+   "start": {
+    "date": "2026-03-13"
+   },
+   "end": {
+    "date": "2026-03-16"
+   },
+   "transparency": "transparent",
+   "iCalUID": "02va1oovdjom7jcr8h762t982u@google.com",
+   "sequence": 0,
+   "eventType": "default"
+  },
+  {
+   "kind": "calendar#event",
+   "etag": "\"3518119627900478\"",
+   "id": "21dfcoh0iaihjjm018ma8o0iju",
+   "status": "confirmed",
+   "htmlLink": "https://www.google.com/calendar/event?eid=MjFkZmNvaDBpYWloamptMDE4bWE4bzBpanUgcnllLm5ldGhlcmxhbmRzQG0",
+   "created": "2025-09-02T18:51:25.000Z",
+   "updated": "2025-09-28T11:43:33.950Z",
+   "summary": "Prebounds training Woerden",
+   "start": {
+    "dateTime": "2026-03-28T09:00:00+01:00",
+    "timeZone": "Europe/Brussels"
+   },
+   "end": {
+    "dateTime": "2026-03-28T15:30:00+01:00",
+    "timeZone": "Europe/Brussels"
+   },
+   "iCalUID": "21dfcoh0iaihjjm018ma8o0iju@google.com",
+   "sequence": 0,
+   "eventType": "default"
+  },
+  {
+   "kind": "calendar#event",
+   "etag": "\"3527265458208190\"",
+   "id": "782844iqh5e7erirs724u41kn4",
+   "status": "confirmed",
+   "htmlLink": "https://www.google.com/calendar/event?eid=NzgyODQ0aXFoNWU3ZXJpcnM3MjR1NDFrbjQgcnllLm5ldGhlcmxhbmRzQG0",
+   "created": "2025-08-05T13:23:34.000Z",
+   "updated": "2025-11-20T09:58:49.104Z",
+   "summary": "Jaarlijkse training DJC's inzake organisatie inbounds 2026-2027",
+   "start": {
+    "dateTime": "2026-04-11T10:00:00+02:00",
+    "timeZone": "Europe/Brussels"
+   },
+   "end": {
+    "dateTime": "2026-04-11T13:45:00+02:00",
+    "timeZone": "Europe/Brussels"
+   },
+   "iCalUID": "782844iqh5e7erirs724u41kn4@google.com",
+   "sequence": 1,
+   "hangoutLink": "https://meet.google.com/cwd-rjqb-tir",
+   "eventType": "default"
+  },
+  {
+   "kind": "calendar#event",
+   "etag": "\"3527263959645182\"",
+   "id": "0hcunsldjo0i67hm75h0tblbsi",
+   "status": "confirmed",
+   "htmlLink": "https://www.google.com/calendar/event?eid=MGhjdW5zbGRqbzBpNjdobTc1aDB0Ymxic2kgcnllLm5ldGhlcmxhbmRzQG0",
+   "created": "2025-11-07T07:07:23.000Z",
+   "updated": "2025-11-20T09:46:19.822Z",
+   "summary": "MDJC jaarlijkse training",
+   "location": "Woerden",
+   "start": {
+    "dateTime": "2026-04-11T14:00:00+02:00",
+    "timeZone": "Europe/Brussels"
+   },
+   "end": {
+    "dateTime": "2026-04-11T18:15:00+02:00",
+    "timeZone": "Europe/Brussels"
+   },
+   "iCalUID": "0hcunsldjo0i67hm75h0tblbsi@google.com",
+   "sequence": 0,
+   "hangoutLink": "https://meet.google.com/jpt-fxup-hjq",
+   "eventType": "default"
+  },
+  {
+   "kind": "calendar#event",
+   "etag": "\"3541116373489342\"",
+   "id": "u2tcnlfddg85c1hopmgi6pm3u8",
+   "status": "confirmed",
+   "htmlLink": "https://www.google.com/calendar/event?eid=dTJ0Y25sZmRkZzg1YzFob3BtZ2k2cG0zdTggcnllLm5ldGhlcmxhbmRzQG0",
+   "created": "2026-02-08T13:43:06.000Z",
+   "updated": "2026-02-08T13:43:06.744Z",
+   "summary": "Digitale informatie markt",
+   "start": {
+    "date": "2026-05-23"
+   },
+   "end": {
+    "date": "2026-05-24"
+   },
+   "transparency": "transparent",
+   "iCalUID": "u2tcnlfddg85c1hopmgi6pm3u8@google.com",
+   "sequence": 0,
+   "eventType": "default"
+  },
+  {
+   "kind": "calendar#event",
+   "etag": "\"3541116426901214\"",
+   "id": "nrngr0hlgmdmtjb3mllp2mh1qc",
+   "status": "confirmed",
+   "htmlLink": "https://www.google.com/calendar/event?eid=bnJuZ3IwaGxnbWRtdGpiM21sbHAybWgxcWMgcnllLm5ldGhlcmxhbmRzQG0",
+   "created": "2026-02-08T13:43:33.000Z",
+   "updated": "2026-02-08T13:43:33.450Z",
+   "summary": "Digitale informatie markt",
+   "start": {
+    "dateTime": "2026-05-23T10:00:00+02:00",
+    "timeZone": "Europe/Amsterdam"
+   },
+   "end": {
+    "dateTime": "2026-05-23T12:30:00+02:00",
+    "timeZone": "Europe/Amsterdam"
+   },
+   "iCalUID": "nrngr0hlgmdmtjb3mllp2mh1qc@google.com",
+   "sequence": 0,
+   "eventType": "default"
+  },
+  {
+   "kind": "calendar#event",
+   "etag": "\"3494112831495454\"",
+   "id": "6j0vire11ulif720mpmfet71cc",
+   "status": "confirmed",
+   "htmlLink": "https://www.google.com/calendar/event?eid=NmowdmlyZTExdWxpZjcyMG1wbWZldDcxY2MgcnllLm5ldGhlcmxhbmRzQG0",
+   "created": "2025-05-12T13:26:55.000Z",
+   "updated": "2025-05-12T13:26:55.747Z",
+   "summary": "Farewell party",
+   "start": {
+    "date": "2026-05-30"
+   },
+   "end": {
+    "date": "2026-05-31"
+   },
+   "transparency": "transparent",
+   "iCalUID": "6j0vire11ulif720mpmfet71cc@google.com",
+   "sequence": 0,
+   "eventType": "default"
+  },
+  {
+   "kind": "calendar#event",
+   "etag": "\"3536793197765310\"",
+   "id": "6f1pe29u0mcof6buhtoujpvcgp",
+   "status": "confirmed",
+   "htmlLink": "https://www.google.com/calendar/event?eid=NmYxcGUyOXUwbWNvZjZidWh0b3VqcHZjZ3AgcnllLm5ldGhlcmxhbmRzQG0",
+   "created": "2026-01-14T13:16:29.000Z",
+   "updated": "2026-01-14T13:16:38.882Z",
+   "summary": "Aankomst Inbounds regio Noord",
+   "start": {
+    "date": "2026-08-08"
+   },
+   "end": {
+    "date": "2026-08-09"
+   },
+   "transparency": "transparent",
+   "iCalUID": "6f1pe29u0mcof6buhtoujpvcgp@google.com",
+   "sequence": 0,
+   "eventType": "default"
+  },
+  {
+   "kind": "calendar#event",
+   "etag": "\"3536793309571902\"",
+   "id": "4klnbo280ud1t160p309vu7ar6",
+   "status": "confirmed",
+   "htmlLink": "https://www.google.com/calendar/event?eid=NGtsbmJvMjgwdWQxdDE2MHAzMDl2dTdhcjYgcnllLm5ldGhlcmxhbmRzQG0",
+   "created": "2026-01-14T13:17:34.000Z",
+   "updated": "2026-01-14T13:17:34.785Z",
+   "summary": "Aankomst Inbounds regio Zuid",
+   "start": {
+    "date": "2026-08-15"
+   },
+   "end": {
+    "date": "2026-08-16"
+   },
+   "transparency": "transparent",
+   "iCalUID": "4klnbo280ud1t160p309vu7ar6@google.com",
+   "sequence": 0,
+   "eventType": "default"
+  },
+  {
+   "kind": "calendar#event",
+   "etag": "\"3536793261851358\"",
+   "id": "74sehf38vt0buc7tvg5t5q7430",
+   "status": "confirmed",
+   "htmlLink": "https://www.google.com/calendar/event?eid=NzRzZWhmMzh2dDBidWM3dHZnNXQ1cTc0MzAgcnllLm5ldGhlcmxhbmRzQG0",
+   "created": "2026-01-14T13:17:10.000Z",
+   "updated": "2026-01-14T13:17:10.925Z",
+   "summary": "Aankomst Inbounds regio Midden",
+   "start": {
+    "date": "2026-08-22"
+   },
+   "end": {
+    "date": "2026-08-23"
+   },
+   "transparency": "transparent",
+   "iCalUID": "74sehf38vt0buc7tvg5t5q7430@google.com",
+   "sequence": 0,
+   "eventType": "default"
+  },
+  {
+   "kind": "calendar#event",
+   "etag": "\"3541110567149918\"",
+   "id": "u63fmvasq6fdhhsocbmlia9hjc",
+   "status": "confirmed",
+   "htmlLink": "https://www.google.com/calendar/event?eid=dTYzZm12YXNxNmZkaGhzb2NibWxpYTloamMgcnllLm5ldGhlcmxhbmRzQG0",
+   "created": "2026-02-08T12:54:43.000Z",
+   "updated": "2026-02-08T12:54:43.574Z",
+   "summary": "Rotary rebound dag",
+   "start": {
+    "dateTime": "2026-08-23T11:00:00+02:00",
+    "timeZone": "Europe/Amsterdam"
+   },
+   "end": {
+    "dateTime": "2026-08-23T17:30:00+02:00",
+    "timeZone": "Europe/Amsterdam"
+   },
+   "iCalUID": "u63fmvasq6fdhhsocbmlia9hjc@google.com",
+   "sequence": 0,
+   "eventType": "default"
+  },
+  {
+   "kind": "calendar#event",
+   "etag": "\"3519464496638686\"",
+   "id": "0m94jcsiied8v8apmcssbhjj81",
+   "status": "confirmed",
+   "htmlLink": "https://www.google.com/calendar/event?eid=MG05NGpjc2lpZWQ4djhhcG1jc3NiaGpqODEgcnllLm5ldGhlcmxhbmRzQG0",
+   "created": "2025-10-06T06:30:48.000Z",
+   "updated": "2025-10-06T06:30:48.319Z",
+   "summary": "Kennismakingsweekend inbound studenten in NL",
+   "start": {
+    "date": "2026-09-04"
+   },
+   "end": {
+    "date": "2026-09-07"
+   },
+   "transparency": "transparent",
+   "iCalUID": "0m94jcsiied8v8apmcssbhjj81@google.com",
+   "sequence": 0,
+   "eventType": "default"
+  },
+  {
+   "kind": "calendar#event",
+   "etag": "\"3518098378535902\"",
+   "id": "4rgkl6h0l8j20oeifj30h9uju9",
+   "status": "confirmed",
+   "htmlLink": "https://www.google.com/calendar/event?eid=NHJna2w2aDBsOGoyMG9laWZqMzBoOXVqdTkgcnllLm5ldGhlcmxhbmRzQG0",
+   "created": "2025-09-28T08:46:19.000Z",
+   "updated": "2025-09-28T08:46:29.267Z",
+   "summary": "Rotary Summit Rotterdam",
+   "start": {
+    "date": "2026-09-11"
+   },
+   "end": {
+    "date": "2026-09-14"
+   },
+   "transparency": "transparent",
+   "iCalUID": "4rgkl6h0l8j20oeifj30h9uju9@google.com",
+   "sequence": 0,
+   "eventType": "default"
+  },
+  {
+   "kind": "calendar#event",
+   "etag": "\"3543873390314398\"",
+   "id": "4kpgtqctid9c2pvek7lgoa2ie8",
+   "status": "confirmed",
+   "htmlLink": "https://www.google.com/calendar/event?eid=NGtwZ3RxY3RpZDljMnB2ZWs3bGdvYTJpZTggcnllLm5ldGhlcmxhbmRzQG0",
+   "created": "2026-02-08T12:55:40.000Z",
+   "updated": "2026-02-24T12:38:15.157Z",
+   "summary": "Informatiemarkt Rotary Youth Exchange Nederland",
+   "location": "Woerden ",
+   "start": {
+    "dateTime": "2026-09-19T10:00:00+02:00",
+    "timeZone": "Europe/Amsterdam"
+   },
+   "end": {
+    "dateTime": "2026-09-19T14:00:00+02:00",
+    "timeZone": "Europe/Amsterdam"
+   },
+   "iCalUID": "4kpgtqctid9c2pvek7lgoa2ie8@google.com",
+   "sequence": 1,
+   "eventType": "default"
+  },
+  {
+   "kind": "calendar#event",
+   "etag": "\"3543873428902014\"",
+   "id": "p1c1ugh0gi6nf4qvp8oqn514mo",
+   "status": "confirmed",
+   "htmlLink": "https://www.google.com/calendar/event?eid=cDFjMXVnaDBnaTZuZjRxdnA4b3FuNTE0bW8gcnllLm5ldGhlcmxhbmRzQG0",
+   "created": "2026-02-08T12:56:02.000Z",
+   "updated": "2026-02-24T12:38:34.451Z",
+   "summary": "Selectiedag Jaaruitwisseling",
+   "location": "Woerden, Nederland",
+   "start": {
+    "dateTime": "2026-10-10T10:00:00+02:00",
+    "timeZone": "Europe/Amsterdam"
+   },
+   "end": {
+    "dateTime": "2026-10-10T16:15:00+02:00",
+    "timeZone": "Europe/Amsterdam"
+   },
+   "iCalUID": "p1c1ugh0gi6nf4qvp8oqn514mo@google.com",
+   "sequence": 1,
+   "eventType": "default"
+  },
+  {
+   "kind": "calendar#event",
+   "etag": "\"3580515975945150\"",
+   "id": "055fk2h25d9869792u96fecb7l",
+   "status": "confirmed",
+   "htmlLink": "https://www.google.com/calendar/event?eid=MDU1ZmsyaDI1ZDk4Njk3OTJ1OTZmZWNiN2wgcnllLm5ldGhlcmxhbmRzQG0",
+   "created": "2026-09-24T13:53:07.000Z",
+   "updated": "2026-09-24T13:53:07.972Z",
+   "summary": "Dutch Orientation Course voor inbound studenten",
+   "start": {
+    "date": "2026-10-11"
+   },
+   "end": {
+    "date": "2026-10-17"
+   },
+   "transparency": "transparent",
+   "iCalUID": "055fk2h25d9869792u96fecb7l@google.com",
+   "sequence": 0,
+   "eventType": "default"
+  },
+  {
+   "kind": "calendar#event",
+   "etag": "\"3519464545881918\"",
+   "id": "4e4bnjrotrk8t5tf7et4iikes7",
+   "status": "confirmed",
+   "htmlLink": "https://www.google.com/calendar/event?eid=NGU0Ym5qcm90cms4dDV0ZjdldDRpaWtlczcgcnllLm5ldGhlcmxhbmRzQG0",
+   "created": "2025-10-06T06:31:12.000Z",
+   "updated": "2025-10-06T06:31:12.940Z",
+   "summary": "Oriëntatieweekend ",
+   "start": {
+    "date": "2026-11-06"
+   },
+   "end": {
+    "date": "2026-11-09"
+   },
+   "transparency": "transparent",
+   "iCalUID": "4e4bnjrotrk8t5tf7et4iikes7@google.com",
+   "sequence": 0,
+   "eventType": "default"
+  },
+  {
+   "kind": "calendar#event",
+   "etag": "\"3562497782665726\"",
+   "id": "3qfocich5pm8qd72842p1i7reb",
+   "status": "confirmed",
+   "htmlLink": "https://www.google.com/calendar/event?eid=M3Fmb2NpY2g1cG04cWQ3Mjg0MnAxaTdyZWIgcnllLm5ldGhlcmxhbmRzQG0",
+   "created": "2026-06-12T07:21:21.000Z",
+   "updated": "2026-06-12T07:21:31.332Z",
+   "summary": "Residentieweekend inbounds",
+   "start": {
+    "date": "2026-11-13"
+   },
+   "end": {
+    "date": "2026-11-16"
+   },
+   "transparency": "transparent",
+   "iCalUID": "3qfocich5pm8qd72842p1i7reb@google.com",
+   "sequence": 0,
+   "eventType": "default"
+  },
+  {
+   "kind": "calendar#event",
+   "etag": "\"3562497909646910\"",
+   "id": "0dnaqjr4c9vrle1vaqs33425u3",
+   "status": "confirmed",
+   "htmlLink": "https://www.google.com/calendar/event?eid=MGRuYXFqcjRjOXZybGUxdmFxczMzNDI1dTMgcnllLm5ldGhlcmxhbmRzQG0",
+   "created": "2026-06-12T07:22:25.000Z",
+   "updated": "2026-06-12T07:22:34.823Z",
+   "summary": "Santa Run Inbounds",
+   "start": {
+    "date": "2026-12-12"
+   },
+   "end": {
+    "date": "2026-12-13"
+   },
+   "transparency": "transparent",
+   "iCalUID": "0dnaqjr4c9vrle1vaqs33425u3@google.com",
+   "sequence": 0,
+   "eventType": "default"
+  },
+  {
+   "kind": "calendar#event",
+   "etag": "\"3519464594493566\"",
+   "id": "5kug1p97irmd7pr4erm7d1jr75",
+   "status": "confirmed",
+   "htmlLink": "https://www.google.com/calendar/event?eid=NWt1ZzFwOTdpcm1kN3ByNGVybTdkMWpyNzUgcnllLm5ldGhlcmxhbmRzQG0",
+   "created": "2025-10-06T06:31:37.000Z",
+   "updated": "2025-10-06T06:31:37.246Z",
+   "summary": "NL Doet weekend inbounds ",
+   "start": {
+    "date": "2027-03-12"
+   },
+   "end": {
+    "date": "2027-03-15"
+   },
+   "transparency": "transparent",
+   "iCalUID": "5kug1p97irmd7pr4erm7d1jr75@google.com",
+   "sequence": 0,
+   "eventType": "default"
+  },
+  {
+   "kind": "calendar#event",
+   "etag": "\"3560642184219390\"",
+   "id": "7ii43nkd4647u5tu56gps09mfd",
+   "status": "confirmed",
+   "htmlLink": "https://www.google.com/calendar/event?eid=N2lpNDNua2Q0NjQ3dTV0dTU2Z3BzMDltZmQgcnllLm5ldGhlcmxhbmRzQG0",
+   "created": "2026-06-01T13:38:11.000Z",
+   "updated": "2026-06-01T13:38:12.109Z",
+   "summary": "Farewell Party",
+   "start": {
+    "date": "2027-06-12"
+   },
+   "end": {
+    "date": "2027-06-13"
+   },
+   "transparency": "transparent",
+   "iCalUID": "7ii43nkd4647u5tu56gps09mfd@google.com",
+   "sequence": 0,
+   "eventType": "default"
+  },
+  {
+   "kind": "calendar#event",
+   "etag": "\"3578100004519870\"",
+   "id": "6dqgap3oh0pdec3aleof8nqmai",
+   "status": "confirmed",
+   "htmlLink": "https://www.google.com/calendar/event?eid=NmRxZ2FwM29oMHBkZWMzYWxlb2Y4bnFtYWkgcnllLm5ldGhlcmxhbmRzQG0",
+   "created": "2026-09-10T14:20:01.000Z",
+   "updated": "2026-09-10T14:20:02.259Z",
+   "summary": "Europa Tour voor Inbound studenten",
+   "start": {
+    "date": "2027-06-13"
+   },
+   "end": {
+    "date": "2027-06-26"
+   },
+   "transparency": "transparent",
+   "iCalUID": "6dqgap3oh0pdec3aleof8nqmai@google.com",
+   "sequence": 0,
+   "eventType": "default"
+  }
+ ]
+}

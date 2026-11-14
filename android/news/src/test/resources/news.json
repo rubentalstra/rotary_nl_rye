@@ -1,0 +1,177 @@
+{
+    "news": [
+        {
+            "id": 16,
+            "images": "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/news/rotary-youth-ex.png",
+            "pdf": "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/news/jaarverslag-2024-2025.pdf",
+            "title": "Jaarverslag 2024-2025",
+            "description": "",
+            "isPdf": "yes"
+        },
+        {
+            "id": 15,
+            "images": "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/news/nieuwsbrief-voorjaar-2025-def.png",
+            "pdf": "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/news/nieuwsbrief-voorjaar-2025-def.pdf",
+            "title": "Nieuwsbrief voorjaar 2025",
+            "description": "",
+            "isPdf": "yes"
+        },
+        {
+            "id": 14,
+            "images": "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/news/verslag-bezoek-stephanie-urchick-rotary-international-president.png",
+            "pdf": "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/news/verslag-bezoek-stephanie-urchick-rotary-international-president.pdf",
+            "title": "Bezoek Stephanie Urchick 25-28 april 2025",
+            "description": "",
+            "isPdf": "yes"
+        },
+        {
+            "id": 13,
+            "images": "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/news/nieuwsbrief-winter-2024-def.png",
+            "pdf": "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/news/nieuwsbrief-winter-2024-def-1.pdf",
+            "title": "Nieuwsbrief Winter 2024",
+            "description": "",
+            "isPdf": "yes"
+        },
+        {
+            "id": 12,
+            "images": "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/news/nieuwsbrief-voorjaar-2024-def.png",
+            "pdf": "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/news/koningsdag-emmen-apr24.pdf",
+            "title": "Koningsdag Emmen",
+            "description": "",
+            "isPdf": "yes"
+        },
+        {
+            "id": 11,
+            "images": "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/news/nieuwsbrief-voorjaar-2024-def.png",
+            "pdf": "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/news/testimonial-rc-schouwen-duiveland-maart-2024.pdf",
+            "title": "Testimonial RC Schouwen-Duiveland",
+            "description": "",
+            "isPdf": "yes"
+        },
+        {
+            "id": 10,
+            "images": "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/news/nieuwsbrief-voorjaar-2024-def.png",
+            "pdf": "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/news/nieuwsbrief-voorjaar-2024-def.pdf",
+            "title": "Nieuwsbrief Voorjaar 2024",
+            "description": "",
+            "isPdf": "yes"
+        },
+        {
+            "id": 9,
+            "images": "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/news/nieuwsbrief-najaar-2023.png",
+            "pdf": "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/news/nieuwsbrief-najaar-2023-def.pdf",
+            "title": "Nieuwsbrief Najaar 2023",
+            "description": "",
+            "isPdf": "yes"
+        },
+        {
+            "id": 8,
+            "images": "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/news/nieuwsbrief-voorjaar-2023.png",
+            "pdf": "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/news/nieuwsbrief-voorjaar-2023.pdf",
+            "title": "Nieuwsbrief Voorjaar 2023",
+            "description": "",
+            "isPdf": "yes"
+        },
+        {
+            "id": 7,
+            "images": "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/news/nieuwsbrief-herfst-2022-def.png",
+            "pdf": "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/news/nieuwsbrief-herfst-2022-def.pdf",
+            "title": "Nieuwsbrief Herfst 2022",
+            "description": "",
+            "isPdf": "yes"
+        },
+        {
+            "id": 6,
+            "images": "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/news/nieuwsbrief-voorjaar-2022-maart-2022-def.png",
+            "pdf": "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/news/nieuwsbrief-voorjaar-2022-maart-2022-def.pdf",
+            "title": "Nieuwsbrief Voorjaar 2022",
+            "description": "",
+            "isPdf": "yes"
+        },
+        {
+            "id": 5,
+            "images": "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/news/nieuwsbrief-herfst-2021-1.png",
+            "pdf": "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/news/nieuwsbrief-herfst-2021-def.pdf",
+            "title": "Nieuwsbrief Herfst 2021",
+            "description": "",
+            "isPdf": "yes"
+        },
+        {
+            "id": 4,
+            "images": "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/Informatiedag_Informatiemarkt_2021.png",
+            "pdf": null,
+            "title": "Rotary Youth 5th Avenue",
+            "description": "Deze film toont alle Rotary (korte en lange) jeugdprogramma's, zoals jaaruitwisseling/youth exchange, family-to-family uitwisselingen, zomerkampen in binnen- en buitenland, RYLA alsook het Vlielandkamp. Heb je interesse of een vraag, stuur je mail naar interesse@rotaryyep.nl. Tot snel?!",
+            "isPdf": "no",
+            "text": [
+                {
+                    "heading": "Rotary Youth Exchange - Rotary's 5th Avenue"
+                },
+                {
+                    "body": [
+                        {
+                            "paragraph": [
+                                "Deze film toont alle Rotary (korte en lange) jeugdprogramma's, zoals jaaruitwisseling/youth exchange, family-to-family uitwisselingen, zomerkampen in binnen- en buitenland, RYLA alsook het Vlielandkamp. Heb je interesse of een vraag, stuur je mail naar interesse@rotaryyep.nl. Tot snel?!"
+                            ]
+                        },
+                        {
+                            "videoUrl": "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/videos/promo/5th_Avenue_Jeugd.mp4"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "images": "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/news/rotary-youth-ex.png",
+            "pdf": null,
+            "title": "nieuws 2021 Corona",
+            "description": "Rotary International heeft op vrijdag 19 maart jl. besloten om alle jeugduitwisselingen in binnen- en buitenland op te schorten tot juni 2022. Rotary wil de veiligheid van haar studenten, de Rotary clubs en alle vrijwilligers kunnen waarborgen. Dat kan nu niet helaas gezien de status wereldwijd van het coronavirus.",
+            "isPdf": "no",
+            "text": [
+                {
+                    "heading": "Belangrijke update inzake Rotary uitwisselingen"
+                },
+                {
+                    "body": [
+                        {
+                            "paragraph": [
+                                "Rotary International heeft op vrijdag 19 maart jl. besloten om alle jeugduitwisselingen in binnen- en buitenland op te schorten tot juni 2022. Rotary wil de veiligheid van haar studenten, de Rotary clubs en alle vrijwilligers kunnen waarborgen. Dat kan nu niet helaas gezien de status wereldwijd van het coronavirus.",
+                                "Het is een begrijpelijke maar moeilijke beslissing - zeker voor alle kandidaten die reikhalzend uitkijken naar hun uitwisseling deze zomer.",
+                                "De uitwisselingen hervatten weer in de zomer van 2022. De voorbereidingen daarvoor starten op zaterdag 18 september 2021 tijdens de jaarlijkse Informatiemarkt in Woerden",
+                                "Heb je interesse of vragen, stuur een mailtje naar interesse@rotaryyep.nl. Tot snel?!"
+                            ]
+                        },
+                        {
+                            "imageUrl": "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/news/rotary-youth-ex.png"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "images": "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/ngse/ngse4.png",
+            "pdf": "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/news/ngse.pdf",
+            "title": "NGSE flyer 2020",
+            "description": "NGSE behoort tot de vijfde service avenue van Rotary International, net als de Internationale Jeugduitwisselingen, Interact, Rotaract en RYLA.",
+            "isPdf": "yes"
+        },
+        {
+            "id": 1,
+            "images": "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/news/news-letter-summer-2020.jpg",
+            "pdf": "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/news/nieuwsbrief-zomer-2020.pdf",
+            "title": "newsletter summer 2020",
+            "description": "",
+            "isPdf": "yes"
+        },
+        {
+            "id": 0,
+            "images": "https://www.rotary.nl/.uc/i5e3f34890102ae2c0f03e8310005621b8d498e4ab4b20301c000/nieuwsbrief-winter-mdjc-kopie-2-klein.jpg",
+            "pdf": "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/news/nieuwsbrief-winter-2020.pdf",
+            "title": "newsletter winter 2020",
+            "description": "",
+            "isPdf": "yes"
+        }
+    ]
+}

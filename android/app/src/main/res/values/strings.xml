@@ -100,4 +100,28 @@
         <item quantity="one">%1$d tot %2$d jaar</item>
         <item quantity="other">%1$d tot %2$d jaar</item>
     </plurals>
+    <string name="news_latest" description="News: heading of the newest item.">Nieuwste</string>
+    <string name="news_earlier" description="News: heading of the older items.">Eerder</string>
+    <string name="news_pdf" description="News: an item that is a PDF (a newsletter or report).">PDF</string>
+    <string name="news_article" description="News: an item that is an article to read in the app.">Artikel</string>
+    <string name="news_play_video" description="Article: plays the video in the phone\'s video player.">Bekijk de video</string>
+    <string name="news_offline" description="News: what to do without a connection.">Maak verbinding met internet om het nieuws te laden.</string>
+    <string name="news_unavailable_title" description="News: news.json could not be read.">Nieuws niet beschikbaar</string>
+    <string name="news_unavailable" description="News: news.json could not be read, explained.">Het nieuws kon niet worden geladen. Probeer het later opnieuw.</string>
+    <string name="calendar_subscribe" description="Calendar: adds the MDJC calendar to the person\'s calendars, for TalkBack.">Abonneer in Agenda</string>
+    <string name="calendar_now" description="Calendar: heading of what is happening now.">Nu bezig</string>
+    <string name="calendar_none" description="Calendar: there are no events.">Er staan geen evenementen in de agenda.</string>
+    <string name="calendar_event" description="Calendar: an event without a title.">Evenement</string>
+    <string name="calendar_all_day" description="Event page: an event of whole days.">Hele dag</string>
+    <string name="calendar_where" description="Event page: heading of the location.">Waar</string>
+    <string name="calendar_open_maps" description="Event page: what tapping the location does.">Open in Kaarten</string>
+    <string name="calendar_about" description="Event page: heading of the description.">Over dit evenement</string>
+    <string name="calendar_add" description="Event page: opens Android\'s screen for a new event, filled in.">Zet in mijn agenda</string>
+    <string name="calendar_offline" description="Calendar: what to do without a connection.">Maak verbinding met internet om de agenda te laden.</string>
+    <string name="calendar_unavailable_title" description="Calendar: the calendar could not be loaded.">Agenda niet beschikbaar</string>
+    <string name="calendar_unavailable" description="Calendar: the calendar could not be loaded, explained.">De agenda kon niet worden geladen. Probeer het later opnieuw.</string>
+    <plurals name="calendar_show_past" description="Calendar: shows the events that are over, with how many.">
+        <item quantity="one">Toon %1$d afgelopen evenement</item>
+        <item quantity="other">Toon %1$d afgelopen evenementen</item>
+    </plurals>
 </resources>

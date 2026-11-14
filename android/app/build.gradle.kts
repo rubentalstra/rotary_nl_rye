@@ -1,3 +1,9 @@
+// The Google Calendar API key is defined once, for both apps, in the iOS
+// settings (ios/App.xcconfig); the Android build reads it from there.
+val calendarApiKey: String = rootDir.resolve("../ios/App.xcconfig").readLines()
+    .firstNotNullOfOrNull { Regex("""^ROTARY_GOOGLE_API_KEY\s*=\s*(\S+)""").find(it)?.groupValues?.get(1) }
+    .orEmpty()
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.compose)
@@ -24,6 +30,7 @@ android {
         // highest; 1 is only for local builds.
         versionCode = 1
         versionName = "14.0.0"
+        buildConfigField("String", "ROTARY_GOOGLE_API_KEY", "\"$calendarApiKey\"")
     }
 
     buildTypes {
@@ -68,6 +75,8 @@ kotlin {
 dependencies {
     implementation(project(":core"))
     implementation(project(":camps"))
+    implementation(project(":news"))
+    implementation(project(":calendar"))
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)
     implementation(libs.androidx.hilt.lifecycle.viewmodel.compose)
