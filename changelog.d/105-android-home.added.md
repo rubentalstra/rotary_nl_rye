@@ -1,0 +1,1 @@
+- Android: Home with the Rotary Youth Exchange Netherlands banner (reversed in the dark theme), a carousel of photos with captions, and a tile for every part of the app: three to a row on a phone with a last row of two, as on iOS, and four on a tablet.

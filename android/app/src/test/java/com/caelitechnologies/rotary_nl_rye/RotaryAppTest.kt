@@ -7,6 +7,7 @@ import androidx.compose.ui.test.hasText
 import androidx.compose.ui.test.isSelectable
 import androidx.compose.ui.test.junit4.v2.createComposeRule
 import androidx.compose.ui.test.onAllNodesWithText
+import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -29,8 +30,9 @@ class RotaryAppTest {
         listOf("Home", "Over", "Noodgeval", "Contact", "Instellingen").forEach {
             compose.onAllNodesWithText(it)[0].assertIsDisplayed()
         }
-        // Home's title and its tab.
-        compose.onAllNodesWithText("Home").assertCountEquals(2)
+        // Home opens first: its banner is the page's title, and its tiles follow.
+        compose.onNodeWithContentDescription("Rotary Youth Exchange Netherlands").assertIsDisplayed()
+        compose.onNode(hasText("Home") and isSelectable()).assertIsSelected()
     }
 
     @Test
@@ -49,6 +51,8 @@ class RotaryAppTest {
         listOf("Home", "About", "Emergency", "Contact", "Settings").forEach {
             compose.onAllNodesWithText(it)[0].assertIsDisplayed()
         }
+        // Settings is not rebuilt yet, and says so.
+        compose.onNodeWithText("Settings").performClick()
         compose.onNodeWithText("This screen comes in a later version.").assertIsDisplayed()
     }
 }
