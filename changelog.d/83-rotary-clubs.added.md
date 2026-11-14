@@ -1,0 +1,1 @@
+- For Rotary clubs: what hosting an exchange student means (sponsoring, the exchange, costs, host families), and the documents for the youth commissioner, host families, counsellors and every club, opened in the app. Search finds a topic or document by name.

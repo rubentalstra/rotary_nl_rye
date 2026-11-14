@@ -1,6 +1,17 @@
 {
   "sourceLanguage": "nl",
   "strings": {
+    "Actielijst voorbereiding komst jaarstudent": {
+      "comment": "Rotary clubs: a document's title, the checklist for preparing the exchange student's arrival.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Checklist for the exchange student's arrival"
+          }
+        }
+      }
+    },
     "Activiteiten inbounds": {
       "comment": "Role: organises activities for inbound students.",
       "localizations": {
@@ -67,6 +78,17 @@
         }
       }
     },
+    "Code of Policies: regels en interventies": {
+      "comment": "Rotary clubs: a document's title.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Code of Policies: rules and interventions"
+          }
+        }
+      }
+    },
     "Commissiehoofd extern": {
       "comment": "Role: head of the ROTEX committee for external relations.",
       "localizations": {
@@ -129,6 +151,17 @@
           "stringUnit": {
             "state": "translated",
             "value": "Committee member, pre-rebounds"
+          }
+        }
+      }
+    },
+    "Counselor": {
+      "comment": "Rotary clubs: heading of the documents for the student's counsellor.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Counsellor"
           }
         }
       }
@@ -243,6 +276,50 @@
         }
       }
     },
+    "De clubjeugdcommissaris zoekt samen met de scholier die uitgezonden wil worden drie gastgezinnen en een reservegezin. Kinderen van dezelfde leeftijd in het gezin zijn fijn maar niet nodig: daarmee vindt een student sneller aansluiting, maar oudere echtparen zijn vaak fantastische gastouders, en in gezinnen met kleine kinderen leert een student vaak sneller Nederlands.": {
+      "comment": "Rotary clubs, host families: finding them.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Together with the student who wants to go abroad, the club youth commissioner finds three host families and a reserve family. Children of the same age in the family are nice but not needed: with them a student finds friends sooner, but older couples are often wonderful host parents, and in families with young children a student often learns Dutch faster."
+          }
+        }
+      }
+    },
+    "De regels en de gedragscode van het uitwisselingsprogramma.": {
+      "comment": "Rotary clubs: under the documents for every club.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The rules and the code of conduct of the exchange programme."
+          }
+        }
+      }
+    },
+    "De uitwisseling": {
+      "comment": "Rotary clubs: topic heading.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The exchange"
+          }
+        }
+      }
+    },
+    "De uitwisseling gaat uit van wederkerigheid: elke Rotary-club die een scholier uitzendt, ontvangt in hetzelfde jaar een jaarstudent. Die woont het jaar bij verschillende gastgezinnen, die de club van tevoren bezoekt.": {
+      "comment": "Rotary clubs, the exchange.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The exchange is reciprocal: every Rotary club that sends a student abroad receives an exchange student in the same year. The student lives with several host families during the year, whom the club visits beforehand."
+          }
+        }
+      }
+    },
     "Districtsjeugdcommissaris %@": {
       "comment": "Role: youth commissioner of the Rotary district with this number, such as 1590. The number is an identifier, never formatted.",
       "localizations": {
@@ -250,6 +327,105 @@
           "stringUnit": {
             "state": "translated",
             "value": "District youth commissioner %@"
+          }
+        }
+      }
+    },
+    "Een Nederlandse scholier supporten kost jullie club niets. Een jaarstudent ontvangen wel, en het een kan niet zonder het ander.": {
+      "comment": "Rotary clubs, costs: sponsoring is free, hosting is not.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sponsoring a Dutch student costs your club nothing. Hosting an exchange student does, and the one cannot happen without the other."
+          }
+        }
+      }
+    },
+    "Een Rotary-club treedt op als support voor een scholier die als ambassadeur van Rotary International een schooljaar naar het buitenland wil. Dat kan voor alle jongeren, uit Rotary-gezinnen en daarbuiten. In hetzelfde jaar ontvangt de club een buitenlandse scholier. Die gaat hier naar school met leeftijdsgenoten en woont het jaar bij twee tot hooguit vier gastgezinnen.": {
+      "comment": "Rotary clubs, sponsoring: what it means.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A Rotary club sponsors a student who wants to spend a school year abroad as an ambassador of Rotary International. This is open to all young people, from Rotary families and beyond. In the same year the club receives a student from abroad, who goes to school here with peers and lives with two to at most four host families during the year."
+          }
+        }
+      }
+    },
+    "First Night Questions": {
+      "comment": "Rotary clubs: a document's title; the questions to discuss on a student's first night with a host family.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "First Night Questions"
+          }
+        }
+      }
+    },
+    "Gastgezin": {
+      "comment": "Rotary clubs: heading of the documents for host families.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Host family"
+          }
+        }
+      }
+    },
+    "Gastgezinnen": {
+      "comment": "Rotary clubs: topic heading.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Host families"
+          }
+        }
+      }
+    },
+    "Gedragscode vrijwilligers MDJC": {
+      "comment": "Rotary clubs: a document's title, the code of conduct for volunteers.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "MDJC code of conduct for volunteers"
+          }
+        }
+      }
+    },
+    "Handboek counselor": {
+      "comment": "Rotary clubs: a document's title.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Counsellor handbook"
+          }
+        }
+      }
+    },
+    "Handboek gastgezin": {
+      "comment": "Rotary clubs: a document's title.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Host family handbook"
+          }
+        }
+      }
+    },
+    "Handboek jeugdcommissaris": {
+      "comment": "Rotary clubs: a document's title.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Youth commissioner handbook"
           }
         }
       }
@@ -298,6 +474,17 @@
         }
       }
     },
+    "Huisbezoek gastgezinnen": {
+      "comment": "Rotary clubs: a document's title, the form for visiting host families.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Visiting host families"
+          }
+        }
+      }
+    },
     "Internationaal begrip en vrede, door jongeren wereldwijd met elkaar te verbinden": {
       "comment": "About tab: what the programme encourages.",
       "localizations": {
@@ -305,6 +492,28 @@
           "stringUnit": {
             "state": "translated",
             "value": "International understanding and peace, by connecting young people around the world"
+          }
+        }
+      }
+    },
+    "Jeugdcommissaris": {
+      "comment": "Rotary clubs: heading of the documents for the club's youth commissioner.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Youth commissioner"
+          }
+        }
+      }
+    },
+    "Kosten": {
+      "comment": "Rotary clubs: topic heading.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Costs"
           }
         }
       }
@@ -408,6 +617,17 @@
         }
       }
     },
+    "Oud-uitwisselingsstudenten komen graag vertellen over hun ervaringen, om jullie club te informeren of enthousiast te maken. Meer informatie krijgen jullie bij de leden van de MDJC of bij jullie districtsjeugdcommissaris.": {
+      "comment": "Rotary clubs, host families: where to learn more.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Former exchange students are happy to come and tell your club about their experiences, to inform it or get it enthusiastic. For more information, ask the members of the MDJC or your district youth commissioner."
+          }
+        }
+      }
+    },
     "Penningmeester": {
       "comment": "Role: treasurer.",
       "localizations": {
@@ -441,6 +661,17 @@
         }
       }
     },
+    "Presentielijst DJC-training": {
+      "comment": "Rotary clubs: a document's title, the attendance list of the district youth commissioner's training.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "DJC training attendance list"
+          }
+        }
+      }
+    },
     "ROTEX": {
       "comment": "Name of ROTEX, the association of returned exchange students, in the Contact tab.",
       "localizations": {
@@ -448,6 +679,17 @@
           "stringUnit": {
             "state": "translated",
             "value": "ROTEX"
+          }
+        }
+      }
+    },
+    "Reisregels in en buiten Nederland": {
+      "comment": "Rotary clubs: a document's title.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Travel rules within and outside the Netherlands"
           }
         }
       }
@@ -481,6 +723,28 @@
           "stringUnit": {
             "state": "translated",
             "value": "Rotary has organised international youth exchanges for 55 years. Youth exchange is in Rotary's DNA: young people hold the future, for Rotary and for the world. Since 2010, youth service with youth exchange has been Rotary's fifth Avenue of Service. Every year there are 7,000 exchanges worldwide. In the Netherlands, the Multi-District Youth Committee (MDJC) organises them."
+          }
+        }
+      }
+    },
+    "Rules and Information for Inbounds": {
+      "comment": "Rotary clubs: a document's title; the document is in English.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rules and Information for Inbounds"
+          }
+        }
+      }
+    },
+    "Samenwerken met een andere Rotary-club kan een goede keuze zijn en geeft meer mogelijkheden om gastgezinnen te vinden.": {
+      "comment": "Rotary clubs, host families: working with another club.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Working with another Rotary club can be a good choice and gives more ways to find host families."
           }
         }
       }
@@ -540,6 +804,17 @@
         }
       }
     },
+    "Supporten: wat houdt het in?": {
+      "comment": "Rotary clubs: topic heading.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sponsoring: what does it involve?"
+          }
+        }
+      }
+    },
     "To build peace one young person at a time.": {
       "comment": "Rotary Youth Exchange's motto. Usually kept in English.",
       "localizations": {
@@ -558,6 +833,105 @@
           "stringUnit": {
             "state": "translated",
             "value": "Exchange programmes"
+          }
+        }
+      }
+    },
+    "Verklaring Jeugd Vrijwilliger (VJV)": {
+      "comment": "Rotary clubs: a document's title.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Youth volunteer declaration (VJV)"
+          }
+        }
+      }
+    },
+    "Verzamelformulier VOG-gegevens": {
+      "comment": "Rotary clubs: a document's title. VOG is the Dutch certificate of conduct.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Form for certificate of conduct (VOG) details"
+          }
+        }
+      }
+    },
+    "Voor alle clubs": {
+      "comment": "Rotary clubs: heading of the rules every club follows.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "For every club"
+          }
+        }
+      }
+    },
+    "Voor de counselor die de student het hele jaar begeleidt.": {
+      "comment": "Rotary clubs: under the counsellor's documents.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "For the counsellor who supports the student all year."
+          }
+        }
+      }
+    },
+    "Voor de gezinnen die de student een deel van het jaar in huis hebben.": {
+      "comment": "Rotary clubs: under the host family documents.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "For the families who have the student in their home for part of the year."
+          }
+        }
+      }
+    },
+    "Voor de jeugdcommissaris van de club die een student uitzendt en ontvangt.": {
+      "comment": "Rotary clubs: under the youth commissioner's documents.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "For the youth commissioner of the club that sends and receives a student."
+          }
+        }
+      }
+    },
+    "Voor een heel schooljaar kost het ontvangen jullie club hooguit € 2.000. De landelijke organisatie MDJC vindt het programma zo belangrijk dat ze elke club die host € 1.250 subsidie geeft. Jullie club betaalt dan hooguit € 750 voor het hele jaar.": {
+      "comment": "Rotary clubs, costs: the amounts. Keep the amounts exactly.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "For a whole school year, hosting costs your club at most € 2,000. The national organisation MDJC finds the programme so important that it gives every hosting club a subsidy of € 1,250. Your club then pays at most € 750 for the whole year."
+          }
+        }
+      }
+    },
+    "Voor het uitzenden en ontvangen gelden als richtlijn leeftijden van 15½ tot 18½ jaar.": {
+      "comment": "Rotary clubs, sponsoring: the age guideline.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "As a guideline, students sent and received are 15½ to 18½ years old."
+          }
+        }
+      }
+    },
+    "Voor middelbare scholen": {
+      "comment": "Rotary clubs: a document's title, information for secondary schools.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "For secondary schools"
           }
         }
       }
@@ -613,6 +987,17 @@
           "stringUnit": {
             "state": "translated",
             "value": "Values"
+          }
+        }
+      }
+    },
+    "Wat leuk dat jullie als Rotary-club een jaarstudent willen supporten, en daarmee ook een jaar lang een student uit het buitenland in jullie club ontvangen en begeleiden. Misschien heeft een scholier jullie benaderd, of komt de wens van een van jullie clubleden.": {
+      "comment": "Rotary clubs: the welcome at the top of the page.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "How wonderful that your Rotary club wants to sponsor an exchange student, and so also receive and support a student from abroad in your club for a year. Perhaps a student approached you, or the wish came from one of your members."
           }
         }
       }
