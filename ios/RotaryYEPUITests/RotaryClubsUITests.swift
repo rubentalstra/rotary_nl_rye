@@ -43,7 +43,9 @@ final class RotaryClubsUITests: XCTestCase {
         XCTAssertTrue(documentButton.waitForExistence(timeout: 5), "no document \(document)")
         snapshot("\(language)-clubs-documents")
         documentButton.tap()
-        XCTAssertTrue(app.otherElements["QLPreviewControllerView"].waitForExistence(timeout: 20) || app.navigationBars.buttons.count > 1, "Quick Look did not open")
+        // Quick Look's bar shows the document's name once it is open.
+        let quickLook = app.descendants(matching: .any).matching(NSPredicate(format: "label CONTAINS %@", "handboek-gastgezin")).firstMatch
+        XCTAssertTrue(quickLook.waitForExistence(timeout: 40), "Quick Look did not open the document")
         _ = XCTWaiter.wait(for: [XCTestExpectation(description: "first page drawn")], timeout: 3)
         snapshot("\(language)-clubs-document")
     }
