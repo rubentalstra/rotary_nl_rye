@@ -31,7 +31,9 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import com.caelitechnologies.rotary_nl_rye.R
 import com.caelitechnologies.rotary_nl_rye.ui.components.currentLocale
+import com.caelitechnologies.rotary_nl_rye.ui.components.DocumentKind
 import com.caelitechnologies.rotary_nl_rye.ui.components.ListSectionHeader
+import com.caelitechnologies.rotary_nl_rye.ui.components.openDocument
 import java.util.Locale
 
 /** A camp's page, connected to its ViewModel; back when the camp is not loaded (after the process was ended). */
@@ -93,7 +95,7 @@ fun CampDetailScreen(camp: Camp, onBack: () -> Unit) {
             camp.invitation?.let { url ->
                 item(key = "invitation") {
                     Box(Modifier.fillMaxWidth().padding(16.dp), contentAlignment = Alignment.Center) {
-                        Button(onClick = { context.openInvitation(url, camp.invitationIsPdf) }) {
+                        Button(onClick = { context.openDocument(url, if (camp.invitationIsPdf) DocumentKind.Pdf else DocumentKind.Web) }) {
                             Icon(painterResource(if (camp.invitationIsPdf) R.drawable.ic_description else R.drawable.ic_open_in_new), contentDescription = null, modifier = Modifier.size(18.dp))
                             Text(stringResource(if (camp.invitationIsPdf) R.string.camps_view_invitation else R.string.camps_view_website), modifier = Modifier.padding(start = 8.dp))
                         }

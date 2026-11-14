@@ -16,7 +16,6 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.input.clearText
 import androidx.compose.foundation.text.input.rememberTextFieldState
-import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
@@ -52,6 +51,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.caelitechnologies.rotary_nl_rye.R
+import com.caelitechnologies.rotary_nl_rye.ui.components.LoadFailed
 import com.caelitechnologies.rotary_nl_rye.ui.components.currentLocale
 import java.time.format.DateTimeFormatter
 import java.util.Locale
@@ -142,7 +142,16 @@ fun CampsScreen(state: CampsUiState, actions: CampsActions) {
     ) { padding ->
         when (val load = state.load) {
             CampsUiState.Load.Loading -> Box(Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) { CircularProgressIndicator() }
-            is CampsUiState.Load.Failed -> LoadFailed(load.error, actions.onRefresh, Modifier.padding(padding))
+            is CampsUiState.Load.Failed -> {
+                val offline = load.error is CampFeed.LoadError.Offline
+                LoadFailed(
+                    offline = offline,
+                    title = stringResource(if (offline) R.string.camps_offline_title else R.string.camps_unavailable_title),
+                    message = stringResource(if (offline) R.string.camps_offline else R.string.camps_unavailable),
+                    onRetry = actions.onRefresh,
+                    modifier = Modifier.padding(padding),
+                )
+            }
             CampsUiState.Load.Loaded -> PullToRefreshBox(
                 isRefreshing = false,
                 onRefresh = actions.onRefresh,
@@ -267,29 +276,6 @@ private fun SortMenu(order: CampOrder, onOrder: (CampOrder) -> Unit) {
                 )
             }
         }
-    }
-}
-
-/** The sheet could not be loaded: why, and a way to try again. */
-@Composable
-private fun LoadFailed(error: CampFeed.LoadError, onRetry: () -> Unit, modifier: Modifier = Modifier) {
-    val offline = error is CampFeed.LoadError.Offline
-    Column(
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.spacedBy(12.dp, Alignment.CenterVertically),
-        modifier = modifier
-            .fillMaxSize()
-            .padding(24.dp),
-    ) {
-        Icon(painterResource(if (offline) R.drawable.ic_wifi_off else R.drawable.ic_error), contentDescription = null, tint = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.size(48.dp))
-        Text(stringResource(if (offline) R.string.camps_offline_title else R.string.camps_unavailable_title), style = MaterialTheme.typography.titleLarge)
-        Text(
-            stringResource(if (offline) R.string.camps_offline else R.string.camps_unavailable),
-            style = MaterialTheme.typography.bodyMedium,
-            color = MaterialTheme.colorScheme.onSurfaceVariant,
-            textAlign = TextAlign.Center,
-        )
-        Button(onClick = onRetry) { Text(stringResource(R.string.action_retry)) }
     }
 }
 

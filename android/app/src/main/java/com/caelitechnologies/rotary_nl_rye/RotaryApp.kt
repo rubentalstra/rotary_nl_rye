@@ -20,6 +20,12 @@ import androidx.navigation3.runtime.NavKey
 import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.ui.NavDisplay
 import com.caelitechnologies.rotary_nl_rye.about.AboutScreen
+import com.caelitechnologies.rotary_nl_rye.calendar.CalendarRoute
+import com.caelitechnologies.rotary_nl_rye.calendar.EventDetailRoute
+import com.caelitechnologies.rotary_nl_rye.calendar.EventRoute
+import com.caelitechnologies.rotary_nl_rye.news.ArticleRoute
+import com.caelitechnologies.rotary_nl_rye.news.ArticleRouteScreen
+import com.caelitechnologies.rotary_nl_rye.news.NewsRoute
 import com.caelitechnologies.rotary_nl_rye.camps.CampDetailRoute
 import com.caelitechnologies.rotary_nl_rye.camps.CampRoute
 import com.caelitechnologies.rotary_nl_rye.camps.CampsRoute
@@ -60,10 +66,14 @@ fun RotaryApp() {
         entry<HomeDestination> { destination ->
             when (destination) {
                 HomeDestination.SummerCamps -> CampsRoute(onBack = navigator::goBack, onCamp = { navigator.navigate(CampRoute(it)) })
+                HomeDestination.News -> NewsRoute(onBack = navigator::goBack, onArticle = { navigator.navigate(ArticleRoute(it.id)) })
+                HomeDestination.Calendar -> CalendarRoute(onBack = navigator::goBack, onEvent = { navigator.navigate(EventRoute(it.id)) })
                 else -> DestinationScreen(destination, onBack = navigator::goBack)
             }
         }
         entry<CampRoute> { route -> CampDetailRoute(route, onBack = navigator::goBack) }
+        entry<ArticleRoute> { route -> ArticleRouteScreen(route, onBack = navigator::goBack) }
+        entry<EventRoute> { route -> EventDetailRoute(route, onBack = navigator::goBack) }
         entry<PersonRoute> { route ->
             route.person?.let { PersonScreen(it, onBack = navigator::goBack) }
         }

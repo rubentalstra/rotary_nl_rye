@@ -97,4 +97,28 @@
         <item quantity="one">%1$d to %2$d year</item>
         <item quantity="other">%1$d to %2$d years</item>
     </plurals>
+    <string name="news_latest">Latest</string>
+    <string name="news_earlier">Earlier</string>
+    <string name="news_pdf">PDF</string>
+    <string name="news_article">Article</string>
+    <string name="news_play_video">Watch the video</string>
+    <string name="news_offline">Connect to the internet to load the news.</string>
+    <string name="news_unavailable_title">News not available</string>
+    <string name="news_unavailable">The news could not be loaded. Try again later.</string>
+    <string name="calendar_subscribe">Subscribe in Calendar</string>
+    <string name="calendar_now">Happening now</string>
+    <string name="calendar_none">There are no events in the calendar.</string>
+    <string name="calendar_event">Event</string>
+    <string name="calendar_all_day">All day</string>
+    <string name="calendar_where">Where</string>
+    <string name="calendar_open_maps">Open in Maps</string>
+    <string name="calendar_about">About this event</string>
+    <string name="calendar_add">Add to my calendar</string>
+    <string name="calendar_offline">Connect to the internet to load the calendar.</string>
+    <string name="calendar_unavailable_title">Calendar not available</string>
+    <string name="calendar_unavailable">The calendar could not be loaded. Try again later.</string>
+    <plurals name="calendar_show_past">
+        <item quantity="one">Show %1$d past event</item>
+        <item quantity="other">Show %1$d past events</item>
+    </plurals>
 </resources>

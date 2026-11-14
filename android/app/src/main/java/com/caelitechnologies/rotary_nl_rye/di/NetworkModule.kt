@@ -1,8 +1,11 @@
 package com.caelitechnologies.rotary_nl_rye.di
 
 import android.content.Context
+import com.caelitechnologies.rotary_nl_rye.BuildConfig
+import com.caelitechnologies.rotary_nl_rye.calendar.CalendarFeed
 import com.caelitechnologies.rotary_nl_rye.camps.CampFeed
 import com.caelitechnologies.rotary_nl_rye.core.networking.CachedFetch
+import com.caelitechnologies.rotary_nl_rye.news.NewsFeed
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -37,4 +40,13 @@ object NetworkModule {
     @Provides
     @Singleton
     fun campFeed(fetch: CachedFetch): CampFeed = CampFeed(fetch)
+
+    @Provides
+    @Singleton
+    fun newsFeed(fetch: CachedFetch): NewsFeed = NewsFeed(fetch)
+
+    @Provides
+    @Singleton
+    fun calendarFeed(fetch: CachedFetch, @ApplicationContext context: Context): CalendarFeed =
+        CalendarFeed(fetch, apiKey = BuildConfig.ROTARY_GOOGLE_API_KEY, identity = androidAppHeaders(context))
 }

@@ -26,3 +26,5 @@ rootProject.name = "Rotary YEP NL"
 include(":app")
 include(":core")
 include(":camps")
+include(":news")
+include(":calendar")
