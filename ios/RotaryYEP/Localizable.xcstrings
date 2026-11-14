@@ -132,6 +132,16 @@
         }
       }
     },
+    "Artikel": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Article"
+          }
+        }
+      }
+    },
     "Bekijk de uitnodiging": {
       "localizations": {
         "en": {
@@ -333,6 +343,16 @@
         }
       }
     },
+    "Eerder": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Earlier"
+          }
+        }
+      }
+    },
     "Elke leeftijd": {
       "localizations": {
         "en": {
@@ -429,6 +449,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "The document could not be loaded. Check your connection and try again."
+          }
+        }
+      }
+    },
+    "Het nieuws kon niet worden gelezen. Probeer het later opnieuw.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The news could not be read. Try again later."
           }
         }
       }
@@ -595,6 +625,16 @@
         }
       }
     },
+    "Maak verbinding met internet om het nieuws te laden.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Connect to the internet to load the news."
+          }
+        }
+      }
+    },
     "Mail": {
       "localizations": {
         "en": {
@@ -677,6 +717,36 @@
         }
       }
     },
+    "Nieuws laden…": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Loading news…"
+          }
+        }
+      }
+    },
+    "Nieuws niet beschikbaar": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "News unavailable"
+          }
+        }
+      }
+    },
+    "Nieuwste": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Latest"
+          }
+        }
+      }
+    },
     "Noodgeval": {
       "localizations": {
         "en": {
@@ -734,6 +804,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "About %@"
+          }
+        }
+      }
+    },
+    "PDF": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "PDF"
           }
         }
       }

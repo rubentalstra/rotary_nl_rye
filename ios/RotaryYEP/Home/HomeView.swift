@@ -20,6 +20,8 @@ struct HomeView: View {
             .toolbarVisibility(.hidden, for: .navigationBar)
             .navigationDestination(for: HomeDestination.self) { destination in
                 switch destination {
+                case .news:
+                    NewsView()
                 case .summerCamps:
                     CampsView()
                 case .rotaryClubs:

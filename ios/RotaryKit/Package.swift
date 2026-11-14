@@ -14,6 +14,7 @@ let package = Package(
     products: [
         .library(name: "RotaryCore", targets: ["RotaryCore"]),
         .library(name: "RotaryCamps", targets: ["RotaryCamps"]),
+        .library(name: "RotaryNews", targets: ["RotaryNews"]),
     ],
     dependencies: [
         // Unpacks the summer camps spreadsheet (an XLSX file is a ZIP archive);
@@ -29,6 +30,10 @@ let package = Package(
         .target(name: "RotaryCamps", dependencies: ["RotaryCore", .product(name: "ZIPFoundation", package: "ZIPFoundation")]),
         // Fixtures/zomerkampen.xlsx is the published file of 16 September 2026.
         .testTarget(name: "RotaryCampsTests", dependencies: ["RotaryCamps"], resources: [.copy("Fixtures")]),
+        // The news: news.json from rotary.nl, PDFs and articles.
+        .target(name: "RotaryNews", dependencies: ["RotaryCore"]),
+        // Fixtures/news.json is the published file of 2 October 2025.
+        .testTarget(name: "RotaryNewsTests", dependencies: ["RotaryNews"], resources: [.copy("Fixtures")]),
     ]
 )
 
