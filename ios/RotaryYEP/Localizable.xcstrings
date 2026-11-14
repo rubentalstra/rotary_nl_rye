@@ -92,6 +92,16 @@
         }
       }
     },
+    "Algemene informatie": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "General information"
+          }
+        }
+      }
+    },
     "Algemene voorwaarden": {
       "localizations": {
         "en": {
@@ -299,6 +309,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Document not opened"
+          }
+        }
+      }
+    },
+    "Documenten": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Documents"
           }
         }
       }
@@ -673,6 +693,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "OK"
+          }
+        }
+      }
+    },
+    "Onderwerp of document": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Topic or document"
           }
         }
       }

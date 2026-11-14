@@ -50,6 +50,8 @@ final class CampsUITests: XCTestCase {
         if !search.exists { app.collectionViews.firstMatch.swipeDown() }
         XCTAssertTrue(search.waitForExistence(timeout: 5), "no search field")
         search.tap()
+        // Type only once the field has focus: the keyboard is up.
+        XCTAssertTrue(app.keyboards.firstMatch.waitForExistence(timeout: 10), "the search field did not get focus")
         search.typeText("India")
         let india = app.collectionViews.buttons.matching(NSPredicate(format: "label CONTAINS %@", "India")).firstMatch
         XCTAssertTrue(india.waitForExistence(timeout: 5), "India is not found")

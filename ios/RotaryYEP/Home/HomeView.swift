@@ -22,6 +22,8 @@ struct HomeView: View {
                 switch destination {
                 case .summerCamps:
                     CampsView()
+                case .rotaryClubs:
+                    RotaryClubsView()
                 default:
                     ComingSoonView(title: destination.title, systemImage: destination.systemImage)
                         .navigationTitle(Text(destination.title))

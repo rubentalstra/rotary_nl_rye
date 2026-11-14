@@ -23,6 +23,10 @@ as `.claude/rules/swift.md` says; Apple's own guidance is in `.claude/skills/`.
   full, show past; order by date or price), `CampsView` (sections per month),
   `CampRow`, `CampFilterMenu` (one toolbar menu), `CampDetailView` (the
   invitation in the in-app browser).
+  `RotaryClubs/`: `RotaryClubsView` (welcome, topics, documents per role,
+  search) and `ClubTopicView`. `General/DocumentLink`: a PDF opens in Quick
+  Look after `RemoteDocument` downloads it (through the URL cache), anything
+  else in the in-app browser.
   `Home/`: `HomeView` (banner, `PhotoCarousel`, the tile grid: three to a
   row when the width allows, as on the Pro Max, else two), `HomePhoto` and
   `HomeDestination` (enums; a destination not rebuilt yet opens
@@ -55,7 +59,9 @@ as `.claude/rules/swift.md` says; Apple's own guidance is in `.claude/skills/`.
   pages: listing, review sheet, privacy policy, terms, Instagram),
   `Organisation/` (`Person`, `Role`, `ContactGroup`, `ContactLinks`, and the
   people in `Person+MDJC`, `+LongTerm`, `+ShortTerm`, `+ROTEX`,
-  `+Confidants`), `About/` (`AboutTopic`) and its own
+  `+Confidants`), `About/` (`AboutTopic`), `RotaryClubs/` (`ClubTopic`, `ClubGuide`
+  and `ClubDocument`, each document defined once and listed by every guide
+  that needs it) and its own
   `Localizable.xcstrings`. `RotaryCamps`: the summer camps from
   `zomerkampen.xlsx` on rotary.nl (`CampFeed`, loaded through `URLCache`:
   revalidated online, the last copy offline), read by `Spreadsheet`

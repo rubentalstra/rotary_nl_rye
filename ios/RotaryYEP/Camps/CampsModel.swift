@@ -29,16 +29,34 @@ final class CampsModel {
     }
 
     private(set) var state: State = .loading
-    private(set) var camps: [Camp] = []
+    private(set) var camps: [Camp] = [] { didSet { deriveFromCamps() } }
 
-    var query = ""
+    var query = "" { didSet { deriveVisible() } }
     /// Only camps a person of this age may join; nil for every age.
-    var age: Int?
+    var age: Int? { didSet { deriveVisible() } }
     /// Only camps in these countries; empty for every country.
-    var countries: Set<Locale.Region> = []
-    var hidesFullCamps = false
-    var showsPastCamps = false
-    var order: Order = .date
+    var countries: Set<Locale.Region> = [] { didSet { deriveVisible() } }
+    var hidesFullCamps = false { didSet { deriveVisible() } }
+    var showsPastCamps = false { didSet { deriveVisible() } }
+    var order: Order = .date { didSet { deriveVisible() } }
+
+    // MARK: - What to show
+    //
+    // Stored, not computed: the list reads these on every redraw, and while
+    // someone types a search, filtering 74 camps (with a country name lookup
+    // each) on every read kept the screen busy. They change only when the
+    // camps or a filter change.
+
+    /// The camps that pass the search and filters, in the chosen order.
+    private(set) var visibleCamps: [Camp] = []
+    /// The visible camps in sections per month of their first day.
+    private(set) var months: [Month] = []
+    /// How many camps are over, for the button that shows them.
+    private(set) var pastCampCount = 0
+    /// The countries in the sheet, by their name in the app's language.
+    private(set) var availableCountries: [Locale.Region] = []
+    /// The youngest and oldest age any camp accepts.
+    private(set) var availableAges: ClosedRange<Int>?
 
     @ObservationIgnored private let feed: CampFeed
     @ObservationIgnored private var loadTask: Task<Void, Never>?
@@ -69,10 +87,23 @@ final class CampsModel {
         }
     }
 
-    // MARK: - What to show
+    // MARK: - Deriving
 
-    /// The camps that pass the search and filters, in the chosen order.
-    var visibleCamps: [Camp] {
+    /// What depends on the camps alone, then what the filters show of them.
+    private func deriveFromCamps() {
+        let today = Date.now
+        pastCampCount = camps.filter { $0.hasEnded(before: today) }.count
+        availableCountries = Set(camps.map(\.country)).sorted { $0.name.localizedStandardCompare($1.name) == .orderedAscending }
+        if let low = camps.map(\.ages.lowerBound).min(), let high = camps.map(\.ages.upperBound).max() {
+            availableAges = low...high
+        } else {
+            availableAges = nil
+        }
+        deriveVisible()
+    }
+
+    /// The visible camps and their months, after a change of camps or filters.
+    private func deriveVisible() {
         let today = Date.now
         let shown = camps.filter { camp in
             (showsPastCamps || !camp.hasEnded(before: today))
@@ -81,46 +112,21 @@ final class CampsModel {
                 && (countries.isEmpty || countries.contains(camp.country))
                 && camp.matches(query)
         }
-        switch order {
-        case .date:
-            return shown
-        case .price:
-            return shown.sorted { ($0.contribution?.amount ?? .greatestFiniteMagnitude) < ($1.contribution?.amount ?? .greatestFiniteMagnitude) }
+        let ordered = switch order {
+        case .date: shown
+        case .price: shown.sorted { ($0.contribution?.amount ?? .greatestFiniteMagnitude) < ($1.contribution?.amount ?? .greatestFiniteMagnitude) }
         }
-    }
-
-    /// The visible camps in sections per month of their first day.
-    var months: [Month] {
-        var months: [Month] = []
-        for camp in visibleCamps {
+        var grouped: [Month] = []
+        for camp in ordered {
             let month = DateComponents(year: camp.start.year, month: camp.start.month)
-            if months.last?.id == month {
-                months[months.count - 1] = Month(id: month, camps: months[months.count - 1].camps + [camp])
+            if grouped.last?.id == month {
+                grouped[grouped.count - 1] = Month(id: month, camps: grouped[grouped.count - 1].camps + [camp])
             } else {
-                months.append(Month(id: month, camps: [camp]))
+                grouped.append(Month(id: month, camps: [camp]))
             }
         }
-        return months
-    }
-
-    /// How many camps are over, for the button that shows them.
-    var pastCampCount: Int {
-        let today = Date.now
-        return camps.filter { $0.hasEnded(before: today) }.count
-    }
-
-    /// The countries in the sheet, by their name in the app's language.
-    var availableCountries: [Locale.Region] {
-        Set(camps.map(\.country)).sorted {
-            (Locale.current.localizedString(forRegionCode: $0.identifier) ?? $0.identifier)
-                .localizedStandardCompare(Locale.current.localizedString(forRegionCode: $1.identifier) ?? $1.identifier) == .orderedAscending
-        }
-    }
-
-    /// The youngest and oldest age any camp accepts.
-    var availableAges: ClosedRange<Int>? {
-        guard let low = camps.map(\.ages.lowerBound).min(), let high = camps.map(\.ages.upperBound).max() else { return nil }
-        return low...high
+        visibleCamps = ordered
+        months = grouped
     }
 
     /// Whether any filter narrows the list (the search and order aside).
