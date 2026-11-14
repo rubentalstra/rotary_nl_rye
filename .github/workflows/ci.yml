@@ -1,9 +1,10 @@
 name: CI
 
 # Every pull request and every push to main: the shell scripts and the
-# workflows are linted, RotaryKit's tests run on the Mac, the iOS app is
-# built and its hosted tests run on the iPhone 18 Pro Max simulator, and the
-# Android app is built, linted and tested on the JVM. No job
+# workflows are linted; when iOS changed, RotaryKit's tests run on the Mac
+# and the iOS app is built and its hosted tests run on the iPhone 18 Pro Max
+# simulator; when Android changed, the Android app is built, linted and
+# tested on the JVM. No job
 # needs a secret. The changelog fragment check is changelog.yml: it also runs
 # when a label changes, which must not restart (and cancel) this workflow.
 
@@ -23,6 +24,48 @@ env:
   DEVELOPER_DIR: /Applications/Xcode_27.1.app/Contents/Developer
 
 jobs:
+  # Which platform a change touches. A job for the other platform is skipped
+  # by its `if:`, and a skipped job counts as passed for a required check, so
+  # an Android-only pull request does not wait 30 minutes for the iOS build.
+  # A push without a base to compare with (a new branch) runs everything.
+  changes:
+    name: which platforms changed
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+    outputs:
+      ios: ${{ steps.diff.outputs.ios }}
+      android: ${{ steps.diff.outputs.android }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - id: diff
+        env:
+          EVENT: ${{ github.event_name }}
+          PR_BASE: ${{ github.event.pull_request.base.sha }}
+          PUSH_BEFORE: ${{ github.event.before }}
+        run: |
+          base="$PUSH_BEFORE"
+          [ "$EVENT" = pull_request ] && base="$PR_BASE"
+          if [ -z "$base" ] || [ "$base" = 0000000000000000000000000000000000000000 ] || ! git cat-file -e "$base^{commit}" 2>/dev/null; then
+            echo "no base to compare with: every platform runs"
+            { echo "ios=true"; echo "android=true"; } >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          files="$(git diff --name-only "$base"...HEAD)"
+          echo "$files"
+          # The workflow itself changing runs everything; android/core is
+          # generated from RotaryCore's Swift, so that counts for Android too.
+          ios=false
+          android=false
+          grep -qE '^(ios/|scripts/dev/(sync-strings\.sh|catalog-tidy\.py)|\.github/workflows/ci\.yml)' <<<"$files" && ios=true
+          grep -qE '^(android/|scripts/dev/android-content\.py|ios/RotaryKit/Sources/RotaryCore/|\.github/workflows/ci\.yml)' <<<"$files" && android=true
+          echo "ios=$ios android=$android"
+          { echo "ios=$ios"; echo "android=$android"; } >> "$GITHUB_OUTPUT"
+
   guards:
     name: shell scripts and workflows
     runs-on: ubuntu-latest
@@ -51,6 +94,8 @@ jobs:
 
   kit:
     name: RotaryKit tests
+    needs: changes
+    if: needs.changes.outputs.ios == 'true'
     runs-on: xcode-27
     timeout-minutes: 20
     permissions:
@@ -64,6 +109,8 @@ jobs:
 
   ios:
     name: iOS app build and tests
+    needs: changes
+    if: needs.changes.outputs.ios == 'true'
     runs-on: xcode-27
     timeout-minutes: 30
     permissions:
@@ -89,6 +136,8 @@ jobs:
 
   strings:
     name: String Catalogs in step with the code
+    needs: changes
+    if: needs.changes.outputs.ios == 'true'
     runs-on: xcode-27
     timeout-minutes: 30
     permissions:
@@ -112,6 +161,8 @@ jobs:
 
   android:
     name: Android app build, lint and tests
+    needs: changes
+    if: needs.changes.outputs.android == 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 30
     permissions:
