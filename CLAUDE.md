@@ -19,6 +19,10 @@ as `.claude/rules/swift.md` says; Apple's own guidance is in `.claude/skills/`.
   warnings as errors.
   `ios/RotaryYEP/`: the app, one folder per feature with its `@Observable`
   model and views; `App/` the wiring (`RotaryYEPApp`, `ContentView` for now);
+  `Home/`: `HomeView` (banner, `PhotoCarousel`, the tile grid: three to a
+  row when the width allows, as on the Pro Max, else two), `HomePhoto` and
+  `HomeDestination` (enums; a destination not rebuilt yet opens
+  `ComingSoonView`).
   `Navigation/` the tabs (`AppTab`, `MainTabView`) and `AppRouter`; one
   folder per tab root (`Home/`, `About/`, `Emergency/`, `Contact/`,
   `Settings/`); `General/` shared views (`ComingSoonView` for screens not
@@ -31,8 +35,8 @@ as `.claude/rules/swift.md` says; Apple's own guidance is in `.claude/skills/`.
   logo or text (HIG, Launching).
   Brand assets in `Assets.xcassets`: `RotaryWheel` (a template image, drawn
   in `RotaryGold`), `RotexLogo` (with a dark variant),
-  `RotaryYouthExchangeBanner`, `Emergency112`; all vector except the 112
-  image. Brand logos of other companies (WhatsApp, Instagram) come from
+  `RotaryYouthExchangeBanner` (with a reversed dark variant: white lettering),
+  `Emergency112` and the `HomePhoto…` carousel photos; the logos are vector. Brand logos of other companies (WhatsApp, Instagram) come from
   `simple-icons-swift` (pinned exactly) through `General/BrandIcon`; every
   package's licence file is copied verbatim into `Settings/Licenses/` and
   listed in `License.all` (`LicensesTests` checks it ships).

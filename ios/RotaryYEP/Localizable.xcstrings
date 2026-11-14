@@ -11,6 +11,28 @@
         }
       }
     },
+    "Aankomst van een inbound op Schiphol": {
+      "comment": "Home carousel: caption of a photo of a foreign student arriving at Schiphol airport.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "An inbound arriving at Schiphol"
+          }
+        }
+      }
+    },
+    "Agenda": {
+      "comment": "Home tile: the calendar of events.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Calendar"
+          }
+        }
+      }
+    },
     "Algemene voorwaarden": {
       "localizations": {
         "en": {
@@ -111,6 +133,17 @@
         }
       }
     },
+    "De outbounds van 2025-2026": {
+      "comment": "Home carousel: caption of a group photo of the Dutch students going abroad that year.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The outbounds of 2025-2026"
+          }
+        }
+      }
+    },
     "Deel de app": {
       "localizations": {
         "en": {
@@ -191,6 +224,28 @@
         }
       }
     },
+    "Inbounds met de vlaggen van hun land": {
+      "comment": "Home carousel: caption of a photo of foreign students holding their flags.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inbounds with the flags of their countries"
+          }
+        }
+      }
+    },
+    "Informatieochtend, 19 september 2026": {
+      "comment": "Home carousel: caption of a photo of the information morning.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Information morning, 19 September 2026"
+          }
+        }
+      }
+    },
     "Instellingen": {
       "localizations": {
         "en": {
@@ -261,12 +316,45 @@
         }
       }
     },
+    "Naar Nederland": {
+      "comment": "Home tile: for foreign students coming to the Netherlands.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "To the Netherlands"
+          }
+        }
+      }
+    },
+    "Nieuws": {
+      "comment": "Home tile: news.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "News"
+          }
+        }
+      }
+    },
     "Noodgeval": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Emergency"
+          }
+        }
+      }
+    },
+    "Op exchange": {
+      "comment": "Home tile: for Dutch students going abroad.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Going abroad"
           }
         }
       }
@@ -301,6 +389,17 @@
         }
       }
     },
+    "Programma's": {
+      "comment": "Home tile: the exchange programmes.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Programmes"
+          }
+        }
+      }
+    },
     "ROTEX": {
       "localizations": {
         "en": {
@@ -317,6 +416,17 @@
           "stringUnit": {
             "state": "translated",
             "value": "ROTEX on Instagram"
+          }
+        }
+      }
+    },
+    "Rebound": {
+      "comment": "Home tile: for students back from their exchange.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rebound"
           }
         }
       }
@@ -391,12 +501,34 @@
         }
       }
     },
+    "Voor Rotary-clubs": {
+      "comment": "Home tile: information for Rotary clubs.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "For Rotary clubs"
+          }
+        }
+      }
+    },
     "WhatsApp": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "WhatsApp"
+          }
+        }
+      }
+    },
+    "Zomerkampen": {
+      "comment": "Home tile: the list of summer camps.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Summer camps"
           }
         }
       }

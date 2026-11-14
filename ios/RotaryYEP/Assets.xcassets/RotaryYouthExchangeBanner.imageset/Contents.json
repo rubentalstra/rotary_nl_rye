@@ -3,6 +3,16 @@
     {
       "filename" : "rotary-youth-exchange-netherlands.svg",
       "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "rotary-youth-exchange-netherlands-dark.svg",
+      "idiom" : "universal"
     }
   ],
   "info" : {
