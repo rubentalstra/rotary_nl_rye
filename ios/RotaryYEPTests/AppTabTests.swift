@@ -19,3 +19,10 @@ import UIKit
         #expect(router.selectedTab == .emergency)
     }
 }
+
+@MainActor @Suite struct HomeDestinationTests {
+    @Test(arguments: HomeDestination.allCases.filter { $0 != .rotaryClubs })
+    func `Every tile icon is a real SF Symbol`(_ destination: HomeDestination) {
+        #expect(UIImage(systemName: destination.systemImage) != nil, "\(destination.systemImage) is not an SF Symbol")
+    }
+}

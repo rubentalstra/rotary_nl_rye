@@ -1,0 +1,1 @@
+- Home: the Rotary Youth Exchange Netherlands banner, a carousel of photos that turns by itself, and a tile for every part of the app: programmes, news, calendar, going abroad, coming to the Netherlands, rebound, summer camps and Rotary clubs. Parts that are not rebuilt yet say so.
