@@ -1,0 +1,1 @@
+- Android: the summer camps from rotary.nl's list, with search on camp or country, filters for age, countries, full camps and past camps, sorting by date or price, sections per month, and a page per camp with its dates, ages, cost, host district and invitation. The last copy stays available offline.

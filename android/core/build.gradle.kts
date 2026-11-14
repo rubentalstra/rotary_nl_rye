@@ -1,6 +1,7 @@
 // :core holds everything without a screen: the organisation's people and
-// teams and the About topics, as RotaryKit's RotaryCore does on iOS, with
-// their text as string resources in Dutch and English.
+// teams, the About topics and the cached HTTP fetch, as RotaryKit's
+// RotaryCore does on iOS, with their text as string resources in Dutch and
+// English.
 plugins {
     alias(libs.plugins.android.library)
 }
@@ -32,5 +33,9 @@ kotlin {
 
 dependencies {
     implementation(libs.androidx.annotation)
+    api(libs.okhttp)
+    api(libs.kotlinx.coroutines.core)
     testImplementation(libs.junit)
+    testImplementation(libs.okhttp.mockwebserver)
+    testImplementation(libs.kotlinx.coroutines.test)
 }

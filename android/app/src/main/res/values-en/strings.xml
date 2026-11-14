@@ -43,4 +43,58 @@
     <string name="home_photo_outbounds">The outbounds of 2025/2026</string>
     <string name="home_photo_inbounds">Inbounds with the flags of their countries</string>
     <string name="home_photo_arrival">An inbound arriving at Schiphol</string>
+    <string name="camps_search">Camp or country</string>
+    <string name="camps_age">Age</string>
+    <string name="camps_any_age">Any age</string>
+    <string name="camps_countries">Countries</string>
+    <string name="camps_all_countries">All countries</string>
+    <string name="camps_hide_full">Hide full camps</string>
+    <string name="camps_clear_filters">Clear filters</string>
+    <string name="camps_sort">Sort by</string>
+    <string name="camps_sort_date">Date</string>
+    <string name="camps_sort_price">Price</string>
+    <string name="camps_full">Full</string>
+    <string name="camps_none">No camp matches your filters.</string>
+    <string name="camps_offline_title">No connection</string>
+    <string name="camps_offline">Connect to the internet to load the camps.</string>
+    <string name="camps_unavailable_title">Camps not available</string>
+    <string name="camps_unavailable">The list of summer camps could not be read. Try again later.</string>
+    <string name="action_retry">Try again</string>
+    <string name="camps_when">When</string>
+    <string name="camps_from">From</string>
+    <string name="camps_until">Until</string>
+    <string name="camps_length">Length</string>
+    <string name="camps_who">Who can join</string>
+    <string name="camps_cost">Cost</string>
+    <string name="camps_not_known">Not known</string>
+    <string name="camps_view_invitation">View the invitation</string>
+    <string name="camps_view_website">View the website</string>
+    <plurals name="camps_countries_chosen">
+        <item quantity="one">%1$d country</item>
+        <item quantity="other">%1$d countries</item>
+    </plurals>
+    <plurals name="camps_show_past">
+        <item quantity="one">Show %1$d past camp</item>
+        <item quantity="other">Show %1$d past camps</item>
+    </plurals>
+    <plurals name="camps_nights">
+        <item quantity="one">%1$d night</item>
+        <item quantity="other">%1$d nights</item>
+    </plurals>
+    <plurals name="camps_host_districts">
+        <item quantity="one">Host district</item>
+        <item quantity="other">Host districts</item>
+    </plurals>
+    <plurals name="camps_age_years">
+        <item quantity="one">%1$d year</item>
+        <item quantity="other">%1$d years</item>
+    </plurals>
+    <plurals name="camps_ages_short">
+        <item quantity="one">%1$d–%2$d year</item>
+        <item quantity="other">%1$d–%2$d years</item>
+    </plurals>
+    <plurals name="camps_ages_long">
+        <item quantity="one">%1$d to %2$d year</item>
+        <item quantity="other">%1$d to %2$d years</item>
+    </plurals>
 </resources>

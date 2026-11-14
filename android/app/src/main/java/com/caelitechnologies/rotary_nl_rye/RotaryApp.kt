@@ -20,6 +20,9 @@ import androidx.navigation3.runtime.NavKey
 import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.ui.NavDisplay
 import com.caelitechnologies.rotary_nl_rye.about.AboutScreen
+import com.caelitechnologies.rotary_nl_rye.camps.CampDetailRoute
+import com.caelitechnologies.rotary_nl_rye.camps.CampRoute
+import com.caelitechnologies.rotary_nl_rye.camps.CampsRoute
 import com.caelitechnologies.rotary_nl_rye.contact.ContactScreen
 import com.caelitechnologies.rotary_nl_rye.contact.PersonRoute
 import com.caelitechnologies.rotary_nl_rye.contact.PersonScreen
@@ -55,8 +58,12 @@ fun RotaryApp() {
             }
         }
         entry<HomeDestination> { destination ->
-            DestinationScreen(destination, onBack = navigator::goBack)
+            when (destination) {
+                HomeDestination.SummerCamps -> CampsRoute(onBack = navigator::goBack, onCamp = { navigator.navigate(CampRoute(it)) })
+                else -> DestinationScreen(destination, onBack = navigator::goBack)
+            }
         }
+        entry<CampRoute> { route -> CampDetailRoute(route, onBack = navigator::goBack) }
         entry<PersonRoute> { route ->
             route.person?.let { PersonScreen(it, onBack = navigator::goBack) }
         }
