@@ -11,6 +11,7 @@
 		0000000000000000000C0002 /* SimpleIcons in Frameworks */ = {isa = PBXBuildFile; productRef = 0000000000000000000B0002 /* SimpleIcons */; };
 		0000000000000000000C0003 /* SimpleIconsSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 0000000000000000000B0003 /* SimpleIconsSwiftUI */; };
 		0000000000000000000C0004 /* RotaryCamps in Frameworks */ = {isa = PBXBuildFile; productRef = 0000000000000000000B0004 /* RotaryCamps */; };
+		0000000000000000000C0005 /* RotaryNews in Frameworks */ = {isa = PBXBuildFile; productRef = 0000000000000000000B0005 /* RotaryNews */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +65,7 @@
 			files = (
 				0000000000000000000C0001 /* RotaryCore in Frameworks */,
 				0000000000000000000C0004 /* RotaryCamps in Frameworks */,
+				0000000000000000000C0005 /* RotaryNews in Frameworks */,
 				0000000000000000000C0002 /* SimpleIcons in Frameworks */,
 				0000000000000000000C0003 /* SimpleIconsSwiftUI in Frameworks */,
 			);
@@ -125,6 +127,7 @@
 			packageProductDependencies = (
 				0000000000000000000B0001 /* RotaryCore */,
 				0000000000000000000B0004 /* RotaryCamps */,
+				0000000000000000000B0005 /* RotaryNews */,
 				0000000000000000000B0002 /* SimpleIcons */,
 				0000000000000000000B0003 /* SimpleIconsSwiftUI */,
 			);
@@ -609,6 +612,10 @@
 		0000000000000000000B0004 /* RotaryCamps */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = RotaryCamps;
+		};
+		0000000000000000000B0005 /* RotaryNews */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = RotaryNews;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

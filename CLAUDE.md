@@ -27,6 +27,8 @@ as `.claude/rules/swift.md` says; Apple's own guidance is in `.claude/skills/`.
   search) and `ClubTopicView`. `General/DocumentLink`: a PDF opens in Quick
   Look after `RemoteDocument` downloads it (through the URL cache), anything
   else in the in-app browser.
+  `News/`: `NewsModel`, `NewsView` (the newest item large, then the rest;
+  covers whole on white, as they are banners with text), `ArticleView`.
   `Home/`: `HomeView` (banner, `PhotoCarousel`, the tile grid: three to a
   row when the width allows, as on the Pro Max, else two), `HomePhoto` and
   `HomeDestination` (enums; a destination not rebuilt yet opens
@@ -68,8 +70,12 @@ as `.claude/rules/swift.md` says; Apple's own guidance is in `.claude/skills/`.
   (ZIPFoundation unpacks the XLSX, Foundation's `XMLParser` reads the parts)
   and `CampSheet` (columns by header; Excel serial and text dates, district
   lists, trailing spaces), into `Camp`; tested against the real file in
-  `Tests/RotaryCampsTests/Fixtures/`. Network goes through `HTTPClient`
-  (`RotaryCore/Networking`).
+  `Tests/RotaryCampsTests/Fixtures/`. `RotaryNews`: `NewsFeed`
+  (news.json on rotary.nl) into `NewsItem` (a PDF, or an article of
+  headings, paragraphs, images and videos), newest first. Network goes
+  through `HTTPClient`, and a feed that changes now and then through
+  `CachedFetch` (`RotaryCore/Networking`): revalidated online, the last copy
+  offline.
 - `android/`: the Android app, not started. Package
   `com.caelitechnologies.rotary_nl_rye` (Play Store listing) never changes.
 - `archive/`: the React Native app (v13, Expo SDK 58), `archive/README.md`.
