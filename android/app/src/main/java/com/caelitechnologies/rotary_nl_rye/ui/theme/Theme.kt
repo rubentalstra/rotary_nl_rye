@@ -14,7 +14,7 @@ import androidx.compose.ui.graphics.Color
  * brand, as it does on iOS.
  */
 
-private val LightColors = lightColorScheme(
+internal val LightColors = lightColorScheme(
     primary = RotaryBlue,
     onPrimary = Color(0xFFFFFFFF),
     primaryContainer = Color(0xFFD9E2FF),
@@ -42,7 +42,7 @@ private val LightColors = lightColorScheme(
     surfaceContainerHighest = Color(0xFFE2E2E9),
 )
 
-private val DarkColors = darkColorScheme(
+internal val DarkColors = darkColorScheme(
     primary = Color(0xFFB0C6FF),
     onPrimary = Color(0xFF002D6E),
     primaryContainer = Color(0xFF0E3D86),

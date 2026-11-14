@@ -1,0 +1,1 @@
+- Android: Settings, with the app's language (Android's own per-app language page), rating the app in the Play Store, ROTEX on Instagram, the privacy policy and terms, the open-source licences, the version, and sharing the app from the top bar.

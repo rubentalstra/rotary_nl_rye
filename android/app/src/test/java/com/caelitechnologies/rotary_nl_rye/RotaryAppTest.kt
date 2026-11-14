@@ -51,8 +51,7 @@ class RotaryAppTest {
         listOf("Home", "About", "Emergency", "Contact", "Settings").forEach {
             compose.onAllNodesWithText(it)[0].assertIsDisplayed()
         }
-        // Settings is not rebuilt yet, and says so.
         compose.onNodeWithText("Settings").performClick()
-        compose.onNodeWithText("This screen comes in a later version.").assertIsDisplayed()
+        compose.onNodeWithText("Rate the app").assertIsDisplayed()
     }
 }

@@ -5,7 +5,6 @@
     <string name="tab_emergency">Emergency</string>
     <string name="tab_contact">Contact</string>
     <string name="tab_settings">Settings</string>
-    <string name="coming_soon">This screen comes in a later version.</string>
     <string name="emergency_good_to_know">Good to know</string>
     <string name="emergency_tip_address">Always keep your host family\'s address and phone number with you.</string>
     <string name="emergency_tip_doctor">Your host parents help you with an appointment at the doctor, the hospital or the dentist.</string>
@@ -150,4 +149,15 @@
     <string name="students_status_in_netherlands">In the Netherlands</string>
     <string name="students_status_back_home">Back home</string>
     <string name="students_europe">Europe</string>
+    <string name="settings_share">Share the app</string>
+    <string name="settings_share_message">The app of Rotary Youth Exchange Netherlands.</string>
+    <string name="settings_language">Language</string>
+    <string name="settings_language_footer">The app follows your phone\'s language. Choose another language for just this app in Android\'s settings.</string>
+    <string name="settings_language_footer_phone">The app follows your phone\'s language.</string>
+    <string name="settings_rate">Rate the app</string>
+    <string name="settings_instagram">ROTEX on Instagram</string>
+    <string name="settings_privacy">Privacy policy</string>
+    <string name="settings_terms">Terms and conditions</string>
+    <string name="settings_licences">Licences</string>
+    <string name="settings_version">Version</string>
 </resources>

@@ -10,6 +10,8 @@ plugins {
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.hilt)
     alias(libs.plugins.ksp)
+    // Google's OSS Licenses plugin: the licences of every library the app ships, from the build.
+    alias(libs.plugins.oss.licenses)
 }
 
 android {
@@ -92,6 +94,8 @@ dependencies {
     implementation(libs.androidx.media3.ui.compose.material3)
     // MediaController.Builder.buildAsync() returns a ListenableFuture: await() it in a coroutine.
     implementation(libs.kotlinx.coroutines.guava)
+    // Settings > Licences: Google's Material 3 screen of the licences the plugin collects.
+    implementation(libs.play.services.oss.licenses)
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.compose.material3)
