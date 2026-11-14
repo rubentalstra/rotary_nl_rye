@@ -145,12 +145,13 @@ jobs:
         run: |
           bash scripts/release/notes.sh "$TAG" > "$RUNNER_TEMP/notes.md"
           store=()
-          [ "$FINAL" = true ] && store=(--app-store)
+          if [ "$FINAL" = true ]; then store=(--app-store); fi
           swift scripts/release/app-store-connect.swift notes "$VERSION" "$BUILD_NUMBER" "$RUNNER_TEMP/notes.md" ${store[@]+"${store[@]}"}
-          {
-            echo "Build $BUILD_NUMBER of $VERSION is in TestFlight."
-            [ "$FINAL" = true ] && echo "App Store version $VERSION has it; submit it for review in App Store Connect."
-          } >> "$GITHUB_STEP_SUMMARY"
+          echo "Build $BUILD_NUMBER of $VERSION is in TestFlight." >> "$GITHUB_STEP_SUMMARY"
+          # An if, not "test && echo": a false test as the last command would fail the step.
+          if [ "$FINAL" = true ]; then
+            echo "App Store version $VERSION has it; submit it for review in App Store Connect." >> "$GITHUB_STEP_SUMMARY"
+          fi
       - name: remove the API key and the keychain
         if: always()
         run: |
