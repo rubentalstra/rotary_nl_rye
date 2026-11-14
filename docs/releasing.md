@@ -3,7 +3,7 @@
 The iOS app is an update of the existing App Store listing (id 1567096118,
 bundle id `com.caelitechnologies.rotary-nl-rye`, team `A8S2486A44`). A tag
 on `main` releases it: `.github/workflows/release.yml` archives the app,
-signs it with Apple's cloud signing, uploads it to App Store Connect and
+signs it with the team's Apple Distribution certificate, uploads it to App Store Connect and
 fills in the notes from the changelog. The lane is Pullwatch's, adapted for
 the App Store; it calls the same `scripts/release/release.sh` the maintainer
 can run on his Mac.
@@ -61,28 +61,60 @@ they will read.
 
 ## The secrets
 
-One App Store Connect API key does everything: cloud signing (the
-distribution certificate and profile are Apple's, nothing to export or
-renew), the upload and the notes.
+Two things: an App Store Connect API key (the provisioning profile, the
+upload and the notes) and the team's Apple Distribution certificate (the
+signature).
+
+**Why not Apple's cloud signing.** The team is an individual account, so its
+certificates carry the name "Ruben Daniël Talstra". Cloud signing writes that
+name into the app's designated requirement with the "ë" decomposed (e plus a
+combining diaeresis), while the certificate has it composed. The signature
+then fails its own requirement and App Store Connect rejects the upload
+("Invalid Signature. Code failed to satisfy specified code requirement(s)").
+Signing with a certificate in a keychain writes the name as the certificate
+has it. The first beta (build 123, 14 November 2026) ran into this.
 
 1. App Store Connect, Users and Access, Integrations, App Store Connect
-   API, Team Keys: generate a key with the **Admin** role (cloud signing
-   needs Admin). Download the `.p8` once; Apple keeps no copy.
-2. In the repository's Settings, Secrets and variables, Actions, add:
+   API, Team Keys: generate a key with the **Admin** role. Download the
+   `.p8` once; Apple keeps no copy.
+2. The Apple Distribution certificate, with that key (or in Xcode,
+   Settings, Accounts, Manage Certificates):
+
+   ```bash
+   umask 077
+   /usr/bin/openssl genrsa -out distribution.key 2048
+   /usr/bin/openssl req -new -key distribution.key -subj "/CN=Rotary YEP NL release/C=NL" -out distribution.csr
+   swift scripts/release/app-store-connect.swift certificate distribution.csr distribution.cer
+   /usr/bin/openssl x509 -inform DER -in distribution.cer -out distribution.pem
+   /usr/bin/openssl pkcs12 -export -inkey distribution.key -in distribution.pem -name "Apple Distribution" -out distribution.p12
+   ```
+
+   macOS's own `/usr/bin/openssl` (LibreSSL) writes a `.p12` the keychain
+   can import. Keep the `.p12` and its password in a password manager.
+3. In the repository's Settings, Secrets and variables, Actions, add:
 
 | Secret | Value |
 |---|---|
 | `ASC_KEY` | the whole `.p8` file as downloaded, its first and last line included |
 | `ASC_KEY_ID` | the key's ID (10 characters, next to the key) |
 | `ASC_ISSUER_ID` | the Issuer ID above the list of keys |
+| `DISTRIBUTION_P12` | the `.p12` in base64: `base64 -i distribution.p12 \| tr -d '\n'` |
+| `DISTRIBUTION_P12_PASSWORD` | the `.p12`'s password |
 
-Without them the lane stops in its first job and names what is missing. The
-key never enters the repository: the lane writes it to the runner's
-temporary directory and removes it at the end.
+Without them the lane stops in its first job and names what is missing.
+Neither enters the repository: the lane writes the key and the certificate
+to the runner's temporary directory, imports the certificate into a
+keychain of its own, and removes both at the end.
+
+**Renewal.** The certificate is valid for a year (the current one until 14
+November 2027). Before it expires, make a new one with step 2 and replace
+the two `DISTRIBUTION_P12` secrets; then revoke the old one in the developer
+account. Apps already on the App Store keep working when it expires.
 
 ## Releasing from the Mac
 
-The same scripts work locally, with the `.p8` kept outside the repository:
+The same scripts work locally, with the Apple Distribution certificate in
+your keychain and the `.p8` kept outside the repository:
 
 ```bash
 export DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer
@@ -95,9 +127,12 @@ swift scripts/release/app-store-connect.swift notes 14.0.0 "$BUILD_NUMBER" /tmp/
 
 ## When something goes wrong
 
-- **The upload fails on signing**: the key is not Admin, or the team has
-  reached its limit of distribution certificates (revoke an old one in the
-  developer account).
+- **The upload fails with "Invalid Signature"**: the app was signed by
+  cloud signing instead of the certificate, which happens when the keychain
+  step found no valid Apple Distribution identity (an expired or revoked
+  certificate, or a wrong `DISTRIBUTION_P12_PASSWORD`). Renew it as above.
+- **Making a certificate fails**: the team has reached its limit of
+  distribution certificates; revoke an old one in the developer account.
 - **A rerun fails with a duplicate build number**: the first run did upload;
   push a new tag (`-beta.N+1`) rather than rerunning, or rerun only the
   notes on the Mac.

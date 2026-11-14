@@ -1,9 +1,12 @@
 #!/usr/bin/env bash
 # scripts/release/release.sh: archives the app and uploads it to App Store
-# Connect, signed by Apple's cloud signing. One App Store Connect API key
-# (Admin role) does it all: xcodebuild uses it to get the distribution
-# certificate and profile and to upload; nothing is kept in a keychain. The
-# release lane runs it; the maintainer can run it on his Mac the same way.
+# Connect. The team's Apple Distribution certificate must be in a keychain
+# (the lane imports it from its secrets): xcodebuild signs with it, and uses
+# the App Store Connect API key for the profile and the upload. Apple's
+# cloud signing is not used: with this team's certificate name ("Ruben
+# Daniël Talstra") it writes a designated requirement that App Store Connect
+# rejects (docs/releasing.md). The release lane runs it; the maintainer can
+# run it on his Mac the same way.
 #
 # Environment:
 #   BUILD_NUMBER   CFBundleVersion of this upload; higher than every build

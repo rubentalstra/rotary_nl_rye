@@ -134,9 +134,11 @@ as `.claude/rules/swift.md` says; Apple's own guidance is in `.claude/skills/`.
 - `scripts/gh/`: `issue.sh` (file an issue with type, priority and effort),
   `labels.sh` (the label set), `rel.sh` (sub-issues and blocked-by),
   `protect-main.sh` (the `main` ruleset). `scripts/release/`:
-  `check-version.sh`, `notes.sh`, `release.sh` (archive, cloud signing,
-  upload), `ExportOptions.plist`, `app-store-connect.swift` (next build
-  number, What to Test, What's New). `scripts/release/changelog.sh` and
+  `check-version.sh`, `notes.sh`, `release.sh` (archive, sign with the
+  Apple Distribution certificate, upload; never cloud signing, see
+  `docs/releasing.md`), `ExportOptions.plist`, `app-store-connect.swift`
+  (next build number, What to Test, What's New, a new distribution
+  certificate). `scripts/release/changelog.sh` and
   `scripts/checks/changelog-guard.sh`: the changelog fragments.
   `scripts/dev/xcode-skills.sh`: exports Apple's skills; `sync-strings.sh`
   (with `catalog-tidy.py`) writes the extracted text into the String Catalogs,
