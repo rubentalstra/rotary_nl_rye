@@ -16,6 +16,7 @@ let package = Package(
         .library(name: "RotaryCamps", targets: ["RotaryCamps"]),
         .library(name: "RotaryNews", targets: ["RotaryNews"]),
         .library(name: "RotaryCalendar", targets: ["RotaryCalendar"]),
+        .library(name: "RotaryStudents", targets: ["RotaryStudents"]),
     ],
     dependencies: [
         // Unpacks the summer camps spreadsheet (an XLSX file is a ZIP archive);
@@ -39,6 +40,10 @@ let package = Package(
         .target(name: "RotaryCalendar", dependencies: ["RotaryCore"]),
         // Fixtures/events.json is the API's answer of 14 November 2026, people's details removed.
         .testTarget(name: "RotaryCalendarTests", dependencies: ["RotaryCalendar"], resources: [.copy("Fixtures")]),
+        // The students (inbound, outbound and rebound) from the v13 app as JSON
+        // resources, and the guides for them; the guides keep v13's language.
+        .target(name: "RotaryStudents", dependencies: ["RotaryCore"], resources: [.process("Localizable.xcstrings"), .copy("Resources/inbound.json"), .copy("Resources/outbound.json")]),
+        .testTarget(name: "RotaryStudentsTests", dependencies: ["RotaryStudents"]),
     ]
 )
 

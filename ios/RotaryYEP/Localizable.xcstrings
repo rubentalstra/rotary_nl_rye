@@ -28,6 +28,40 @@
         }
       }
     },
+    "%lld studenten naar %lld landen": {
+      "comment": "Students: the size of a class of outbounds, such as 26 studenten naar 14 landen.",
+      "localizations": {
+        "nl": {
+          "stringUnit": {
+            "state": "new",
+            "value": "%1$lld studenten naar %2$lld landen"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld students going to %lld countries"
+          }
+        }
+      }
+    },
+    "%lld studenten uit %lld landen": {
+      "comment": "Students: the size of a class of inbounds, such as 23 studenten uit 12 landen.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld students from %lld countries"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "new",
+            "value": "%1$lld studenten uit %2$lld landen"
+          }
+        }
+      }
+    },
     "%lld tot %lld jaar": {
       "localizations": {
         "en": {
@@ -381,16 +415,6 @@
         }
       }
     },
-    "Dit scherm komt in een volgende versie.": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "This screen is coming in a later version."
-          }
-        }
-      }
-    },
     "Document niet geopend": {
       "localizations": {
         "en": {
@@ -434,6 +458,17 @@
         }
       }
     },
+    "Eerdere klassen": {
+      "comment": "Students: the screen with every inbound of earlier years.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Earlier classes"
+          }
+        }
+      }
+    },
     "Elke leeftijd": {
       "localizations": {
         "en": {
@@ -450,6 +485,17 @@
           "stringUnit": {
             "state": "translated",
             "value": "There are no events in the calendar."
+          }
+        }
+      }
+    },
+    "Europa": {
+      "comment": "Students: the destination of a student who went somewhere in Europe.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Europe"
           }
         }
       }
@@ -570,6 +616,16 @@
         }
       }
     },
+    "Groeperen": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Group"
+          }
+        }
+      }
+    },
     "Hele dag": {
       "localizations": {
         "en": {
@@ -616,6 +672,17 @@
           "stringUnit": {
             "state": "translated",
             "value": "Always keep your host family's address and phone number with you."
+          }
+        }
+      }
+    },
+    "In Nederland": {
+      "comment": "Student status: an inbound in the Netherlands now.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "In the Netherlands"
           }
         }
       }
@@ -695,6 +762,28 @@
         }
       }
     },
+    "Klas van %@": {
+      "comment": "Students: a class, the students of one exchange year, such as Klas van 2026/2027.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Class of %@"
+          }
+        }
+      }
+    },
+    "Komt binnenkort": {
+      "comment": "Student status: an inbound whose exchange year in the Netherlands has not begun.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Coming soon"
+          }
+        }
+      }
+    },
     "Kosten": {
       "localizations": {
         "en": {
@@ -721,6 +810,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Age"
+          }
+        }
+      }
+    },
+    "Leeftijd, kosten en bestemmingen": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ages, costs and destinations"
           }
         }
       }
@@ -848,12 +947,32 @@
         }
       }
     },
+    "Naam of land": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Name or country"
+          }
+        }
+      }
+    },
     "Naam, rol of club": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Name, role or club"
+          }
+        }
+      }
+    },
+    "Naar": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "To"
           }
         }
       }
@@ -963,6 +1082,17 @@
         }
       }
     },
+    "Nu op exchange": {
+      "comment": "Student status: an outbound abroad now.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "On exchange now"
+          }
+        }
+      }
+    },
     "OK": {
       "localizations": {
         "en": {
@@ -1040,6 +1170,16 @@
     "Over het programma": {
       "shouldTranslate": false
     },
+    "Over mij": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "About me"
+          }
+        }
+      }
+    },
     "PDF": {
       "localizations": {
         "en": {
@@ -1055,6 +1195,26 @@
     },
     "Pauzeert de aflevering": {
       "shouldTranslate": false
+    },
+    "Per land": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "By country"
+          }
+        }
+      }
+    },
+    "Per uitwisselingsjaar": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "By exchange year"
+          }
+        }
+      }
     },
     "Podcast": {
       "comment": "Now Playing: the album name of a podcast episode.",
@@ -1125,12 +1285,23 @@
       }
     },
     "Rebound": {
-      "comment": "Home tile: for students back from their exchange.",
+      "comment": "Home tile: for students back from their exchange.\nRebound: the screen's title.\nStudent status: an outbound back from their exchange.",
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Rebound"
+          }
+        }
+      }
+    },
+    "Rebounds zijn outbounds die terug zijn van hun uitwisselingsjaar.": {
+      "comment": "Rebound: what a rebound is, under the list.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rebounds are outbounds back from their exchange year."
           }
         }
       }
@@ -1176,6 +1347,16 @@
     },
     "Speelt de aflevering af": {
       "shouldTranslate": false
+    },
+    "Studenten": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Students"
+          }
+        }
+      }
     },
     "Taal": {
       "localizations": {
@@ -1333,12 +1514,38 @@
     "Uitwisselingen": {
       "shouldTranslate": false
     },
+    "Uitwisselingsjaar": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Exchange year"
+          }
+        }
+      }
+    },
     "Van": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "From"
+          }
+        }
+      }
+    },
+    "Van %@ naar %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "From %1$@ to %2$@"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Van %1$@ naar %2$@"
           }
         }
       }
@@ -1362,6 +1569,17 @@
           "stringUnit": {
             "state": "translated",
             "value": "Version"
+          }
+        }
+      }
+    },
+    "Vertrekt binnenkort": {
+      "comment": "Student status: an outbound whose exchange year abroad has not begun.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Leaving soon"
           }
         }
       }
@@ -1413,6 +1631,27 @@
           "stringUnit": {
             "state": "translated",
             "value": "When"
+          }
+        }
+      }
+    },
+    "Wat je moet weten": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "What you need to know"
+          }
+        }
+      }
+    },
+    "Weer thuis": {
+      "comment": "Student status: an inbound who has gone home after their year.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Back home"
           }
         }
       }

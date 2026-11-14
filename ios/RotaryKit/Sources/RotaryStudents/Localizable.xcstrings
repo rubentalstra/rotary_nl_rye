@@ -1,0 +1,710 @@
+{
+  "sourceLanguage": "nl",
+  "strings": {
+    "15 tot 18 jaar": {
+      "comment": "OutboundGuide requirements: the fact.",
+      "shouldTranslate": false
+    },
+    "15 tot 19 jaar": {
+      "comment": "OutboundGuide familyAbout: the fact.",
+      "shouldTranslate": false
+    },
+    "15 tot 21 jaar": {
+      "comment": "OutboundGuide campsAbout: the fact.\nOutboundGuide campsWho: a point.",
+      "shouldTranslate": false
+    },
+    "15 tot en met 19 jaar": {
+      "comment": "OutboundGuide familyRequirements: the fact.",
+      "shouldTranslate": false
+    },
+    "2 tot 6 weken": {
+      "comment": "OutboundGuide campsAbout: the fact.\nOutboundGuide familyAbout: the fact.",
+      "shouldTranslate": false
+    },
+    "35 to 50 every year": {
+      "comment": "InboundGuide welcome: the fact.",
+      "shouldTranslate": false
+    },
+    "6 intensive days": {
+      "comment": "InboundGuide language: the fact.",
+      "shouldTranslate": false
+    },
+    "A copy of the insurance policy will be sent to you a few days before you leave your home country.": {
+      "comment": "InboundGuide insurance: a point explained.",
+      "shouldTranslate": false
+    },
+    "A wonderful experience in a new culture, with a new language but also with some rules to make sure that your stay will be both enjoyable for you and us alike. These rules are consistent with the International Rotary rules.": {
+      "comment": "InboundGuide welcome: a point explained.",
+      "shouldTranslate": false
+    },
+    "Aanmelden voor Family to Family": {
+      "comment": "OutboundGuide: what a page tells, under its title in the list.",
+      "shouldTranslate": false
+    },
+    "Aanmelden voor een zomerkamp": {
+      "comment": "OutboundGuide: what a page tells, under its title in the list.",
+      "shouldTranslate": false
+    },
+    "Activiteiten en verwachtingen van het selectieweekend": {
+      "comment": "OutboundGuide: what a page tells, under its title in the list.",
+      "shouldTranslate": false
+    },
+    "Alle gemotiveerde jongeren uit de gemeenschap.": {
+      "comment": "OutboundGuide campsWho: a point explained.",
+      "shouldTranslate": false
+    },
+    "Alle jongens en meisjes van 15 tot en met 19 jaar die openstaan voor anderen, van hen willen leren, met hen ervaringen willen uitwisselen, uit hun eigen vertrouwde omgeving willen stappen en anderen zonder vooroordelen willen ontmoeten, zijn geschikt om aan dit programma deel te nemen.": {
+      "comment": "OutboundGuide familyRequirements: a paragraph.",
+      "shouldTranslate": false
+    },
+    "Allowed": {
+      "comment": "InboundGuide travel: a point.",
+      "shouldTranslate": false
+    },
+    "Als je mee wilt doen aan het Family to Family programma, geef je op of je voor het noordelijk of zuidelijk halfrond gaat. Bij de landenkeuze geef je drie landen op twee continenten op. Hierbij gelden de Verenigde Staten en Canada als één bestemming. De reden hiervoor is dat we niet alle kandidaten in de VS en Canada kunnen plaatsen. Daarbij komt dat als jij de juiste instelling hebt voor een Family to Family uitwisseling, het uiteindelijk niet uitmaakt naar welk land je gaat.": {
+      "comment": "OutboundGuide countryPreference: a paragraph.",
+      "shouldTranslate": false
+    },
+    "Ambassador": {
+      "comment": "InboundGuide welcome: a point.",
+      "shouldTranslate": false
+    },
+    "Andere culturen beleven in de zomervakantie": {
+      "comment": "OutboundGuide: what a page tells, under its title in the list.",
+      "shouldTranslate": false
+    },
+    "Arrival": {
+      "comment": "InboundGuide flightAndArrival: a section heading.",
+      "shouldTranslate": false
+    },
+    "Arrival at Schiphol": {
+      "comment": "InboundGuide insurance: a step or tip.",
+      "shouldTranslate": false
+    },
+    "Avonturenkampen": {
+      "comment": "OutboundGuide campsCountries: a point.",
+      "shouldTranslate": false
+    },
+    "Be curious": {
+      "comment": "InboundGuide welcome: a point.",
+      "shouldTranslate": false
+    },
+    "Be first": {
+      "comment": "InboundGuide welcome: a point.",
+      "shouldTranslate": false
+    },
+    "Be grateful": {
+      "comment": "InboundGuide welcome: a point.",
+      "shouldTranslate": false
+    },
+    "Be here now": {
+      "comment": "InboundGuide welcome: a point.",
+      "shouldTranslate": false
+    },
+    "Be of service": {
+      "comment": "InboundGuide welcome: a point.",
+      "shouldTranslate": false
+    },
+    "Be on purpose": {
+      "comment": "InboundGuide welcome: a point.",
+      "shouldTranslate": false
+    },
+    "Belangrijk om te weten": {
+      "comment": "OutboundGuide selectionWeekend: a section heading.",
+      "shouldTranslate": false
+    },
+    "Bestemmingen": {
+      "comment": "OutboundGuide campsCountries: a section heading.",
+      "shouldTranslate": false
+    },
+    "Bij gastgezinnen": {
+      "comment": "OutboundGuide familyAbout: the fact.",
+      "shouldTranslate": false
+    },
+    "Binnen Europa, ook al ligt dit naast de deur, vinden de mooiste uitwisselingen plaats en ontstaan de mooiste vriendschappen, met het voordeel dat je deze vrienden makkelijker kunt herbezoeken. De reiskosten zijn veel lager.": {
+      "comment": "OutboundGuide countryPreference: a paragraph.",
+      "shouldTranslate": false
+    },
+    "Buitenactiviteiten en de natuur verkennen.": {
+      "comment": "OutboundGuide campsCountries: a point explained.",
+      "shouldTranslate": false
+    },
+    "Canada": {
+      "comment": "OutboundGuide campsCountries: a point.",
+      "shouldTranslate": false
+    },
+    "Compulsory coverage": {
+      "comment": "InboundGuide insurance: a section heading.",
+      "shouldTranslate": false
+    },
+    "Coverage": {
+      "comment": "InboundGuide insurance: a section heading.",
+      "shouldTranslate": false
+    },
+    "Coverage begins immediately upon landing.": {
+      "comment": "InboundGuide insurance: a step or tip explained.",
+      "shouldTranslate": false
+    },
+    "Coverage ends when you leave the airport.": {
+      "comment": "InboundGuide insurance: a step or tip explained.",
+      "shouldTranslate": false
+    },
+    "Culturele uitwisseling": {
+      "comment": "OutboundGuide campsCountries: a point.",
+      "shouldTranslate": false
+    },
+    "Cultuur": {
+      "comment": "OutboundGuide countryPreference: a step or tip.",
+      "shouldTranslate": false
+    },
+    "De bestemmingen en soorten kampen": {
+      "comment": "OutboundGuide: what a page tells, under its title in the list.",
+      "shouldTranslate": false
+    },
+    "De groep leert elkaar beter kennen en wij leren jullie beter kennen. Zo kunnen wij beter inschatten waar jullie als toekomstige outbounds naartoe zouden kunnen gaan.": {
+      "comment": "OutboundGuide selectionWeekend: a step or tip explained.",
+      "shouldTranslate": false
+    },
+    "De perfecte leeftijd voor internationale ervaringen en persoonlijke groei.": {
+      "comment": "OutboundGuide campsWho: a point explained.",
+      "shouldTranslate": false
+    },
+    "Departure": {
+      "comment": "InboundGuide insurance: a step or tip.",
+      "shouldTranslate": false
+    },
+    "Dit zijn een paar voorbeeldvragen uit het interview tijdens de selectiedag. We gaan je niet alles vertellen, maar zo krijg je een beetje een idee.": {
+      "comment": "OutboundGuide selectionDay: a paragraph.",
+      "shouldTranslate": false
+    },
+    "Dit zijn indicatieve leeftijdsgrenzen voor overheidsscholen. Soms is enige flexibiliteit mogelijk.": {
+      "comment": "OutboundGuide requirements: a remark.",
+      "shouldTranslate": false
+    },
+    "During your exchange": {
+      "comment": "InboundGuide insurance: a step or tip.",
+      "shouldTranslate": false
+    },
+    "Dutch Orientation Course (DOC)": {
+      "comment": "InboundGuide language: a section heading.",
+      "shouldTranslate": false
+    },
+    "Duur": {
+      "comment": "OutboundGuide campsAbout: what a fact is about.\nOutboundGuide familyAbout: what a fact is about.",
+      "shouldTranslate": false
+    },
+    "Educatieve tours": {
+      "comment": "OutboundGuide campsCountries: a point.",
+      "shouldTranslate": false
+    },
+    "Een Rotaryclub die je voordraagt": {
+      "comment": "OutboundGuide requirements: the fact.",
+      "shouldTranslate": false
+    },
+    "Een diploma is geen vereiste om je op te geven; je kunt ook je schoolprogramma onderbreken. Soms is dat zelfs een voordeel. In het buitenland worden namelijk vaak strenge leeftijdsgrenzen gesteld om tot een school te worden toegelaten. En om deel te kunnen nemen aan de schoolsporten is het soms beter om nog geen diploma te hebben.": {
+      "comment": "OutboundGuide requirements: a paragraph.",
+      "shouldTranslate": false
+    },
+    "Een fascinerende Aziatische cultuur en moderne technologie.": {
+      "comment": "OutboundGuide campsCountries: a point explained.",
+      "shouldTranslate": false
+    },
+    "Een goede top 3 van landen": {
+      "comment": "OutboundGuide: the title of a page.",
+      "shouldTranslate": false
+    },
+    "Elkaar beter leren kennen": {
+      "comment": "OutboundGuide selectionWeekend: a step or tip.",
+      "shouldTranslate": false
+    },
+    "Europa": {
+      "comment": "OutboundGuide campsCountries: a point.\nOutboundGuide countryPreference: a section heading.",
+      "shouldTranslate": false
+    },
+    "Exchange students": {
+      "comment": "InboundGuide welcome: what a fact is about.",
+      "shouldTranslate": false
+    },
+    "Flight": {
+      "comment": "InboundGuide flightAndArrival: a section heading.",
+      "shouldTranslate": false
+    },
+    "Flight and arrival": {
+      "comment": "InboundGuide: the title of a page.",
+      "shouldTranslate": false
+    },
+    "Full coverage throughout your stay.": {
+      "comment": "InboundGuide insurance: a step or tip explained.",
+      "shouldTranslate": false
+    },
+    "Gewoon je best doen en jezelf zijn.": {
+      "comment": "OutboundGuide selectionDay: a paragraph.",
+      "shouldTranslate": false
+    },
+    "Healthcare and insurance information": {
+      "comment": "InboundGuide: what a page tells, under its title in the list.",
+      "shouldTranslate": false
+    },
+    "Herinneringen voor het leven en verhalen om te delen.": {
+      "comment": "OutboundGuide campsWho: a point explained.",
+      "shouldTranslate": false
+    },
+    "Het Family to Family programma biedt jongeren de mogelijkheid om het leven in een andere cultuur te ervaren door een paar weken bij een gastgezin te verblijven. Je dompelt je helemaal onder in het dagelijkse leven, de lokale gewoonten en de familietradities.": {
+      "comment": "OutboundGuide familyAbout: a paragraph.",
+      "shouldTranslate": false
+    },
+    "Het weekend dient een aantal doelen": {
+      "comment": "OutboundGuide selectionWeekend: a section heading.",
+      "shouldTranslate": false
+    },
+    "Hoe kies je je voorkeur?": {
+      "comment": "OutboundGuide countryPreference: a section heading.",
+      "shouldTranslate": false
+    },
+    "Hoe kies je jouw voorkeursbestemmingen": {
+      "comment": "OutboundGuide: what a page tells, under its title in the list.",
+      "shouldTranslate": false
+    },
+    "Hoe meld ik me aan?": {
+      "comment": "OutboundGuide: the title of a page.",
+      "shouldTranslate": false
+    },
+    "Hoe schrijf ik mezelf in?": {
+      "comment": "OutboundGuide: the title of a page.",
+      "shouldTranslate": false
+    },
+    "Holidays with your host family": {
+      "comment": "InboundGuide travel: a section heading.",
+      "shouldTranslate": false
+    },
+    "Houd rekening met reiskosten en afstand, vooral bij kortere programma's.": {
+      "comment": "OutboundGuide countryPreference: a step or tip explained.",
+      "shouldTranslate": false
+    },
+    "How": {
+      "comment": "InboundGuide language: what a fact is about.",
+      "shouldTranslate": false
+    },
+    "How long": {
+      "comment": "InboundGuide language: what a fact is about.",
+      "shouldTranslate": false
+    },
+    "Important information for new students": {
+      "comment": "InboundGuide: what a page tells, under its title in the list.",
+      "shouldTranslate": false
+    },
+    "In de schoolvakanties": {
+      "comment": "OutboundGuide campsAbout: the fact.",
+      "shouldTranslate": false
+    },
+    "In het kort": {
+      "comment": "OutboundGuide campsAbout: a section heading.\nOutboundGuide familyAbout: a section heading.\nOutboundGuide requirements: a section heading.",
+      "shouldTranslate": false
+    },
+    "In small groups": {
+      "comment": "InboundGuide language: the fact.",
+      "shouldTranslate": false
+    },
+    "Information about traveling to the Netherlands": {
+      "comment": "InboundGuide: what a page tells, under its title in the list.",
+      "shouldTranslate": false
+    },
+    "Insurance": {
+      "comment": "InboundGuide: the title of a page.",
+      "shouldTranslate": false
+    },
+    "Internationale ervaring": {
+      "comment": "OutboundGuide campsWho: a point.",
+      "shouldTranslate": false
+    },
+    "Je krijgt een interview, een groepsgesprek, een discussie en een test over je kennis van Nederland.": {
+      "comment": "OutboundGuide selectionDay: a point explained.",
+      "shouldTranslate": false
+    },
+    "Je krijgt een mail van ons voor het weekend, waarin staat wat je moet meenemen en wat je moet voorbereiden. Het is altijd een topweekend.": {
+      "comment": "OutboundGuide selectionWeekend: a point explained.",
+      "shouldTranslate": false
+    },
+    "Je kunt laten zien dat je uit het goede uitwisselingshout bent gesneden. Aanwezigheid is verplicht: het weekend is onderdeel van de uiteindelijke selectie.": {
+      "comment": "OutboundGuide selectionWeekend: a step or tip explained.",
+      "shouldTranslate": false
+    },
+    "Je oriënteren op een top drie van landen waarnaar je het liefst wilt worden uitgezonden, zowel internationaal als Europees.": {
+      "comment": "OutboundGuide selectionWeekend: a step or tip explained.",
+      "shouldTranslate": false
+    },
+    "Je stuurt een gezellig e-mailbericht naar interesse@rotaryyep.nl. Dan krijg je van ons een bevestiging dat we je mail hebben ontvangen.": {
+      "comment": "OutboundGuide familySignUp: a paragraph.\nOutboundGuide signUp: a paragraph.",
+      "shouldTranslate": false
+    },
+    "Je stuurt een gezellig e-mailbericht naar zomerkamp@rotaryyep.nl. Dan krijg je van ons een bevestiging dat we je mail hebben ontvangen.": {
+      "comment": "OutboundGuide campsSignUp: a paragraph.",
+      "shouldTranslate": false
+    },
+    "Je top drie van landen": {
+      "comment": "OutboundGuide selectionWeekend: a step or tip.",
+      "shouldTranslate": false
+    },
+    "Je voorkeursbestemmingen kiezen": {
+      "comment": "OutboundGuide: what a page tells, under its title in the list.",
+      "shouldTranslate": false
+    },
+    "Jezelf presenteren": {
+      "comment": "OutboundGuide selectionWeekend: a step or tip.",
+      "shouldTranslate": false
+    },
+    "Kies landen waarvan de cultuur en geschiedenis je echt interesseren.": {
+      "comment": "OutboundGuide countryPreference: a step or tip explained.",
+      "shouldTranslate": false
+    },
+    "Kijk op YouTube en zoek op \"Rotary Youth Exchange\"; dan kom je ook heel veel te weten.": {
+      "comment": "OutboundGuide topThree: a step or tip explained.",
+      "shouldTranslate": false
+    },
+    "Kinderen en kleinkinderen van Rotary-leden.": {
+      "comment": "OutboundGuide campsWho: a point explained.",
+      "shouldTranslate": false
+    },
+    "Landenvoorkeur": {
+      "comment": "OutboundGuide: the title of a page.",
+      "shouldTranslate": false
+    },
+    "Language": {
+      "comment": "InboundGuide: the title of a page.",
+      "shouldTranslate": false
+    },
+    "Language and culture": {
+      "comment": "InboundGuide language: the fact.",
+      "shouldTranslate": false
+    },
+    "Learning Dutch and language assistance": {
+      "comment": "InboundGuide: what a page tells, under its title in the list.",
+      "shouldTranslate": false
+    },
+    "Leeftijd": {
+      "comment": "OutboundGuide campsAbout: what a fact is about.\nOutboundGuide campsWho: a section heading.\nOutboundGuide familyAbout: what a fact is about.\nOutboundGuide familyRequirements: what a fact is about.\nOutboundGuide requirements: what a fact is about.",
+      "shouldTranslate": false
+    },
+    "Leeftijd en wie er mee kan doen": {
+      "comment": "OutboundGuide: what a page tells, under its title in the list.",
+      "shouldTranslate": false
+    },
+    "Lees in deze app de verhalen van uitwisselingsstudenten.": {
+      "comment": "OutboundGuide topThree: a step or tip explained.",
+      "shouldTranslate": false
+    },
+    "Leren over geschiedenis, cultuur en taal.": {
+      "comment": "OutboundGuide campsCountries: a point explained.",
+      "shouldTranslate": false
+    },
+    "Live by these values during your exchange:": {
+      "comment": "InboundGuide welcome: a paragraph.",
+      "shouldTranslate": false
+    },
+    "Lots of fun included, with students from around the world!": {
+      "comment": "InboundGuide language: a remark.",
+      "shouldTranslate": false
+    },
+    "Met welke landen?": {
+      "comment": "OutboundGuide: the title of a page.",
+      "shouldTranslate": false
+    },
+    "More arrival information will be provided closer to your departure date.": {
+      "comment": "InboundGuide flightAndArrival: a paragraph.",
+      "shouldTranslate": false
+    },
+    "Not allowed": {
+      "comment": "InboundGuide travel: a point.",
+      "shouldTranslate": false
+    },
+    "Onderdak": {
+      "comment": "OutboundGuide familyAbout: what a fact is about.",
+      "shouldTranslate": false
+    },
+    "Onderdompeling in lokale gewoonten en tradities.": {
+      "comment": "OutboundGuide campsCountries: a point explained.",
+      "shouldTranslate": false
+    },
+    "One of the best years of your life": {
+      "comment": "InboundGuide welcome: a point.",
+      "shouldTranslate": false
+    },
+    "One of your host families might suggest a holiday somewhere abroad. This is usually fine when you have written approval from your parents.": {
+      "comment": "InboundGuide travel: a point explained.",
+      "shouldTranslate": false
+    },
+    "Ontdek nieuwe culturen en maak vrienden over de hele wereld.": {
+      "comment": "OutboundGuide campsWho: a point explained.",
+      "shouldTranslate": false
+    },
+    "Ontwikkel zelfvertrouwen en leiderschapsvaardigheden.": {
+      "comment": "OutboundGuide campsWho: a point explained.",
+      "shouldTranslate": false
+    },
+    "Onvergetelijke herinneringen": {
+      "comment": "OutboundGuide campsWho: a point.",
+      "shouldTranslate": false
+    },
+    "Ook zonder Rotary": {
+      "comment": "OutboundGuide campsWho: a point.",
+      "shouldTranslate": false
+    },
+    "Op welke eigenschap ben je het meest trots?": {
+      "comment": "OutboundGuide selectionDay: an example question of the selection day interview.",
+      "shouldTranslate": false
+    },
+    "Opleiding": {
+      "comment": "OutboundGuide requirements: what a fact is about.",
+      "shouldTranslate": false
+    },
+    "Our motto": {
+      "comment": "InboundGuide welcome: a section heading.",
+      "shouldTranslate": false
+    },
+    "Overweeg landen waar je de taal spreekt of wilt leren.": {
+      "comment": "OutboundGuide countryPreference: a step or tip explained.",
+      "shouldTranslate": false
+    },
+    "Persoonlijke ontwikkeling": {
+      "comment": "OutboundGuide campsWho: a point.",
+      "shouldTranslate": false
+    },
+    "Please remember that under all circumstances you are an ambassador of Rotary and will have to behave accordingly. You will also be an ambassador of your country. Both roles will be with you at all times, and you will be regarded and judged as such throughout your exchange.": {
+      "comment": "InboundGuide welcome: a point explained.",
+      "shouldTranslate": false
+    },
+    "Policy documents": {
+      "comment": "InboundGuide insurance: a section heading.",
+      "shouldTranslate": false
+    },
+    "Praat met voormalige uitwisselingsstudenten over hun ervaringen in verschillende landen.": {
+      "comment": "OutboundGuide topThree: a step or tip explained.",
+      "shouldTranslate": false
+    },
+    "Prachtige natuur en een vriendelijke cultuur in Noord-Amerika.": {
+      "comment": "OutboundGuide campsCountries: a point explained.",
+      "shouldTranslate": false
+    },
+    "Regels en richtlijnen voor uitwisselingsstudenten": {
+      "comment": "OutboundGuide: what a page tells, under its title in the list.",
+      "shouldTranslate": false
+    },
+    "Reiskosten": {
+      "comment": "OutboundGuide countryPreference: a step or tip.",
+      "shouldTranslate": false
+    },
+    "Rotary-families": {
+      "comment": "OutboundGuide campsWho: a point.",
+      "shouldTranslate": false
+    },
+    "Rotary-zomerkampen zijn korte uitwisselingsprogramma's die meestal 2 tot 6 weken duren, in de schoolvakanties. Je beleeft andere culturen, sluit internationale vriendschappen en doet mee aan spannende activiteiten, terwijl je bij gastgezinnen of in georganiseerde accommodaties verblijft.": {
+      "comment": "OutboundGuide campsAbout: a paragraph.",
+      "shouldTranslate": false
+    },
+    "Selectie": {
+      "comment": "OutboundGuide selectionWeekend: a step or tip.",
+      "shouldTranslate": false
+    },
+    "Selectiedag": {
+      "comment": "OutboundGuide: the title of a page.",
+      "shouldTranslate": false
+    },
+    "Selectieweekend": {
+      "comment": "OutboundGuide: the title of a page.",
+      "shouldTranslate": false
+    },
+    "September and February": {
+      "comment": "InboundGuide language: the fact.",
+      "shouldTranslate": false
+    },
+    "Soorten kampen": {
+      "comment": "OutboundGuide campsCountries: a section heading.",
+      "shouldTranslate": false
+    },
+    "Support club": {
+      "comment": "OutboundGuide requirements: what a fact is about.",
+      "shouldTranslate": false
+    },
+    "Taal": {
+      "comment": "OutboundGuide countryPreference: a step or tip.",
+      "shouldTranslate": false
+    },
+    "Taiwan": {
+      "comment": "OutboundGuide campsCountries: a point.",
+      "shouldTranslate": false
+    },
+    "The challenge": {
+      "comment": "InboundGuide language: a section heading.",
+      "shouldTranslate": false
+    },
+    "The insurance policy from the Netherlands is compulsory. We will pre-insure you, so you are fully insured from the moment you land at Amsterdam Airport Schiphol until you leave from the airport again.": {
+      "comment": "InboundGuide insurance: a paragraph.",
+      "shouldTranslate": false
+    },
+    "There is no hiding it: Dutch is a very difficult language to learn. However, we do expect you to master the language, and within months after your arrival to be fluent in it.": {
+      "comment": "InboundGuide language: a paragraph.",
+      "shouldTranslate": false
+    },
+    "Tips for exploring the Netherlands and Europe": {
+      "comment": "InboundGuide: what a page tells, under its title in the list.",
+      "shouldTranslate": false
+    },
+    "Tips voor een goede keuze": {
+      "comment": "OutboundGuide countryPreference: a section heading.\nOutboundGuide topThree: a section heading.",
+      "shouldTranslate": false
+    },
+    "Travel": {
+      "comment": "InboundGuide: the title of a page.",
+      "shouldTranslate": false
+    },
+    "Travel guidelines": {
+      "comment": "InboundGuide travel: a section heading.",
+      "shouldTranslate": false
+    },
+    "Travel is allowed with your host family, with Rotary club members, and on authorised school trips. These rules apply both inside the Netherlands and abroad.": {
+      "comment": "InboundGuide travel: a point explained.",
+      "shouldTranslate": false
+    },
+    "Verblijven bij een gastgezin in het buitenland": {
+      "comment": "OutboundGuide: what a page tells, under its title in the list.",
+      "shouldTranslate": false
+    },
+    "Verenigde Staten": {
+      "comment": "OutboundGuide campsCountries: a point.",
+      "shouldTranslate": false
+    },
+    "Verschillende Europese landen met een rijke cultuur en geschiedenis.": {
+      "comment": "OutboundGuide campsCountries: a point explained.",
+      "shouldTranslate": false
+    },
+    "Verschillende staten met elk hun eigen ervaringen en cultuur.": {
+      "comment": "OutboundGuide campsCountries: a point explained.",
+      "shouldTranslate": false
+    },
+    "Visits to family or friends abroad are not permitted.": {
+      "comment": "InboundGuide travel: a point explained.",
+      "shouldTranslate": false
+    },
+    "Vmbo, havo of vwo": {
+      "comment": "OutboundGuide requirements: the fact.",
+      "shouldTranslate": false
+    },
+    "Volledige aanmeldprocedure en vereisten": {
+      "comment": "OutboundGuide: what a page tells, under its title in the list.",
+      "shouldTranslate": false
+    },
+    "Voor wie?": {
+      "comment": "OutboundGuide: the title of a page.",
+      "shouldTranslate": false
+    },
+    "Voorbeeldvragen": {
+      "comment": "OutboundGuide selectionDay: a section heading.",
+      "shouldTranslate": false
+    },
+    "Waar moet ik aan voldoen?": {
+      "comment": "OutboundGuide: the title of a page.",
+      "shouldTranslate": false
+    },
+    "Wanneer": {
+      "comment": "OutboundGuide campsAbout: what a fact is about.",
+      "shouldTranslate": false
+    },
+    "Wat betekent volgens jou het zijn van ambassadeur voor Rotary?": {
+      "comment": "OutboundGuide selectionDay: an example question of the selection day interview.",
+      "shouldTranslate": false
+    },
+    "Wat denk je dat het moeilijkste is als je een jaar in het buitenland bent?": {
+      "comment": "OutboundGuide selectionDay: an example question of the selection day interview.",
+      "shouldTranslate": false
+    },
+    "Wat is Family to Family?": {
+      "comment": "OutboundGuide: the title of a page.",
+      "shouldTranslate": false
+    },
+    "Wat je kunt verwachten tijdens het selectieproces": {
+      "comment": "OutboundGuide: what a page tells, under its title in the list.",
+      "shouldTranslate": false
+    },
+    "Wat kun je deze dag verwachten?": {
+      "comment": "OutboundGuide selectionDay: a section heading.",
+      "shouldTranslate": false
+    },
+    "Wat kun je verwachten?": {
+      "comment": "OutboundGuide campsWho: a section heading.",
+      "shouldTranslate": false
+    },
+    "Wat moet ik doen voor de selectiedag?": {
+      "comment": "OutboundGuide selectionDay: a section heading.",
+      "shouldTranslate": false
+    },
+    "Wat was de gelukkigste of mooiste dag in je leven?": {
+      "comment": "OutboundGuide selectionDay: an example question of the selection day interview.",
+      "shouldTranslate": false
+    },
+    "Wat zijn zomerkampen?": {
+      "comment": "OutboundGuide: the title of a page.",
+      "shouldTranslate": false
+    },
+    "We are very excited about your upcoming stay with us and looking forward to meeting you. We hope and believe that you will enjoy your stay with us. We have an exciting and active Rotary International Youth Exchange Program with students from around the world.": {
+      "comment": "InboundGuide welcome: a paragraph.",
+      "shouldTranslate": false
+    },
+    "Welcome to the Netherlands!": {
+      "comment": "InboundGuide: the title of a page.",
+      "shouldTranslate": false
+    },
+    "What": {
+      "comment": "InboundGuide language: what a fact is about.",
+      "shouldTranslate": false
+    },
+    "When": {
+      "comment": "InboundGuide language: what a fact is about.",
+      "shouldTranslate": false
+    },
+    "Wie geschikt is voor Family to Family": {
+      "comment": "OutboundGuide: what a page tells, under its title in the list.",
+      "shouldTranslate": false
+    },
+    "Wie is je rolmodel, voor wie heb je bewondering?": {
+      "comment": "OutboundGuide selectionDay: an example question of the selection day interview.",
+      "shouldTranslate": false
+    },
+    "Wie kan deelnemen?": {
+      "comment": "OutboundGuide campsWho: a section heading.",
+      "shouldTranslate": false
+    },
+    "Written approval from your parents": {
+      "comment": "InboundGuide travel: a point.",
+      "shouldTranslate": false
+    },
+    "You should obtain a changeable open return airline ticket. Your arrival airport is Amsterdam Airport Schiphol.": {
+      "comment": "InboundGuide flightAndArrival: a paragraph.",
+      "shouldTranslate": false
+    },
+    "You will make friends from all over the world, in addition to making many Dutch friends in your school and Rotary.": {
+      "comment": "InboundGuide welcome: a point explained.",
+      "shouldTranslate": false
+    },
+    "Your exchange experience": {
+      "comment": "InboundGuide welcome: a section heading.",
+      "shouldTranslate": false
+    },
+    "Your first host family will also help you to learn Dutch, and you will receive books to start learning the language as soon as you are in the Netherlands.": {
+      "comment": "InboundGuide language: a point explained.",
+      "shouldTranslate": false
+    },
+    "Your host family": {
+      "comment": "InboundGuide language: a section heading.",
+      "shouldTranslate": false
+    },
+    "Your learning partners": {
+      "comment": "InboundGuide language: a point.",
+      "shouldTranslate": false
+    },
+    "Zit je op het vmbo, de havo of het vwo, dan kun je na selectie voor deze uitwisseling in aanmerking komen. Je hebt wel een Rotaryclub nodig die jou wil voordragen: een support club. Dat betekent niet dat de club jouw kosten betaalt, maar de club is verantwoordelijk voor de ontvangst van een jaarkind uit het buitenland. Als jij weggaat, komt er ook een buitenlandse scholier terug.": {
+      "comment": "OutboundGuide requirements: a paragraph.",
+      "shouldTranslate": false
+    }
+  },
+  "version": "1.1"
+}
