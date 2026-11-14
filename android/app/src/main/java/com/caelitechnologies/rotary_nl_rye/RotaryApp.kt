@@ -42,6 +42,13 @@ import com.caelitechnologies.rotary_nl_rye.home.DestinationScreen
 import com.caelitechnologies.rotary_nl_rye.home.HomeDestination
 import com.caelitechnologies.rotary_nl_rye.home.HomeScreen
 import com.caelitechnologies.rotary_nl_rye.navigation.AppTab
+import com.caelitechnologies.rotary_nl_rye.programmes.PodcastRoute
+import com.caelitechnologies.rotary_nl_rye.programmes.PodcastRouteScreen
+import com.caelitechnologies.rotary_nl_rye.programmes.ProgrammeDetailScreen
+import com.caelitechnologies.rotary_nl_rye.programmes.ProgrammeRoute
+import com.caelitechnologies.rotary_nl_rye.programmes.ProgrammesScreen
+import com.caelitechnologies.rotary_nl_rye.programmes.VideoRoute
+import com.caelitechnologies.rotary_nl_rye.programmes.VideoRouteScreen
 import com.caelitechnologies.rotary_nl_rye.navigation.Navigator
 import com.caelitechnologies.rotary_nl_rye.navigation.rememberNavigationState
 import com.caelitechnologies.rotary_nl_rye.navigation.toEntries
@@ -77,6 +84,12 @@ fun RotaryApp() {
                     onGuide = { navigator.navigate(ClubGuideRoute(it)) },
                 )
                 HomeDestination.News -> NewsRoute(onBack = navigator::goBack, onArticle = { navigator.navigate(ArticleRoute(it.id)) })
+                HomeDestination.Programmes -> ProgrammesScreen(
+                    onBack = navigator::goBack,
+                    onProgramme = { navigator.navigate(ProgrammeRoute(it)) },
+                    onPodcast = { navigator.navigate(PodcastRoute) },
+                    onVideo = { navigator.navigate(VideoRoute(it)) },
+                )
                 HomeDestination.Calendar -> CalendarRoute(onBack = navigator::goBack, onEvent = { navigator.navigate(EventRoute(it.id)) })
                 else -> DestinationScreen(destination, onBack = navigator::goBack)
             }
@@ -84,6 +97,11 @@ fun RotaryApp() {
         entry<CampRoute> { route -> CampDetailRoute(route, onBack = navigator::goBack) }
         entry<ClubTopicRoute> { route -> ClubTopicScreen(route.topic, onBack = navigator::goBack) }
         entry<ClubGuideRoute> { route -> ClubGuideScreen(route.guide, onBack = navigator::goBack) }
+        entry<ProgrammeRoute> { route ->
+            ProgrammeDetailScreen(route.programme, onBack = navigator::goBack, onSummerCamps = { navigator.navigate(HomeDestination.SummerCamps) })
+        }
+        entry<PodcastRoute> { PodcastRouteScreen(onBack = navigator::goBack) }
+        entry<VideoRoute> { route -> VideoRouteScreen(route, onBack = navigator::goBack) }
         entry<ArticleRoute> { route -> ArticleRouteScreen(route, onBack = navigator::goBack) }
         entry<EventRoute> { route -> EventDetailRoute(route, onBack = navigator::goBack) }
         entry<PersonRoute> { route ->

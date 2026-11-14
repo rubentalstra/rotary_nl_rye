@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Photos of the people, and later the news and calendar, come from the internet. -->
     <uses-permission android:name="android.permission.INTERNET" />
+    <!-- The podcast plays on with the screen off or in another app, as a media playback
+         foreground service with the system's media notification. -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK" />
 
     <!-- The language per app (Android 13 and later) comes from
          generateLocaleConfig in build.gradle.kts: Dutch and English. -->
@@ -26,6 +31,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <!-- Exported so the system's media controls (notification, lock screen, Bluetooth,
+             Android Auto) can connect, as Media3 requires. No permission can name them all, so
+             PodcastService accepts only trusted controllers (this app, the system, apps
+             allowed to control media) and turns every other one away. -->
+        <service
+            android:name=".programmes.PodcastService"
+            android:exported="true"
+            tools:ignore="ExportedService"
+            android:foregroundServiceType="mediaPlayback">
+            <intent-filter>
+                <action android:name="androidx.media3.session.MediaSessionService" />
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>

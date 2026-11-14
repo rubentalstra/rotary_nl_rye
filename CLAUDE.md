@@ -128,7 +128,14 @@ reference only. Swift is written as `.claude/rules/swift.md` says, Kotlin as
   headers, `CampDetailScreen` with its assisted `CampDetailViewModel`,
   invitations in a Custom Tab or the PDF viewer), `clubs/`
   (`RotaryClubsScreen` with the welcome, topics, roles and search,
-  `ClubTopicScreen`, `ClubGuideScreen`, `ClubIcons`), `news/` (`NewsRepository`, `NewsViewModel`, `NewsScreen`
+  `ClubTopicScreen`, `ClubGuideScreen`, `ClubIcons`), `programmes/`
+  (`ProgrammesScreen`, `ProgrammeDetailScreen` with `ProgrammePhoto` in
+  Material's carousel, `ProgrammeIcons` mapping RotaryCore's SF Symbol names
+  to Material Symbols; the podcast in `PodcastService`, Media3's
+  `MediaSessionService` that accepts only trusted controllers, driven by
+  `PodcastViewModel` through a `MediaController`; `VideoScreen` with Media3's
+  Material 3 `Player`, its ExoPlayer in `VideoViewModel`; the texts Dutch only,
+  `translatable="false"`, as on iOS), `news/` (`NewsRepository`, `NewsViewModel`, `NewsScreen`
   with the newest item large, `ArticleScreen`), `calendar/`
   (`CalendarRepository`, `CalendarViewModel`, `CalendarScreen` with date
   badges, `EventDetailScreen`: Maps, Android's own add-event screen, no
@@ -147,9 +154,12 @@ reference only. Swift is written as `.claude/rules/swift.md` says, Kotlin as
   `:core`: everything without a screen, as RotaryCore is on iOS:
   `AppIdentity`, `organisation/` (`Person`, `PersonName`, `Role`,
   `ContactGroup`, `Organisation`, `ContactLinks`, the people in
-  `People*.kt`) and `about/AboutTopic` and `clubs/` (`ClubTopic`, `ClubGuide`, `ClubDocument`),
+  `People*.kt`) and `about/AboutTopic`, `clubs/` (`ClubTopic`, `ClubGuide`, `ClubDocument`) and
+  `programmes/`,
   with Dutch and English strings. The people, roles, groups, About topics
-  and the Rotary clubs' content are **generated** from the Swift by
+  and the Rotary clubs' content, and `programmes/` (`ExchangeProgramme`,
+  `PodcastEpisode`, `PromoVideo`; strings iOS keeps Dutch only become
+  `translatable="false"`) are **generated** from the Swift by
   `python3 -I scripts/dev/android-content.py` (CI checks they are in step):
   edit the Swift, run the script, never edit the generated files.
   `:core` also has `networking/CachedFetch` (OkHttp: revalidated online,

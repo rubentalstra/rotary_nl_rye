@@ -1,0 +1,1 @@
+- Android: the programmes (Long Term Exchange, Family to Family and the summer camps), each with photos, the facts at a glance, what it is, why to go, where it goes with flags, and how to sign up by mail. The podcast plays on with the screen off or in another app, with the system's media controls in the notification and on the lock screen, and the videos play in the app.

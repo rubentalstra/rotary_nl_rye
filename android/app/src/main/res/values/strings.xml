@@ -127,4 +127,34 @@
     <string name="clubs_search" description="Rotary clubs: the search field's placeholder.">Onderwerp of document</string>
     <string name="clubs_general" description="Rotary clubs: heading of the topics.">Algemene informatie</string>
     <string name="clubs_documents" description="Rotary clubs: heading of the roles and their documents.">Documenten</string>
+    <!-- Programmes and the podcast: Dutch only on purpose, as on iOS (shouldTranslate: false),
+         except the few words shared with the rest of the app. -->
+    <string name="programmes_exchanges" description="Programmes: heading of the exchange programmes." translatable="false">Uitwisselingen</string>
+    <string name="programmes_listen_watch" description="Programmes: heading of the podcast and the videos." translatable="false">Luister en kijk</string>
+    <string name="podcast_title" description="Podcast: its name in the list, the page title and the media notification." translatable="false">Podcast</string>
+    <string name="podcast_subtitle" description="Programmes: what the podcast is, under its name." translatable="false">Gastouders vertellen over hun uitwisselingsstudent</string>
+    <string name="podcast_name" description="Podcast: the show\'s full name." translatable="false">Rotary Youth Exchange Podcast</string>
+    <string name="podcast_about" description="Podcast: what the show is about." translatable="false">Gastouders vertellen hoe het is om een uitwisselingsstudent in huis te hebben.</string>
+    <string name="podcast_now_playing" description="Podcast: heading of the controls of the episode that is loaded." translatable="false">Nu aan het afspelen</string>
+    <string name="podcast_episodes" description="Podcast: heading of the episodes." translatable="false">Afleveringen</string>
+    <string name="podcast_episode" description="Podcast: an episode\'s number." translatable="false">Aflevering %1$d</string>
+    <string name="podcast_play_episode" description="Podcast: what tapping an episode does, for TalkBack." translatable="false">Speelt de aflevering af</string>
+    <string name="podcast_pause_episode" description="Podcast: what tapping the playing episode does, for TalkBack." translatable="false">Pauzeert de aflevering</string>
+    <string name="programme_in_short" description="Programme page: heading of the age, duration, cost and selection." translatable="false">In het kort</string>
+    <string name="programme_age" description="Programme page: who may take part, by age.">Leeftijd</string>
+    <string name="programme_duration" description="Programme page: how long the programme is, or when." translatable="false">Duur</string>
+    <string name="programme_cost" description="Programme page: what the programme costs.">Kosten</string>
+    <string name="programme_from" description="Programme page: a lowest price, such as Vanaf € 2.400." translatable="false">Vanaf %1$s</string>
+    <string name="programme_selection" description="Programme page: how students are chosen." translatable="false">Selectie</string>
+    <string name="programme_about" description="Programme page: heading of the explanation." translatable="false">Over het programma</string>
+    <string name="programme_view_camps" description="Programme page of the summer camps: opens the list of camps." translatable="false">Bekijk de zomerkampen</string>
+    <string name="programme_view_camps_summary" description="Programme page of the summer camps: what the list of camps has." translatable="false">Alle kampen van dit jaar, met data, leeftijden en prijzen.</string>
+    <string name="programme_sign_up" description="Programme page: heading of how to sign up." translatable="false">Aanmelden</string>
+    <string name="programme_photo_full_screen" description="Programme page: what tapping a photo does, for TalkBack." translatable="false">Toont de foto schermvullend</string>
+    <string name="programme_photo_arrival_brazil" description="Programme photo: a Dutch student welcomed at the airport in Brazil." translatable="false">Welkom in Brazilië</string>
+    <string name="programme_photo_arrival_canada" description="Programme photo: a Dutch student welcomed at the airport in Canada." translatable="false">Welkom in Canada</string>
+    <string name="programme_photo_arrival_italy" description="Programme photo: a Dutch student welcomed at the airport in Italy." translatable="false">Welkom in Italië</string>
+    <string name="programme_photo_host_club" description="Programme photo: students with the members of their host Rotary club." translatable="false">Bij de Rotary-club in het gastland</string>
+    <string name="programme_photo_amazon_tour" description="Programme photo: a summer camp group with their flags on a boat on the Amazon." translatable="false">Zomerkamp Amazon Tour in Brazilië</string>
+    <string name="programme_photo_river_dolphins" description="Programme photo: summer camp members swimming with Amazon river dolphins." translatable="false">Zwemmen met roze rivierdolfijnen</string>
 </resources>
