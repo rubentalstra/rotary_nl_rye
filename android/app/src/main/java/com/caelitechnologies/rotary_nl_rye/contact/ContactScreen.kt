@@ -1,5 +1,6 @@
 package com.caelitechnologies.rotary_nl_rye.contact
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.consumeWindowInsets
@@ -61,7 +62,9 @@ fun ContactScreen(onPerson: (Person) -> Unit) {
 
     Scaffold(
         topBar = {
-            Column {
+            // One opaque bar: the list scrolls under the title, the search and the
+            // tabs, so the margin around the search pill must cover it too.
+            Column(Modifier.background(MaterialTheme.colorScheme.surface)) {
                 TopAppBar(title = { Text(stringResource(AppTab.Contact.label)) })
                 SearchBar(
                     state = searchBarState,
