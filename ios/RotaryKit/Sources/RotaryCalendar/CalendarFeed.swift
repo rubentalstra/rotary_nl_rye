@@ -103,7 +103,6 @@ private struct RawEvent: Decodable {
     let summary: String?
     let description: String?
     let location: String?
-    let hangoutLink: String?
     let start: RawMoment
     let end: RawMoment
 
@@ -121,8 +120,7 @@ private struct RawEvent: Decodable {
             title: summary?.trimmingCharacters(in: .whitespacesAndNewlines).nilIfEmpty,
             timing: timing,
             location: location?.trimmingCharacters(in: .whitespacesAndNewlines).nilIfEmpty,
-            notes: description?.trimmingCharacters(in: .whitespacesAndNewlines).nilIfEmpty,
-            meetingURL: hangoutLink.flatMap(URL.init(string:))
+            notes: description?.trimmingCharacters(in: .whitespacesAndNewlines).nilIfEmpty
         )
     }
 

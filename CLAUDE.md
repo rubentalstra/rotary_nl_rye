@@ -30,8 +30,9 @@ as `.claude/rules/swift.md` says; Apple's own guidance is in `.claude/skills/`.
   `Calendar/`: `CalendarModel` (now, upcoming per month, past behind a
   button, the marked days), `CalendarView` (list or month), `EventRow` with
   `DateBadge`, `EventMonthView` (the system's `UICalendarView`),
-  `EventDetailView` (Maps, Meet, and EventKitUI's add-to-calendar sheet,
-  which needs no calendar access).
+  `EventDetailView` (Maps, and EventKitUI's add-to-calendar sheet, which
+  needs no calendar access; online meeting links are left out on purpose:
+  people do not join meetings from this app).
   `News/`: `NewsModel`, `NewsView` (the newest item large, then the rest;
   covers whole on white, as they are banners with text), `ArticleView`.
   `Home/`: `HomeView` (banner, `PhotoCarousel`, the tile grid: three to a

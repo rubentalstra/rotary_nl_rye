@@ -57,11 +57,6 @@ import Testing
         #expect(market.location == "Woerden")
     }
 
-    @Test func `An online event has its Meet link`() throws {
-        let training = try event("MDJC jaarlijkse training")
-        #expect(training.meetingURL?.host() == "meet.google.com")
-    }
-
     @Test func `Ongoing and ended follow the event's days`() throws {
         let weekend = try event("Residentieweekend inbounds")
         let saturday = try #require(amsterdam.date(from: DateComponents(year: 2026, month: 11, day: 14, hour: 12)))

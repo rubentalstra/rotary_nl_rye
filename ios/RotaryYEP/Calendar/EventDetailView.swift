@@ -3,8 +3,9 @@ import EventKitUI
 import RotaryCalendar
 import SwiftUI
 
-/// Everything about one event: when, where (with a way to Maps), how to join
-/// online, and a way to put it in the person's own calendar.
+/// Everything about one event: when, where (with a way to Maps), and a way to
+/// put it in the person's own calendar. Online meeting links are left out on
+/// purpose: people do not join meetings from this app.
 struct EventDetailView: View {
     let event: CalendarEvent
     @State private var addsToCalendar = false
@@ -57,11 +58,6 @@ struct EventDetailView: View {
                 }
             }
             Section {
-                if let meeting = event.meetingURL {
-                    Link(destination: meeting) {
-                        Label("Doe online mee", systemImage: "video")
-                    }
-                }
                 Button {
                     addsToCalendar = true
                 } label: {
@@ -138,7 +134,6 @@ private struct AddToCalendarSheet: UIViewControllerRepresentable {
         draft.startDate = event.start()
         // An all-day event ends on its last day in EventKit.
         draft.endDate = event.isAllDay ? event.end().flatMap { Calendar.current.date(byAdding: .second, value: -1, to: $0) } : event.end()
-        draft.url = event.meetingURL
         let controller = EKEventEditViewController()
         controller.eventStore = store
         controller.event = draft

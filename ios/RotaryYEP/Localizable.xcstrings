@@ -383,16 +383,6 @@
         }
       }
     },
-    "Doe online mee": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Join online"
-          }
-        }
-      }
-    },
     "E-mail": {
       "localizations": {
         "en": {
@@ -1152,24 +1142,6 @@
     },
     "Toon %lld afgelopen evenementen": {
       "localizations": {
-        "nl": {
-          "variations": {
-            "plural": {
-              "one": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "Toon %lld afgelopen evenement"
-                }
-              },
-              "other": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "Toon %lld afgelopen evenementen"
-                }
-              }
-            }
-          }
-        },
         "en": {
           "variations": {
             "plural": {
@@ -1183,6 +1155,24 @@
                 "stringUnit": {
                   "state": "translated",
                   "value": "Show %lld past events"
+                }
+              }
+            }
+          }
+        },
+        "nl": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Toon %lld afgelopen evenement"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Toon %lld afgelopen evenementen"
                 }
               }
             }

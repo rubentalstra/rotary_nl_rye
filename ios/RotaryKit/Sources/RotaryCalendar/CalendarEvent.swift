@@ -11,8 +11,6 @@ public struct CalendarEvent: Identifiable, Hashable, Sendable {
     /// The event's description as Google keeps it: text, sometimes with a
     /// little HTML (the app reads that with `NSAttributedString`).
     public let notes: String?
-    /// The Google Meet link of an online event.
-    public let meetingURL: URL?
 
     /// When an event takes place.
     public enum Timing: Hashable, Sendable {
@@ -23,13 +21,12 @@ public struct CalendarEvent: Identifiable, Hashable, Sendable {
         case timed(start: Date, end: Date)
     }
 
-    public init(id: String, title: String?, timing: Timing, location: String? = nil, notes: String? = nil, meetingURL: URL? = nil) {
+    public init(id: String, title: String?, timing: Timing, location: String? = nil, notes: String? = nil) {
         self.id = id
         self.title = title
         self.timing = timing
         self.location = location
         self.notes = notes
-        self.meetingURL = meetingURL
     }
 
     public var isAllDay: Bool {
