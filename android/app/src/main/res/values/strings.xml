@@ -8,7 +8,6 @@
     <string name="tab_emergency" description="Tab: emergency numbers and people.">Noodgeval</string>
     <string name="tab_contact" description="Tab: the teams to contact.">Contact</string>
     <string name="tab_settings" description="Tab: the app's settings.">Instellingen</string>
-    <string name="coming_soon" description="A screen that is not rebuilt yet.">Dit scherm komt in een volgende versie.</string>
     <string name="emergency_good_to_know" description="Tab Emergency: heading of the tips.">Goed om te weten</string>
     <string name="emergency_tip_address" description="Tab Emergency: a tip.">Houd het adres en telefoonnummer van je gastgezin altijd bij je.</string>
     <string name="emergency_tip_doctor" description="Tab Emergency: a tip.">Je gastouders helpen je bij een afspraak met de huisarts, het ziekenhuis of de tandarts.</string>
@@ -182,4 +181,16 @@
     <string name="students_status_in_netherlands" description="Student status: an inbound in the Netherlands now.">In Nederland</string>
     <string name="students_status_back_home" description="Student status: an inbound who has gone home after their year.">Weer thuis</string>
     <string name="students_europe" description="Students: the destination of a student who went somewhere in Europe.">Europa</string>
+    <!-- Settings -->
+    <string name="settings_share" description="Settings: the top bar action that shares the app.">Deel de app</string>
+    <string name="settings_share_message" description="Settings: the text shared with the app\'s Play Store link.">De app van Rotary Youth Exchange Nederland.</string>
+    <string name="settings_language" description="Settings: opens Android\'s page for this app\'s language.">Taal</string>
+    <string name="settings_language_footer" description="Settings: under the language row (Android 13 and later).">De app volgt de taal van je telefoon. Kies een andere taal voor alleen deze app in de instellingen van Android.</string>
+    <string name="settings_language_footer_phone" description="Settings: how the language is chosen on Android 12 and earlier, which has no language per app.">De app volgt de taal van je telefoon.</string>
+    <string name="settings_rate" description="Settings: opens the app\'s Play Store listing to rate it.">Beoordeel de app</string>
+    <string name="settings_instagram" description="Settings: opens ROTEX Nederland on Instagram.">ROTEX op Instagram</string>
+    <string name="settings_privacy" description="Settings: opens the privacy policy.">Privacybeleid</string>
+    <string name="settings_terms" description="Settings: opens the terms and conditions.">Algemene voorwaarden</string>
+    <string name="settings_licences" description="Settings: the open-source licences, the row and the screen\'s title.">Licenties</string>
+    <string name="settings_version" description="Settings: the app\'s version.">Versie</string>
 </resources>

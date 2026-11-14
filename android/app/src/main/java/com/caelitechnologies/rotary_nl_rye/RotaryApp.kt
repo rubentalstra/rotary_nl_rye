@@ -41,6 +41,7 @@ import com.caelitechnologies.rotary_nl_rye.emergency.EmergencyScreen
 import com.caelitechnologies.rotary_nl_rye.home.HomeDestination
 import com.caelitechnologies.rotary_nl_rye.home.HomeScreen
 import com.caelitechnologies.rotary_nl_rye.navigation.AppTab
+import com.caelitechnologies.rotary_nl_rye.settings.SettingsScreen
 import com.caelitechnologies.rotary_nl_rye.students.GuideScreen
 import com.caelitechnologies.rotary_nl_rye.students.InboundGuideRoute
 import com.caelitechnologies.rotary_nl_rye.students.InboundScreen
@@ -82,7 +83,7 @@ fun RotaryApp() {
                 AppTab.Emergency -> EmergencyScreen()
                 AppTab.Contact -> ContactScreen(onPerson = { navigator.navigate(PersonRoute(it)) })
                 AppTab.Home -> HomeScreen(onDestination = navigator::navigate)
-                AppTab.Settings -> ComingSoonScreen(tab)
+                AppTab.Settings -> SettingsScreen()
             }
         }
         entry<HomeDestination> { destination ->
@@ -168,27 +169,6 @@ fun RotaryApp() {
             entries = navigationState.toEntries(entryProvider),
             onBack = { navigator.goBack() },
         )
-    }
-}
-
-/** A tab whose screen is not rebuilt yet: its title and a line saying so. */
-@Composable
-private fun ComingSoonScreen(tab: AppTab) {
-    TabScaffold(title = stringResource(tab.label)) { padding ->
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(padding),
-            contentAlignment = Alignment.Center,
-        ) {
-            Text(
-                text = stringResource(R.string.coming_soon),
-                style = MaterialTheme.typography.bodyLarge,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-                textAlign = TextAlign.Center,
-                modifier = Modifier.padding(horizontal = 24.dp),
-            )
-        }
     }
 }
 

@@ -41,6 +41,7 @@ import com.caelitechnologies.rotary_nl_rye.programmes.ProgrammePhoto
 import com.caelitechnologies.rotary_nl_rye.programmes.ProgrammePhotoViewer
 import com.caelitechnologies.rotary_nl_rye.programmes.ProgrammePhotos
 import com.caelitechnologies.rotary_nl_rye.programmes.photos
+import com.caelitechnologies.rotary_nl_rye.ui.components.ActionButton
 import com.caelitechnologies.rotary_nl_rye.ui.components.ListSectionHeader
 
 /**
@@ -141,19 +142,6 @@ private fun LinkItem(text: String, icon: Int, onClick: () -> Unit, modifier: Mod
         leadingContent = { Icon(painterResource(icon), contentDescription = null, tint = MaterialTheme.colorScheme.primary) },
         modifier = modifier.clickable(onClick = onClick),
     )
-}
-
-/** An icon button in the top bar, with its name as a tooltip on a long press and for TalkBack. */
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-internal fun ActionButton(label: String, icon: Int, onClick: () -> Unit) {
-    TooltipBox(
-        positionProvider = TooltipDefaults.rememberTooltipPositionProvider(TooltipAnchorPosition.Below),
-        tooltip = { PlainTooltip { Text(label) } },
-        state = rememberTooltipState(),
-    ) {
-        IconButton(onClick = onClick) { Icon(painterResource(icon), contentDescription = label) }
-    }
 }
 
 /** A page with a top bar and a back button over a list. */

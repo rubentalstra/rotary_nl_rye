@@ -142,7 +142,12 @@ reference only. Swift is written as `.claude/rules/swift.md` says, Kotlin as
   `StudentDetailScreen` with `StatusLabel`, `GuideScreen` for any
   `StudentGuide`; one Navigation 3 entry per `StudentListRoute` case, as an
   entry matches its exact class), `ui/components/MaterialSymbol` (the SF
-  Symbol names in the shared content to Material Symbols), `news/` (`NewsRepository`, `NewsViewModel`, `NewsScreen`
+  Symbol names in the shared content to Material Symbols), `settings/`
+  (`SettingsScreen`: Android's per-app language page on 13 and later, rating
+  in the Play Store, ROTEX on Instagram, the legal pages, the licences from
+  Google's OSS Licenses plugin in its Material 3 screen (`v2`, themed in
+  Rotary's colours; debug builds show a placeholder, release builds the
+  list), the version, sharing in the top bar), `news/` (`NewsRepository`, `NewsViewModel`, `NewsScreen`
   with the newest item large, `ArticleScreen`), `calendar/`
   (`CalendarRepository`, `CalendarViewModel`, `CalendarScreen` with date
   badges, `EventDetailScreen`: Maps, Android's own add-event screen, no
