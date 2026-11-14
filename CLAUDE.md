@@ -41,16 +41,22 @@ as `.claude/rules/swift.md` says; Apple's own guidance is in `.claude/skills/`.
   Lock Screen), `NowPlayingAccessory` (the tab bar's bottom accessory,
   iOS 26.1), `VideoPlayerView`. The programme texts are Dutch only
   (`shouldTranslate: false` in the catalogs), on purpose.
+  `Students/`: `OutboundView` (this year's class, then a page per
+  programme: `OutboundProgrammeView`), `InboundView` (the class, the guides,
+  earlier classes from the toolbar), `ReboundView`, `StudentListView` with
+  `StudentListModel` (by country or exchange year, searchable),
+  `StudentDetailView` with `StatusBadge`, `ClassRow`, `GuideView` (draws any
+  `OutboundGuide` or `InboundGuide`). The guide texts keep v13's language
+  (Dutch for outbounds, English for inbounds), `shouldTranslate: false`.
   `News/`: `NewsModel`, `NewsView` (the newest item large, then the rest;
   covers whole on white, as they are banners with text), `ArticleView`.
   `Home/`: `HomeView` (banner, `PhotoCarousel`, the tile grid: three to a
   row when the width allows, as on the Pro Max, else two), `HomePhoto` and
-  `HomeDestination` (enums; a destination not rebuilt yet opens
-  `ComingSoonView`).
+  `HomeDestination` (enums; HomeView registers the pages reached from
+  more than one place).
   `Navigation/` the tabs (`AppTab`, `MainTabView`) and `AppRouter`; one
   folder per tab root (`Home/`, `About/`, `Emergency/`, `Contact/`,
-  `Settings/`); `General/` shared views (`ComingSoonView` for screens not
-  rebuilt yet);
+  `Settings/`); `General/` shared views;
   `AppIcon.icon` the Icon Composer app icon (`icon.json` plus one SVG per
   layer; check it in light, dark, tinted and clear); `Assets.xcassets`;
   `Localizable.xcstrings` (nl source, en). `ios/Info.plist` holds the
@@ -85,7 +91,13 @@ as `.claude/rules/swift.md` says; Apple's own guidance is in `.claude/skills/`.
   (ZIPFoundation unpacks the XLSX, Foundation's `XMLParser` reads the parts)
   and `CampSheet` (columns by header; Excel serial and text dates, district
   lists, trailing spaces), into `Camp`; tested against the real file in
-  `Tests/RotaryCampsTests/Fixtures/`. `RotaryNews`: `NewsFeed`
+  `Tests/RotaryCampsTests/Fixtures/`. `RotaryStudents`: `ExchangeStudent` (inbound or outbound, by
+  name, exchange year and home country; `status(on:)` says upcoming, on
+  exchange or returned, so a rebound is an outbound whose `ExchangeYear`
+  (written 2026/2027, 1 August to 1 July) is over), loaded from
+  `Resources/inbound.json` and `outbound.json` (v13's students, without
+  contact details), and the guides `OutboundGuide` (per `ExchangeProgramme`)
+  and `InboundGuide`. `RotaryNews`: `NewsFeed`
   (news.json on rotary.nl) into `NewsItem` (a PDF, or an article of
   headings, paragraphs, images and videos), newest first. `RotaryCalendar`:
   `CalendarFeed` (the MDJC calendar through the Google Calendar API v3, a

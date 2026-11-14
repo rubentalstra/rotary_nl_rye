@@ -1,4 +1,5 @@
 import RotaryCore
+import RotaryStudents
 import SwiftUI
 
 /// The root of the Home tab: the Rotary Youth Exchange Netherlands banner,
@@ -18,6 +19,33 @@ struct HomeView: View {
             .navigationTitle(Text(AppTab.home.title))
             // The banner is the title: the bar stays out of the way until a screen is pushed.
             .toolbarVisibility(.hidden, for: .navigationBar)
+            // Pages reached from more than one place register here, once for the stack.
+            .navigationDestination(for: ExchangeProgramme.self) { programme in
+                ProgrammeDetailView(programme: programme)
+            }
+            .navigationDestination(for: StudentClass.self) { studentClass in
+                StudentListView(title: studentClass.title, students: studentClass.students)
+            }
+            .navigationDestination(for: StudentsPage.self) { page in
+                switch page {
+                case .outbound(let programme):
+                    OutboundProgrammeView(programme: programme)
+                case .earlierInbounds:
+                    StudentListView(
+                        title: LocalizedStringResource("Eerdere klassen", comment: "Students: the screen with every inbound of earlier years."),
+                        students: ExchangeStudent.returned(.inbound, on: .now)
+                    )
+                }
+            }
+            .navigationDestination(for: ExchangeStudent.self) { student in
+                StudentDetailView(student: student)
+            }
+            .navigationDestination(for: OutboundGuide.self) { guide in
+                GuideView(guide: guide)
+            }
+            .navigationDestination(for: InboundGuide.self) { guide in
+                GuideView(guide: guide)
+            }
             .navigationDestination(for: HomeDestination.self) { destination in
                 switch destination {
                 case .programmes:
@@ -30,9 +58,12 @@ struct HomeView: View {
                     CampsView()
                 case .rotaryClubs:
                     RotaryClubsView()
-                default:
-                    ComingSoonView(title: destination.title, systemImage: destination.systemImage)
-                        .navigationTitle(Text(destination.title))
+                case .outbound:
+                    OutboundView()
+                case .inbound:
+                    InboundView()
+                case .rebound:
+                    ReboundView()
                 }
             }
         }
