@@ -1,4 +1,6 @@
 import RotaryCore
+import SimpleIcons
+import SimpleIconsSwiftUI
 import SwiftUI
 
 /// Everything about one person, laid out as the Contacts app does: photo and
@@ -23,10 +25,22 @@ struct PersonDetailView: View {
             if person.club != nil || person.district != nil {
                 Section("Rotary") {
                     if let club = person.club {
-                        LabeledContent("Club", value: club)
+                        LabeledContent {
+                            Text(verbatim: club)
+                        } label: {
+                            Label {
+                                Text("Club")
+                            } icon: {
+                                RotaryWheelIcon()
+                            }
+                        }
                     }
                     if let district = person.district {
-                        LabeledContent("District", value: district)
+                        LabeledContent {
+                            Text(verbatim: district)
+                        } label: {
+                            Label("District", systemImage: "map")
+                        }
                     }
                 }
             }
@@ -43,13 +57,37 @@ struct PersonDetailView: View {
     }
 }
 
-/// Photo, name, role and the quick actions, centred above the details.
+/// Photo, name, role and the quick actions, centred above the details. The
+/// photo carries the badge of the person's organisation and opens full
+/// screen when tapped, zooming in from where it is.
 private struct PersonHeader: View {
     let person: Person
+    @State private var showsPhoto = false
+    @Namespace private var photo
 
     var body: some View {
         VStack(spacing: 12) {
-            PersonPhoto(url: person.photoURL, size: 120)
+            Button {
+                showsPhoto = true
+            } label: {
+                PersonPhoto(url: person.photoURL, size: 120)
+                    .overlay(alignment: .bottomTrailing) {
+                        if let organisation = person.organisation {
+                            OrganisationBadge(organisation: organisation, size: 40)
+                        }
+                    }
+            }
+            .buttonStyle(.plain)
+            .disabled(person.photoURL == nil)
+            .accessibilityLabel(Text("Foto van \(person.name.formatted())"))
+            .accessibilityHint(Text("Toont de foto groot."))
+            .matchedTransitionSource(id: "photo", in: photo)
+            .fullScreenCover(isPresented: $showsPhoto) {
+                if let url = person.photoURL {
+                    PhotoViewer(url: url, name: person.name)
+                        .navigationTransition(.zoom(sourceID: "photo", in: photo))
+                }
+            }
             VStack(spacing: 4) {
                 Text(person.name, format: .name(style: .medium))
                     .font(.title2.bold())
@@ -71,38 +109,53 @@ private struct QuickActions: View {
         GlassEffectContainer {
             HStack(spacing: 12) {
                 if let phone = person.phone {
-                    QuickAction("Bel", systemImage: "phone.fill", url: ContactLinks.call(phone))
-                    QuickAction("Bericht", systemImage: "message.fill", url: ContactLinks.message(phone))
-                    QuickAction("WhatsApp", systemImage: "bubble.left.and.text.bubble.right.fill", url: ContactLinks.whatsApp(phone))
+                    QuickAction("Bel", url: ContactLinks.call(phone)) {
+                        Image(systemName: "phone.fill")
+                    }
+                    // A landline cannot receive a text or WhatsApp, so only a mobile number offers them.
+                    if ContactLinks.isMobile(phone) {
+                        QuickAction("Bericht", url: ContactLinks.message(phone)) {
+                            Image(systemName: "message.fill")
+                        }
+                        QuickAction("WhatsApp", url: ContactLinks.whatsApp(phone)) {
+                            // In WhatsApp's own green: the glass draws a plain shape too faint to read.
+                            BrandIcon(.whatsapp(), relativeTo: .title3)
+                                .foregroundStyle(Color(simpleIcon: .whatsapp()))
+                        }
+                    }
                 }
                 if let email = person.email {
-                    QuickAction("Mail", systemImage: "envelope.fill", url: ContactLinks.mail(email))
+                    QuickAction("Mail", url: ContactLinks.mail(email)) {
+                        Image(systemName: "envelope.fill")
+                    }
                 }
             }
         }
     }
 }
 
-private struct QuickAction: View {
+/// One quick action: an icon over its name, in a glass button.
+private struct QuickAction<Icon: View>: View {
     let title: LocalizedStringKey
-    let systemImage: String
     let url: URL?
+    @ViewBuilder let icon: Icon
 
-    init(_ title: LocalizedStringKey, systemImage: String, url: URL?) {
+    init(_ title: LocalizedStringKey, url: URL?, @ViewBuilder icon: () -> Icon) {
         self.title = title
-        self.systemImage = systemImage
         self.url = url
+        self.icon = icon()
     }
 
     var body: some View {
         if let url {
             Link(destination: url) {
                 VStack(spacing: 4) {
-                    Image(systemName: systemImage)
+                    icon
                         .font(.title3)
                     Text(title)
                         .font(.caption)
                 }
+                .foregroundStyle(.primary)
                 .frame(minWidth: 56)
             }
             .buttonStyle(.glass)
@@ -118,13 +171,18 @@ private struct ReachSection: View {
         if person.phone != nil || person.email != nil {
             Section {
                 if let phone = person.phone, let url = ContactLinks.call(phone) {
-                    LabeledContent("Telefoon") {
+                    LabeledContent {
                         Link(phone, destination: url)
+                            .monospacedDigit()
+                    } label: {
+                        Label("Telefoon", systemImage: "phone")
                     }
                 }
                 if let email = person.email, let url = ContactLinks.mail(email) {
-                    LabeledContent("E-mail") {
+                    LabeledContent {
                         Link(email, destination: url)
+                    } label: {
+                        Label("E-mail", systemImage: "envelope")
                     }
                 }
             }
@@ -135,5 +193,17 @@ private struct ReachSection: View {
 #Preview {
     NavigationStack {
         PersonDetailView(person: ContactGroup.mdjc.members[0])
+    }
+}
+
+/// The Rotary wheel in Rotary gold, sized like an SF Symbol in a label, and
+/// growing with Dynamic Type as one does.
+private struct RotaryWheelIcon: View {
+    @ScaledMetric(relativeTo: .body) private var size = 22.0
+
+    var body: some View {
+        OrganisationLogo(organisation: .rotary)
+            .frame(width: size, height: size)
+            .accessibilityHidden(true)
     }
 }

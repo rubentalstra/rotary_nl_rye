@@ -6,7 +6,7 @@ import Testing
     let person = Person(
         name: PersonNameComponents(givenName: "Toon", familyName: "ter Ellen"),
         roles: [.chairYouthExchange, .secretary],
-        phone: "+31 6 1234 5678", club: "RC Lelystad"
+        phone: "06 12 34 56 78", club: "RC Lelystad"
     )
 
     @Test func `The first role is the one under the name`() {
@@ -26,10 +26,17 @@ import Testing
         #expect(!person.matches("Groningen"))
     }
 
-    @Test func `Links hand the number to the system`() {
-        #expect(ContactLinks.call("+31 6 1234 5678")?.absoluteString == "tel:+31612345678")
-        #expect(ContactLinks.message("+31612345678")?.absoluteString == "sms:+31612345678")
-        #expect(ContactLinks.whatsApp("+31 6 1234 5678")?.absoluteString == "https://wa.me/31612345678")
+    @Test func `A Dutch number is dialled internationally, so it works from abroad`() {
+        #expect(ContactLinks.call("06 12 34 56 78")?.absoluteString == "tel:+31612345678")
+        #expect(ContactLinks.call("0182 61 26 76")?.absoluteString == "tel:+31182612676")
+        #expect(ContactLinks.message("06 12 34 56 78")?.absoluteString == "sms:+31612345678")
+        #expect(ContactLinks.whatsApp("06 12 34 56 78")?.absoluteString == "https://wa.me/31612345678")
+        #expect(ContactLinks.call("+49 30 1234567")?.absoluteString == "tel:+49301234567")
+    }
+
+    @Test(arguments: [("06 12 34 56 78", true), ("+31 6 12345678", true), ("0182 61 26 76", false), ("+49 30 1234567", false)])
+    func `Only a mobile number can receive a text or WhatsApp`(phone: String, mobile: Bool) {
+        #expect(ContactLinks.isMobile(phone) == mobile)
         #expect(ContactLinks.mail(" chair@rotaryyep.nl")?.absoluteString == "mailto:chair@rotaryyep.nl")
     }
 }
@@ -73,11 +80,20 @@ import Testing
         #expect(Set(group.members).count == group.members.count)
     }
 
-    @Test func `Every phone number is international and every photo is https`() {
+    /// Mobile numbers as `06 12 34 56 78`, landlines as `0182 61 26 76`
+    /// (area code, then pairs): ten digits, the way Dutch numbers are written.
+    @Test func `Every phone number is written the Dutch way and every photo is https`() {
+        let dutch = /0(6( \d\d){4}|\d{3}( \d\d){3})/
         for person in everyone {
-            if let phone = person.phone { #expect(phone.hasPrefix("+"), "\(person.name.formatted()): \(phone)") }
+            if let phone = person.phone { #expect(phone.wholeMatch(of: dutch) != nil, "\(person.name.formatted()): \(phone)") }
             if let url = person.photoURL { #expect(url.scheme == "https", "\(person.name.formatted()): \(url)") }
         }
+    }
+
+    @Test func `The organisation follows from the groups`() {
+        #expect(ContactGroup.rotex.members.allSatisfy { $0.organisation == .rotex })
+        #expect(ContactGroup.mdjc.members.allSatisfy { $0.organisation == .rotary })
+        #expect(ContactGroup.confidants.members.allSatisfy { $0.organisation == nil })
     }
 
     /// A district number is an identifier: never "1.590" or "1,590".

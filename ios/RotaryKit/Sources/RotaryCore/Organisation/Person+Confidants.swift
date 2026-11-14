@@ -6,14 +6,14 @@ extension Person {
     static let paulineMemelink = Person(
         name: PersonNameComponents(givenName: "Pauline", familyName: "Memelink"),
         roles: [.lawyer],
-        phone: "+31624235624",
+        phone: "06 24 23 56 24",
         email: "p.memelink@t-mobilethuis.nl"
     )
 
     static let reinoutVriesendorp = Person(
         name: PersonNameComponents(givenName: "Reinout", familyName: "Vriesendorp"),
         roles: [.doctorsOffice],
-        phone: "+31182612676",
+        phone: "0182 61 26 76",
         email: "info@medischcentrumwest.org"
     )
 }

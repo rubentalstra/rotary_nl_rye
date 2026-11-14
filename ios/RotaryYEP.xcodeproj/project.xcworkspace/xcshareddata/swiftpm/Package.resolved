@@ -1,0 +1,15 @@
+{
+  "originHash" : "8feccc32b21d9f29a4809839f0cc9c696308bd39b8c455be0a0fd152eccdbadb",
+  "pins" : [
+    {
+      "identity" : "simple-icons-swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Vernum-Projecten/simple-icons-swift",
+      "state" : {
+        "revision" : "203ae915ccb5654b06f9a8159007cbfafb8d2a8d",
+        "version" : "16.36.2"
+      }
+    }
+  ],
+  "version" : 3
+}

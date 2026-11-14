@@ -10,14 +10,14 @@ final class TabTourUITests: XCTestCase {
     }
 
     func testTourDutchLight() {
-        tour(language: "nl", appearance: .light, tabs: ["Home", "Over", "Noodgeval", "Contact", "Instellingen"], call112: "Bel 112")
+        tour(language: "nl", appearance: .light, tabs: ["Home", "Over", "Noodgeval", "Contact", "Instellingen"], call: "Bel Barbara Tusveld", image112: "112, als elke seconde telt")
     }
 
     func testTourEnglishDark() {
-        tour(language: "en", appearance: .dark, tabs: ["Home", "About", "Emergency", "Contact", "Settings"], call112: "Call 112")
+        tour(language: "en", appearance: .dark, tabs: ["Home", "About", "Emergency", "Contact", "Settings"], call: "Call Barbara Tusveld", image112: "112, when every second counts")
     }
 
-    private func tour(language: String, appearance: XCUIDevice.Appearance, tabs: [String], call112: String) {
+    private func tour(language: String, appearance: XCUIDevice.Appearance, tabs: [String], call: String, image112: String) {
         XCUIDevice.shared.appearance = appearance
         let app = XCUIApplication()
         app.launchArguments = ["-AppleLanguages", "(\(language))", "-AppleLocale", language == "nl" ? "nl_NL" : "en_GB"]
@@ -31,7 +31,8 @@ final class TabTourUITests: XCTestCase {
         }
 
         app.tabBars.buttons[tabs[2]].tap()
-        XCTAssertTrue(app.links[call112].waitForExistence(timeout: 5), "no \(call112) link")
+        XCTAssertTrue(app.images[image112].waitForExistence(timeout: 5), "no 112 image")
+        XCTAssertTrue(app.links[call].waitForExistence(timeout: 5), "no \(call) button")
 
         app.tabBars.buttons[tabs[3]].tap()
         // The row reads as one element for VoiceOver: name, then role.

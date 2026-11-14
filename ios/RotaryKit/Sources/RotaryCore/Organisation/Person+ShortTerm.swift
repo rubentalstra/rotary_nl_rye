@@ -6,7 +6,7 @@ extension Person {
     static let janVanAller = Person(
         name: PersonNameComponents(givenName: "Jan", familyName: "van Aller"),
         roles: [.coordinatorFamilyToFamily],
-        phone: "+31630005630",
+        phone: "06 30 00 56 30",
         email: "gjvanaller@gmail.com",
         club: "RC Haarlem-Centrum",
         district: "1580 NOORD-HOLLAND",
@@ -24,7 +24,7 @@ extension Person {
     static let marjaHofland = Person(
         name: PersonNameComponents(givenName: "Marja", familyName: "Hofland"),
         roles: [.inboundCoordinatorSummerCamps],
-        phone: "+31610902939",
+        phone: "06 10 90 29 39",
         email: "campsandtours@rotaryyep.nl",
         photoURL: URL(string: "https://www.rotary.nl/yep/yep-app/tu4w6b3-6436ie5-63h0jf-9i639i4-t3mf67-uhdrs/images/organization/marja-hofland.jpg")
     )

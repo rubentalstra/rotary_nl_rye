@@ -7,7 +7,8 @@ public struct Person: Identifiable, Equatable, Sendable {
     public let name: PersonNameComponents
     /// The first role is the one shown under the name.
     public let roles: [Role]
-    /// In international format, `+31…`.
+    /// Written the Dutch way, as people read it: `06 12 34 56 78`, or
+    /// `0182 61 26 76` with an area code. `ContactLinks` dials it as `+31…`.
     public let phone: String?
     public let email: String?
     public let club: String?

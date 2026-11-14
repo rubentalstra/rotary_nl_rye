@@ -1,4 +1,5 @@
 import RotaryCore
+import SimpleIcons
 import SwiftUI
 import UIKit
 
@@ -63,7 +64,11 @@ private struct AppSection: View {
                 LabeledContent {
                     Text(verbatim: "@rotexnederland")
                 } label: {
-                    Label("ROTEX op Instagram", systemImage: "camera")
+                    Label {
+                        Text("ROTEX op Instagram")
+                    } icon: {
+                        BrandIcon(.instagram())
+                    }
                 }
             }
         }
@@ -79,6 +84,11 @@ private struct LegalSection: View {
             }
             Link(destination: AppIdentity.termsURL) {
                 Label("Algemene voorwaarden", systemImage: "doc.text")
+            }
+            NavigationLink {
+                LicensesView()
+            } label: {
+                Label("Licenties", systemImage: "text.badge.checkmark")
             }
         }
         .onOpenURL(prefersInApp: true)

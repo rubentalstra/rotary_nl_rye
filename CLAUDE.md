@@ -29,6 +29,13 @@ as `.claude/rules/swift.md` says; Apple's own guidance is in `.claude/skills/`.
   launch screen (`UILaunchScreen` with the `LaunchBackground` colour): Apple's
   launch screen is the first screen without content, never a splash with a
   logo or text (HIG, Launching).
+  Brand assets in `Assets.xcassets`: `RotaryWheel` (a template image, drawn
+  in `RotaryGold`), `RotexLogo` (with a dark variant),
+  `RotaryYouthExchangeBanner`, `Emergency112`; all vector except the 112
+  image. Brand logos of other companies (WhatsApp, Instagram) come from
+  `simple-icons-swift` (pinned exactly) through `General/BrandIcon`; every
+  package's licence file is copied verbatim into `Settings/Licenses/` and
+  listed in `License.all` (`LicensesTests` checks it ships).
   `ios/RotaryYEPTests/`: hosted Swift Testing suites for the built app
   (`BundleTests`: bundle id, display name, version).
   `ios/RotaryYEPUITests/`: XCUITests; `TabTourUITests` walks every tab and a
@@ -61,6 +68,9 @@ as `.claude/rules/swift.md` says; Apple's own guidance is in `.claude/skills/`.
   `workflows/changelog.yml` (the fragment guard), issue forms, PR template,
   `CODEOWNERS`, `dependabot.yml`, `release.yml` (release-note categories),
   `actionlint.yaml` (the `xcode-27` runner label).
+- `scripts/dev/run-sim.sh`: builds, installs and launches the app on the
+  iPhone 18 Pro Max simulator (watch it in DeviceHub, Xcode 27's window for
+  simulators); run it after every UI change.
 - `scripts/gh/`: `issue.sh` (file an issue with type, priority and effort),
   `labels.sh` (the label set), `rel.sh` (sub-issues and blocked-by),
   `protect-main.sh` (the `main` ruleset). `scripts/release/changelog.sh` and

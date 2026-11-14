@@ -1,0 +1,3 @@
+- Contact switches between the teams with a segmented control. A person's photo carries a Rotary or ROTEX badge and opens full size when tapped; WhatsApp has its own logo, and text and WhatsApp are offered for mobile numbers only.
+- Emergency shows the national 112 image at the top, and every person with their number written the Dutch way and buttons to call and mail.
+- Settings lists the licences of the open-source software in the app.
