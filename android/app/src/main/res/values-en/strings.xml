@@ -121,4 +121,7 @@
         <item quantity="one">Show %1$d past event</item>
         <item quantity="other">Show %1$d past events</item>
     </plurals>
+    <string name="clubs_search">Topic or document</string>
+    <string name="clubs_general">General information</string>
+    <string name="clubs_documents">Documents</string>
 </resources>

@@ -1,6 +1,7 @@
 """scripts/dev/android-content.py: the Android app's content, from the iOS app's.
 
-The organisation (people, roles, teams) and the About topics are written once,
+The organisation (people, roles, teams), the About topics and the Rotary clubs'
+guides, documents and topics are written once,
 in Swift, in ios/RotaryKit/Sources/RotaryCore. This script reads those sources
 and the iOS String Catalog (for the English) and writes the matching Kotlin
 files and the Dutch and English strings.xml of android/core. Edit the Swift,
@@ -257,6 +258,115 @@ enum class AboutTopic(
 }
 ''')
 
+# --- Rotary clubs ---------------------------------------------------------------------
+def enum_cases(swift: str) -> list[str]:
+    body = swift[swift.index("{", swift.index("public enum")):]
+    return re.findall(r"^    case (\w+)$", body, re.M)
+
+
+def camel(case: str) -> str:
+    return case[0].upper() + case[1:]
+
+
+clubs_dir = src / "RotaryClubs"
+(pkg_dir / "clubs").mkdir(parents=True, exist_ok=True)
+
+doc_swift = (clubs_dir / "ClubDocument.swift").read_text()
+doc_cases = enum_cases(doc_swift)
+doc_titles = {c: (l, cm) for c, l, cm in cases_with_resources(property_body(doc_swift, "title"))}
+doc_base = re.search(r'let base = "([^"]+)"', doc_swift).group(1)
+url_body = property_body(doc_swift, "url")
+doc_paths = dict(re.findall(r'case \.(\w+): "([^"]+)"', url_body))
+doc_lines = []
+for case in doc_cases:
+    literal, comment = doc_titles[case]
+    res = add_string(f"club_document_{snake(case)}", literal, comment)
+    doc_lines.append(f'    {camel(case)}(R.string.{res}, BASE + "{doc_paths[case]}")')
+(pkg_dir / "clubs/ClubDocument.kt").write_text(HEADER + f"""package com.caelitechnologies.rotary_nl_rye.core.clubs
+
+import androidx.annotation.StringRes
+import com.caelitechnologies.rotary_nl_rye.core.R
+
+/**
+ * A document for the Rotary clubs that host a student, published as a PDF on
+ * rotary.nl. Each is defined once; a guide lists the ones it needs, so a
+ * document in several guides is still one document with one link.
+ */
+enum class ClubDocument(
+    @param:StringRes val title: Int,
+    val url: String,
+) {{
+""" + ",\n".join(doc_lines) + """;
+}
+
+private const val BASE = \"""" + doc_base + """\"
+""")
+
+guide_swift = (clubs_dir / "ClubGuide.swift").read_text()
+guide_cases = enum_cases(guide_swift)
+guide_titles = {c: (l, cm) for c, l, cm in cases_with_resources(property_body(guide_swift, "title"))}
+guide_summaries = {c: (l, cm) for c, l, cm in cases_with_resources(property_body(guide_swift, "summary"))}
+docs_body = property_body(guide_swift, "documents")
+guide_lines, guide_docs = [], []
+for case in guide_cases:
+    t = add_string(f"club_guide_{snake(case)}", *guide_titles[case])
+    su = add_string(f"club_guide_{snake(case)}_summary", *guide_summaries[case])
+    guide_lines.append(f"    {camel(case)}(R.string.{t}, R.string.{su})")
+    docs = re.search(rf"case \.{case}:\s*\[(.*?)\]", docs_body, re.S).group(1)
+    guide_docs.append(f"            {camel(case)} -> listOf({', '.join('ClubDocument.' + camel(d.strip()[1:]) for d in docs.split(',') if d.strip())})")
+(pkg_dir / "clubs/ClubGuide.kt").write_text(HEADER + """package com.caelitechnologies.rotary_nl_rye.core.clubs
+
+import androidx.annotation.StringRes
+import com.caelitechnologies.rotary_nl_rye.core.R
+
+/** The documents for one role in a club that hosts a student. */
+enum class ClubGuide(
+    @param:StringRes val title: Int,
+    @param:StringRes val summary: Int,
+) {
+""" + ",\n".join(guide_lines) + """;
+
+    /** The role's documents, each a reference to the one definition. */
+    val documents: List<ClubDocument>
+        get() = when (this) {
+""" + "\n".join(guide_docs) + """
+        }
+}
+""")
+
+topic_swift = (clubs_dir / "ClubTopic.swift").read_text()
+topic_cases = enum_cases(topic_swift)
+intro = LSR.search(topic_swift[topic_swift.index("static let introduction"):])
+add_string("club_introduction", intro.group(1), unescape_swift(intro.group(2)))
+topic_titles = {c: (l, cm) for c, l, cm in cases_with_resources(property_body(topic_swift, "title"))}
+para_body = property_body(topic_swift, "paragraphs")
+topic_lines = []
+for case in topic_cases:
+    t = add_string(f"club_topic_{snake(case)}", *topic_titles[case])
+    block = re.search(rf"case \.{case}:\s*\[(.*?)\n\s*\]", para_body, re.S).group(1)
+    paras = ["R.string." + add_string(f"club_topic_{snake(case)}_{i}", m.group(1), unescape_swift(m.group(2))) for i, m in enumerate(LSR.finditer(block), 1)]
+    topic_lines.append(f"    {camel(case)}(\n        title = R.string.{t},\n        paragraphs = listOf({', '.join(paras)}),\n    )")
+(pkg_dir / "clubs/ClubTopic.kt").write_text(HEADER + """package com.caelitechnologies.rotary_nl_rye.core.clubs
+
+import androidx.annotation.StringRes
+import com.caelitechnologies.rotary_nl_rye.core.R
+
+/** What a Rotary club should know before it hosts a student. */
+enum class ClubTopic(
+    @param:StringRes val title: Int,
+    /** The topic's text, in paragraphs. */
+    val paragraphs: List<Int>,
+) {
+""" + ",\n".join(topic_lines) + """;
+
+    companion object {
+        /** The welcome above the topics. */
+        @StringRes
+        val introduction = R.string.club_introduction
+    }
+}
+""")
+
 # --- strings.xml -------------------------------------------------------------------
 def xml(entries, english):
     lines = ['<?xml version="1.0" encoding="utf-8"?>']
@@ -275,4 +385,4 @@ def xml(entries, english):
 (out / "res/values-en").mkdir(parents=True, exist_ok=True)
 (out / "res/values/strings.xml").write_text(xml(strings_nl, False))
 (out / "res/values-en/strings.xml").write_text(xml(strings_nl, True))
-print(f"{count} people, {len(role_cases)} roles, {len(entries)} groups, {len(about_entries)} topics, {len(strings_nl)} strings")
+print(f"{count} people, {len(role_cases)} roles, {len(entries)} groups, {len(about_entries)} topics, {len(doc_cases)} club documents, {len(guide_cases)} guides, {len(topic_cases)} club topics, {len(strings_nl)} strings")

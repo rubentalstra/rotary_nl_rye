@@ -126,7 +126,9 @@ reference only. Swift is written as `.claude/rules/swift.md` says, Kotlin as
   (`CampRepository`, `CampsViewModel` deriving the sections off the main
   thread, `CampsScreen` with filter chips, a country sheet and sticky month
   headers, `CampDetailScreen` with its assisted `CampDetailViewModel`,
-  invitations in a Custom Tab or the PDF viewer), `news/` (`NewsRepository`, `NewsViewModel`, `NewsScreen`
+  invitations in a Custom Tab or the PDF viewer), `clubs/`
+  (`RotaryClubsScreen` with the welcome, topics, roles and search,
+  `ClubTopicScreen`, `ClubGuideScreen`, `ClubIcons`), `news/` (`NewsRepository`, `NewsViewModel`, `NewsScreen`
   with the newest item large, `ArticleScreen`), `calendar/`
   (`CalendarRepository`, `CalendarViewModel`, `CalendarScreen` with date
   badges, `EventDetailScreen`: Maps, Android's own add-event screen, no
@@ -145,8 +147,9 @@ reference only. Swift is written as `.claude/rules/swift.md` says, Kotlin as
   `:core`: everything without a screen, as RotaryCore is on iOS:
   `AppIdentity`, `organisation/` (`Person`, `PersonName`, `Role`,
   `ContactGroup`, `Organisation`, `ContactLinks`, the people in
-  `People*.kt`) and `about/AboutTopic`, with Dutch and English strings. The
-  people, roles, groups and About topics are **generated** from the Swift by
+  `People*.kt`) and `about/AboutTopic` and `clubs/` (`ClubTopic`, `ClubGuide`, `ClubDocument`),
+  with Dutch and English strings. The people, roles, groups, About topics
+  and the Rotary clubs' content are **generated** from the Swift by
   `python3 -I scripts/dev/android-content.py` (CI checks they are in step):
   edit the Swift, run the script, never edit the generated files.
   `:core` also has `networking/CachedFetch` (OkHttp: revalidated online,
