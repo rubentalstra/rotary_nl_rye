@@ -3,6 +3,8 @@
 #   the version comment on the same line.
 # - Swift: Dependabot reads ios/RotaryKit/Package.swift. It does not read the
 #   Xcode project, so a package the app adds directly is updated by hand.
+# - Gradle: Dependabot reads android/gradle/libs.versions.toml and the
+#   wrapper; lint's own version checks are off for that reason.
 # - The archived React Native app (archive/) gets no updates.
 version: 2
 updates:
@@ -26,6 +28,18 @@ updates:
       swift:
         patterns: ["*"]
     labels: [dependencies]
+    commit-message:
+      prefix: chore
+      include: scope
+
+  - package-ecosystem: gradle
+    directory: /android
+    schedule:
+      interval: weekly
+    groups:
+      gradle:
+        patterns: ["*"]
+    labels: [dependencies, android]
     commit-message:
       prefix: chore
       include: scope

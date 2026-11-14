@@ -40,8 +40,9 @@ credentials.json
 .vscode/
 .fleet/
 
-# Claude Code: local settings, worktrees, and Apple's skills exported per Mac
-# by scripts/dev/xcode-skills.sh (Apple's material, never committed)
+# Claude Code: local settings, worktrees, Apple's skills exported per Mac by
+# scripts/dev/xcode-skills.sh and Google's Android skills installed by
+# scripts/dev/android-skills.sh (their material, never committed)
 .claude/settings.local.json
 .claude/worktrees/
 .claude/skills/*
