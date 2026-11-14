@@ -157,4 +157,29 @@
     <string name="programme_photo_host_club" description="Programme photo: students with the members of their host Rotary club." translatable="false">Bij de Rotary-club in het gastland</string>
     <string name="programme_photo_amazon_tour" description="Programme photo: a summer camp group with their flags on a boat on the Amazon." translatable="false">Zomerkamp Amazon Tour in Brazilië</string>
     <string name="programme_photo_river_dolphins" description="Programme photo: summer camp members swimming with Amazon river dolphins." translatable="false">Zwemmen met roze rivierdolfijnen</string>
+    <!-- Students -->
+    <string name="students_heading" description="Students: heading of a class.">Studenten</string>
+    <string name="students_need_to_know" description="Students: heading of the guide pages.">Wat je moet weten</string>
+    <string name="students_earlier_classes" description="Students: the inbounds of earlier years, the top bar action and the list\'s title.">Eerdere klassen</string>
+    <string name="students_class" description="Students: a class, the students of one exchange year, such as Klas van 2026/2027.">Klas van %1$s</string>
+    <string name="students_class_size_inbound" description="Students: the size of a class of inbounds, in ICU MessageFormat (keep the braces and #), such as 23 studenten uit 12 landen.">{students, plural, one {# student} other {# studenten}} uit {countries, plural, one {# land} other {# landen}}</string>
+    <string name="students_class_size_outbound" description="Students: the size of a class of outbounds, in ICU MessageFormat (keep the braces and #), such as 26 studenten naar 14 landen.">{students, plural, one {# student} other {# studenten}} naar {countries, plural, one {# land} other {# landen}}</string>
+    <string name="students_programme_facts" description="Outbound programme page: opens the programme page with its facts.">Leeftijd, kosten en bestemmingen</string>
+    <string name="students_rebounds_footer" description="Rebound: what a rebound is, under the list.">Rebounds zijn outbounds die terug zijn van hun uitwisselingsjaar.</string>
+    <string name="students_search" description="Students: the search field\'s placeholder.">Naam of land</string>
+    <string name="students_group" description="Students: the menu that groups the list, for TalkBack.">Groeperen</string>
+    <string name="students_by_country" description="Students: group the list by country.">Per land</string>
+    <string name="students_by_year" description="Students: group the list by exchange year.">Per uitwisselingsjaar</string>
+    <string name="students_from" description="Student page: the home country.">Van</string>
+    <string name="students_to" description="Student page: where the student goes.">Naar</string>
+    <string name="students_exchange_year" description="Student page: the exchange year, such as 2026/2027.">Uitwisselingsjaar</string>
+    <string name="students_about_me" description="Student page: heading of what the student wrote.">Over mij</string>
+    <string name="students_from_to" description="Student page: the two flags, for TalkBack.">Van %1$s naar %2$s</string>
+    <string name="students_status_leaving_soon" description="Student status: an outbound whose exchange year abroad has not begun.">Vertrekt binnenkort</string>
+    <string name="students_status_on_exchange" description="Student status: an outbound abroad now.">Nu op exchange</string>
+    <string name="students_status_rebound" description="Student status: an outbound back from their exchange.">Rebound</string>
+    <string name="students_status_coming_soon" description="Student status: an inbound whose exchange year in the Netherlands has not begun.">Komt binnenkort</string>
+    <string name="students_status_in_netherlands" description="Student status: an inbound in the Netherlands now.">In Nederland</string>
+    <string name="students_status_back_home" description="Student status: an inbound who has gone home after their year.">Weer thuis</string>
+    <string name="students_europe" description="Students: the destination of a student who went somewhere in Europe.">Europa</string>
 </resources>
