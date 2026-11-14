@@ -95,7 +95,7 @@ private struct CampList: View {
         .refreshable {
             await model.load()
         }
-        .animation(.default, value: model.visibleCamps.map(\.id))
+        .animation(.default, value: model.visibleCamps)
     }
 }
 
