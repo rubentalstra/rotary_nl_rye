@@ -85,6 +85,13 @@ dependencies {
     implementation(libs.androidx.lifecycle.viewmodel.navigation3)
     // Custom Tabs: the camps' invitation websites in the browser, inside the app.
     implementation(libs.androidx.browser)
+    // Media3: the podcast in a MediaSessionService (background audio, the system's media
+    // controls) and the videos in the app, with Media3's Material 3 player controls.
+    implementation(libs.androidx.media3.exoplayer)
+    implementation(libs.androidx.media3.session)
+    implementation(libs.androidx.media3.ui.compose.material3)
+    // MediaController.Builder.buildAsync() returns a ListenableFuture: await() it in a coroutine.
+    implementation(libs.kotlinx.coroutines.guava)
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.compose.material3)

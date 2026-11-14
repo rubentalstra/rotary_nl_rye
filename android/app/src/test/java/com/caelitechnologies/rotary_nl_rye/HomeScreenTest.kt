@@ -38,7 +38,7 @@ class HomeScreenTest {
     @Test
     fun `a tile opens its page, and back returns home`() {
         compose.onNodeWithText("Programma's").performClick()
-        compose.onNodeWithText("Dit scherm komt in een volgende versie.").assertIsDisplayed()
+        compose.onNodeWithText("Uitwisselingen").assertIsDisplayed()
         compose.onNodeWithContentDescription("Terug").performClick()
         compose.onNodeWithContentDescription("Rotary Youth Exchange Netherlands").assertIsDisplayed()
     }

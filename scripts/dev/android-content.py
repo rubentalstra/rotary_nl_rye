@@ -24,6 +24,7 @@ catalog = json.loads((src / "Localizable.xcstrings").read_text())["strings"]
 
 strings_nl: list[tuple[str, str, str]] = []  # (name, dutch, description)
 strings_en: dict[str, str] = {}
+dutch_only: set[str] = set()
 
 
 def snake(name: str) -> str:
@@ -52,6 +53,12 @@ def add_string(name: str, swift_literal: str, comment: str) -> str:
     entry = catalog.get(key)
     if entry is None:
         raise SystemExit(f"no catalog entry for {key!r}")
+    if entry.get("shouldTranslate") is False:
+        # Kept in Dutch on purpose on iOS (the programme pages): the same on Android.
+        nl = unescape_swift(re.sub(r"\\\((?:String\()?[^)]*\)?\)", "%1$s", swift_literal))
+        strings_nl.append((name, nl, comment))
+        dutch_only.add(name)
+        return name
     en = entry.get("localizations", {}).get("en", {}).get("stringUnit", {}).get("value")
     if en is None:
         raise SystemExit(f"no English for {key!r}")
@@ -367,16 +374,184 @@ enum class ClubTopic(
 }
 """)
 
+# --- Programmes ---------------------------------------------------------------------------
+prog_dir = src / "Programmes"
+(pkg_dir / "programmes").mkdir(parents=True, exist_ok=True)
+prog_swift = (prog_dir / "ExchangeProgramme.swift").read_text()
+prog_cases = enum_cases(prog_swift)
+
+
+def lsr_value(text: str, name: str) -> str:
+    m = LSR.search(text)
+    return "R.string." + add_string(name, m.group(1), unescape_swift(m.group(2)))
+
+
+def case_block(body: str, case: str) -> str:
+    """The text of `case .x:` up to the next case of the switch."""
+    m = re.search(rf"\n\s*case (?:\.\w+, )*\.{case}(?:, \.\w+)*:(.*?)(?=\n\s*case \.|\n\s*}}\n\s*}})", body + "\n        }\n    }", re.S)
+    return m.group(1) if m else ""
+
+
+prog_entries = []
+for case in prog_cases:
+    n = snake(case)
+    f = {}
+    for prop in ("title", "tagline", "ageText", "durationText", "signUpText"):
+        f[prop] = lsr_value(case_block(property_body(prog_swift, prop), case), f"programme_{n}_{snake(prop)}")
+    cost = case_block(property_body(prog_swift, "cost"), case)
+    amount = re.search(r'amount: (?:Decimal\(string: "([\d.]+)"\)!|([\d_]+))', cost)
+    amount = amount.group(1) or amount.group(2).replace("_", "")
+    minimum = "true" in re.search(r"isMinimum: (\w+)", cost).group(1)
+    f["cost"] = f'Cost(BigDecimal("{amount}"), isMinimum = {str(minimum).lower()}, note = {lsr_value(cost, f"programme_{n}_cost_note")})'
+    about = case_block(property_body(prog_swift, "about"), case)
+    f["about"] = "listOf(" + ", ".join("R.string." + add_string(f"programme_{n}_about_{k}", m.group(1), unescape_swift(m.group(2))) for k, m in enumerate(LSR.finditer(about), 1)) + ")"
+    hl = case_block(property_body(prog_swift, "highlights"), case)
+    hl_title = lsr_value(hl, f"programme_{n}_highlights")
+    points = []
+    for k, pm in enumerate(re.finditer(r'Point\(systemImage: "([^"]+)", title: (LocalizedStringResource\(.*?\)), text: (nil|LocalizedStringResource\(.*?\))\)\s*,?\n', hl), 1):
+        t = lsr_value(pm.group(2), f"programme_{n}_point_{k}")
+        tx = "null" if pm.group(3) == "nil" else lsr_value(pm.group(3), f"programme_{n}_point_{k}_text")
+        points.append(f'Point(symbol = "{pm.group(1)}", title = {t}, text = {tx})')
+    f["highlights"] = f"Highlights({hl_title}, listOf(\n            " + ",\n            ".join(points) + ",\n        ))"
+    dest = case_block(property_body(prog_swift, "destinations"), case)
+    groups = []
+    for k, gm in enumerate(re.finditer(r'DestinationGroup\(name: (LocalizedStringResource\(.*?\)), countries: \[([^\]]*)\]\.map \{ Locale\.Region\(\$0\) \}, note: (nil|LocalizedStringResource\(.*?\))\)', dest), 1):
+        nm = lsr_value(gm.group(1), f"programme_{n}_destinations_{k}")
+        countries = ", ".join(c.strip() for c in gm.group(2).split(","))
+        note = "null" if gm.group(3) == "nil" else lsr_value(gm.group(3), f"programme_{n}_destinations_{k}_note")
+        groups.append(f"DestinationGroup({nm}, listOf({countries}), {note})")
+    f["destinations"] = "listOf(" + ", ".join(groups) + ")"
+    sel = case_block(property_body(prog_swift, "selection"), case)
+    f["selection"] = lsr_value(sel, f"programme_{n}_selection") if "LocalizedStringResource" in sel else "null"
+    mail = case_block(property_body(prog_swift, "signUpEmail"), case)
+    f["signUpEmail"] = re.search(r'"([^"]+)"', mail).group(0)
+    prog_entries.append((case, f))
+
+(pkg_dir / "programmes/ExchangeProgramme.kt").write_text(HEADER + """package com.caelitechnologies.rotary_nl_rye.core.programmes
+
+import androidx.annotation.StringRes
+import com.caelitechnologies.rotary_nl_rye.core.R
+import java.math.BigDecimal
+
+/**
+ * An exchange programme of Rotary Youth Exchange Netherlands. Its texts are
+ * in Dutch only, on purpose, as on iOS.
+ */
+enum class ExchangeProgramme(
+    @param:StringRes val title: Int,
+    /** One line on what the programme is. */
+    @param:StringRes val tagline: Int,
+    /** The ages that may take part, as a guideline. */
+    @param:StringRes val ageText: Int,
+    /** How long, or when. */
+    @param:StringRes val durationText: Int,
+    val cost: Cost,
+    /** The programme explained, in paragraphs. */
+    val about: List<Int>,
+    /** Why to take part, or who the programme suits. */
+    val highlights: Highlights,
+    /** Where the programme goes; empty for Family to Family. */
+    val destinations: List<DestinationGroup>,
+    /** How the selection goes, for the programmes that have one. */
+    @param:StringRes val selection: Int?,
+    /** Where to sign up. */
+    val signUpEmail: String,
+    /** How signing up goes. */
+    @param:StringRes val signUpText: Int,
+) {
+""" + ",\n".join(
+    f"""    {camel(c)}(
+        title = {f['title']},
+        tagline = {f['tagline']},
+        ageText = {f['ageText']},
+        durationText = {f['durationText']},
+        cost = {f['cost']},
+        about = {f['about']},
+        highlights = {f['highlights']},
+        destinations = {f['destinations']},
+        selection = {f['selection']},
+        signUpEmail = {f['signUpEmail']},
+        signUpText = {f['signUpText']},
+    )""" for c, f in prog_entries) + """;
+
+    /** A price in euros; "from" when [isMinimum]. */
+    data class Cost(val amount: BigDecimal, val isMinimum: Boolean, @param:StringRes val note: Int)
+
+    /** A heading with points under it. */
+    data class Highlights(@param:StringRes val title: Int, val points: List<Point>)
+
+    /** A point: the SF Symbol iOS shows (the app maps it to a Material Symbol), a title and an optional text. */
+    data class Point(val symbol: String, @param:StringRes val title: Int, @param:StringRes val text: Int?)
+
+    /** A named group of countries (ISO 3166-1 codes), with an optional note. */
+    data class DestinationGroup(@param:StringRes val name: Int, val countries: List<String>, @param:StringRes val note: Int?)
+}
+""")
+
+promo_swift = (prog_dir / "Promo.swift").read_text()
+ep_src = promo_swift[promo_swift.index("enum PodcastEpisode"):promo_swift.index("enum PromoVideo")]
+vid_src = promo_swift[promo_swift.index("enum PromoVideo"):]
+ep_cases = re.findall(r"^    case (\w+)$", ep_src, re.M)
+ep_base = re.search(r'let base = "([^"]+)"', ep_src).group(1)
+eps = []
+for case in ep_cases:
+    number = re.search(rf"case \.{case}: (\d+)", property_body(ep_src, "number")).group(1)
+    guests = re.search(rf'case \.{case}: "([^"]+)"', property_body(ep_src, "guests")).group(1)
+    summary = lsr_value(case_block(property_body(ep_src, "summary"), case), f"podcast_{snake(case)}_summary")
+    path = re.search(rf'case \.{case}: URL\(string: base \+ "([^"]+)"\)', property_body(ep_src, "audioURL")).group(1)
+    eps.append(f'    {camel(case)}(number = {number}, guests = {kt_string(guests)}, summary = {summary}, audioUrl = PODCAST + "{path}")')
+vid_cases = re.findall(r"^    case (\w+)$", vid_src, re.M)
+vid_base = re.search(r'let base = "([^"]+)"', vid_src).group(1)
+vids = []
+for case in vid_cases:
+    title = lsr_value(case_block(property_body(vid_src, "title"), case), f"video_{snake(case)}_title")
+    summary = lsr_value(case_block(property_body(vid_src, "summary"), case), f"video_{snake(case)}_summary")
+    path = re.search(rf'case \.{case}: URL\(string: base \+ "([^"]+)"\)', property_body(vid_src, "url")).group(1)
+    vids.append(f'    {camel(case)}(title = {title}, summary = {summary}, url = VIDEOS + "{path}")')
+(pkg_dir / "programmes/Promo.kt").write_text(HEADER + """package com.caelitechnologies.rotary_nl_rye.core.programmes
+
+import androidx.annotation.StringRes
+import com.caelitechnologies.rotary_nl_rye.core.R
+
+/** An episode of the Rotary Youth Exchange podcast: host parents tell about their exchange student. */
+enum class PodcastEpisode(
+    /** The episode's place in the series. */
+    val number: Int,
+    /** Who speak in it, as their names are written. */
+    val guests: String,
+    @param:StringRes val summary: Int,
+    val audioUrl: String,
+) {
+""" + ",\n".join(eps) + """;
+}
+
+/** A promotional video of Rotary Youth Exchange. */
+enum class PromoVideo(
+    @param:StringRes val title: Int,
+    @param:StringRes val summary: Int,
+    val url: String,
+) {
+""" + ",\n".join(vids) + """;
+}
+
+private const val PODCAST = \"""" + ep_base + """\"
+private const val VIDEOS = \"""" + vid_base + """\"
+""")
+
 # --- strings.xml -------------------------------------------------------------------
 def xml(entries, english):
     lines = ['<?xml version="1.0" encoding="utf-8"?>']
     if not english:
-        lines.append("<!-- Generated by scripts/dev/android-content.py from RotaryCore (Dutch);\n     values-en/ has the English. Edit the Swift, never this file. -->")
+        lines.append("<!-- Generated by scripts/dev/android-content.py from RotaryCore (Dutch);\n     values-en/ has the English. Strings marked translatable=\"false\" stay Dutch on purpose\n     (shouldTranslate: false on iOS: the programme pages). Edit the Swift, never this file. -->")
     lines.append('<resources xmlns:tools="http://schemas.android.com/tools" tools:locale="nl">' if not english else "<resources>")
     for name, nl, comment in entries:
+        if english and name in dutch_only:
+            continue
         text = strings_en[name] if english else nl
         formatted = "%1$s" in text
         attrs = f' description="{comment.replace(chr(34), "&quot;").replace("&", "&amp;")}"' if not english else ""
+        if not english and name in dutch_only:
+            attrs += ' translatable="false"'
         lines.append(f'    <string name="{name}"{attrs}>{android_escape(text, formatted).replace("&", "&amp;").replace("<", "&lt;")}</string>')
     lines.append("</resources>")
     return "\n".join(lines) + "\n"
@@ -385,4 +560,4 @@ def xml(entries, english):
 (out / "res/values-en").mkdir(parents=True, exist_ok=True)
 (out / "res/values/strings.xml").write_text(xml(strings_nl, False))
 (out / "res/values-en/strings.xml").write_text(xml(strings_nl, True))
-print(f"{count} people, {len(role_cases)} roles, {len(entries)} groups, {len(about_entries)} topics, {len(doc_cases)} club documents, {len(guide_cases)} guides, {len(topic_cases)} club topics, {len(strings_nl)} strings")
+print(f"{count} people, {len(role_cases)} roles, {len(entries)} groups, {len(about_entries)} topics, {len(doc_cases)} club documents, {len(guide_cases)} guides, {len(topic_cases)} club topics, {len(prog_entries)} programmes, {len(eps)} episodes, {len(vids)} videos, {len(strings_nl)} strings ({len(dutch_only)} Dutch only)")

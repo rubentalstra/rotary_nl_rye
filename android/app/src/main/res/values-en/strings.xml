@@ -124,4 +124,6 @@
     <string name="clubs_search">Topic or document</string>
     <string name="clubs_general">General information</string>
     <string name="clubs_documents">Documents</string>
+    <string name="programme_age">Age</string>
+    <string name="programme_cost">Cost</string>
 </resources>
