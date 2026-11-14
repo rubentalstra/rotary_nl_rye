@@ -1,0 +1,2 @@
+- Programmes: a page for the Long Term Exchange, Family to Family and the summer camps, with photos to open full screen, the ages, length, costs and selection at a glance, why to go, the destination countries with their flags, and signing up by email. The summer camps page leads to this year's camps.
+- The Rotary Youth Exchange podcast plays in the app, on in the background and from the Lock Screen, with its controls above the tab bar while it plays. The short promo and the 5th Avenue video play full screen.

@@ -25,10 +25,12 @@ struct MainTabView: View {
             }
         }
         .tabBarMinimizeBehavior(.onScrollDown)
+        .modifier(NowPlayingAccessory())
     }
 }
 
 #Preview {
     MainTabView()
         .environment(AppRouter())
+        .environment(PodcastPlayer())
 }

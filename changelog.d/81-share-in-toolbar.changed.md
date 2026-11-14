@@ -1,0 +1,1 @@
+- Settings: sharing the app is now the share button at the top right.

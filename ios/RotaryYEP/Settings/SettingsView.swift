@@ -3,8 +3,9 @@ import SimpleIcons
 import SwiftUI
 import UIKit
 
-/// The root of the Settings tab: the app's language, sharing and reviewing
-/// the app, its legal pages and which version this is.
+/// The root of the Settings tab: the app's language, reviewing the app, its
+/// legal pages and which version this is; sharing the app is the toolbar's
+/// action.
 struct SettingsView: View {
     var body: some View {
         NavigationStack {
@@ -15,6 +16,18 @@ struct SettingsView: View {
                 AboutAppSection()
             }
             .navigationTitle(Text(AppTab.settings.title))
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    ShareLink(
+                        item: AppIdentity.appStoreURL,
+                        subject: Text(verbatim: "Rotary YEP NL"),
+                        message: Text("De app van Rotary Youth Exchange Nederland.")
+                    ) {
+                        Label("Deel de app", systemImage: "square.and.arrow.up")
+                    }
+                    .help(Text("Deel de app"))
+                }
+            }
         }
     }
 }
@@ -46,17 +59,10 @@ private struct LanguageSection: View {
     }
 }
 
-/// Telling others about the app.
+/// Reviewing the app and ROTEX on Instagram.
 private struct AppSection: View {
     var body: some View {
         Section {
-            ShareLink(
-                item: AppIdentity.appStoreURL,
-                subject: Text(verbatim: "Rotary YEP NL"),
-                message: Text("De app van Rotary Youth Exchange Nederland.")
-            ) {
-                Label("Deel de app", systemImage: "square.and.arrow.up")
-            }
             Link(destination: AppIdentity.writeReviewURL) {
                 Label("Beoordeel de app", systemImage: "star")
             }

@@ -33,6 +33,14 @@ as `.claude/rules/swift.md` says; Apple's own guidance is in `.claude/skills/`.
   `EventDetailView` (Maps, and EventKitUI's add-to-calendar sheet, which
   needs no calendar access; online meeting links are left out on purpose:
   people do not join meetings from this app).
+  `Programmes/`: `ProgrammesView` (the programmes, then the podcast and
+  videos), `ProgrammeDetailView` (facts, highlights, destinations with
+  flags, sign-up by mail), `PhotoGallery` with `ProgrammePhoto` (full screen
+  with a zoom transition), `PodcastView` and `PodcastPlayer` (one AVPlayer
+  for the app's lifetime, background audio, `MPNowPlayingSession` for the
+  Lock Screen), `NowPlayingAccessory` (the tab bar's bottom accessory,
+  iOS 26.1), `VideoPlayerView`. The programme texts are Dutch only
+  (`shouldTranslate: false` in the catalogs), on purpose.
   `News/`: `NewsModel`, `NewsView` (the newest item large, then the rest;
   covers whole on white, as they are banners with text), `ArticleView`.
   `Home/`: `HomeView` (banner, `PhotoCarousel`, the tile grid: three to a
@@ -45,8 +53,8 @@ as `.claude/rules/swift.md` says; Apple's own guidance is in `.claude/skills/`.
   rebuilt yet);
   `AppIcon.icon` the Icon Composer app icon (`icon.json` plus one SVG per
   layer; check it in light, dark, tinted and clear); `Assets.xcassets`;
-  `Localizable.xcstrings` (nl source, en). `ios/Info.plist` holds only the
-  launch screen (`UILaunchScreen` with the `LaunchBackground` colour): Apple's
+  `Localizable.xcstrings` (nl source, en). `ios/Info.plist` holds the
+  background audio mode, the calendar key and the launch screen (`UILaunchScreen` with the `LaunchBackground` colour): Apple's
   launch screen is the first screen without content, never a splash with a
   logo or text (HIG, Launching).
   Brand assets in `Assets.xcassets`: `RotaryWheel` (a template image, drawn
@@ -67,7 +75,8 @@ as `.claude/rules/swift.md` says; Apple's own guidance is in `.claude/skills/`.
   pages: listing, review sheet, privacy policy, terms, Instagram),
   `Organisation/` (`Person`, `Role`, `ContactGroup`, `ContactLinks`, and the
   people in `Person+MDJC`, `+LongTerm`, `+ShortTerm`, `+ROTEX`,
-  `+Confidants`), `About/` (`AboutTopic`), `RotaryClubs/` (`ClubTopic`, `ClubGuide`
+  `+Confidants`), `About/` (`AboutTopic`), `Programmes/` (`ExchangeProgramme`, and
+  `PodcastEpisode` and `PromoVideo` on rotary.nl), `RotaryClubs/` (`ClubTopic`, `ClubGuide`
   and `ClubDocument`, each document defined once and listed by every guide
   that needs it) and its own
   `Localizable.xcstrings`. `RotaryCamps`: the summer camps from
