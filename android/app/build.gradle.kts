@@ -28,15 +28,33 @@ android {
         minSdk = 29
         targetSdk = 37
         // The version continues from the React Native app's 13.2.1, as on
-        // iOS. The release lane sets versionCode above Google Play's
-        // highest; 1 is only for local builds.
-        versionCode = 1
+        // iOS (check-version.sh holds it to MARKETING_VERSION). The release
+        // lane passes -PversionCode: the build number iOS gets for the same
+        // release, above Google Play's 122; 1 is only for local builds.
+        versionCode = providers.gradleProperty("versionCode").orNull?.toInt() ?: 1
         versionName = "14.0.0"
         buildConfigField("String", "ROTARY_GOOGLE_API_KEY", "\"$calendarApiKey\"")
     }
 
+    // The upload key, from the release lane's secrets (docs/releasing.md).
+    // Play App Signing re-signs the bundle with the app signing key, which
+    // never leaves Google. Without the key (any local build) the release
+    // build stays unsigned.
+    val uploadKeystore = providers.environmentVariable("ANDROID_UPLOAD_KEYSTORE_FILE").orNull
+    signingConfigs {
+        if (uploadKeystore != null) {
+            create("upload") {
+                storeFile = file(uploadKeystore)
+                storePassword = providers.environmentVariable("ANDROID_UPLOAD_KEYSTORE_PASSWORD").get()
+                keyAlias = providers.environmentVariable("ANDROID_UPLOAD_KEY_ALIAS").get()
+                keyPassword = providers.environmentVariable("ANDROID_UPLOAD_KEY_PASSWORD").get()
+            }
+        }
+    }
+
     buildTypes {
         release {
+            if (uploadKeystore != null) signingConfig = signingConfigs.getByName("upload")
             optimization {
                 enable = true
                 packageScope = setOf("androidx.**", "kotlin.**", "kotlinx.**")

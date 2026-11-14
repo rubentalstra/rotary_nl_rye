@@ -1,11 +1,13 @@
 #!/usr/bin/env bash
 # scripts/release/check-version.sh vX.Y.Z | vX.Y.Z-beta.N
 #
-# The release plan (taken from Pullwatch): the tag names the app's version
-# (MARKETING_VERSION in ios/App.xcconfig). A final version needs its own
+# The release plan (taken from Pullwatch): the tag names the version of both
+# apps (MARKETING_VERSION in ios/App.xcconfig, versionName in
+# android/app/build.gradle.kts). A final version needs its own
 # "## [X.Y.Z] - YYYY-MM-DD" section in CHANGELOG.md, with text in it, and no
 # fragments left in changelog.d/ (changelog.sh --assemble wrote them in). A
-# test version (vX.Y.Z-beta.N, TestFlight only) comes before that cut: its
+# test version (vX.Y.Z-beta.N: TestFlight and Google Play's internal
+# testing) comes before that cut: its
 # notes are the fragments still waiting. Everything must hold before
 # anything is built. The build number is not checked here: the release lane
 # takes the next one from App Store Connect.
@@ -29,6 +31,11 @@ if [ "$app" != "$version" ]; then
   exit 1
 fi
 
+android="$(sed -n 's/^ *versionName = "\(.*\)"$/\1/p' android/app/build.gradle.kts | head -n 1)"
+if [ "$android" != "$version" ]; then
+  echo "tag $tag but android/app/build.gradle.kts says versionName = \"$android\"" >&2
+  exit 1
+fi
 if [ -n "$beta" ]; then
   if grep -qF "## [$version]" CHANGELOG.md; then
     echo "CHANGELOG.md already has a [$version] section; a test version comes before the release cut" >&2
@@ -55,4 +62,4 @@ else
   fi
 fi
 
-echo "ok: $tag matches ios/App.xcconfig ($app) and its notes are there"
+echo "ok: $tag matches ios/App.xcconfig and android/app/build.gradle.kts ($app) and its notes are there"

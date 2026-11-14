@@ -206,8 +206,9 @@ reference only. Swift is written as `.claude/rules/swift.md` says, Kotlin as
   18 Pro Max simulator; when Android changed, Gradle build, tests and lint;
   a skipped job counts as passed for the required checks),
   `workflows/changelog.yml` (the fragment guard), `workflows/release.yml`
-  (a tag uploads to TestFlight and prepares the App Store version;
-  `docs/releasing.md`), issue forms, PR template,
+  (a tag uploads iOS to TestFlight and prepares the App Store version, then
+  Android with the same build number to Google Play: internal testing for a
+  beta, a production draft for a release; `docs/releasing.md`), issue forms, PR template,
   `CODEOWNERS`, `dependabot.yml`, `release.yml` (release-note categories),
   `actionlint.yaml` (the `xcode-27` runner label).
 - `scripts/dev/run-sim.sh`: builds, installs and launches the app on the
@@ -220,7 +221,9 @@ reference only. Swift is written as `.claude/rules/swift.md` says, Kotlin as
   Apple Distribution certificate, upload; never cloud signing, see
   `docs/releasing.md`), `ExportOptions.plist`, `app-store-connect.swift`
   (next build number, What to Test, What's New, a new distribution
-  certificate). `scripts/release/changelog.sh` and
+  certificate), `google-play.py` (the Google Play Developer API with the
+  standard library: check, notes text, upload a bundle to a track);
+  `notes.sh <tag> ios|android` (an entry starting "Android: " is Android's). `scripts/release/changelog.sh` and
   `scripts/checks/changelog-guard.sh`: the changelog fragments.
   `scripts/dev/xcode-skills.sh`: exports Apple's skills;
   `android-skills.sh` installs Google's; `android-content.py` generates

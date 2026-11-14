@@ -1,7 +1,11 @@
 name: Release
 
-# A tag vX.Y.Z-beta.N on main uploads a test build to TestFlight; a tag
-# vX.Y.Z uploads the release build and prepares App Store version X.Y.Z.
+# A tag vX.Y.Z-beta.N on main uploads a test build of both apps: iOS to
+# TestFlight, Android to Google Play's internal testing. A tag vX.Y.Z
+# uploads the release builds: App Store version X.Y.Z is prepared, and a
+# draft production release waits in the Play Console. Both apps get the
+# same build number (the Android versionCode), the next one App Store
+# Connect has not seen, so the Android job follows the iOS upload.
 # The app is archived, signed with the team's Apple Distribution
 # certificate (from the secrets, in a keychain of its own) and uploaded by
 # scripts/release/release.sh, the same script the maintainer can run on his
@@ -60,13 +64,19 @@ jobs:
           ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
           DISTRIBUTION_P12: ${{ secrets.DISTRIBUTION_P12 }}
           DISTRIBUTION_P12_PASSWORD: ${{ secrets.DISTRIBUTION_P12_PASSWORD }}
+          ANDROID_UPLOAD_KEYSTORE: ${{ secrets.ANDROID_UPLOAD_KEYSTORE }}
+          ANDROID_UPLOAD_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_UPLOAD_KEYSTORE_PASSWORD }}
+          ANDROID_UPLOAD_KEY_ALIAS: ${{ secrets.ANDROID_UPLOAD_KEY_ALIAS }}
+          ANDROID_UPLOAD_KEY_PASSWORD: ${{ secrets.ANDROID_UPLOAD_KEY_PASSWORD }}
+          PLAY_SERVICE_ACCOUNT_JSON: ${{ secrets.PLAY_SERVICE_ACCOUNT_JSON }}
         run: |
           missing=()
-          for name in ASC_KEY ASC_KEY_ID ASC_ISSUER_ID DISTRIBUTION_P12 DISTRIBUTION_P12_PASSWORD; do
+          for name in ASC_KEY ASC_KEY_ID ASC_ISSUER_ID DISTRIBUTION_P12 DISTRIBUTION_P12_PASSWORD \
+            ANDROID_UPLOAD_KEYSTORE ANDROID_UPLOAD_KEYSTORE_PASSWORD ANDROID_UPLOAD_KEY_ALIAS ANDROID_UPLOAD_KEY_PASSWORD PLAY_SERVICE_ACCOUNT_JSON; do
             [ -n "${!name}" ] || missing+=("$name")
           done
           if ((${#missing[@]})); then
-            echo "::error title=Release secrets missing::${missing[*]} not set in $GITHUB_REPOSITORY. The release needs the App Store Connect API key and the Apple Distribution certificate; see docs/releasing.md."
+            echo "::error title=Release secrets missing::${missing[*]} not set in $GITHUB_REPOSITORY. The release needs the App Store Connect API key, the Apple Distribution certificate, the Android upload key and the Google Play service account; see docs/releasing.md."
             exit 1
           fi
           echo "ok: every release secret is set"
@@ -78,6 +88,8 @@ jobs:
     timeout-minutes: 90
     permissions:
       contents: read
+    outputs:
+      build-number: ${{ steps.build.outputs.number }}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -143,7 +155,7 @@ jobs:
           ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
           ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
         run: |
-          bash scripts/release/notes.sh "$TAG" > "$RUNNER_TEMP/notes.md"
+          bash scripts/release/notes.sh "$TAG" ios > "$RUNNER_TEMP/notes.md"
           store=()
           if [ "$FINAL" = true ]; then store=(--app-store); fi
           swift scripts/release/app-store-connect.swift notes "$VERSION" "$BUILD_NUMBER" "$RUNNER_TEMP/notes.md" ${store[@]+"${store[@]}"}
@@ -157,3 +169,75 @@ jobs:
         run: |
           rm -f "$RUNNER_TEMP/asc-key.p8"
           security delete-keychain "$RUNNER_TEMP/release.keychain-db" 2>/dev/null || true
+
+  android:
+    name: bundle, sign, upload to Google Play
+    needs: [plan, upload]
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      # Gradle runs on JDK 25 (android/gradle/gradle-daemon-jvm.properties).
+      # No Gradle cache on a publishing lane: nothing an untrusted run wrote
+      # may reach a release build.
+      - uses: actions/setup-java@d1374f8ac74474200d16ef8ecee22c7ae7a51880 # v6.3.0
+        with:
+          distribution: temurin
+          java-version: "25"
+      - name: the upload key and the service account, in the runner's temporary directory
+        env:
+          KEYSTORE: ${{ secrets.ANDROID_UPLOAD_KEYSTORE }}
+          SERVICE_ACCOUNT: ${{ secrets.PLAY_SERVICE_ACCOUNT_JSON }}
+        run: |
+          umask 077
+          printf '%s' "$KEYSTORE" | base64 --decode > "$RUNNER_TEMP/upload.jks"
+          printf '%s' "$SERVICE_ACCOUNT" > "$RUNNER_TEMP/play-service-account.json"
+      - name: the App Bundle, signed with the upload key
+        working-directory: android
+        env:
+          BUILD_NUMBER: ${{ needs.upload.outputs.build-number }}
+          ANDROID_UPLOAD_KEYSTORE_FILE: ${{ runner.temp }}/upload.jks
+          ANDROID_UPLOAD_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_UPLOAD_KEYSTORE_PASSWORD }}
+          ANDROID_UPLOAD_KEY_ALIAS: ${{ secrets.ANDROID_UPLOAD_KEY_ALIAS }}
+          ANDROID_UPLOAD_KEY_PASSWORD: ${{ secrets.ANDROID_UPLOAD_KEY_PASSWORD }}
+        run: |
+          [[ "$BUILD_NUMBER" =~ ^[0-9]+$ ]] || { echo "no build number from the iOS upload: '$BUILD_NUMBER'" >&2; exit 1; }
+          ./gradlew :app:bundleRelease -PversionCode="$BUILD_NUMBER" --console=plain --no-configuration-cache
+      # R8's mapping, for reading a crash report from outside the Play Console
+      # (the upload sends it to Google as well).
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: android-mapping-${{ needs.upload.outputs.build-number }}
+          path: android/app/build/outputs/mapping/release/mapping.txt
+          if-no-files-found: error
+      - name: upload to Google Play with the notes
+        env:
+          TAG: ${{ github.ref_name }}
+          VERSION: ${{ needs.plan.outputs.version }}
+          FINAL: ${{ needs.plan.outputs.final }}
+          BUILD_NUMBER: ${{ needs.upload.outputs.build-number }}
+          PLAY_SERVICE_ACCOUNT_FILE: ${{ runner.temp }}/play-service-account.json
+        run: |
+          bash scripts/release/notes.sh "$TAG" android > "$RUNNER_TEMP/notes-android.md"
+          track=internal
+          status=completed
+          if [ "$FINAL" = true ]; then
+            track=production
+            status=draft
+          fi
+          python3 -I scripts/release/google-play.py upload \
+            --bundle android/app/build/outputs/bundle/release/app-release.aab \
+            --mapping android/app/build/outputs/mapping/release/mapping.txt \
+            --track "$track" --status "$status" \
+            --name "$VERSION ($BUILD_NUMBER)" --notes "$RUNNER_TEMP/notes-android.md"
+          echo "Build $BUILD_NUMBER of $VERSION is on Google Play's $track track." >> "$GITHUB_STEP_SUMMARY"
+          if [ "$FINAL" = true ]; then
+            echo "The production release is a draft; roll it out in the Play Console." >> "$GITHUB_STEP_SUMMARY"
+          fi
+      - name: remove the upload key and the service account
+        if: always()
+        run: rm -f "$RUNNER_TEMP/upload.jks" "$RUNNER_TEMP/play-service-account.json"
