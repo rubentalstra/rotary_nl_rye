@@ -1,0 +1,133 @@
+name: Release
+
+# A tag vX.Y.Z-beta.N on main uploads a test build to TestFlight; a tag
+# vX.Y.Z uploads the release build and prepares App Store version X.Y.Z.
+# The app is archived, signed by Apple's cloud signing and uploaded by
+# scripts/release/release.sh, the same script the maintainer can run on his
+# Mac, with one App Store Connect API key (Admin role). The build number is
+# the next one App Store Connect has not seen. When the build is processed,
+# the changelog becomes TestFlight's What to Test and, for a final version,
+# the App Store's What's New; the version gets the build, and the
+# maintainer submits it for review in App Store Connect. docs/releasing.md
+# has the procedure and the secrets. Without the secrets (as in a fork) the
+# lane stops in its first job and says which ones are missing.
+
+on:
+  push:
+    tags:
+      - "v[0-9]+.[0-9]+.[0-9]+"
+      - "v[0-9]+.[0-9]+.[0-9]+-beta.[0-9]+"
+
+permissions: {}
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+env:
+  DEVELOPER_DIR: /Applications/Xcode_27.1.app/Contents/Developer
+
+jobs:
+  plan:
+    name: tag matches version and changelog, secrets present
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+    outputs:
+      version: ${{ steps.plan.outputs.version }}
+      final: ${{ steps.plan.outputs.final }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - id: plan
+        env:
+          TAG: ${{ github.ref_name }}
+        run: |
+          bash scripts/release/check-version.sh "$TAG"
+          version="${TAG#v}"
+          final=true
+          case "$TAG" in *-beta.*) final=false ;; esac
+          { echo "version=${version%%-beta.*}"; echo "final=$final"; } >> "$GITHUB_OUTPUT"
+      - name: the release secrets exist
+        env:
+          ASC_KEY: ${{ secrets.ASC_KEY }}
+          ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+          ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+        run: |
+          missing=()
+          for name in ASC_KEY ASC_KEY_ID ASC_ISSUER_ID; do
+            [ -n "${!name}" ] || missing+=("$name")
+          done
+          if ((${#missing[@]})); then
+            echo "::error title=Release secrets missing::${missing[*]} not set in $GITHUB_REPOSITORY. The release needs the App Store Connect API key; see docs/releasing.md."
+            exit 1
+          fi
+          echo "ok: every release secret is set"
+
+  upload:
+    name: archive, sign, upload, notes
+    needs: plan
+    runs-on: xcode-27
+    timeout-minutes: 90
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      # No build cache on a publishing lane: nothing an untrusted run wrote
+      # may reach a release build.
+      - name: the API key, in the runner's temporary directory
+        env:
+          ASC_KEY: ${{ secrets.ASC_KEY }}
+        run: |
+          umask 077
+          printf '%s\n' "$ASC_KEY" > "$RUNNER_TEMP/asc-key.p8"
+      - name: the next build number
+        id: build
+        env:
+          ASC_KEY_FILE: ${{ runner.temp }}/asc-key.p8
+          ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+          ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+        run: |
+          number="$(swift scripts/release/app-store-connect.swift next-build-number)"
+          [[ "$number" =~ ^[0-9]+$ ]] || { echo "no build number: $number" >&2; exit 1; }
+          echo "number=$number" >> "$GITHUB_OUTPUT"
+          echo "build number $number"
+      - name: release.sh (archive, sign, upload)
+        env:
+          BUILD_NUMBER: ${{ steps.build.outputs.number }}
+          ASC_KEY_FILE: ${{ runner.temp }}/asc-key.p8
+          ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+          ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+        run: bash scripts/release/release.sh
+      # The symbols, for symbolicating a crash report from outside App Store
+      # Connect (the upload sends them to Apple as well).
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: dsyms-${{ steps.build.outputs.number }}
+          path: build/release/RotaryYEP.xcarchive/dSYMs/
+          if-no-files-found: error
+      - name: the notes in App Store Connect
+        env:
+          TAG: ${{ github.ref_name }}
+          VERSION: ${{ needs.plan.outputs.version }}
+          FINAL: ${{ needs.plan.outputs.final }}
+          BUILD_NUMBER: ${{ steps.build.outputs.number }}
+          ASC_KEY_FILE: ${{ runner.temp }}/asc-key.p8
+          ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+          ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+        run: |
+          bash scripts/release/notes.sh "$TAG" > "$RUNNER_TEMP/notes.md"
+          store=()
+          [ "$FINAL" = true ] && store=(--app-store)
+          swift scripts/release/app-store-connect.swift notes "$VERSION" "$BUILD_NUMBER" "$RUNNER_TEMP/notes.md" ${store[@]+"${store[@]}"}
+          {
+            echo "Build $BUILD_NUMBER of $VERSION is in TestFlight."
+            [ "$FINAL" = true ] && echo "App Store version $VERSION has it; submit it for review in App Store Connect."
+          } >> "$GITHUB_STEP_SUMMARY"
+      - name: remove the API key
+        if: always()
+        run: rm -f "$RUNNER_TEMP/asc-key.p8"

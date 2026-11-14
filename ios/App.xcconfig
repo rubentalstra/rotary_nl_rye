@@ -5,8 +5,9 @@
 // MARKETING_VERSION is CFBundleShortVersionString; the release tag is
 // v$(MARKETING_VERSION). The native app continues the App Store listing of
 // the React Native app (last release 13.2.1), so it starts at 14.0.0.
-// CURRENT_PROJECT_VERSION is CFBundleVersion and goes up with every upload to
-// App Store Connect.
+// CURRENT_PROJECT_VERSION is CFBundleVersion. This value is only for local
+// builds: the release lane uploads with the next build number App Store
+// Connect has not seen, never below 123 (docs/releasing.md).
 MARKETING_VERSION = 14.0.0
 CURRENT_PROJECT_VERSION = 1
 
