@@ -162,8 +162,10 @@ reference only. Swift is written as `.claude/rules/swift.md` says, Kotlin as
   `bash scripts/dev/xcode-skills.sh`, and Google's Android skills, pinned,
   installed by `bash scripts/dev/android-skills.sh`; both git-ignored;
   `skills/README.md` says which to read when).
-- `.github/`: `workflows/ci.yml` (shellcheck and actionlint, `swift test` of
-  RotaryKit, `xcodebuild test` on the iPhone 18 Pro Max simulator),
+- `.github/`: `workflows/ci.yml` (shellcheck and actionlint always; when
+  iOS changed, `swift test` of RotaryKit and `xcodebuild test` on the iPhone
+  18 Pro Max simulator; when Android changed, Gradle build, tests and lint;
+  a skipped job counts as passed for the required checks),
   `workflows/changelog.yml` (the fragment guard), `workflows/release.yml`
   (a tag uploads to TestFlight and prepares the App Store version;
   `docs/releasing.md`), issue forms, PR template,
