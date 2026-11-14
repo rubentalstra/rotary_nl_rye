@@ -22,6 +22,8 @@ struct HomeView: View {
                 switch destination {
                 case .news:
                     NewsView()
+                case .calendar:
+                    CalendarView()
                 case .summerCamps:
                     CampsView()
                 case .rotaryClubs:

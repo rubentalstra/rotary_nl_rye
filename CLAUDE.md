@@ -27,6 +27,11 @@ as `.claude/rules/swift.md` says; Apple's own guidance is in `.claude/skills/`.
   search) and `ClubTopicView`. `General/DocumentLink`: a PDF opens in Quick
   Look after `RemoteDocument` downloads it (through the URL cache), anything
   else in the in-app browser.
+  `Calendar/`: `CalendarModel` (now, upcoming per month, past behind a
+  button, the marked days), `CalendarView` (list or month), `EventRow` with
+  `DateBadge`, `EventMonthView` (the system's `UICalendarView`),
+  `EventDetailView` (Maps, Meet, and EventKitUI's add-to-calendar sheet,
+  which needs no calendar access).
   `News/`: `NewsModel`, `NewsView` (the newest item large, then the rest;
   covers whole on white, as they are banners with text), `ArticleView`.
   `Home/`: `HomeView` (banner, `PhotoCarousel`, the tile grid: three to a
@@ -72,8 +77,12 @@ as `.claude/rules/swift.md` says; Apple's own guidance is in `.claude/skills/`.
   lists, trailing spaces), into `Camp`; tested against the real file in
   `Tests/RotaryCampsTests/Fixtures/`. `RotaryNews`: `NewsFeed`
   (news.json on rotary.nl) into `NewsItem` (a PDF, or an article of
-  headings, paragraphs, images and videos), newest first. Network goes
-  through `HTTPClient`, and a feed that changes now and then through
+  headings, paragraphs, images and videos), newest first. `RotaryCalendar`:
+  `CalendarFeed` (the MDJC calendar through the Google Calendar API v3, a
+  year back to a year ahead; the key from `ROTARY_GOOGLE_API_KEY` in
+  `App.xcconfig` through Info.plist, every request carrying the bundle id for
+  the key's app restriction) into `CalendarEvent` (all-day by calendar days,
+  or timed). Network goes through `HTTPClient`, and a feed that changes now and then through
   `CachedFetch` (`RotaryCore/Networking`): revalidated online, the last copy
   offline.
 - `android/`: the Android app, not started. Package

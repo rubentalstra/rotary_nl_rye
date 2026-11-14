@@ -12,6 +12,7 @@
 		0000000000000000000C0003 /* SimpleIconsSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 0000000000000000000B0003 /* SimpleIconsSwiftUI */; };
 		0000000000000000000C0004 /* RotaryCamps in Frameworks */ = {isa = PBXBuildFile; productRef = 0000000000000000000B0004 /* RotaryCamps */; };
 		0000000000000000000C0005 /* RotaryNews in Frameworks */ = {isa = PBXBuildFile; productRef = 0000000000000000000B0005 /* RotaryNews */; };
+		0000000000000000000C0006 /* RotaryCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 0000000000000000000B0006 /* RotaryCalendar */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,7 @@
 				0000000000000000000C0001 /* RotaryCore in Frameworks */,
 				0000000000000000000C0004 /* RotaryCamps in Frameworks */,
 				0000000000000000000C0005 /* RotaryNews in Frameworks */,
+				0000000000000000000C0006 /* RotaryCalendar in Frameworks */,
 				0000000000000000000C0002 /* SimpleIcons in Frameworks */,
 				0000000000000000000C0003 /* SimpleIconsSwiftUI in Frameworks */,
 			);
@@ -128,6 +130,7 @@
 				0000000000000000000B0001 /* RotaryCore */,
 				0000000000000000000B0004 /* RotaryCamps */,
 				0000000000000000000B0005 /* RotaryNews */,
+				0000000000000000000B0006 /* RotaryCalendar */,
 				0000000000000000000B0002 /* SimpleIcons */,
 				0000000000000000000B0003 /* SimpleIconsSwiftUI */,
 			);
@@ -616,6 +619,10 @@
 		0000000000000000000B0005 /* RotaryNews */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = RotaryNews;
+		};
+		0000000000000000000B0006 /* RotaryCalendar */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = RotaryCalendar;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

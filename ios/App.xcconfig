@@ -34,3 +34,10 @@ INFOPLIST_FILE = Info.plist
 
 // The app's tint: Rotary royal blue, sky blue in dark mode (Assets.xcassets).
 ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor
+
+// The Google Calendar API key for the MDJC calendar (RotaryCalendar). A client
+// key ships in every build and can be read from it, so it is no secret: it is
+// restricted in Google Cloud to the Calendar API and to this bundle id, which
+// every request sends (X-Ios-Bundle-Identifier). Info.plist carries it as
+// RotaryGoogleAPIKey.
+ROTARY_GOOGLE_API_KEY = AIzaSyCgNcg5M2wIVuPjjIK8ZcHNCSGhG9rUgbY

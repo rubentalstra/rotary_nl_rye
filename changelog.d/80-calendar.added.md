@@ -1,0 +1,1 @@
+- Calendar: the events of Rotary Youth Exchange Netherlands from a year back to a year ahead, with what is happening now on top. See them as a list or as a month with the event days marked, open an event for when and where, open its place in Maps, join an online event, add it to your own calendar, or subscribe to the whole calendar in the Calendar app.
