@@ -58,11 +58,12 @@ jobs:
           files="$(git diff --name-only "$base"...HEAD)"
           echo "$files"
           # The workflow itself changing runs everything; android/core is
-          # generated from RotaryCore's Swift, so that counts for Android too.
+          # generated from RotaryCore's and RotaryStudents' Swift, so those
+          # count for Android too.
           ios=false
           android=false
           grep -qE '^(ios/|scripts/dev/(sync-strings\.sh|catalog-tidy\.py)|\.github/workflows/ci\.yml)' <<<"$files" && ios=true
-          grep -qE '^(android/|scripts/dev/android-content\.py|ios/RotaryKit/Sources/RotaryCore/|\.github/workflows/ci\.yml)' <<<"$files" && android=true
+          grep -qE '^(android/|scripts/dev/android-content\.py|ios/RotaryKit/Sources/(RotaryCore|RotaryStudents)/|\.github/workflows/ci\.yml)' <<<"$files" && android=true
           echo "ios=$ios android=$android"
           { echo "ios=$ios"; echo "android=$android"; } >> "$GITHUB_OUTPUT"
 
@@ -193,8 +194,9 @@ jobs:
         working-directory: .
         run: |
           python3 -I scripts/dev/android-content.py
-          if ! git diff --exit-code --stat -- android/core; then
-            echo "::error::android/core is not in step with ios/RotaryKit/Sources/RotaryCore. Run python3 -I scripts/dev/android-content.py and commit the result."
+          # A new generated file is untracked, so git diff alone would miss it.
+          if ! git diff --exit-code --stat -- android/core || [ -n "$(git status --porcelain -- android/core)" ]; then
+            echo "::error::android/core is not in step with ios/RotaryKit/Sources (RotaryCore, RotaryStudents). Run python3 -I scripts/dev/android-content.py and commit the result."
             exit 1
           fi
       - name: build, unit tests and lint (every module)
