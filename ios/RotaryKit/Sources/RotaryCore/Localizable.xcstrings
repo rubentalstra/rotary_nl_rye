@@ -1,6 +1,22 @@
 {
   "sourceLanguage": "nl",
   "strings": {
+    "15½–18½ jaar": {
+      "comment": "Programmes: the year exchange's age guideline.",
+      "shouldTranslate": false
+    },
+    "15–19 jaar": {
+      "comment": "Programmes: Family to Family's ages.",
+      "shouldTranslate": false
+    },
+    "15–21 jaar": {
+      "comment": "Programmes: the summer camps' ages.",
+      "shouldTranslate": false
+    },
+    "2 keer 3 of 2 keer 4 weken in de zomer": {
+      "comment": "Programmes: Family to Family's length: three or four weeks abroad, then as long at home.",
+      "shouldTranslate": false
+    },
     "Actielijst voorbereiding komst jaarstudent": {
       "comment": "Rotary clubs: a document's title, the checklist for preparing the exchange student's arrival.",
       "localizations": {
@@ -44,6 +60,10 @@
           }
         }
       }
+    },
+    "Alle jeugdprogramma's van Rotary: de jaaruitwisseling, Family to Family, zomerkampen in binnen- en buitenland, RYLA en het Vlielandkamp.": {
+      "comment": "Videos: what the video shows.",
+      "shouldTranslate": false
     },
     "Ambassadeurschap: je vertegenwoordigt je eigen land en cultuur in je gastland": {
       "comment": "About tab: what the programme encourages.",
@@ -287,6 +307,10 @@
         }
       }
     },
+    "De kampen zijn internationaal en de voertaal is Engels. Vaak is er per land plaats voor één meisje en één jongen. Jongeren van Rotarians en van niet-Rotarians kunnen meedoen.": {
+      "comment": "Programmes: who meets at a summer camp and who can join.",
+      "shouldTranslate": false
+    },
     "De regels en de gedragscode van het uitwisselingsprogramma.": {
       "comment": "Rotary clubs: under the documents for every club.",
       "localizations": {
@@ -331,6 +355,14 @@
         }
       }
     },
+    "Dit programma van Rotary International is er voor alle geïnteresseerde scholieren in het voortgezet onderwijs. Je volgt een schooljaar een high school in het buitenland en woont bij gastgezinnen die Rotary zorgvuldig kiest.": {
+      "comment": "Programmes: what the year exchange is.",
+      "shouldTranslate": false
+    },
+    "Door de taal van je gastland elke dag te spreken, leer je die snel en goed.": {
+      "comment": "Programmes: a reason explained.",
+      "shouldTranslate": false
+    },
     "Een Nederlandse scholier supporten kost jullie club niets. Een jaarstudent ontvangen wel, en het een kan niet zonder het ander.": {
       "comment": "Rotary clubs, costs: sponsoring is free, hosting is not.",
       "localizations": {
@@ -352,6 +384,54 @@
           }
         }
       }
+    },
+    "Een korte kennismaking met Rotary Youth Exchange.": {
+      "comment": "Videos: what the short promotional video shows.",
+      "shouldTranslate": false
+    },
+    "Een korte uitwisseling met een leeftijdgenoot en zijn of haar gezin": {
+      "comment": "Programmes: Family to Family in one line.",
+      "shouldTranslate": false
+    },
+    "Een nieuwe taal": {
+      "comment": "Programmes: a reason.",
+      "shouldTranslate": false
+    },
+    "Een schooljaar": {
+      "comment": "Programmes: the year exchange's length.",
+      "shouldTranslate": false
+    },
+    "Een schooljaar op een high school in het buitenland": {
+      "comment": "Programmes: the year exchange in one line.",
+      "shouldTranslate": false
+    },
+    "Een selectiedag in oktober en een selectieweekend in november.": {
+      "comment": "Programmes: the year exchange's selection.",
+      "shouldTranslate": false
+    },
+    "Een uitwisseling met een leeftijdgenoot in het buitenland, in de zomervakantie. Eerst woon je drie of vier weken bij het gezin van je maatje, daarna komt je maatje net zo lang bij jullie in Nederland wonen.": {
+      "comment": "Programmes: what Family to Family is.",
+      "shouldTranslate": false
+    },
+    "Ellen en Steven delen hun verhaal als gastouders en geven tips aan gezinnen die erover denken een uitwisselingsstudent in huis te nemen.": {
+      "comment": "Podcast: what the second episode is about.",
+      "shouldTranslate": false
+    },
+    "En veel Europese landen.": {
+      "comment": "Programmes: besides the listed countries.",
+      "shouldTranslate": false
+    },
+    "En verschillende Europese landen.": {
+      "comment": "Programmes: besides the listed countries.",
+      "shouldTranslate": false
+    },
+    "Exclusief btw, verzekering, vliegticket en andere kosten.": {
+      "comment": "Programmes: what the year exchange's price does not include.",
+      "shouldTranslate": false
+    },
+    "Family to Family": {
+      "comment": "Programmes: the short exchange between two families.",
+      "shouldTranslate": false
     },
     "First Night Questions": {
       "comment": "Rotary clubs: a document's title; the questions to discuss on a student's first night with a host family.",
@@ -430,6 +510,18 @@
         }
       }
     },
+    "Heb je interesse of een vraag? Stuur een mail, dan hoor je hoe je je aanmeldt voor de selectie.": {
+      "comment": "Programmes: how to sign up for the year exchange.",
+      "shouldTranslate": false
+    },
+    "Het Rotary-netwerk": {
+      "comment": "Programmes: a reason.",
+      "shouldTranslate": false
+    },
+    "Het heet ook wel het Short Term Exchange Program (STEP).": {
+      "comment": "Programmes: Family to Family's other name.",
+      "shouldTranslate": false
+    },
     "Het team van de Long Term Exchange": {
       "comment": "What the Long Term team is, under its name.",
       "localizations": {
@@ -451,6 +543,10 @@
           }
         }
       }
+    },
+    "Hoe is het om een paar maanden ouders te zijn van een uitwisselingsstudent? Sharon en Michel vertellen over hun ervaringen als gastouders.": {
+      "comment": "Podcast: what the first episode is about.",
+      "shouldTranslate": false
     },
     "Hoofd activiteiten": {
       "comment": "Role: head of activities at ROTEX.",
@@ -485,6 +581,18 @@
         }
       }
     },
+    "In veel landen organiseren Rotary-clubs van juni tot en met september zomerkampen rond een thema: cultuur, sport, water, bergen, fietsen en meer. De kosten worden vaak laag gehouden, zodat iedereen mee kan, al geldt dat niet voor elk kamp.": {
+      "comment": "Programmes: what the summer camps are.",
+      "shouldTranslate": false
+    },
+    "Inclusief btw. Exclusief verzekering, vliegticket, zakgeld en ziektekosten.": {
+      "comment": "Programmes: what Family to Family's price does and does not include.",
+      "shouldTranslate": false
+    },
+    "Inclusief btw: de aanmeldingskosten. Reken daarnaast op reiskosten naar het kamp, zakgeld en soms een klein deelnamebedrag.": {
+      "comment": "Programmes: the summer camps' registration fee and other costs.",
+      "shouldTranslate": false
+    },
     "Internationaal begrip en vrede, door jongeren wereldwijd met elkaar te verbinden": {
       "comment": "About tab: what the programme encourages.",
       "localizations": {
@@ -496,6 +604,54 @@
         }
       }
     },
+    "Internationale ervaring": {
+      "comment": "Programmes: a reason.",
+      "shouldTranslate": false
+    },
+    "Internationale themakampen in de zomer": {
+      "comment": "Programmes: summer camps in one line.",
+      "shouldTranslate": false
+    },
+    "Je durft uit je vertrouwde omgeving te stappen": {
+      "comment": "Programmes: who it suits.",
+      "shouldTranslate": false
+    },
+    "Je gaat naar school in je gastland en vertelt daar vaak over je eigen land en cultuur.": {
+      "comment": "Programmes: a reason explained.",
+      "shouldTranslate": false
+    },
+    "Je leert een nieuwe cultuur, taal en manier van leven kennen, en je kijkt met meer respect naar verschillen.": {
+      "comment": "Programmes: a reason explained.",
+      "shouldTranslate": false
+    },
+    "Je meldt je aan voor Family to Family via de mail.": {
+      "comment": "Programmes: how to sign up for Family to Family.",
+      "shouldTranslate": false
+    },
+    "Je ontmoet anderen zonder vooroordelen": {
+      "comment": "Programmes: who it suits.",
+      "shouldTranslate": false
+    },
+    "Je staat open voor anderen": {
+      "comment": "Programmes: who it suits.",
+      "shouldTranslate": false
+    },
+    "Je wilt ervaringen uitwisselen": {
+      "comment": "Programmes: who it suits.",
+      "shouldTranslate": false
+    },
+    "Je wilt van anderen leren": {
+      "comment": "Programmes: who it suits.",
+      "shouldTranslate": false
+    },
+    "Je wordt zelfstandiger en zekerder, neemt verantwoordelijkheid en leert omgaan met nieuwe situaties.": {
+      "comment": "Programmes: a reason explained.",
+      "shouldTranslate": false
+    },
+    "Jeugd, de vijfde Avenue van Rotary": {
+      "comment": "Videos: the title of the video about Rotary's youth programmes. Youth Service is the fifth of Rotary's Avenues of Service.",
+      "shouldTranslate": false
+    },
     "Jeugdcommissaris": {
       "comment": "Rotary clubs: heading of the documents for the club's youth commissioner.",
       "localizations": {
@@ -506,6 +662,14 @@
           }
         }
       }
+    },
+    "Jongeren in staat stellen om persoonlijk leiderschap te ontwikkelen": {
+      "comment": "Programmes: the mission.",
+      "shouldTranslate": false
+    },
+    "Juni tot en met september": {
+      "comment": "Programmes: the period in which summer camps take place.",
+      "shouldTranslate": false
     },
     "Kosten": {
       "comment": "Rotary clubs: topic heading.",
@@ -529,6 +693,10 @@
         }
       }
     },
+    "Leiderschap begint met leiding geven aan jezelf, zodat je uiteindelijk anderen helpt zich te ontwikkelen.": {
+      "comment": "Programmes: the mission explained.",
+      "shouldTranslate": false
+    },
     "Long Term": {
       "comment": "Name of the Long Term Exchange team in the Contact tab.",
       "localizations": {
@@ -539,6 +707,10 @@
           }
         }
       }
+    },
+    "Long Term Exchange": {
+      "comment": "Programmes: the year exchange's name.",
+      "shouldTranslate": false
     },
     "Long Term Exchange: 10 tot 11 maanden": {
       "comment": "About tab: an exchange programme and its length.",
@@ -562,6 +734,10 @@
         }
       }
     },
+    "Met mensen uit je gastland en met uitwisselingsstudenten van over de hele wereld.": {
+      "comment": "Programmes: a reason explained.",
+      "shouldTranslate": false
+    },
     "Multi District Jeugd Commissie": {
       "comment": "What the MDJC team is, under its name.",
       "localizations": {
@@ -584,6 +760,10 @@
         }
       }
     },
+    "Noordelijk halfrond": {
+      "comment": "Programmes: countries north of the equator.",
+      "shouldTranslate": false
+    },
     "Onafhankelijke vertrouwenspersonen": {
       "comment": "Heading of the confidants who are not part of Rotary.",
       "localizations": {
@@ -596,7 +776,7 @@
       }
     },
     "Onze missie": {
-      "comment": "About tab: heading.",
+      "comment": "About tab: heading.\nProgrammes: heading of the mission.",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -627,6 +807,10 @@
           }
         }
       }
+    },
+    "Past dit bij jou?": {
+      "comment": "Programmes: heading of who Family to Family suits.",
+      "shouldTranslate": false
     },
     "Penningmeester": {
       "comment": "Role: treasurer.",
@@ -661,6 +845,10 @@
         }
       }
     },
+    "Persoonlijke ontwikkeling": {
+      "comment": "Programmes: a reason.",
+      "shouldTranslate": false
+    },
     "Presentielijst DJC-training": {
       "comment": "Rotary clubs: a document's title, the attendance list of the district youth commissioner's training.",
       "localizations": {
@@ -694,6 +882,10 @@
         }
       }
     },
+    "Rond december en januari komen de kampen van het nieuwe jaar in de app. Heb je interesse, stuur dan een mail.": {
+      "comment": "Programmes: when the camps appear and how to show interest.",
+      "shouldTranslate": false
+    },
     "Rotary Youth Exchange": {
       "comment": "Heading of the emergency contacts within Rotary Youth Exchange.",
       "localizations": {
@@ -715,6 +907,14 @@
           }
         }
       }
+    },
+    "Rotary Youth Exchange in het kort": {
+      "comment": "Videos: the title of the short promotional video of Rotary Youth Exchange.",
+      "shouldTranslate": false
+    },
+    "Rotary kiest je gastgezinnen zorgvuldig, en lokale Rotary-clubs en een wereldwijd netwerk staan achter je.": {
+      "comment": "Programmes: a reason explained.",
+      "shouldTranslate": false
     },
     "Rotary organiseert al 55 jaar internationale jeugduitwisselingen. Jeugduitwisseling zit in het DNA van Rotary: jongeren hebben de toekomst, voor Rotary en voor de wereld. Sinds 2010 is jeugdzaken met jeugduitwisseling de vijfde Avenue of Service van Rotary. Elk jaar zijn er wereldwijd 7.000 uitwisselingen. In Nederland organiseert de Multi District Jeugd Commissie (MDJC) ze.": {
       "comment": "About tab: who Rotary Youth Exchange Netherlands is.",
@@ -748,6 +948,10 @@
           }
         }
       }
+    },
+    "School en cultuur": {
+      "comment": "Programmes: a reason.",
+      "shouldTranslate": false
     },
     "Secretaris": {
       "comment": "Role: secretary.",
@@ -980,6 +1184,14 @@
         }
       }
     },
+    "Vriendschappen voor het leven": {
+      "comment": "Programmes: a reason.",
+      "shouldTranslate": false
+    },
+    "Waar": {
+      "comment": "Programmes: where summer camps take place.",
+      "shouldTranslate": false
+    },
     "Waarden": {
       "comment": "About tab: heading.",
       "localizations": {
@@ -990,6 +1202,10 @@
           }
         }
       }
+    },
+    "Waarom Rotary Youth Exchange?": {
+      "comment": "Programmes: heading of the reasons to go on a year exchange.",
+      "shouldTranslate": false
     },
     "Wat leuk dat jullie als Rotary-club een jaarstudent willen supporten, en daarmee ook een jaar lang een student uit het buitenland in jullie club ontvangen en begeleiden. Misschien heeft een scholier jullie benaderd, of komt de wens van een van jullie clubleden.": {
       "comment": "Rotary clubs: the welcome at the top of the page.",
@@ -1014,7 +1230,7 @@
       }
     },
     "Zomerkampen": {
-      "comment": "About tab: an exchange programme.",
+      "comment": "About tab: an exchange programme.\nProgrammes: summer camps abroad.",
       "localizations": {
         "en": {
           "stringUnit": {
@@ -1023,6 +1239,10 @@
           }
         }
       }
+    },
+    "Zuidelijk halfrond": {
+      "comment": "Programmes: countries south of the equator.",
+      "shouldTranslate": false
     }
   },
   "version": "1.1"

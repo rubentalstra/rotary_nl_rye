@@ -60,6 +60,9 @@
         }
       }
     },
+    "-%@": {
+      "shouldTranslate": false
+    },
     "112, als elke seconde telt": {
       "localizations": {
         "en": {
@@ -69,6 +72,12 @@
           }
         }
       }
+    },
+    "15 seconden terug": {
+      "shouldTranslate": false
+    },
+    "15 seconden vooruit": {
+      "shouldTranslate": false
     },
     "Aankomst van een inbound op Schiphol": {
       "comment": "Home carousel: caption of a photo of a foreign student arriving at Schiphol airport.",
@@ -81,6 +90,9 @@
         }
       }
     },
+    "Aanmelden": {
+      "shouldTranslate": false
+    },
     "Abonneer in Agenda": {
       "localizations": {
         "en": {
@@ -90,6 +102,12 @@
           }
         }
       }
+    },
+    "Aflevering %lld": {
+      "shouldTranslate": false
+    },
+    "Afleveringen": {
+      "shouldTranslate": false
     },
     "Agenda": {
       "comment": "Home tile: the calendar of events.",
@@ -142,6 +160,9 @@
         }
       }
     },
+    "Alle kampen van dit jaar, met data, leeftijden en prijzen.": {
+      "shouldTranslate": false
+    },
     "Alle landen": {
       "localizations": {
         "en": {
@@ -192,6 +213,9 @@
         }
       }
     },
+    "Bekijk de zomerkampen": {
+      "shouldTranslate": false
+    },
     "Bel": {
       "localizations": {
         "en": {
@@ -231,6 +255,10 @@
           }
         }
       }
+    },
+    "Bij de Rotary-club in het gastland": {
+      "comment": "Programme photo: students with the members of their host Rotary club.",
+      "shouldTranslate": false
     },
     "Club": {
       "localizations": {
@@ -383,6 +411,9 @@
         }
       }
     },
+    "Duur": {
+      "shouldTranslate": false
+    },
     "E-mail": {
       "localizations": {
         "en": {
@@ -472,6 +503,12 @@
           }
         }
       }
+    },
+    "Gastouders vertellen hoe het is om een uitwisselingsstudent in huis te hebben.": {
+      "shouldTranslate": false
+    },
+    "Gastouders vertellen over hun uitwisselingsstudent": {
+      "shouldTranslate": false
     },
     "Geen evenementen": {
       "localizations": {
@@ -582,6 +619,9 @@
           }
         }
       }
+    },
+    "In het kort": {
+      "shouldTranslate": false
     },
     "Inbounds met de vlaggen van hun land": {
       "comment": "Home carousel: caption of a photo of foreign students holding their flags.",
@@ -714,6 +754,9 @@
           }
         }
       }
+    },
+    "Luister en kijk": {
+      "shouldTranslate": false
     },
     "MIT. De merklogo's komen van Simple Icons (CC0); de merken zijn van hun eigenaren.": {
       "localizations": {
@@ -907,6 +950,9 @@
         }
       }
     },
+    "Nu aan het afspelen": {
+      "shouldTranslate": false
+    },
     "Nu bezig": {
       "localizations": {
         "en": {
@@ -958,6 +1004,9 @@
         }
       }
     },
+    "Opent de podcast": {
+      "shouldTranslate": false
+    },
     "Over": {
       "localizations": {
         "en": {
@@ -988,6 +1037,9 @@
         }
       }
     },
+    "Over het programma": {
+      "shouldTranslate": false
+    },
     "PDF": {
       "localizations": {
         "en": {
@@ -997,6 +1049,19 @@
           }
         }
       }
+    },
+    "Pauzeer": {
+      "shouldTranslate": false
+    },
+    "Pauzeert de aflevering": {
+      "shouldTranslate": false
+    },
+    "Podcast": {
+      "comment": "Now Playing: the album name of a podcast episode.",
+      "shouldTranslate": false
+    },
+    "Positie": {
+      "shouldTranslate": false
     },
     "Prijs": {
       "localizations": {
@@ -1090,6 +1155,12 @@
         }
       }
     },
+    "Rotary Youth Exchange Podcast": {
+      "shouldTranslate": false
+    },
+    "Selectie": {
+      "shouldTranslate": false
+    },
     "Sorteer op": {
       "localizations": {
         "en": {
@@ -1099,6 +1170,12 @@
           }
         }
       }
+    },
+    "Speel af": {
+      "shouldTranslate": false
+    },
+    "Speelt de aflevering af": {
+      "shouldTranslate": false
     },
     "Taal": {
       "localizations": {
@@ -1240,6 +1317,9 @@
         }
       }
     },
+    "Toont de foto schermvullend": {
+      "shouldTranslate": false
+    },
     "Tot en met": {
       "localizations": {
         "en": {
@@ -1250,6 +1330,9 @@
         }
       }
     },
+    "Uitwisselingen": {
+      "shouldTranslate": false
+    },
     "Van": {
       "localizations": {
         "en": {
@@ -1259,6 +1342,9 @@
           }
         }
       }
+    },
+    "Vanaf %@": {
+      "shouldTranslate": false
     },
     "Verberg volle kampen": {
       "localizations": {
@@ -1341,6 +1427,18 @@
         }
       }
     },
+    "Welkom in Brazilië": {
+      "comment": "Programme photo: a Dutch student welcomed at the airport in Brazil.",
+      "shouldTranslate": false
+    },
+    "Welkom in Canada": {
+      "comment": "Programme photo: a Dutch student welcomed at the airport in Canada.",
+      "shouldTranslate": false
+    },
+    "Welkom in Italië": {
+      "comment": "Programme photo: a Dutch student welcomed at the airport in Italy.",
+      "shouldTranslate": false
+    },
     "WhatsApp": {
       "localizations": {
         "en": {
@@ -1371,6 +1469,10 @@
         }
       }
     },
+    "Zomerkamp Amazon Tour in Brazilië": {
+      "comment": "Programme photo: a summer camp group with their flags on a boat on the Amazon.",
+      "shouldTranslate": false
+    },
     "Zomerkampen": {
       "comment": "Home tile: the list of summer camps.",
       "localizations": {
@@ -1381,6 +1483,10 @@
           }
         }
       }
+    },
+    "Zwemmen met roze rivierdolfijnen": {
+      "comment": "Programme photo: summer camp members swimming with Amazon river dolphins.",
+      "shouldTranslate": false
     }
   },
   "version": "1.1"

@@ -5,11 +5,13 @@ import SwiftUI
 @main
 struct RotaryYEPApp: App {
     @State private var router = AppRouter()
+    @State private var podcast = PodcastPlayer()
 
     var body: some Scene {
         WindowGroup {
             MainTabView()
                 .environment(router)
+                .environment(podcast)
         }
     }
 }
