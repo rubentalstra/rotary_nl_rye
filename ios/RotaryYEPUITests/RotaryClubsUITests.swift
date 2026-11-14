@@ -9,14 +9,14 @@ final class RotaryClubsUITests: XCTestCase {
     }
 
     func testRotaryClubsDutchLight() {
-        tour(language: "nl", appearance: .light, tile: "Voor Rotary-clubs", topic: "Kosten", document: "Handboek gastgezin")
+        tour(language: "nl", appearance: .light, tile: "Voor Rotary-clubs", topic: "Kosten", guide: "deel van het jaar", document: "Handboek gastgezin")
     }
 
     func testRotaryClubsEnglishDark() {
-        tour(language: "en", appearance: .dark, tile: "For Rotary clubs", topic: "Costs", document: "Host family handbook")
+        tour(language: "en", appearance: .dark, tile: "For Rotary clubs", topic: "Costs", guide: "part of the year", document: "Host family handbook")
     }
 
-    private func tour(language: String, appearance: XCUIDevice.Appearance, tile: String, topic: String, document: String) {
+    private func tour(language: String, appearance: XCUIDevice.Appearance, tile: String, topic: String, guide: String, document: String) {
         XCUIDevice.shared.appearance = appearance
         let app = XCUIApplication()
         app.launchArguments = ["-AppleLanguages", "(\(language))", "-AppleLocale", language == "nl" ? "nl_NL" : "en_GB"]
@@ -33,8 +33,13 @@ final class RotaryClubsUITests: XCTestCase {
         snapshot("\(language)-clubs-topic")
         app.navigationBars.buttons.firstMatch.tap()
 
+        // The host family's page, found by its summary (its title also starts "Host families").
+        let guideButton = app.buttons.matching(NSPredicate(format: "label CONTAINS %@", guide)).firstMatch
+        if !guideButton.isHittable { app.collectionViews.firstMatch.swipeUp() }
+        XCTAssertTrue(guideButton.waitForExistence(timeout: 5), "no role row for \(guide)")
+        snapshot("\(language)-clubs-roles")
+        guideButton.tap()
         let documentButton = app.buttons.matching(NSPredicate(format: "label CONTAINS %@", document)).firstMatch
-        if !documentButton.isHittable { app.collectionViews.firstMatch.swipeUp() }
         XCTAssertTrue(documentButton.waitForExistence(timeout: 5), "no document \(document)")
         snapshot("\(language)-clubs-documents")
         documentButton.tap()

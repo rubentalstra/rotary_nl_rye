@@ -1,3 +1,4 @@
+import RotaryCore
 import Testing
 import UIKit
 @testable import RotaryYEP
@@ -24,5 +25,12 @@ import UIKit
     @Test(arguments: HomeDestination.allCases.filter { $0 != .rotaryClubs })
     func `Every tile icon is a real SF Symbol`(_ destination: HomeDestination) {
         #expect(UIImage(systemName: destination.systemImage) != nil, "\(destination.systemImage) is not an SF Symbol")
+    }
+}
+
+@MainActor @Suite struct RotaryClubsSymbolTests {
+    @Test(arguments: ClubGuide.allCases.map(\.systemImage) + ClubDocument.allCases.map(\.systemImage) + ClubTopic.allCases.map(\.systemImage))
+    func `Every Rotary clubs icon is a real SF Symbol`(_ name: String) {
+        #expect(UIImage(systemName: name) != nil, "\(name) is not an SF Symbol")
     }
 }

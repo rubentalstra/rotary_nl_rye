@@ -18,6 +18,16 @@ public enum ClubGuide: CaseIterable, Identifiable, Sendable {
         }
     }
 
+    /// An SF Symbol for the role's row and page.
+    public var systemImage: String {
+        switch self {
+        case .youthCommissioner: "person.text.rectangle"
+        case .hostFamily: "figure.2.and.child.holdinghands"
+        case .counselor: "person.2"
+        case .allClubs: "building.columns"
+        }
+    }
+
     public var summary: LocalizedStringResource {
         switch self {
         case .youthCommissioner: LocalizedStringResource("Voor de jeugdcommissaris van de club die een student uitzendt en ontvangt.", bundle: #bundle, comment: "Rotary clubs: under the youth commissioner's documents.")

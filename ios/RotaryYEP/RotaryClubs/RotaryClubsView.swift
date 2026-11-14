@@ -1,9 +1,9 @@
 import RotaryCore
 import SwiftUI
 
-/// For Rotary clubs that host a student: a welcome, what hosting means, and
-/// the documents per role, each opening in Quick Look. A search narrows the
-/// topics and documents by title.
+/// For Rotary clubs that host a student: the welcome and what hosting means
+/// on this page, and a page per role with its documents. A search finds a
+/// topic or a document across every role.
 struct RotaryClubsView: View {
     @State private var query = ""
 
@@ -13,15 +13,10 @@ struct RotaryClubsView: View {
                 Section {
                     Introduction()
                 }
-            }
-            TopicsSection(topics: ClubTopic.allCases.filter { matches($0.title) })
-            ForEach(ClubGuide.allCases) { guide in
-                GuideSection(guide: guide, documents: guide.documents.filter { matches($0.title) })
-            }
-        }
-        .overlay {
-            if !query.isEmpty, ClubTopic.allCases.allSatisfy({ !matches($0.title) }), ClubDocument.allCases.allSatisfy({ !matches($0.title) }) {
-                ContentUnavailableView.search(text: query)
+                TopicsSection(topics: ClubTopic.allCases)
+                GuidesSection()
+            } else {
+                SearchResults(query: query)
             }
         }
         .searchable(text: $query, prompt: Text("Onderwerp of document"))
@@ -29,11 +24,9 @@ struct RotaryClubsView: View {
         .navigationDestination(for: ClubTopic.self) { topic in
             ClubTopicView(topic: topic)
         }
-    }
-
-    /// Whether a title matches the search, in the app's language.
-    private func matches(_ title: LocalizedStringResource) -> Bool {
-        query.isEmpty || String(localized: title).localizedStandardContains(query)
+        .navigationDestination(for: ClubGuide.self) { guide in
+            ClubGuideView(guide: guide)
+        }
     }
 }
 
@@ -73,29 +66,87 @@ private struct TopicsSection: View {
     }
 }
 
-/// One role's documents, each opening in Quick Look.
-private struct GuideSection: View {
-    let guide: ClubGuide
-    let documents: [ClubDocument]
-
+/// A row per role, each opening its page of documents.
+private struct GuidesSection: View {
     var body: some View {
-        if !documents.isEmpty {
-            Section {
-                ForEach(documents) { document in
-                    DocumentLink(document.url) {
-                        Label {
-                            Text(document.title)
-                                .foregroundStyle(.primary)
-                        } icon: {
-                            Image(systemName: document.systemImage)
-                                .foregroundStyle(.tint)
+        Section("Documenten") {
+            ForEach(ClubGuide.allCases) { guide in
+                NavigationLink(value: guide) {
+                    Label {
+                        VStack(alignment: .leading, spacing: 2) {
+                            Text(guide.title)
+                            Text(guide.summary)
+                                .font(.footnote)
+                                .foregroundStyle(.secondary)
                         }
+                    } icon: {
+                        Image(systemName: guide.systemImage)
+                            .foregroundStyle(.tint)
                     }
                 }
+            }
+        }
+    }
+}
+
+/// The topics and documents whose title matches the search; a document in
+/// several roles shows once.
+private struct SearchResults: View {
+    let query: String
+
+    private func matches(_ title: LocalizedStringResource) -> Bool {
+        String(localized: title).localizedStandardContains(query)
+    }
+
+    var body: some View {
+        let topics = ClubTopic.allCases.filter { matches($0.title) }
+        let documents = ClubDocument.allCases.filter { matches($0.title) }
+        if topics.isEmpty, documents.isEmpty {
+            ContentUnavailableView.search(text: query)
+                .listRowBackground(Color.clear)
+        }
+        TopicsSection(topics: topics)
+        if !documents.isEmpty {
+            Section("Documenten") {
+                ForEach(documents) { document in
+                    DocumentRow(document: document)
+                }
+            }
+        }
+    }
+}
+
+/// One role's page: what it is for, and its documents.
+struct ClubGuideView: View {
+    let guide: ClubGuide
+
+    var body: some View {
+        List {
+            Section {
+                ForEach(guide.documents) { document in
+                    DocumentRow(document: document)
+                }
             } header: {
-                Text(guide.title)
-            } footer: {
                 Text(guide.summary)
+                    .textCase(nil)
+            }
+        }
+        .navigationTitle(Text(guide.title))
+    }
+}
+
+/// A document, opening in Quick Look.
+private struct DocumentRow: View {
+    let document: ClubDocument
+
+    var body: some View {
+        DocumentLink(document.url) {
+            Label {
+                Text(document.title)
+                    .foregroundStyle(.primary)
+            } icon: {
+                Image(systemName: document.systemImage)
+                    .foregroundStyle(.tint)
             }
         }
     }

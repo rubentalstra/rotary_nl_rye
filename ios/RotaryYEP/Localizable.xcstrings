@@ -313,6 +313,16 @@
         }
       }
     },
+    "Documenten": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Documents"
+          }
+        }
+      }
+    },
     "E-mail": {
       "localizations": {
         "en": {
