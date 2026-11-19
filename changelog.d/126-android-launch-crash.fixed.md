@@ -1,0 +1,1 @@
+- Android: the app no longer closes right away when it opens.
