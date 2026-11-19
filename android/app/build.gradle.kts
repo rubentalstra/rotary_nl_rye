@@ -57,7 +57,6 @@ android {
             if (uploadKeystore != null) signingConfig = signingConfigs.getByName("upload")
             optimization {
                 enable = true
-                packageScope = setOf("androidx.**", "kotlin.**", "kotlinx.**")
             }
         }
     }
